@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C94241D223C12529000FD14E /* youtubedlswift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C94241CE23C12504000FD14E /* youtubedlswift.framework */; };
+		C94241D323C12529000FD14E /* youtubedlswift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C94241CE23C12504000FD14E /* youtubedlswift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C9FD9D7323BFF14B007A7FA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FD9D7223BFF14B007A7FA4 /* AppDelegate.swift */; };
 		C9FD9D7523BFF14B007A7FA4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FD9D7423BFF14B007A7FA4 /* SceneDelegate.swift */; };
 		C9FD9D7723BFF14B007A7FA4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FD9D7623BFF14B007A7FA4 /* ViewController.swift */; };
@@ -15,9 +17,27 @@
 		C9FD9D7F23BFF155007A7FA4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9FD9D7D23BFF155007A7FA4 /* LaunchScreen.storyboard */; };
 		C9FD9D8A23BFF155007A7FA4 /* memefolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FD9D8923BFF155007A7FA4 /* memefolderTests.swift */; };
 		C9FD9D9523BFF156007A7FA4 /* memefolderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FD9D9423BFF156007A7FA4 /* memefolderUITests.swift */; };
+		C9FD9DA923C00D45007A7FA4 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FD9DA823C00D45007A7FA4 /* ShareViewController.swift */; };
+		C9FD9DAC23C00D45007A7FA4 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9FD9DAA23C00D45007A7FA4 /* MainInterface.storyboard */; };
+		C9FD9DB023C00D46007A7FA4 /* gifgrabber.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C9FD9DA623C00D44007A7FA4 /* gifgrabber.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C9FD9DB623C00FC0007A7FA4 /* TestJS.js in Resources */ = {isa = PBXBuildFile; fileRef = C9FD9DB523C00FC0007A7FA4 /* TestJS.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		C94241CD23C12504000FD14E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C94241C823C12503000FD14E /* youtubedlswift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C94241AE23C12502000FD14E;
+			remoteInfo = youtubedlswift;
+		};
+		C94241CF23C12504000FD14E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C94241C823C12503000FD14E /* youtubedlswift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C94241B723C12502000FD14E;
+			remoteInfo = youtubedlswiftTests;
+		};
 		C9FD9D8623BFF155007A7FA4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C9FD9D6723BFF14B007A7FA4 /* Project object */;
@@ -32,9 +52,42 @@
 			remoteGlobalIDString = C9FD9D6E23BFF14B007A7FA4;
 			remoteInfo = memefolder;
 		};
+		C9FD9DAE23C00D46007A7FA4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C9FD9D6723BFF14B007A7FA4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C9FD9DA523C00D44007A7FA4;
+			remoteInfo = gifgrabber;
+		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		C94241D423C1252A000FD14E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C94241D323C12529000FD14E /* youtubedlswift.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C9FD9DB423C00D46007A7FA4 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				C9FD9DB023C00D46007A7FA4 /* gifgrabber.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		C94241C823C12503000FD14E /* youtubedlswift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = youtubedlswift.xcodeproj; path = youtubedlswift/youtubedlswift.xcodeproj; sourceTree = "<group>"; };
 		C9FD9D6F23BFF14B007A7FA4 /* memefolder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = memefolder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9FD9D7223BFF14B007A7FA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9FD9D7423BFF14B007A7FA4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +102,13 @@
 		C9FD9D9023BFF156007A7FA4 /* memefolderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = memefolderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9FD9D9423BFF156007A7FA4 /* memefolderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memefolderUITests.swift; sourceTree = "<group>"; };
 		C9FD9D9623BFF156007A7FA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C9FD9DA623C00D44007A7FA4 /* gifgrabber.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = gifgrabber.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9FD9DA823C00D45007A7FA4 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		C9FD9DAB23C00D45007A7FA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		C9FD9DAD23C00D45007A7FA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C9FD9DB523C00FC0007A7FA4 /* TestJS.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = TestJS.js; sourceTree = "<group>"; };
+		C9FD9DB723C01047007A7FA4 /* memefolder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = memefolder.entitlements; sourceTree = "<group>"; };
+		C9FD9DB823C01074007A7FA4 /* gifgrabber.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = gifgrabber.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,18 +133,47 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C9FD9DA323C00D44007A7FA4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C94241D223C12529000FD14E /* youtubedlswift.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C94241C923C12503000FD14E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C94241CE23C12504000FD14E /* youtubedlswift.framework */,
+				C94241D023C12504000FD14E /* youtubedlswiftTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C94241D123C12529000FD14E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C9FD9D6623BFF14B007A7FA4 = {
 			isa = PBXGroup;
 			children = (
+				C94241C823C12503000FD14E /* youtubedlswift.xcodeproj */,
 				C9FD9D7123BFF14B007A7FA4 /* memefolder */,
 				C9FD9D8823BFF155007A7FA4 /* memefolderTests */,
 				C9FD9D9323BFF156007A7FA4 /* memefolderUITests */,
+				C9FD9DA723C00D45007A7FA4 /* gifgrabber */,
 				C9FD9D7023BFF14B007A7FA4 /* Products */,
+				C94241D123C12529000FD14E /* Frameworks */,
 			);
+			indentWidth = 4;
 			sourceTree = "<group>";
+			tabWidth = 4;
 		};
 		C9FD9D7023BFF14B007A7FA4 /* Products */ = {
 			isa = PBXGroup;
@@ -92,6 +181,7 @@
 				C9FD9D6F23BFF14B007A7FA4 /* memefolder.app */,
 				C9FD9D8523BFF155007A7FA4 /* memefolderTests.xctest */,
 				C9FD9D9023BFF156007A7FA4 /* memefolderUITests.xctest */,
+				C9FD9DA623C00D44007A7FA4 /* gifgrabber.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -99,6 +189,7 @@
 		C9FD9D7123BFF14B007A7FA4 /* memefolder */ = {
 			isa = PBXGroup;
 			children = (
+				C9FD9DB723C01047007A7FA4 /* memefolder.entitlements */,
 				C9FD9D7223BFF14B007A7FA4 /* AppDelegate.swift */,
 				C9FD9D7423BFF14B007A7FA4 /* SceneDelegate.swift */,
 				C9FD9D7623BFF14B007A7FA4 /* ViewController.swift */,
@@ -128,6 +219,18 @@
 			path = memefolderUITests;
 			sourceTree = "<group>";
 		};
+		C9FD9DA723C00D45007A7FA4 /* gifgrabber */ = {
+			isa = PBXGroup;
+			children = (
+				C9FD9DB823C01074007A7FA4 /* gifgrabber.entitlements */,
+				C9FD9DA823C00D45007A7FA4 /* ShareViewController.swift */,
+				C9FD9DAA23C00D45007A7FA4 /* MainInterface.storyboard */,
+				C9FD9DAD23C00D45007A7FA4 /* Info.plist */,
+				C9FD9DB523C00FC0007A7FA4 /* TestJS.js */,
+			);
+			path = gifgrabber;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -138,10 +241,12 @@
 				C9FD9D6B23BFF14B007A7FA4 /* Sources */,
 				C9FD9D6C23BFF14B007A7FA4 /* Frameworks */,
 				C9FD9D6D23BFF14B007A7FA4 /* Resources */,
+				C9FD9DB423C00D46007A7FA4 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				C9FD9DAF23C00D46007A7FA4 /* PBXTargetDependency */,
 			);
 			name = memefolder;
 			productName = memefolder;
@@ -184,6 +289,24 @@
 			productReference = C9FD9D9023BFF156007A7FA4 /* memefolderUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		C9FD9DA523C00D44007A7FA4 /* gifgrabber */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C9FD9DB123C00D46007A7FA4 /* Build configuration list for PBXNativeTarget "gifgrabber" */;
+			buildPhases = (
+				C9FD9DA223C00D44007A7FA4 /* Sources */,
+				C9FD9DA323C00D44007A7FA4 /* Frameworks */,
+				C9FD9DA423C00D44007A7FA4 /* Resources */,
+				C94241D423C1252A000FD14E /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = gifgrabber;
+			productName = gifgrabber;
+			productReference = C9FD9DA623C00D44007A7FA4 /* gifgrabber.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -205,6 +328,9 @@
 						CreatedOnToolsVersion = 11.3;
 						TestTargetID = C9FD9D6E23BFF14B007A7FA4;
 					};
+					C9FD9DA523C00D44007A7FA4 = {
+						CreatedOnToolsVersion = 11.3;
+					};
 				};
 			};
 			buildConfigurationList = C9FD9D6A23BFF14B007A7FA4 /* Build configuration list for PBXProject "memefolder" */;
@@ -218,14 +344,38 @@
 			mainGroup = C9FD9D6623BFF14B007A7FA4;
 			productRefGroup = C9FD9D7023BFF14B007A7FA4 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = C94241C923C12503000FD14E /* Products */;
+					ProjectRef = C94241C823C12503000FD14E /* youtubedlswift.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				C9FD9D6E23BFF14B007A7FA4 /* memefolder */,
 				C9FD9D8423BFF155007A7FA4 /* memefolderTests */,
 				C9FD9D8F23BFF156007A7FA4 /* memefolderUITests */,
+				C9FD9DA523C00D44007A7FA4 /* gifgrabber */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		C94241CE23C12504000FD14E /* youtubedlswift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = youtubedlswift.framework;
+			remoteRef = C94241CD23C12504000FD14E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C94241D023C12504000FD14E /* youtubedlswiftTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = youtubedlswiftTests.xctest;
+			remoteRef = C94241CF23C12504000FD14E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		C9FD9D6D23BFF14B007A7FA4 /* Resources */ = {
@@ -249,6 +399,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C9FD9DA423C00D44007A7FA4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9FD9DAC23C00D45007A7FA4 /* MainInterface.storyboard in Resources */,
+				C9FD9DB623C00FC0007A7FA4 /* TestJS.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +440,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C9FD9DA223C00D44007A7FA4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9FD9DA923C00D45007A7FA4 /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -293,6 +460,11 @@
 			isa = PBXTargetDependency;
 			target = C9FD9D6E23BFF14B007A7FA4 /* memefolder */;
 			targetProxy = C9FD9D9123BFF156007A7FA4 /* PBXContainerItemProxy */;
+		};
+		C9FD9DAF23C00D46007A7FA4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C9FD9DA523C00D44007A7FA4 /* gifgrabber */;
+			targetProxy = C9FD9DAE23C00D46007A7FA4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -311,6 +483,14 @@
 				C9FD9D7E23BFF155007A7FA4 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		C9FD9DAA23C00D45007A7FA4 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C9FD9DAB23C00D45007A7FA4 /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -433,10 +613,13 @@
 		C9FD9D9A23BFF156007A7FA4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = memefolder/memefolder.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GQZFDKJ72B;
 				INFOPLIST_FILE = memefolder/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -451,10 +634,13 @@
 		C9FD9D9B23BFF156007A7FA4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = memefolder/memefolder.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GQZFDKJ72B;
 				INFOPLIST_FILE = memefolder/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -474,7 +660,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GQZFDKJ72B;
 				INFOPLIST_FILE = memefolderTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -496,7 +682,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GQZFDKJ72B;
 				INFOPLIST_FILE = memefolderTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -517,6 +703,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GQZFDKJ72B;
 				INFOPLIST_FILE = memefolderUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -537,6 +724,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GQZFDKJ72B;
 				INFOPLIST_FILE = memefolderUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -547,6 +735,48 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = memefolder;
+			};
+			name = Release;
+		};
+		C9FD9DB223C00D46007A7FA4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = gifgrabber/gifgrabber.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GQZFDKJ72B;
+				INFOPLIST_FILE = gifgrabber/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.memefolder.memefolder.gifgrabber;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C9FD9DB323C00D46007A7FA4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = gifgrabber/gifgrabber.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GQZFDKJ72B;
+				INFOPLIST_FILE = gifgrabber/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.memefolder.memefolder.gifgrabber;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -585,6 +815,15 @@
 			buildConfigurations = (
 				C9FD9DA023BFF156007A7FA4 /* Debug */,
 				C9FD9DA123BFF156007A7FA4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C9FD9DB123C00D46007A7FA4 /* Build configuration list for PBXNativeTarget "gifgrabber" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9FD9DB223C00D46007A7FA4 /* Debug */,
+				C9FD9DB323C00D46007A7FA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
