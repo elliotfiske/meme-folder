@@ -14,6 +14,14 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         TwitterDL.sharedInstance.extractMediaURLs(usingTweetURL: "https://twitter.com/pokimanelol/status/1213551994964606976?s=20")
+            .catch { error in
+                switch error {
+                case let error as TwitterAPIError:
+                    print("Had some kinda internet issue :(")
+                default:
+                    print("Unknown error!!")
+                }
+        }
     }
 }
 

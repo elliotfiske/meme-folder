@@ -11,12 +11,14 @@ import PromiseKit
 import PMKAlamofire
 import SwiftExpression
 
+
+// TODO: Move me to another file
+public enum TwitterAPIError: Error {
+   case invalidToken(String)
+   case invalidInput(String)
+}
+
 public class TwitterDL {
-   
-   enum TwitterAPIError: Error {
-      case invalidToken(String)
-      case invalidInput(String)
-   }
    
    class GuestTokenResponse: Decodable {
       var guestToken: String
@@ -37,7 +39,6 @@ public class TwitterDL {
       "Accept" : "application/json"
    ]
    
-   
    // We will need this guest token to access Twitter as a guest, until
    //    Twitter approves my developer account
    var cachedGuestToken: String?
@@ -46,16 +47,12 @@ public class TwitterDL {
          return Promise.value(cachedGuestToken)
       }
       
-//      return Alamofire.request(TwitterDL.BASE_API + "guest/activate.json",
-//                               method: .post,
-//                               headers: TwitterDL.BASE_HEADERS)
-//         .responseData()
-      return firstly { () -> Guarantee<String> in
-         return Guarantee.value("guh")
-      }
-      .map { strData -> String in
-//         print(data as NSData)
-         let data = strData.data(using: .utf8)!
+      return Alamofire.request(TwitterDL.BASE_API + "guest/activate.json",
+                               method: .post,
+                               headers: TwitterDL.BASE_HEADERS)
+         .responseData()
+      .map { data, _ -> String in
+         print(data as NSData)
          let token = try JSONDecoder().decode(GuestTokenResponse.self, from: data)
          
          self.cachedGuestToken = token.guestToken
@@ -66,8 +63,8 @@ public class TwitterDL {
          // TODO-EF: Send a non-fatal to Firebase here
          print("oh nooo couldn't get the guest token")
          switch(error) {
-         case let error as DecodingError:
-            throw TwitterAPIError.invalidToken("Guest token parse error: \(error.localizedDescription)")
+         case DecodingError.dataCorrupted(let context):
+            throw TwitterAPIError.invalidToken("Guest token parse error: \(context.debugDescription)")
          default:
             throw TwitterAPIError.invalidToken("Guest token error: \(error.localizedDescription)")
          }
@@ -78,20 +75,18 @@ public class TwitterDL {
    //    justify having a subscription. For now just kinda practicing API
    //    calls and data manipulation with Swift.
    public func extractMediaURLs(usingTweetURL url: String) -> Promise<String> {
-//      let regex = try! Regex(#"https?://(?:(?:www|m(?:obile)?)\.)?twitter\.com/(?:(?:i/web|[^\/]+)/status|statuses)/(?<id>\d+)"#)
-//      let matches = url.match(regex)
-//
-//      return firstly { return Promise.value(()) }
-//         .then {() -> Promise<String>
-//         guard let tweetID = matches.subStrings().get(index: 1) else {
-//            // TODO-EF: Send a non-fatal to Firebase
-//            print("Couldn't find tweet ID from URL...")
-//            throw TwitterAPIError.invalidInput("Twitter URL: \(url)")
-//         }
-//
-//         return Promise<String>.value("Fart")
-//      }
-      return getGuestToken()
+      let regex = try! Regex(#"https?://(?:(?:www|m(?:obile)?)\.)?twitter\.com/(?:(?:i/web|[^\/]+)/status|statuses)/(?<id>\d+)"#)
+      let matches = url.match(regex)
+
+      return firstly { () -> Promise<String> in
+         guard let tweetID = matches.subStrings().get(index: 1) else {
+            // TODO-EF: Send a non-fatal to Firebase
+            print("Couldn't find tweet ID from URL...")
+            throw TwitterAPIError.invalidInput("Twitter URL: \(url)")
+         }
+
+         return getGuestToken()
+      }
    }
    
    public func callAPI() -> Promise<Any> {
@@ -100,9 +95,6 @@ public class TwitterDL {
       return firstly { () -> Promise<String> in
          getGuestToken()
       }
-//      .map {
-//
-//      }
       .then { token in
          Alamofire.request(TwitterDL.BASE_API
                            + "statuses/show/1213551994964606976.json")
