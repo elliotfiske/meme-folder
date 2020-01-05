@@ -9,11 +9,13 @@
 import Foundation
 import PromiseKit
 import PMKAlamofire
+import SwiftExpression
 
 public class TwitterDL {
    
    enum TwitterAPIError: Error {
       case invalidToken(String)
+      case invalidInput(String)
    }
    
    class GuestTokenResponse: Decodable {
@@ -30,64 +32,88 @@ public class TwitterDL {
    static let BEARER_TOKEN = "Bearer AAAAAAAAAAAAAAAAAAAAAPYXBAAAAAAACLXUNDekMxqa8h%2F40K4moUkGsoc%3DTYfbDKbT3jJPCEVnMYqilB28NHfOPqkca3qaAxGfsyKCs0wRbw"
    static let BASE_API = "https://api.twitter.com/1.1/"
    
+   static let BASE_HEADERS: HTTPHeaders = [
+      "Authorization" : TwitterDL.BEARER_TOKEN,
+      "Accept" : "application/json"
+   ]
+   
    
    // We will need this guest token to access Twitter as a guest, until
    //    Twitter approves my developer account
-   var guestToken: String?
+   var cachedGuestToken: String?
    func getGuestToken() -> Promise<String> {
-      if let guestToken = guestToken {
-         return Promise.value(guestToken)
+      if let cachedGuestToken = cachedGuestToken {
+         return Promise.value(cachedGuestToken)
       }
       
-      let headers: HTTPHeaders = [
-         "Authorization" : TwitterDL.BEARER_TOKEN,
-         "Accept" : "application/json"
-      ]
-      
-      return Alamofire.request(TwitterDL.BASE_API + "guest/activate.json",
-                               method: .post,
-                               headers: headers)
-         .responseData()
-         .map { data, _ -> String in
-            print(data as NSData)
-            let token = try JSONDecoder().decode(GuestTokenResponse.self, from: data)
-            return token.guestToken
+//      return Alamofire.request(TwitterDL.BASE_API + "guest/activate.json",
+//                               method: .post,
+//                               headers: TwitterDL.BASE_HEADERS)
+//         .responseData()
+      return firstly { () -> Guarantee<String> in
+         return Guarantee.value("guh")
+      }
+      .map { strData -> String in
+//         print(data as NSData)
+         let data = strData.data(using: .utf8)!
+         let token = try JSONDecoder().decode(GuestTokenResponse.self, from: data)
+         
+         self.cachedGuestToken = token.guestToken
+         
+         return token.guestToken
+      }
+      .recover { error -> Promise<String> in
+         // TODO-EF: Send a non-fatal to Firebase here
+         print("oh nooo couldn't get the guest token")
+         switch(error) {
+         case let error as DecodingError:
+            throw TwitterAPIError.invalidToken("Guest token parse error: \(error.localizedDescription)")
+         default:
+            throw TwitterAPIError.invalidToken("Guest token error: \(error.localizedDescription)")
          }
-         .recover { error -> Promise<String> in
-            // TODO-EF: Send a non-fatal to Firebase here
-            print("oh nooo couldn't get the guest token")
-            throw error
-         }
+      }
    }
    
-   public func callAPI() {
+   // Elliot's note: This will eventually move to the server side, so we can
+   //    justify having a subscription. For now just kinda practicing API
+   //    calls and data manipulation with Swift.
+   public func extractMediaURLs(usingTweetURL url: String) -> Promise<String> {
+//      let regex = try! Regex(#"https?://(?:(?:www|m(?:obile)?)\.)?twitter\.com/(?:(?:i/web|[^\/]+)/status|statuses)/(?<id>\d+)"#)
+//      let matches = url.match(regex)
+//
+//      return firstly { return Promise.value(()) }
+//         .then {() -> Promise<String>
+//         guard let tweetID = matches.subStrings().get(index: 1) else {
+//            // TODO-EF: Send a non-fatal to Firebase
+//            print("Couldn't find tweet ID from URL...")
+//            throw TwitterAPIError.invalidInput("Twitter URL: \(url)")
+//         }
+//
+//         return Promise<String>.value("Fart")
+//      }
+      return getGuestToken()
+   }
+   
+   public func callAPI() -> Promise<Any> {
       var guestToken: String?
-      
-      let url = "https://twitter.com/pokimanelol/status/1213551994964606976?s=20"
-      
-      let regex = try! NSRegularExpression(pattern: #"https?://(?:(?:www|m(?:obile)?)\.)?twitter\.com/(?:(?:i/web|[^\/]+)/status|statuses)/(?<id>\d+)"#
-      )
-      let range = NSRange(url.startIndex..<url.endIndex, in: url)
-      
-      if let match = regex.firstMatch(in: url, options: [], range: range) {
-         let nsrange = match.range(at: 1)
-         if nsrange.location != NSNotFound,
-            let range = Range(nsrange, in: url)
-         {
-            print("Cool: \(url[range])")
-         }
-      }
-      
-      firstly {
+   
+      return firstly { () -> Promise<String> in
          getGuestToken()
       }
-      .done { guestToken = $0 }
-      .then { Alamofire.request(TwitterDL.BASE_API
-         + "statuses/show/1213551994964606976.json").validate().responseJSON()
+//      .map {
+//
+//      }
+      .then { token in
+         Alamofire.request(TwitterDL.BASE_API
+                           + "statuses/show/1213551994964606976.json")
+                  .validate()
+                  .responseJSON()
       }
-      .ensure { print("haha neat") }
-      .catch { error in
-         print(error.localizedDescription)
+      .map { json, _ in
+         return json
       }
+//      .catch { error in
+//         print(error.localizedDescription)
+//      }
    }
 }

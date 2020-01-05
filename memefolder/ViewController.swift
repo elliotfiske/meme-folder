@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        TwitterDL.sharedInstance.callAPI()
+        TwitterDL.sharedInstance.extractMediaURLs(usingTweetURL: "https://twitter.com/pokimanelol/status/1213551994964606976?s=20")
     }
 }
 

@@ -13,6 +13,8 @@
 		C9F5113223C187150044C61A /* TwitterDL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F5113123C187150044C61A /* TwitterDL.swift */; };
 		C9F5113523C188950044C61A /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = C9F5113423C188950044C61A /* PromiseKit */; };
 		C9F5113823C18AD60044C61A /* PMKAlamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C9F5113723C18AD60044C61A /* PMKAlamofire */; };
+		C9F5113B23C288BE0044C61A /* SwiftExpression in Frameworks */ = {isa = PBXBuildFile; productRef = C9F5113A23C288BE0044C61A /* SwiftExpression */; };
+		C9F5113E23C28AAF0044C61A /* Array+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F5113D23C28AAF0044C61A /* Array+Convenience.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +35,7 @@
 		C9F5111B23C186400044C61A /* YoutubeDLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeDLTests.swift; sourceTree = "<group>"; };
 		C9F5111D23C186400044C61A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9F5113123C187150044C61A /* TwitterDL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterDL.swift; sourceTree = "<group>"; };
+		C9F5113D23C28AAF0044C61A /* Array+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Convenience.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9F5113B23C288BE0044C61A /* SwiftExpression in Frameworks */,
 				C9F5113823C18AD60044C61A /* PMKAlamofire in Frameworks */,
 				C9F5113523C188950044C61A /* PromiseKit in Frameworks */,
 			);
@@ -59,6 +63,7 @@
 		C9F5110323C186400044C61A = {
 			isa = PBXGroup;
 			children = (
+				C9F5113C23C28A9B0044C61A /* Helpers */,
 				C9F5110F23C186400044C61A /* YoutubeDL */,
 				C9F5111A23C186400044C61A /* YoutubeDLTests */,
 				C9F5110E23C186400044C61A /* Products */,
@@ -101,6 +106,14 @@
 			path = twitter;
 			sourceTree = "<group>";
 		};
+		C9F5113C23C28A9B0044C61A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C9F5113D23C28AAF0044C61A /* Array+Convenience.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -132,6 +145,7 @@
 			packageProductDependencies = (
 				C9F5113423C188950044C61A /* PromiseKit */,
 				C9F5113723C18AD60044C61A /* PMKAlamofire */,
+				C9F5113A23C288BE0044C61A /* SwiftExpression */,
 			);
 			productName = YoutubeDL;
 			productReference = C9F5110D23C186400044C61A /* YoutubeDL.framework */;
@@ -186,6 +200,7 @@
 			packageReferences = (
 				C9F5113323C188950044C61A /* XCRemoteSwiftPackageReference "PromiseKit" */,
 				C9F5113623C18AD60044C61A /* XCRemoteSwiftPackageReference "PMKAlamofire" */,
+				C9F5113923C288BE0044C61A /* XCRemoteSwiftPackageReference "SwiftExpression" */,
 			);
 			productRefGroup = C9F5110E23C186400044C61A /* Products */;
 			projectDirPath = "";
@@ -220,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9F5113223C187150044C61A /* TwitterDL.swift in Sources */,
+				C9F5113E23C28AAF0044C61A /* Array+Convenience.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,6 +518,14 @@
 				minimumVersion = 3.2.4;
 			};
 		};
+		C9F5113923C288BE0044C61A /* XCRemoteSwiftPackageReference "SwiftExpression" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lostatseajoshua/SwiftExpression";
+			requirement = {
+				kind = revision;
+				revision = d2014c91dfc03628a52d7dd25a4312ca6c4e52b3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -514,6 +538,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C9F5113623C18AD60044C61A /* XCRemoteSwiftPackageReference "PMKAlamofire" */;
 			productName = PMKAlamofire;
+		};
+		C9F5113A23C288BE0044C61A /* SwiftExpression */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9F5113923C288BE0044C61A /* XCRemoteSwiftPackageReference "SwiftExpression" */;
+			productName = SwiftExpression;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
