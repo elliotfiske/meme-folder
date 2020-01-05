@@ -98,9 +98,9 @@
 		C97DA08A23C15FA600AF0131 /* YoutubeDL */ = {
 			isa = PBXGroup;
 			children = (
+				C9F510F923C1651D0044C61A /* twitter */,
 				C97DA08B23C15FA600AF0131 /* YoutubeDL.h */,
 				C97DA08C23C15FA600AF0131 /* Info.plist */,
-				C90F098523C1613C000CA06E /* TwitterDL.swift */,
 			);
 			path = YoutubeDL;
 			sourceTree = "<group>";
@@ -112,6 +112,14 @@
 				C97DA09823C15FA600AF0131 /* Info.plist */,
 			);
 			path = YoutubeDLTests;
+			sourceTree = "<group>";
+		};
+		C9F510F923C1651D0044C61A /* twitter */ = {
+			isa = PBXGroup;
+			children = (
+				C90F098523C1613C000CA06E /* TwitterDL.swift */,
+			);
+			path = twitter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -408,6 +416,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = YoutubeDL/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -437,6 +446,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = YoutubeDL/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

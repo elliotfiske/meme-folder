@@ -4,6 +4,7 @@ workspace 'memefolder.xcworkspace'
 # Shared pods
 pod 'RxSwift', '4.4.1'
 pod 'RxCocoa', '4.4.1'
+pod 'Alamofire', '~> 5.0.0-rc.3'
 
 # Target-specific pods
 target 'memefolder' do
