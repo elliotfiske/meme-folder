@@ -1,0 +1,6 @@
+module Pods_gifgrabber {
+  umbrella header "Pods-gifgrabber-umbrella.h"
+
+  export *
+  module * { export * }
+}

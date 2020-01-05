@@ -1,0 +1,6 @@
+module Pods_memefolder {
+  umbrella header "Pods-memefolder-umbrella.h"
+
+  export *
+  module * { export * }
+}

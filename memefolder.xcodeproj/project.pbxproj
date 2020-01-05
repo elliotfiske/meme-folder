@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C94241D223C12529000FD14E /* youtubedlswift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C94241CE23C12504000FD14E /* youtubedlswift.framework */; };
-		C94241D323C12529000FD14E /* youtubedlswift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C94241CE23C12504000FD14E /* youtubedlswift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		06D403687926506CC58AE65C /* libPods-memefolder.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 273AF414D3FD95634C212F55 /* libPods-memefolder.a */; };
+		7908B2BA9396970EC7C146AA /* libPods-gifgrabber.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E446F5E1B1A32812152EC93E /* libPods-gifgrabber.a */; };
+		C97DA0AB23C15FB800AF0131 /* YoutubeDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C97DA0A823C15FA700AF0131 /* YoutubeDL.framework */; };
+		C97DA0AC23C15FB800AF0131 /* YoutubeDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C97DA0A823C15FA700AF0131 /* YoutubeDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C97DA0AE23C15FC000AF0131 /* YoutubeDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C97DA0A823C15FA700AF0131 /* YoutubeDL.framework */; };
+		C97DA0AF23C15FC000AF0131 /* YoutubeDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C97DA0A823C15FA700AF0131 /* YoutubeDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C9FD9D7323BFF14B007A7FA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FD9D7223BFF14B007A7FA4 /* AppDelegate.swift */; };
 		C9FD9D7523BFF14B007A7FA4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FD9D7423BFF14B007A7FA4 /* SceneDelegate.swift */; };
 		C9FD9D7723BFF14B007A7FA4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FD9D7623BFF14B007A7FA4 /* ViewController.swift */; };
@@ -19,24 +23,24 @@
 		C9FD9D9523BFF156007A7FA4 /* memefolderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FD9D9423BFF156007A7FA4 /* memefolderUITests.swift */; };
 		C9FD9DA923C00D45007A7FA4 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FD9DA823C00D45007A7FA4 /* ShareViewController.swift */; };
 		C9FD9DAC23C00D45007A7FA4 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9FD9DAA23C00D45007A7FA4 /* MainInterface.storyboard */; };
-		C9FD9DB023C00D46007A7FA4 /* gifgrabber.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C9FD9DA623C00D44007A7FA4 /* gifgrabber.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C9FD9DB023C00D46007A7FA4 /* GifGrabber.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C9FD9DA623C00D44007A7FA4 /* GifGrabber.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C9FD9DB623C00FC0007A7FA4 /* TestJS.js in Resources */ = {isa = PBXBuildFile; fileRef = C9FD9DB523C00FC0007A7FA4 /* TestJS.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C94241CD23C12504000FD14E /* PBXContainerItemProxy */ = {
+		C97DA0A723C15FA700AF0131 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C94241C823C12503000FD14E /* youtubedlswift.xcodeproj */;
+			containerPortal = C97DA0A223C15FA600AF0131 /* YoutubeDL.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = C94241AE23C12502000FD14E;
-			remoteInfo = youtubedlswift;
+			remoteGlobalIDString = C97DA08823C15FA600AF0131;
+			remoteInfo = YoutubeDL;
 		};
-		C94241CF23C12504000FD14E /* PBXContainerItemProxy */ = {
+		C97DA0A923C15FA700AF0131 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C94241C823C12503000FD14E /* youtubedlswift.xcodeproj */;
+			containerPortal = C97DA0A223C15FA600AF0131 /* YoutubeDL.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = C94241B723C12502000FD14E;
-			remoteInfo = youtubedlswiftTests;
+			remoteGlobalIDString = C97DA09123C15FA600AF0131;
+			remoteInfo = YoutubeDLTests;
 		};
 		C9FD9D8623BFF155007A7FA4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -62,13 +66,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		C94241D423C1252A000FD14E /* Embed Frameworks */ = {
+		C97DA0AD23C15FB800AF0131 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				C94241D323C12529000FD14E /* youtubedlswift.framework in Embed Frameworks */,
+				C97DA0AC23C15FB800AF0131 /* YoutubeDL.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C97DA0B023C15FC000AF0131 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C97DA0AF23C15FC000AF0131 /* YoutubeDL.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -79,7 +94,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				C9FD9DB023C00D46007A7FA4 /* gifgrabber.appex in Embed App Extensions */,
+				C9FD9DB023C00D46007A7FA4 /* GifGrabber.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -87,8 +102,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C94241C823C12503000FD14E /* youtubedlswift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = youtubedlswift.xcodeproj; path = youtubedlswift/youtubedlswift.xcodeproj; sourceTree = "<group>"; };
-		C9FD9D6F23BFF14B007A7FA4 /* memefolder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = memefolder.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		004359F6A18C8E8CFF557427 /* Pods-memefolder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-memefolder.release.xcconfig"; path = "Target Support Files/Pods-memefolder/Pods-memefolder.release.xcconfig"; sourceTree = "<group>"; };
+		273AF414D3FD95634C212F55 /* libPods-memefolder.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-memefolder.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD9FFA6850183BC3D8C7F568 /* Pods-gifgrabber.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gifgrabber.debug.xcconfig"; path = "Target Support Files/Pods-gifgrabber/Pods-gifgrabber.debug.xcconfig"; sourceTree = "<group>"; };
+		B2B3A812CBA60682D622437B /* Pods-memefolder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-memefolder.debug.xcconfig"; path = "Target Support Files/Pods-memefolder/Pods-memefolder.debug.xcconfig"; sourceTree = "<group>"; };
+		C97DA0A223C15FA600AF0131 /* YoutubeDL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = YoutubeDL.xcodeproj; path = YoutubeDL/YoutubeDL.xcodeproj; sourceTree = "<group>"; };
+		C9FD9D6F23BFF14B007A7FA4 /* Meme Folder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Meme Folder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9FD9D7223BFF14B007A7FA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9FD9D7423BFF14B007A7FA4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		C9FD9D7623BFF14B007A7FA4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -102,13 +121,15 @@
 		C9FD9D9023BFF156007A7FA4 /* memefolderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = memefolderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9FD9D9423BFF156007A7FA4 /* memefolderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memefolderUITests.swift; sourceTree = "<group>"; };
 		C9FD9D9623BFF156007A7FA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C9FD9DA623C00D44007A7FA4 /* gifgrabber.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = gifgrabber.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9FD9DA623C00D44007A7FA4 /* GifGrabber.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = GifGrabber.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9FD9DA823C00D45007A7FA4 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		C9FD9DAB23C00D45007A7FA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		C9FD9DAD23C00D45007A7FA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9FD9DB523C00FC0007A7FA4 /* TestJS.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = TestJS.js; sourceTree = "<group>"; };
 		C9FD9DB723C01047007A7FA4 /* memefolder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = memefolder.entitlements; sourceTree = "<group>"; };
 		C9FD9DB823C01074007A7FA4 /* gifgrabber.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = gifgrabber.entitlements; sourceTree = "<group>"; };
+		DCADD201D81F7A8AAE663582 /* Pods-gifgrabber.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-gifgrabber.release.xcconfig"; path = "Target Support Files/Pods-gifgrabber/Pods-gifgrabber.release.xcconfig"; sourceTree = "<group>"; };
+		E446F5E1B1A32812152EC93E /* libPods-gifgrabber.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-gifgrabber.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +137,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C97DA0AB23C15FB800AF0131 /* YoutubeDL.framework in Frameworks */,
+				06D403687926506CC58AE65C /* libPods-memefolder.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,39 +160,54 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C94241D223C12529000FD14E /* youtubedlswift.framework in Frameworks */,
+				C97DA0AE23C15FC000AF0131 /* YoutubeDL.framework in Frameworks */,
+				7908B2BA9396970EC7C146AA /* libPods-gifgrabber.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C94241C923C12503000FD14E /* Products */ = {
+		74A73AFFDD268B7DE77DD446 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				C94241CE23C12504000FD14E /* youtubedlswift.framework */,
-				C94241D023C12504000FD14E /* youtubedlswiftTests.xctest */,
+				AD9FFA6850183BC3D8C7F568 /* Pods-gifgrabber.debug.xcconfig */,
+				DCADD201D81F7A8AAE663582 /* Pods-gifgrabber.release.xcconfig */,
+				B2B3A812CBA60682D622437B /* Pods-memefolder.debug.xcconfig */,
+				004359F6A18C8E8CFF557427 /* Pods-memefolder.release.xcconfig */,
 			);
-			name = Products;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		C94241D123C12529000FD14E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E446F5E1B1A32812152EC93E /* libPods-gifgrabber.a */,
+				273AF414D3FD95634C212F55 /* libPods-memefolder.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C97DA0A323C15FA600AF0131 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C97DA0A823C15FA700AF0131 /* YoutubeDL.framework */,
+				C97DA0AA23C15FA700AF0131 /* YoutubeDLTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		C9FD9D6623BFF14B007A7FA4 = {
 			isa = PBXGroup;
 			children = (
-				C94241C823C12503000FD14E /* youtubedlswift.xcodeproj */,
+				C97DA0A223C15FA600AF0131 /* YoutubeDL.xcodeproj */,
 				C9FD9D7123BFF14B007A7FA4 /* memefolder */,
 				C9FD9D8823BFF155007A7FA4 /* memefolderTests */,
 				C9FD9D9323BFF156007A7FA4 /* memefolderUITests */,
 				C9FD9DA723C00D45007A7FA4 /* gifgrabber */,
 				C9FD9D7023BFF14B007A7FA4 /* Products */,
 				C94241D123C12529000FD14E /* Frameworks */,
+				74A73AFFDD268B7DE77DD446 /* Pods */,
 			);
 			indentWidth = 4;
 			sourceTree = "<group>";
@@ -178,10 +216,10 @@
 		C9FD9D7023BFF14B007A7FA4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C9FD9D6F23BFF14B007A7FA4 /* memefolder.app */,
+				C9FD9D6F23BFF14B007A7FA4 /* Meme Folder.app */,
 				C9FD9D8523BFF155007A7FA4 /* memefolderTests.xctest */,
 				C9FD9D9023BFF156007A7FA4 /* memefolderUITests.xctest */,
-				C9FD9DA623C00D44007A7FA4 /* gifgrabber.appex */,
+				C9FD9DA623C00D44007A7FA4 /* GifGrabber.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -238,10 +276,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C9FD9D9923BFF156007A7FA4 /* Build configuration list for PBXNativeTarget "memefolder" */;
 			buildPhases = (
+				AE63EFD184A3DBAE807A207C /* [CP] Check Pods Manifest.lock */,
 				C9FD9D6B23BFF14B007A7FA4 /* Sources */,
 				C9FD9D6C23BFF14B007A7FA4 /* Frameworks */,
 				C9FD9D6D23BFF14B007A7FA4 /* Resources */,
 				C9FD9DB423C00D46007A7FA4 /* Embed App Extensions */,
+				C97DA0AD23C15FB800AF0131 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -250,7 +290,7 @@
 			);
 			name = memefolder;
 			productName = memefolder;
-			productReference = C9FD9D6F23BFF14B007A7FA4 /* memefolder.app */;
+			productReference = C9FD9D6F23BFF14B007A7FA4 /* Meme Folder.app */;
 			productType = "com.apple.product-type.application";
 		};
 		C9FD9D8423BFF155007A7FA4 /* memefolderTests */ = {
@@ -293,10 +333,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C9FD9DB123C00D46007A7FA4 /* Build configuration list for PBXNativeTarget "gifgrabber" */;
 			buildPhases = (
+				3565E0733A0250D50C8BEC29 /* [CP] Check Pods Manifest.lock */,
 				C9FD9DA223C00D44007A7FA4 /* Sources */,
 				C9FD9DA323C00D44007A7FA4 /* Frameworks */,
 				C9FD9DA423C00D44007A7FA4 /* Resources */,
-				C94241D423C1252A000FD14E /* Embed Frameworks */,
+				C97DA0B023C15FC000AF0131 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -304,7 +345,7 @@
 			);
 			name = gifgrabber;
 			productName = gifgrabber;
-			productReference = C9FD9DA623C00D44007A7FA4 /* gifgrabber.appex */;
+			productReference = C9FD9DA623C00D44007A7FA4 /* GifGrabber.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -346,8 +387,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = C94241C923C12503000FD14E /* Products */;
-					ProjectRef = C94241C823C12503000FD14E /* youtubedlswift.xcodeproj */;
+					ProductGroup = C97DA0A323C15FA600AF0131 /* Products */;
+					ProjectRef = C97DA0A223C15FA600AF0131 /* YoutubeDL.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -361,18 +402,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		C94241CE23C12504000FD14E /* youtubedlswift.framework */ = {
+		C97DA0A823C15FA700AF0131 /* YoutubeDL.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
-			path = youtubedlswift.framework;
-			remoteRef = C94241CD23C12504000FD14E /* PBXContainerItemProxy */;
+			path = YoutubeDL.framework;
+			remoteRef = C97DA0A723C15FA700AF0131 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		C94241D023C12504000FD14E /* youtubedlswiftTests.xctest */ = {
+		C97DA0AA23C15FA700AF0131 /* YoutubeDLTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = youtubedlswiftTests.xctest;
-			remoteRef = C94241CF23C12504000FD14E /* PBXContainerItemProxy */;
+			path = YoutubeDLTests.xctest;
+			remoteRef = C97DA0A923C15FA700AF0131 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -412,6 +453,53 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3565E0733A0250D50C8BEC29 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-gifgrabber-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AE63EFD184A3DBAE807A207C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-memefolder-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C9FD9D6B23BFF14B007A7FA4 /* Sources */ = {
@@ -612,8 +700,9 @@
 		};
 		C9FD9D9A23BFF156007A7FA4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B2B3A812CBA60682D622437B /* Pods-memefolder.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = memefolder/memefolder.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -625,7 +714,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.memefolder.memefolder;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Meme Folder";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -633,8 +722,9 @@
 		};
 		C9FD9D9B23BFF156007A7FA4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 004359F6A18C8E8CFF557427 /* Pods-memefolder.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = memefolder/memefolder.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -646,7 +736,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.memefolder.memefolder;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Meme Folder";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -740,6 +830,7 @@
 		};
 		C9FD9DB223C00D46007A7FA4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD9FFA6850183BC3D8C7F568 /* Pods-gifgrabber.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = gifgrabber/gifgrabber.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -752,7 +843,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.memefolder.memefolder.gifgrabber;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = GifGrabber;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -761,6 +852,7 @@
 		};
 		C9FD9DB323C00D46007A7FA4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DCADD201D81F7A8AAE663582 /* Pods-gifgrabber.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = gifgrabber/gifgrabber.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -773,7 +865,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.memefolder.memefolder.gifgrabber;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = GifGrabber;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
