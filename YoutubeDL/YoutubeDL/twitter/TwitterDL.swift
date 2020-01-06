@@ -20,13 +20,24 @@ public enum TwitterAPIError: Error {
 
 public class TwitterDL {
    
-   class GuestTokenResponse: Decodable {
-      var guestToken: String
+   struct GuestTokenResponse: Decodable {
+      var guest_token: String
+   }
+   
+   struct StatusDetails: Decodable {
+      var extended_entities: ExtendedEntities
       
-      enum CodingKeys: String, CodingKey {
-         case guestToken = "guest_token"
+      struct ExtendedEntities: Decodable {
+         var media: [MediaEntity]
+         
+         struct MediaEntity: Decodable {
+            var media_url: String
+            var media_url_https: String
+         }
       }
    }
+   
+   
    
    public static let sharedInstance: TwitterDL = TwitterDL()
    
@@ -39,6 +50,39 @@ public class TwitterDL {
       "Accept" : "application/json"
    ]
    
+   
+   
+   // Elliot's note: This will eventually move to the server side, so we can
+   //    justify selling a subscription. For now just kinda practicing API
+   //    calls and data manipulation with Swift.
+   public func extractMediaURLs(usingTweetURL url: String) -> Promise<String> {
+      let matchedGroups = url.groups(for: #"https?://(?:(?:www|m(?:obile)?)\.)?twitter\.com/(?:(?:i/web|[^\/]+)/status|statuses)/(?<id>\d+)"#)
+
+      return firstly { () -> Promise<Data> in
+         guard let tweetID = matchedGroups.get(index: 0)?.get(index: 1) else {
+            // TODO-EF: Send a non-fatal to Firebase
+            print("Couldn't find tweet ID from URL...")
+            throw TwitterAPIError.invalidInput("Twitter URL: \(url)")
+         }
+
+         let params = [
+            "cards_platform" : "Web-12",
+            "include_cards" : "1",
+            "include_reply_count" : "1",
+            "include_user_entities" : "0",
+            "tweet_mode" : "extended"
+         ]
+         
+         return callAPI(endpoint: "statuses/show/\(tweetID).json", parameters: params)
+      }
+      .map { data in
+         let status_deets = try JSONDecoder().decode(StatusDetails.self, from: data)
+         return status_deets.extended_entities.media[0].media_url_https
+      }
+   }
+   
+   // MARK - Twitter API helper functions
+   
    // We will need this guest token to access Twitter as a guest, until
    //    Twitter approves my developer account
    var cachedGuestToken: String?
@@ -47,17 +91,18 @@ public class TwitterDL {
          return Promise.value(cachedGuestToken)
       }
       
-      return Alamofire.request(TwitterDL.BASE_API + "guest/activate.json",
-                               method: .post,
-                               headers: TwitterDL.BASE_HEADERS)
-         .responseData()
+      return firstly {
+         Alamofire.request(TwitterDL.BASE_API + "guest/activate.json",
+                           method: .post,
+                           headers: TwitterDL.BASE_HEADERS)
+            .responseData()
+      }
       .map { data, _ -> String in
-         print(data as NSData)
          let token = try JSONDecoder().decode(GuestTokenResponse.self, from: data)
          
-         self.cachedGuestToken = token.guestToken
+         self.cachedGuestToken = token.guest_token
          
-         return token.guestToken
+         return token.guest_token
       }
       .recover { error -> Promise<String> in
          // TODO-EF: Send a non-fatal to Firebase here
@@ -71,41 +116,27 @@ public class TwitterDL {
       }
    }
    
-   // Elliot's note: This will eventually move to the server side, so we can
-   //    justify having a subscription. For now just kinda practicing API
-   //    calls and data manipulation with Swift.
-   public func extractMediaURLs(usingTweetURL url: String) -> Promise<String> {
-      let regex = try! Regex(#"https?://(?:(?:www|m(?:obile)?)\.)?twitter\.com/(?:(?:i/web|[^\/]+)/status|statuses)/(?<id>\d+)"#)
-      let matches = url.match(regex)
+   //
+   // Call the Twitter API with the given endpoint, method, params and headers.
+   //
+   // Uses the cached guest token, or
+   //
+   public func callAPI(endpoint: String, method: HTTPMethod = .get, parameters: Parameters = [:], headers: HTTPHeaders? = nil) -> Promise<Data> {
 
-      return firstly { () -> Promise<String> in
-         guard let tweetID = matches.subStrings().get(index: 1) else {
-            // TODO-EF: Send a non-fatal to Firebase
-            print("Couldn't find tweet ID from URL...")
-            throw TwitterAPIError.invalidInput("Twitter URL: \(url)")
-         }
-
-         return getGuestToken()
-      }
-   }
-   
-   public func callAPI() -> Promise<Any> {
-      var guestToken: String?
-   
       return firstly { () -> Promise<String> in
          getGuestToken()
       }
-      .then { token in
-         Alamofire.request(TwitterDL.BASE_API
-                           + "statuses/show/1213551994964606976.json")
-                  .validate()
-                  .responseJSON()
+      .then { token -> Promise<(data: Data, response: PMKAlamofireDataResponse)> in
+         var combinedHeaders = TwitterDL.BASE_HEADERS.merging(headers ?? [:],
+                                 uniquingKeysWith: { (_, new) in new })
+         combinedHeaders["x-guest-token"] = token
+         
+         return Alamofire.request(TwitterDL.BASE_API + endpoint, method: method, parameters: parameters, headers: combinedHeaders)
+            .validate()
+            .responseData()
       }
-      .map { json, _ in
-         return json
+      .map { data, _ in
+         return data
       }
-//      .catch { error in
-//         print(error.localizedDescription)
-//      }
    }
 }

@@ -8,20 +8,41 @@
 
 import UIKit
 import YoutubeDL
+import PMKAlamofire
+import PromiseKit
 
 class ViewController: UIViewController {
+    
+    @IBOutlet weak var twitterEntryText: UITextField!
+    
+    @IBAction func buttonPushed(_ sender: Any) {
+        twitterEntryText?.resignFirstResponder()
+        
+        firstly { () -> Promise<String> in
+            TwitterDL.sharedInstance.extractMediaURLs(usingTweetURL: twitterEntryText.text ?? "")
+        }
+        .then { mediaURL in
+            Alamofire.request(mediaURL)
+                .validate()
+                .responseData()
+        }
+        .done { data, _ in
+            self.thumbnailDisplay?.image = UIImage(data: data)
+        }
+        .catch { error in
+            switch error {
+            case let error as TwitterAPIError:
+                print("Some issue with the Twitter API :( \(error.localizedDescription)")
+            default:
+                print("Some other kind of error: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    @IBOutlet weak var thumbnailDisplay: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        TwitterDL.sharedInstance.extractMediaURLs(usingTweetURL: "https://twitter.com/pokimanelol/status/1213551994964606976?s=20")
-            .catch { error in
-                switch error {
-                case let error as TwitterAPIError:
-                    print("Had some kinda internet issue :(")
-                default:
-                    print("Unknown error!!")
-                }
-        }
     }
 }
 
