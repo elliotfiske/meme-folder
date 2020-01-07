@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OaN-Lj-WZG">
-                                <rect key="frame" x="0.0" y="403.5" width="414" height="20.5"/>
+                                <rect key="frame" x="0.0" y="367.5" width="414" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -45,7 +45,7 @@
                         <constraints>
                             <constraint firstItem="U31-l7-lph" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="4ZK-V1-frJ"/>
                             <constraint firstItem="PYo-Rj-TxV" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Hvi-a7-nHZ"/>
-                            <constraint firstItem="PYo-Rj-TxV" firstAttribute="top" secondItem="OaN-Lj-WZG" secondAttribute="bottom" constant="-28" id="Iau-GE-ebB"/>
+                            <constraint firstItem="PYo-Rj-TxV" firstAttribute="top" secondItem="OaN-Lj-WZG" secondAttribute="bottom" constant="8" id="Iau-GE-ebB"/>
                             <constraint firstItem="R3l-jz-JhN" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="KmI-aN-hmg"/>
                             <constraint firstItem="PYo-Rj-TxV" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" constant="-50" id="OwT-yJ-Usf"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="OaN-Lj-WZG" secondAttribute="trailing" id="Wrw-9B-NWa"/>
