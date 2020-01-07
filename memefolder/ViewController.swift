@@ -14,35 +14,56 @@ import PromiseKit
 class ViewController: UIViewController {
     
     @IBOutlet weak var twitterEntryText: UITextField!
+    @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var errorLabelBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imageLoadingActivityIndicator: UIActivityIndicatorView!
     
     @IBAction func buttonPushed(_ sender: Any) {
+        guard !(twitterEntryText.text?.isEmpty ?? false) else {
+            showInputError(for: TwitterAPIError.emptyInput)
+            return
+        }
+
         twitterEntryText?.resignFirstResponder()
         
         firstly { () -> Promise<String> in
-            TwitterDL.sharedInstance.extractMediaURLs(usingTweetURL: twitterEntryText.text ?? "")
+            try TwitterDL.sharedInstance.extractMediaURLs(usingTweetURL: twitterEntryText.text ?? "")
         }
         .then { mediaURL in
             Alamofire.request(mediaURL)
                 .validate()
                 .responseData()
         }
-        .done { data, _ in
-            self.thumbnailDisplay?.image = UIImage(data: data)
+        .done { [weak self] data, _ in
+            self?.thumbnailDisplay?.image = UIImage(data: data)
+        }
+        .ensure { [weak self] in
+            self?.imageLoadingActivityIndicator.stopAnimating()
         }
         .catch { error in
             switch error {
             case let error as TwitterAPIError:
-                print("Some issue with the Twitter API :( \(error.localizedDescription)")
+                print("Some issue with the Twitter API :( \(error)")
+                self.showInputError(for: error)
             default:
                 print("Some other kind of error: \(error.localizedDescription)")
             }
         }
+        
+        imageLoadingActivityIndicator.startAnimating()
     }
     
     @IBOutlet weak var thumbnailDisplay: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        twitterEntryText.delegate = self
     }
 }
 
+extension ViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        hideInputError()
+        return true
+    }
+}
