@@ -16,6 +16,7 @@ import SwiftExpression
 public enum TwitterAPIError: Error {
    case invalidToken(String)
    case invalidInput(String)
+   case internetError
 }
 
 public class TwitterDL {
@@ -55,14 +56,14 @@ public class TwitterDL {
    // Elliot's note: This will eventually move to the server side, so we can
    //    justify selling a subscription. For now just kinda practicing API
    //    calls and data manipulation with Swift.
-   public func extractMediaURLs(usingTweetURL url: String) -> Promise<String> {
+   public func getThumbnailData(forTweetURL url: String) -> Promise<Data> {
       let matchedGroups = url.groups(for: #"https?://(?:(?:www|m(?:obile)?)\.)?twitter\.com/(?:(?:i/web|[^\/]+)/status|statuses)/(?<id>\d+)"#)
 
       return firstly { () -> Promise<Data> in
          guard let tweetID = matchedGroups.get(index: 0)?.get(index: 1) else {
             // TODO-EF: Send a non-fatal to Firebase
             print("Couldn't find tweet ID from URL...")
-            throw TwitterAPIError.invalidInput("Twitter URL: \(url)")
+            throw TwitterAPIError.invalidInput("URL not a Twitter status: \(url)")
          }
 
          let params = [
@@ -78,6 +79,22 @@ public class TwitterDL {
       .map { data in
          let status_deets = try JSONDecoder().decode(StatusDetails.self, from: data)
          return status_deets.extended_entities.media[0].media_url_https
+      }
+      .recover { error -> Promise<String> in
+         switch(error) {
+         case DecodingError.dataCorrupted(let context):
+            throw TwitterAPIError.invalidInput("That tweet doesn't seem to have any media associated with it! Context: \(context.debugDescription)")
+         default:
+            throw error
+         }
+      }
+      .then { (thumbnailURL: String) in
+         return Alamofire.request(thumbnailURL)
+            .validate()
+            .responseData()
+      }
+      .map {
+         $0.data
       }
    }
    

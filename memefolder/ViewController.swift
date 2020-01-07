@@ -18,15 +18,15 @@ class ViewController: UIViewController {
     @IBAction func buttonPushed(_ sender: Any) {
         twitterEntryText?.resignFirstResponder()
         
-        firstly { () -> Promise<String> in
-            TwitterDL.sharedInstance.extractMediaURLs(usingTweetURL: twitterEntryText.text ?? "")
+        firstly { () -> Promise<Data> in
+            TwitterDL.sharedInstance.getThumbnailData(forTweetURL: twitterEntryText.text ?? "")
         }
-        .then { mediaURL in
-            Alamofire.request(mediaURL)
-                .validate()
-                .responseData()
-        }
-        .done { data, _ in
+//        .then { mediaURL in
+//            Alamofire.request(mediaURL)
+//                .validate()
+//                .responseData()
+//        }
+        .done { data in
             self.thumbnailDisplay?.image = UIImage(data: data)
         }
         .catch { error in

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		C9F5110123C17B770044C61A /* YoutubeDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F5110023C17B770044C61A /* YoutubeDL.framework */; };
 		C9F5110223C17B770044C61A /* YoutubeDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C9F5110023C17B770044C61A /* YoutubeDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C9F5114223C2CAA40044C61A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9F5114123C2CAA30044C61A /* GoogleService-Info.plist */; };
+		C9F5114323C2CAA40044C61A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9F5114123C2CAA30044C61A /* GoogleService-Info.plist */; };
 		C9FD9D7323BFF14B007A7FA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FD9D7223BFF14B007A7FA4 /* AppDelegate.swift */; };
 		C9FD9D7723BFF14B007A7FA4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FD9D7623BFF14B007A7FA4 /* ViewController.swift */; };
 		C9FD9D7A23BFF14B007A7FA4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9FD9D7823BFF14B007A7FA4 /* Main.storyboard */; };
@@ -98,6 +100,7 @@
 /* Begin PBXFileReference section */
 		C9F5110023C17B770044C61A /* YoutubeDL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = YoutubeDL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9F5112723C186400044C61A /* YoutubeDL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = YoutubeDL.xcodeproj; path = YoutubeDL/YoutubeDL.xcodeproj; sourceTree = "<group>"; };
+		C9F5114123C2CAA30044C61A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C9FD9D6F23BFF14B007A7FA4 /* Meme Folder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Meme Folder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9FD9D7223BFF14B007A7FA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9FD9D7623BFF14B007A7FA4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -180,6 +183,7 @@
 		C9FD9D6623BFF14B007A7FA4 = {
 			isa = PBXGroup;
 			children = (
+				C9F5114123C2CAA30044C61A /* GoogleService-Info.plist */,
 				C9F5112723C186400044C61A /* YoutubeDL.xcodeproj */,
 				C9FD9D7123BFF14B007A7FA4 /* memefolder */,
 				C9FD9D8823BFF155007A7FA4 /* memefolderTests */,
@@ -401,6 +405,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9FD9D7F23BFF155007A7FA4 /* LaunchScreen.storyboard in Resources */,
+				C9F5114223C2CAA40044C61A /* GoogleService-Info.plist in Resources */,
 				C9FD9D7C23BFF155007A7FA4 /* Assets.xcassets in Resources */,
 				C9FD9D7A23BFF14B007A7FA4 /* Main.storyboard in Resources */,
 			);
@@ -426,6 +431,7 @@
 			files = (
 				C9FD9DAC23C00D45007A7FA4 /* MainInterface.storyboard in Resources */,
 				C9FD9DB623C00FC0007A7FA4 /* TestJS.js in Resources */,
+				C9F5114323C2CAA40044C61A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
