@@ -10,12 +10,13 @@ import Foundation
 import PromiseKit
 import PMKAlamofire
 import SwiftExpression
-
+import SwiftyJSON
 
 // TODO: Move me to another file
 public enum TwitterAPIError: Error {
    case invalidToken(String)
    case invalidInput(String)
+   case tweetHasNoMedia
    case internetError
 }
 
@@ -77,8 +78,11 @@ public class TwitterDL {
          return callAPI(endpoint: "statuses/show/\(tweetID).json", parameters: params)
       }
       .map { data in
-         let status_deets = try JSONDecoder().decode(StatusDetails.self, from: data)
-         return status_deets.extended_entities.media[0].media_url_https
+         let json = try JSON(data: data)
+         guard let thumbnailURL = json["extended_entities"]["media"][0]["media_url_https"].string else {
+            throw TwitterAPIError.tweetHasNoMedia
+         }
+         return thumbnailURL
       }
       .recover { error -> Promise<String> in
          switch(error) {

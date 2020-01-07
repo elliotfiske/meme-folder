@@ -21,11 +21,6 @@ class ViewController: UIViewController {
         firstly { () -> Promise<Data> in
             TwitterDL.sharedInstance.getThumbnailData(forTweetURL: twitterEntryText.text ?? "")
         }
-//        .then { mediaURL in
-//            Alamofire.request(mediaURL)
-//                .validate()
-//                .responseData()
-//        }
         .done { data in
             self.thumbnailDisplay?.image = UIImage(data: data)
         }
