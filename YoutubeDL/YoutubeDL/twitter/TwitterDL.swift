@@ -12,16 +12,7 @@ import PMKAlamofire
 import SwiftExpression
 import SwiftyJSON
 
-// TODO: Move me to another file
-public enum TwitterAPIError: Error {
-   case invalidToken(String)
-   case invalidInput(String)
-   case tweetHasNoMedia
-   case internetError
-}
-
 public class TwitterDL {
-   
    struct GuestTokenResponse: Decodable {
       var guest_token: String
    }
@@ -39,8 +30,6 @@ public class TwitterDL {
       }
    }
    
-   
-   
    public static let sharedInstance: TwitterDL = TwitterDL()
    
    // yoinked from YoutubeDL's repo :3
@@ -52,21 +41,20 @@ public class TwitterDL {
       "Accept" : "application/json"
    ]
    
-   
-   
    // Elliot's note: This will eventually move to the server side, so we can
    //    justify selling a subscription. For now just kinda practicing API
    //    calls and data manipulation with Swift.
-   public func getThumbnailData(forTweetURL url: String) -> Promise<Data> {
+   public func getThumbnailData(usingTweetURL url: String) throws -> Promise<Data> {
       let matchedGroups = url.groups(for: #"https?://(?:(?:www|m(?:obile)?)\.)?twitter\.com/(?:(?:i/web|[^\/]+)/status|statuses)/(?<id>\d+)"#)
 
-      return firstly { () -> Promise<Data> in
-         guard let tweetID = matchedGroups.get(index: 0)?.get(index: 1) else {
-            // TODO-EF: Send a non-fatal to Firebase
-            print("Couldn't find tweet ID from URL...")
-            throw TwitterAPIError.invalidInput("URL not a Twitter status: \(url)")
-         }
+      guard let splitURL = matchedGroups.get(index: 0),
+         let tweetID = splitURL.get(index: 1) else {
+         // TODO-EF: Send a non-fatal to Firebase
+         print("Couldn't find tweet ID from URL...")
+         throw TwitterAPIError.invalidInput("Invalid Twitter URL: \(url)")
+      }
 
+      return firstly { () -> Promise<Data> in
          let params = [
             "cards_platform" : "Web-12",
             "include_cards" : "1",

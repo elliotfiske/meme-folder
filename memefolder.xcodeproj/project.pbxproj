@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		50760B6B23C439C0003D88A5 /* ViewController+ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50760B6A23C439C0003D88A5 /* ViewController+ErrorHandler.swift */; };
 		C9F5110123C17B770044C61A /* YoutubeDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F5110023C17B770044C61A /* YoutubeDL.framework */; };
 		C9F5110223C17B770044C61A /* YoutubeDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C9F5110023C17B770044C61A /* YoutubeDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C9F5114223C2CAA40044C61A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9F5114123C2CAA30044C61A /* GoogleService-Info.plist */; };
@@ -98,6 +99,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		50760B6A23C439C0003D88A5 /* ViewController+ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+ErrorHandler.swift"; sourceTree = "<group>"; };
 		C9F5110023C17B770044C61A /* YoutubeDL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = YoutubeDL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9F5112723C186400044C61A /* YoutubeDL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = YoutubeDL.xcodeproj; path = YoutubeDL/YoutubeDL.xcodeproj; sourceTree = "<group>"; };
 		C9F5114123C2CAA30044C61A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				C9FD9DB723C01047007A7FA4 /* memefolder.entitlements */,
 				C9FD9D7223BFF14B007A7FA4 /* AppDelegate.swift */,
 				C9FD9D7623BFF14B007A7FA4 /* ViewController.swift */,
+				50760B6A23C439C0003D88A5 /* ViewController+ErrorHandler.swift */,
 				C9FD9D7823BFF14B007A7FA4 /* Main.storyboard */,
 				C9FD9D7B23BFF155007A7FA4 /* Assets.xcassets */,
 				C9FD9D7D23BFF155007A7FA4 /* LaunchScreen.storyboard */,
@@ -443,6 +446,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9FD9D7723BFF14B007A7FA4 /* ViewController.swift in Sources */,
+				50760B6B23C439C0003D88A5 /* ViewController+ErrorHandler.swift in Sources */,
 				C9FD9D7323BFF14B007A7FA4 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -569,7 +573,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -623,7 +627,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
