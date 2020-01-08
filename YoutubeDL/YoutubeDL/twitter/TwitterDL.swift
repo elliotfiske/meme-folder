@@ -13,22 +13,6 @@ import SwiftExpression
 import SwiftyJSON
 
 public class TwitterDL {
-   struct GuestTokenResponse: Decodable {
-      var guest_token: String
-   }
-   
-   struct StatusDetails: Decodable {
-      var extended_entities: ExtendedEntities
-      
-      struct ExtendedEntities: Decodable {
-         var media: [MediaEntity]
-         
-         struct MediaEntity: Decodable {
-            var media_url: String
-            var media_url_https: String
-         }
-      }
-   }
    
    public static let sharedInstance: TwitterDL = TwitterDL()
    
@@ -62,23 +46,15 @@ public class TwitterDL {
             "include_user_entities" : "0",
             "tweet_mode" : "extended"
          ]
-         
+
          return callAPI(endpoint: "statuses/show/\(tweetID).json", parameters: params)
       }
       .map { data in
-         let json = try JSON(data: data)
+         let json = try parseJSON(data: data)
          guard let thumbnailURL = json["extended_entities"]["media"][0]["media_url_https"].string else {
             throw TwitterAPIError.tweetHasNoMedia
          }
          return thumbnailURL
-      }
-      .recover { error -> Promise<String> in
-         switch(error) {
-         case DecodingError.dataCorrupted(let context):
-            throw TwitterAPIError.invalidInput("That tweet doesn't seem to have any media associated with it! Context: \(context.debugDescription)")
-         default:
-            throw error
-         }
       }
       .then { (thumbnailURL: String) in
          return Alamofire.request(thumbnailURL)
@@ -90,7 +66,7 @@ public class TwitterDL {
       }
    }
    
-   // MARK - Twitter API helper functions
+   // MARK: Twitter API helper functions
    
    // We will need this guest token to access Twitter as a guest, until
    //    Twitter approves my developer account
@@ -107,37 +83,29 @@ public class TwitterDL {
             .responseData()
       }
       .map { data, _ -> String in
-         let token = try JSONDecoder().decode(GuestTokenResponse.self, from: data)
+         let json = try parseJSON(data: data)
          
-         self.cachedGuestToken = token.guest_token
-         
-         return token.guest_token
-      }
-      .recover { error -> Promise<String> in
-         // TODO-EF: Send a non-fatal to Firebase here
-         print("oh nooo couldn't get the guest token")
-         switch(error) {
-         case DecodingError.dataCorrupted(let context):
-            throw TwitterAPIError.invalidToken("Guest token parse error: \(context.debugDescription)")
-         default:
-            throw TwitterAPIError.invalidToken("Guest token error: \(error.localizedDescription)")
+         guard let token = json["guest_token"].string else {
+            throw TwitterAPIError.invalidToken("No token found in response: \(json.stringValue)")
          }
+         
+         return token
       }
    }
    
    //
    // Call the Twitter API with the given endpoint, method, params and headers.
    //
-   // Uses the cached guest token, or
+   // Uses the cached guest token, or tries to fetch a new one.
    //
-   public func callAPI(endpoint: String, method: HTTPMethod = .get, parameters: Parameters = [:], headers: HTTPHeaders? = nil) -> Promise<Data> {
+   func callAPI(endpoint: String, method: HTTPMethod = .get, parameters: Parameters = [:], headers: HTTPHeaders? = nil) -> Promise<Data> {
 
       return firstly { () -> Promise<String> in
          getGuestToken()
       }
       .then { token -> Promise<(data: Data, response: PMKAlamofireDataResponse)> in
          var combinedHeaders = TwitterDL.BASE_HEADERS.merging(headers ?? [:],
-                                 uniquingKeysWith: { (_, new) in new })
+                                                              uniquingKeysWith: { (_, new) in new })
          combinedHeaders["x-guest-token"] = token
          
          return Alamofire.request(TwitterDL.BASE_API + endpoint, method: method, parameters: parameters, headers: combinedHeaders)

@@ -14,7 +14,6 @@
 		C9F5113223C187150044C61A /* TwitterDL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F5113123C187150044C61A /* TwitterDL.swift */; };
 		C9F5113523C188950044C61A /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = C9F5113423C188950044C61A /* PromiseKit */; };
 		C9F5113823C18AD60044C61A /* PMKAlamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C9F5113723C18AD60044C61A /* PMKAlamofire */; };
-		C9F5113B23C288BE0044C61A /* SwiftExpression in Frameworks */ = {isa = PBXBuildFile; productRef = C9F5113A23C288BE0044C61A /* SwiftExpression */; };
 		C9F5113E23C28AAF0044C61A /* Array+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F5113D23C28AAF0044C61A /* Array+Convenience.swift */; };
 		C9F5114023C2BA8C0044C61A /* String+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F5113F23C2BA8C0044C61A /* String+Convenience.swift */; };
 		C9F5114623C446810044C61A /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = C9F5114523C446810044C61A /* SwiftyJSON */; };
@@ -48,7 +47,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9F5113B23C288BE0044C61A /* SwiftExpression in Frameworks */,
 				C9F5113823C18AD60044C61A /* PMKAlamofire in Frameworks */,
 				C9F5114623C446810044C61A /* SwiftyJSON in Frameworks */,
 				C9F5113523C188950044C61A /* PromiseKit in Frameworks */,
@@ -153,7 +151,6 @@
 			packageProductDependencies = (
 				C9F5113423C188950044C61A /* PromiseKit */,
 				C9F5113723C18AD60044C61A /* PMKAlamofire */,
-				C9F5113A23C288BE0044C61A /* SwiftExpression */,
 				C9F5114523C446810044C61A /* SwiftyJSON */,
 			);
 			productName = YoutubeDL;
@@ -209,7 +206,6 @@
 			packageReferences = (
 				C9F5113323C188950044C61A /* XCRemoteSwiftPackageReference "PromiseKit" */,
 				C9F5113623C18AD60044C61A /* XCRemoteSwiftPackageReference "PMKAlamofire" */,
-				C9F5113923C288BE0044C61A /* XCRemoteSwiftPackageReference "SwiftExpression" */,
 				C9F5114423C446800044C61A /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = C9F5110E23C186400044C61A /* Products */;
@@ -530,14 +526,6 @@
 				minimumVersion = 3.2.4;
 			};
 		};
-		C9F5113923C288BE0044C61A /* XCRemoteSwiftPackageReference "SwiftExpression" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/lostatseajoshua/SwiftExpression";
-			requirement = {
-				kind = revision;
-				revision = d2014c91dfc03628a52d7dd25a4312ca6c4e52b3;
-			};
-		};
 		C9F5114423C446800044C61A /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
@@ -558,11 +546,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C9F5113623C18AD60044C61A /* XCRemoteSwiftPackageReference "PMKAlamofire" */;
 			productName = PMKAlamofire;
-		};
-		C9F5113A23C288BE0044C61A /* SwiftExpression */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C9F5113923C288BE0044C61A /* XCRemoteSwiftPackageReference "SwiftExpression" */;
-			productName = SwiftExpression;
 		};
 		C9F5114523C446810044C61A /* SwiftyJSON */ = {
 			isa = XCSwiftPackageProductDependency;

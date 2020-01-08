@@ -7,13 +7,13 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 public enum TwitterAPIError: Error {
    case invalidToken(String)
    case invalidInput(String)
    case emptyInput
    case tweetHasNoMedia
-   case internetError
 
    public var message: String {
       switch self {
@@ -25,8 +25,6 @@ public enum TwitterAPIError: Error {
          return "Oops, looks like you didn't type anything."
       case .tweetHasNoMedia:
          return "Looks like that tweet has no media."
-      case .internetError:
-         return "Bad internet! Or rate-limit! We'll figure this out later!"
       }
    }
 
@@ -34,3 +32,23 @@ public enum TwitterAPIError: Error {
       return .systemRed
    }
 }
+
+// TODO: Parse out internet errors like 404, rate limit etc.
+//          into more helpful stuff here
+public enum InternetError: Error {
+   case corruptJSON(String)
+}
+
+//
+// Helper method: Swift's default JSON decoder throws an unhelpful
+//    "NSError" instead of a nice usable Error type.
+//
+public func parseJSON(data: Data) throws -> JSON {
+   do {
+      return try JSON(data: data)
+   } catch {
+      let badJSON = String(data: data, encoding: .utf8)
+      throw InternetError.corruptJSON(badJSON ?? "Couldn't parse data to String: \(data)")
+   }
+}
+
