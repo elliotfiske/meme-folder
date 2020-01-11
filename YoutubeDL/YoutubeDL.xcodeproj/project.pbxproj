@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		50760B6923C4367A003D88A5 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50760B6823C4367A003D88A5 /* Errors.swift */; };
+		C92D91E623C98F9A0067150B /* TwitterDLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92D91E223C98F8C0067150B /* TwitterDLViewController.swift */; };
+		C92D91E723C98F9A0067150B /* TwitterDLViewController+ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92D91E323C98F8C0067150B /* TwitterDLViewController+ErrorHandler.swift */; };
 		C9F5111723C186400044C61A /* YoutubeDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F5110D23C186400044C61A /* YoutubeDL.framework */; };
 		C9F5111C23C186400044C61A /* YoutubeDLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F5111B23C186400044C61A /* YoutubeDLTests.swift */; };
 		C9F5111E23C186400044C61A /* YoutubeDL.h in Headers */ = {isa = PBXBuildFile; fileRef = C9F5111023C186400044C61A /* YoutubeDL.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -31,6 +33,8 @@
 
 /* Begin PBXFileReference section */
 		50760B6823C4367A003D88A5 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		C92D91E223C98F8C0067150B /* TwitterDLViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterDLViewController.swift; sourceTree = "<group>"; };
+		C92D91E323C98F8C0067150B /* TwitterDLViewController+ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TwitterDLViewController+ErrorHandler.swift"; sourceTree = "<group>"; };
 		C9F5110D23C186400044C61A /* YoutubeDL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YoutubeDL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9F5111023C186400044C61A /* YoutubeDL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YoutubeDL.h; sourceTree = "<group>"; };
 		C9F5111123C186400044C61A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -64,6 +68,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C92D91E423C98F8C0067150B /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C92D91E223C98F8C0067150B /* TwitterDLViewController.swift */,
+				C92D91E323C98F8C0067150B /* TwitterDLViewController+ErrorHandler.swift */,
+			);
+			path = controllers;
+			sourceTree = "<group>";
+		};
+		C92D91E523C98F8C0067150B /* models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
 		C9F5110323C186400044C61A = {
 			isa = PBXGroup;
 			children = (
@@ -86,7 +106,9 @@
 		C9F5110F23C186400044C61A /* YoutubeDL */ = {
 			isa = PBXGroup;
 			children = (
-				C9F5113023C187080044C61A /* twitter */,
+				C92D91E423C98F8C0067150B /* controllers */,
+				C92D91E523C98F8C0067150B /* models */,
+				C9F5113023C187080044C61A /* api */,
 				C9F5111023C186400044C61A /* YoutubeDL.h */,
 				C9F5111123C186400044C61A /* Info.plist */,
 			);
@@ -102,12 +124,12 @@
 			path = YoutubeDLTests;
 			sourceTree = "<group>";
 		};
-		C9F5113023C187080044C61A /* twitter */ = {
+		C9F5113023C187080044C61A /* api */ = {
 			isa = PBXGroup;
 			children = (
 				C9F5113123C187150044C61A /* TwitterDL.swift */,
 			);
-			path = twitter;
+			path = api;
 			sourceTree = "<group>";
 		};
 		C9F5113C23C28A9B0044C61A /* Helpers */ = {
@@ -241,6 +263,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				50760B6923C4367A003D88A5 /* Errors.swift in Sources */,
+				C92D91E623C98F9A0067150B /* TwitterDLViewController.swift in Sources */,
+				C92D91E723C98F9A0067150B /* TwitterDLViewController+ErrorHandler.swift in Sources */,
 				C9F5113223C187150044C61A /* TwitterDL.swift in Sources */,
 				C9F5113E23C28AAF0044C61A /* Array+Convenience.swift in Sources */,
 				C9F5114023C2BA8C0044C61A /* String+Convenience.swift in Sources */,

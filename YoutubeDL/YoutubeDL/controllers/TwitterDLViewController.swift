@@ -11,7 +11,7 @@ import YoutubeDL
 import PMKAlamofire
 import PromiseKit
 
-class ViewController: UIViewController {
+class TwitterDLViewController: UIViewController {
     
     @IBOutlet weak var twitterEntryText: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
@@ -56,7 +56,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UITextFieldDelegate {
+extension TwitterDLViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         hideInputError()
         return true

@@ -1,5 +1,5 @@
 //
-//  ViewController+ErrorHandler.swift
+//  ShareViewController+ErrorHandler.swift
 //  memefolder
 //
 //  Created by Max Linsenbard on 1/6/20.
@@ -9,7 +9,7 @@
 import UIKit
 import YoutubeDL
 
-extension ViewController {
+extension TwitterDLViewController {
     func showInputError(for error: TwitterAPIError) {
         errorLabel.text = error.message
         errorLabel.textColor = error.color

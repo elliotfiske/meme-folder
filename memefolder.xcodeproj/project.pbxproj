@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		50760B6B23C439C0003D88A5 /* ViewController+ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50760B6A23C439C0003D88A5 /* ViewController+ErrorHandler.swift */; };
+		50760B6B23C439C0003D88A5 /* TwitterDLViewController+ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50760B6A23C439C0003D88A5 /* TwitterDLViewController+ErrorHandler.swift */; };
 		C9F5110123C17B770044C61A /* YoutubeDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F5110023C17B770044C61A /* YoutubeDL.framework */; };
 		C9F5110223C17B770044C61A /* YoutubeDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C9F5110023C17B770044C61A /* YoutubeDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C9F5114223C2CAA40044C61A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9F5114123C2CAA30044C61A /* GoogleService-Info.plist */; };
 		C9F5114323C2CAA40044C61A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9F5114123C2CAA30044C61A /* GoogleService-Info.plist */; };
 		C9FD9D7323BFF14B007A7FA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FD9D7223BFF14B007A7FA4 /* AppDelegate.swift */; };
-		C9FD9D7723BFF14B007A7FA4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FD9D7623BFF14B007A7FA4 /* ViewController.swift */; };
+		C9FD9D7723BFF14B007A7FA4 /* TwitterDLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FD9D7623BFF14B007A7FA4 /* TwitterDLViewController.swift */; };
 		C9FD9D7A23BFF14B007A7FA4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9FD9D7823BFF14B007A7FA4 /* Main.storyboard */; };
 		C9FD9D7C23BFF155007A7FA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9FD9D7B23BFF155007A7FA4 /* Assets.xcassets */; };
 		C9FD9D7F23BFF155007A7FA4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9FD9D7D23BFF155007A7FA4 /* LaunchScreen.storyboard */; };
@@ -99,13 +99,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		50760B6A23C439C0003D88A5 /* ViewController+ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+ErrorHandler.swift"; sourceTree = "<group>"; };
+		50760B6A23C439C0003D88A5 /* TwitterDLViewController+ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TwitterDLViewController+ErrorHandler.swift"; sourceTree = "<group>"; };
 		C9F5110023C17B770044C61A /* YoutubeDL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = YoutubeDL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9F5112723C186400044C61A /* YoutubeDL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = YoutubeDL.xcodeproj; path = YoutubeDL/YoutubeDL.xcodeproj; sourceTree = "<group>"; };
 		C9F5114123C2CAA30044C61A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C9FD9D6F23BFF14B007A7FA4 /* Meme Folder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Meme Folder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9FD9D7223BFF14B007A7FA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C9FD9D7623BFF14B007A7FA4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C9FD9D7623BFF14B007A7FA4 /* TwitterDLViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterDLViewController.swift; sourceTree = "<group>"; };
 		C9FD9D7923BFF14B007A7FA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C9FD9D7B23BFF155007A7FA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C9FD9D7E23BFF155007A7FA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -165,6 +165,24 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		C92D91E023C6F8250067150B /* models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = models;
+			path = ../YoutubeDL/YoutubeDL/models;
+			sourceTree = "<group>";
+		};
+		C92D91E123C6F8350067150B /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C9FD9D7623BFF14B007A7FA4 /* TwitterDLViewController.swift */,
+				50760B6A23C439C0003D88A5 /* TwitterDLViewController+ErrorHandler.swift */,
+			);
+			name = controllers;
+			path = ../YoutubeDL/YoutubeDL/controllers;
+			sourceTree = "<group>";
+		};
 		C94241D123C12529000FD14E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,10 +231,10 @@
 		C9FD9D7123BFF14B007A7FA4 /* memefolder */ = {
 			isa = PBXGroup;
 			children = (
+				C92D91E123C6F8350067150B /* controllers */,
+				C92D91E023C6F8250067150B /* models */,
 				C9FD9DB723C01047007A7FA4 /* memefolder.entitlements */,
 				C9FD9D7223BFF14B007A7FA4 /* AppDelegate.swift */,
-				C9FD9D7623BFF14B007A7FA4 /* ViewController.swift */,
-				50760B6A23C439C0003D88A5 /* ViewController+ErrorHandler.swift */,
 				C9FD9D7823BFF14B007A7FA4 /* Main.storyboard */,
 				C9FD9D7B23BFF155007A7FA4 /* Assets.xcassets */,
 				C9FD9D7D23BFF155007A7FA4 /* LaunchScreen.storyboard */,
@@ -445,8 +463,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9FD9D7723BFF14B007A7FA4 /* ViewController.swift in Sources */,
-				50760B6B23C439C0003D88A5 /* ViewController+ErrorHandler.swift in Sources */,
+				C9FD9D7723BFF14B007A7FA4 /* TwitterDLViewController.swift in Sources */,
+				50760B6B23C439C0003D88A5 /* TwitterDLViewController+ErrorHandler.swift in Sources */,
 				C9FD9D7323BFF14B007A7FA4 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
