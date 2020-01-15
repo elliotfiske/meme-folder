@@ -7,11 +7,10 @@
 //
 
 import UIKit
-import YoutubeDL
 import PMKAlamofire
 import PromiseKit
 
-class TwitterDLViewController: UIViewController {
+public class TwitterDLViewController: UIViewController {
     
     @IBOutlet weak var twitterEntryText: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
@@ -26,10 +25,15 @@ class TwitterDLViewController: UIViewController {
 
         twitterEntryText?.resignFirstResponder()
         
-        firstly { () -> Promise<Data> in
-            try TwitterDL.sharedInstance.getThumbnailData(usingTweetURL: twitterEntryText.text ?? "")
+        firstly { () in
+            try TwitterAPI.sharedInstance.getMediaURLs(usingTweetURL: twitterEntryText.text ?? "")
         }
-        .done { data in
+        .then { thumbnailURL, videoURL in
+            return Alamofire.request(thumbnailURL)
+                .validate()
+                .responseData()
+        }
+        .done { data, _ in
             self.thumbnailDisplay?.image = UIImage(data: data)
         }
         .ensure { [weak self] in
@@ -50,14 +54,14 @@ class TwitterDLViewController: UIViewController {
     
     @IBOutlet weak var thumbnailDisplay: UIImageView!
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         twitterEntryText.delegate = self
     }
 }
 
 extension TwitterDLViewController: UITextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         hideInputError()
         return true
     }

@@ -36,7 +36,8 @@ public enum TwitterAPIError: Error {
 // TODO: Parse out internet errors like 404, rate limit etc.
 //          into more helpful stuff here
 public enum InternetError: Error {
-   case corruptJSON(String)
+   case unparsableJSON(String)
+   case badlyStructuredJSON(String)
 }
 
 //
@@ -48,7 +49,7 @@ public func parseJSON(data: Data) throws -> JSON {
       return try JSON(data: data)
    } catch {
       let badJSON = String(data: data, encoding: .utf8)
-      throw InternetError.corruptJSON(badJSON ?? "Couldn't parse data to String: \(data)")
+      throw InternetError.unparsableJSON(badJSON ?? "Couldn't parse data to String: \(data)")
    }
 }
 

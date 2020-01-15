@@ -7,13 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		50760B6B23C439C0003D88A5 /* TwitterDLViewController+ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50760B6A23C439C0003D88A5 /* TwitterDLViewController+ErrorHandler.swift */; };
+		C92D91ED23C999010067150B /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92D91EC23C999010067150B /* InitialViewController.swift */; };
 		C9F5110123C17B770044C61A /* YoutubeDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F5110023C17B770044C61A /* YoutubeDL.framework */; };
 		C9F5110223C17B770044C61A /* YoutubeDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C9F5110023C17B770044C61A /* YoutubeDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C9F5114223C2CAA40044C61A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9F5114123C2CAA30044C61A /* GoogleService-Info.plist */; };
 		C9F5114323C2CAA40044C61A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9F5114123C2CAA30044C61A /* GoogleService-Info.plist */; };
 		C9FD9D7323BFF14B007A7FA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FD9D7223BFF14B007A7FA4 /* AppDelegate.swift */; };
-		C9FD9D7723BFF14B007A7FA4 /* TwitterDLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FD9D7623BFF14B007A7FA4 /* TwitterDLViewController.swift */; };
 		C9FD9D7A23BFF14B007A7FA4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9FD9D7823BFF14B007A7FA4 /* Main.storyboard */; };
 		C9FD9D7C23BFF155007A7FA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9FD9D7B23BFF155007A7FA4 /* Assets.xcassets */; };
 		C9FD9D7F23BFF155007A7FA4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9FD9D7D23BFF155007A7FA4 /* LaunchScreen.storyboard */; };
@@ -99,13 +98,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		50760B6A23C439C0003D88A5 /* TwitterDLViewController+ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TwitterDLViewController+ErrorHandler.swift"; sourceTree = "<group>"; };
+		C92D91EC23C999010067150B /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		C9F5110023C17B770044C61A /* YoutubeDL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = YoutubeDL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9F5112723C186400044C61A /* YoutubeDL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = YoutubeDL.xcodeproj; path = YoutubeDL/YoutubeDL.xcodeproj; sourceTree = "<group>"; };
 		C9F5114123C2CAA30044C61A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C9FD9D6F23BFF14B007A7FA4 /* Meme Folder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Meme Folder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9FD9D7223BFF14B007A7FA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C9FD9D7623BFF14B007A7FA4 /* TwitterDLViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterDLViewController.swift; sourceTree = "<group>"; };
 		C9FD9D7923BFF14B007A7FA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C9FD9D7B23BFF155007A7FA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C9FD9D7E23BFF155007A7FA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -165,22 +163,19 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		C92D91E023C6F8250067150B /* models */ = {
+		C92D91EA23C998ED0067150B /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C92D91EC23C999010067150B /* InitialViewController.swift */,
 			);
-			name = models;
-			path = ../YoutubeDL/YoutubeDL/models;
+			path = controllers;
 			sourceTree = "<group>";
 		};
-		C92D91E123C6F8350067150B /* controllers */ = {
+		C92D91EB23C998F40067150B /* models */ = {
 			isa = PBXGroup;
 			children = (
-				C9FD9D7623BFF14B007A7FA4 /* TwitterDLViewController.swift */,
-				50760B6A23C439C0003D88A5 /* TwitterDLViewController+ErrorHandler.swift */,
 			);
-			name = controllers;
-			path = ../YoutubeDL/YoutubeDL/controllers;
+			path = models;
 			sourceTree = "<group>";
 		};
 		C94241D123C12529000FD14E /* Frameworks */ = {
@@ -231,8 +226,8 @@
 		C9FD9D7123BFF14B007A7FA4 /* memefolder */ = {
 			isa = PBXGroup;
 			children = (
-				C92D91E123C6F8350067150B /* controllers */,
-				C92D91E023C6F8250067150B /* models */,
+				C92D91EB23C998F40067150B /* models */,
+				C92D91EA23C998ED0067150B /* controllers */,
 				C9FD9DB723C01047007A7FA4 /* memefolder.entitlements */,
 				C9FD9D7223BFF14B007A7FA4 /* AppDelegate.swift */,
 				C9FD9D7823BFF14B007A7FA4 /* Main.storyboard */,
@@ -332,9 +327,9 @@
 			productReference = C9FD9D9023BFF156007A7FA4 /* memefolderUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		C9FD9DA523C00D44007A7FA4 /* gifgrabber */ = {
+		C9FD9DA523C00D44007A7FA4 /* shareExtension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C9FD9DB123C00D46007A7FA4 /* Build configuration list for PBXNativeTarget "gifgrabber" */;
+			buildConfigurationList = C9FD9DB123C00D46007A7FA4 /* Build configuration list for PBXNativeTarget "shareExtension" */;
 			buildPhases = (
 				C9FD9DA223C00D44007A7FA4 /* Sources */,
 				C9FD9DA323C00D44007A7FA4 /* Frameworks */,
@@ -345,7 +340,7 @@
 			);
 			dependencies = (
 			);
-			name = gifgrabber;
+			name = shareExtension;
 			productName = gifgrabber;
 			productReference = C9FD9DA623C00D44007A7FA4 /* GifGrabber.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -398,7 +393,7 @@
 				C9FD9D6E23BFF14B007A7FA4 /* memefolder */,
 				C9FD9D8423BFF155007A7FA4 /* memefolderTests */,
 				C9FD9D8F23BFF156007A7FA4 /* memefolderUITests */,
-				C9FD9DA523C00D44007A7FA4 /* gifgrabber */,
+				C9FD9DA523C00D44007A7FA4 /* shareExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -463,9 +458,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9FD9D7723BFF14B007A7FA4 /* TwitterDLViewController.swift in Sources */,
-				50760B6B23C439C0003D88A5 /* TwitterDLViewController+ErrorHandler.swift in Sources */,
 				C9FD9D7323BFF14B007A7FA4 /* AppDelegate.swift in Sources */,
+				C92D91ED23C999010067150B /* InitialViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,7 +502,7 @@
 		};
 		C9FD9DAF23C00D46007A7FA4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C9FD9DA523C00D44007A7FA4 /* gifgrabber */;
+			target = C9FD9DA523C00D44007A7FA4 /* shareExtension */;
 			targetProxy = C9FD9DAE23C00D46007A7FA4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -665,7 +659,7 @@
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = GQZFDKJ72B;
 				INFOPLIST_FILE = memefolder/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = "$(inherited)";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -688,7 +682,7 @@
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = GQZFDKJ72B;
 				INFOPLIST_FILE = memefolder/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = "$(inherited)";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -709,7 +703,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GQZFDKJ72B;
 				INFOPLIST_FILE = memefolderTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = "$(inherited)";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -731,7 +725,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GQZFDKJ72B;
 				INFOPLIST_FILE = memefolderTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = "$(inherited)";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -752,7 +746,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GQZFDKJ72B;
 				INFOPLIST_FILE = memefolderUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = "$(inherited)";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -773,7 +767,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GQZFDKJ72B;
 				INFOPLIST_FILE = memefolderUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = "$(inherited)";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -795,13 +789,13 @@
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = GQZFDKJ72B;
 				INFOPLIST_FILE = gifgrabber/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = "$(inherited)";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.memefolder.memefolder.gifgrabber;
+				PRODUCT_BUNDLE_IDENTIFIER = com.memefolder.memefolder.shareExtension;
 				PRODUCT_NAME = GifGrabber;
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = YES;
@@ -818,13 +812,13 @@
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = GQZFDKJ72B;
 				INFOPLIST_FILE = gifgrabber/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = "$(inherited)";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.memefolder.memefolder.gifgrabber;
+				PRODUCT_BUNDLE_IDENTIFIER = com.memefolder.memefolder.shareExtension;
 				PRODUCT_NAME = GifGrabber;
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = YES;
@@ -872,7 +866,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C9FD9DB123C00D46007A7FA4 /* Build configuration list for PBXNativeTarget "gifgrabber" */ = {
+		C9FD9DB123C00D46007A7FA4 /* Build configuration list for PBXNativeTarget "shareExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C9FD9DB223C00D46007A7FA4 /* Debug */,

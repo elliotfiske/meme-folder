@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import YoutubeDL
 
 extension TwitterDLViewController {
     func showInputError(for error: TwitterAPIError) {

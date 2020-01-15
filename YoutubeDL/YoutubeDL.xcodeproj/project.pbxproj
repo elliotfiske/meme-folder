@@ -8,12 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		50760B6923C4367A003D88A5 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50760B6823C4367A003D88A5 /* Errors.swift */; };
-		C92D91E623C98F9A0067150B /* TwitterDLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92D91E223C98F8C0067150B /* TwitterDLViewController.swift */; };
 		C92D91E723C98F9A0067150B /* TwitterDLViewController+ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92D91E323C98F8C0067150B /* TwitterDLViewController+ErrorHandler.swift */; };
+		C92D91E923C995810067150B /* TwitterMediaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92D91E823C995810067150B /* TwitterMediaModel.swift */; };
+		C92D91F023C9992B0067150B /* TwitterDLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92D91EE23C9992B0067150B /* TwitterDLViewController.swift */; };
+		C9B6036623CC43BE0056AEC6 /* TwitterDLViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9B6036523CC43BE0056AEC6 /* TwitterDLViewController.xib */; };
+		C9B6036A23CEDA280056AEC6 /* UIViewController+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B6036923CEDA280056AEC6 /* UIViewController+Convenience.swift */; };
 		C9F5111723C186400044C61A /* YoutubeDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F5110D23C186400044C61A /* YoutubeDL.framework */; };
 		C9F5111C23C186400044C61A /* YoutubeDLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F5111B23C186400044C61A /* YoutubeDLTests.swift */; };
 		C9F5111E23C186400044C61A /* YoutubeDL.h in Headers */ = {isa = PBXBuildFile; fileRef = C9F5111023C186400044C61A /* YoutubeDL.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C9F5113223C187150044C61A /* TwitterDL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F5113123C187150044C61A /* TwitterDL.swift */; };
+		C9F5113223C187150044C61A /* TwitterAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F5113123C187150044C61A /* TwitterAPI.swift */; };
 		C9F5113523C188950044C61A /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = C9F5113423C188950044C61A /* PromiseKit */; };
 		C9F5113823C18AD60044C61A /* PMKAlamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C9F5113723C18AD60044C61A /* PMKAlamofire */; };
 		C9F5113E23C28AAF0044C61A /* Array+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F5113D23C28AAF0044C61A /* Array+Convenience.swift */; };
@@ -33,15 +36,18 @@
 
 /* Begin PBXFileReference section */
 		50760B6823C4367A003D88A5 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
-		C92D91E223C98F8C0067150B /* TwitterDLViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterDLViewController.swift; sourceTree = "<group>"; };
 		C92D91E323C98F8C0067150B /* TwitterDLViewController+ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TwitterDLViewController+ErrorHandler.swift"; sourceTree = "<group>"; };
+		C92D91E823C995810067150B /* TwitterMediaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterMediaModel.swift; sourceTree = "<group>"; };
+		C92D91EE23C9992B0067150B /* TwitterDLViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterDLViewController.swift; sourceTree = "<group>"; };
+		C9B6036523CC43BE0056AEC6 /* TwitterDLViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TwitterDLViewController.xib; path = controllers/TwitterDLViewController.xib; sourceTree = SOURCE_ROOT; };
+		C9B6036923CEDA280056AEC6 /* UIViewController+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Convenience.swift"; sourceTree = "<group>"; };
 		C9F5110D23C186400044C61A /* YoutubeDL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YoutubeDL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9F5111023C186400044C61A /* YoutubeDL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YoutubeDL.h; sourceTree = "<group>"; };
 		C9F5111123C186400044C61A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9F5111623C186400044C61A /* YoutubeDLTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YoutubeDLTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9F5111B23C186400044C61A /* YoutubeDLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeDLTests.swift; sourceTree = "<group>"; };
 		C9F5111D23C186400044C61A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C9F5113123C187150044C61A /* TwitterDL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterDL.swift; sourceTree = "<group>"; };
+		C9F5113123C187150044C61A /* TwitterAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterAPI.swift; sourceTree = "<group>"; };
 		C9F5113D23C28AAF0044C61A /* Array+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Convenience.swift"; sourceTree = "<group>"; };
 		C9F5113F23C2BA8C0044C61A /* String+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Convenience.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -71,7 +77,7 @@
 		C92D91E423C98F8C0067150B /* controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C92D91E223C98F8C0067150B /* TwitterDLViewController.swift */,
+				C92D91EE23C9992B0067150B /* TwitterDLViewController.swift */,
 				C92D91E323C98F8C0067150B /* TwitterDLViewController+ErrorHandler.swift */,
 			);
 			path = controllers;
@@ -80,19 +86,35 @@
 		C92D91E523C98F8C0067150B /* models */ = {
 			isa = PBXGroup;
 			children = (
+				C92D91E823C995810067150B /* TwitterMediaModel.swift */,
 			);
 			path = models;
+			sourceTree = "<group>";
+		};
+		C9B6036423CC436C0056AEC6 /* storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				C9B6036523CC43BE0056AEC6 /* TwitterDLViewController.xib */,
+			);
+			path = storyboards;
 			sourceTree = "<group>";
 		};
 		C9F5110323C186400044C61A = {
 			isa = PBXGroup;
 			children = (
-				C9F5113C23C28A9B0044C61A /* Helpers */,
-				C9F5110F23C186400044C61A /* YoutubeDL */,
+				C9B6036423CC436C0056AEC6 /* storyboards */,
+				C9F5113C23C28A9B0044C61A /* helpers */,
+				C92D91E423C98F8C0067150B /* controllers */,
+				C92D91E523C98F8C0067150B /* models */,
+				C9F5113023C187080044C61A /* api */,
+				C9F5111023C186400044C61A /* YoutubeDL.h */,
+				C9F5111123C186400044C61A /* Info.plist */,
 				C9F5111A23C186400044C61A /* YoutubeDLTests */,
 				C9F5110E23C186400044C61A /* Products */,
 			);
+			indentWidth = 4;
 			sourceTree = "<group>";
+			tabWidth = 4;
 		};
 		C9F5110E23C186400044C61A /* Products */ = {
 			isa = PBXGroup;
@@ -101,18 +123,6 @@
 				C9F5111623C186400044C61A /* YoutubeDLTests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		C9F5110F23C186400044C61A /* YoutubeDL */ = {
-			isa = PBXGroup;
-			children = (
-				C92D91E423C98F8C0067150B /* controllers */,
-				C92D91E523C98F8C0067150B /* models */,
-				C9F5113023C187080044C61A /* api */,
-				C9F5111023C186400044C61A /* YoutubeDL.h */,
-				C9F5111123C186400044C61A /* Info.plist */,
-			);
-			path = YoutubeDL;
 			sourceTree = "<group>";
 		};
 		C9F5111A23C186400044C61A /* YoutubeDLTests */ = {
@@ -127,19 +137,20 @@
 		C9F5113023C187080044C61A /* api */ = {
 			isa = PBXGroup;
 			children = (
-				C9F5113123C187150044C61A /* TwitterDL.swift */,
+				C9F5113123C187150044C61A /* TwitterAPI.swift */,
 			);
 			path = api;
 			sourceTree = "<group>";
 		};
-		C9F5113C23C28A9B0044C61A /* Helpers */ = {
+		C9F5113C23C28A9B0044C61A /* helpers */ = {
 			isa = PBXGroup;
 			children = (
 				C9F5113D23C28AAF0044C61A /* Array+Convenience.swift */,
 				50760B6823C4367A003D88A5 /* Errors.swift */,
 				C9F5113F23C2BA8C0044C61A /* String+Convenience.swift */,
+				C9B6036923CEDA280056AEC6 /* UIViewController+Convenience.swift */,
 			);
-			path = Helpers;
+			path = helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,6 +256,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9B6036623CC43BE0056AEC6 /* TwitterDLViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,10 +274,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C92D91E923C995810067150B /* TwitterMediaModel.swift in Sources */,
 				50760B6923C4367A003D88A5 /* Errors.swift in Sources */,
-				C92D91E623C98F9A0067150B /* TwitterDLViewController.swift in Sources */,
+				C9B6036A23CEDA280056AEC6 /* UIViewController+Convenience.swift in Sources */,
+				C92D91F023C9992B0067150B /* TwitterDLViewController.swift in Sources */,
 				C92D91E723C98F9A0067150B /* TwitterDLViewController+ErrorHandler.swift in Sources */,
-				C9F5113223C187150044C61A /* TwitterDL.swift in Sources */,
+				C9F5113223C187150044C61A /* TwitterAPI.swift in Sources */,
 				C9F5113E23C28AAF0044C61A /* Array+Convenience.swift in Sources */,
 				C9F5114023C2BA8C0044C61A /* String+Convenience.swift in Sources */,
 			);
@@ -341,7 +355,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -398,7 +412,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -420,9 +434,9 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = YoutubeDL/Info.plist;
+				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = "$(inherited)";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -447,9 +461,9 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = YoutubeDL/Info.plist;
+				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = "$(inherited)";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -470,11 +484,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GQZFDKJ72B;
 				INFOPLIST_FILE = YoutubeDLTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = "$(inherited)";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.memefolder.YoutubeDLTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -489,11 +505,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GQZFDKJ72B;
 				INFOPLIST_FILE = YoutubeDLTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = "$(inherited)";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.memefolder.YoutubeDLTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

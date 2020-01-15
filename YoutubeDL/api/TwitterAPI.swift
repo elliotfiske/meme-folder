@@ -9,26 +9,27 @@
 import Foundation
 import PromiseKit
 import PMKAlamofire
-import SwiftExpression
 import SwiftyJSON
 
-public class TwitterDL {
+public class TwitterAPI {
    
-   public static let sharedInstance: TwitterDL = TwitterDL()
+   public static let sharedInstance: TwitterAPI = TwitterAPI()
    
    // yoinked from YoutubeDL's repo :3
    static let BEARER_TOKEN = "Bearer AAAAAAAAAAAAAAAAAAAAAPYXBAAAAAAACLXUNDekMxqa8h%2F40K4moUkGsoc%3DTYfbDKbT3jJPCEVnMYqilB28NHfOPqkca3qaAxGfsyKCs0wRbw"
    static let BASE_API = "https://api.twitter.com/1.1/"
    
    static let BASE_HEADERS: HTTPHeaders = [
-      "Authorization" : TwitterDL.BEARER_TOKEN,
+      "Authorization" : TwitterAPI.BEARER_TOKEN,
       "Accept" : "application/json"
    ]
+   
+   // MARK: Public functions
    
    // Elliot's note: This will eventually move to the server side, so we can
    //    justify selling a subscription. For now just kinda practicing API
    //    calls and data manipulation with Swift.
-   public func getThumbnailData(usingTweetURL url: String) throws -> Promise<Data> {
+   public func getMediaURLs(usingTweetURL url: String) throws -> Promise<(thumbnailURL: String, mediaURL: String?)> {
       let matchedGroups = url.groups(for: #"https?://(?:(?:www|m(?:obile)?)\.)?twitter\.com/(?:(?:i/web|[^\/]+)/status|statuses)/(?<id>\d+)"#)
 
       guard let splitURL = matchedGroups.get(index: 0),
@@ -51,18 +52,17 @@ public class TwitterDL {
       }
       .map { data in
          let json = try parseJSON(data: data)
-         guard let thumbnailURL = json["extended_entities"]["media"][0]["media_url_https"].string else {
+         guard let media = json["extended_entities"]["media"].array else {
             throw TwitterAPIError.tweetHasNoMedia
          }
-         return thumbnailURL
-      }
-      .then { (thumbnailURL: String) in
-         return Alamofire.request(thumbnailURL)
-            .validate()
-            .responseData()
-      }
-      .map {
-         $0.data
+         
+         guard let thumbnailURL = media[0]["media_url_https"].string else {
+            throw InternetError.unparsableJSON("Couldn't get thumbnail from JSON: \(media)")
+         }
+         
+         let mediaURL = media[0]["video_info"]["variants"][0]["url"].string
+         
+         return (thumbnailURL, mediaURL)
       }
    }
    
@@ -77,9 +77,9 @@ public class TwitterDL {
       }
       
       return firstly {
-         Alamofire.request(TwitterDL.BASE_API + "guest/activate.json",
+         Alamofire.request(TwitterAPI.BASE_API + "guest/activate.json",
                            method: .post,
-                           headers: TwitterDL.BASE_HEADERS)
+                           headers: TwitterAPI.BASE_HEADERS)
             .responseData()
       }
       .map { data, _ -> String in
@@ -104,11 +104,11 @@ public class TwitterDL {
          getGuestToken()
       }
       .then { token -> Promise<(data: Data, response: PMKAlamofireDataResponse)> in
-         var combinedHeaders = TwitterDL.BASE_HEADERS.merging(headers ?? [:],
+         var combinedHeaders = TwitterAPI.BASE_HEADERS.merging(headers ?? [:],
                                                               uniquingKeysWith: { (_, new) in new })
          combinedHeaders["x-guest-token"] = token
          
-         return Alamofire.request(TwitterDL.BASE_API + endpoint, method: method, parameters: parameters, headers: combinedHeaders)
+         return Alamofire.request(TwitterAPI.BASE_API + endpoint, method: method, parameters: parameters, headers: combinedHeaders)
             .validate()
             .responseData()
       }
