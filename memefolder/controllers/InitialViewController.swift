@@ -11,8 +11,6 @@ import YoutubeDL
 
 class InitialViewController: UIViewController {
     @IBAction func buttonPressed(_ sender: Any) {
-        let controlla = TwitterDLViewController.loadFromNib()
         
-        present(controlla, animated: true)
     }
 }

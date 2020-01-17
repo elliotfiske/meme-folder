@@ -10,10 +10,6 @@ import UIKit
 import PMKAlamofire
 import PromiseKit
 
-// todo: remove
-import AVKit
-import AVFoundation
-
 public class TwitterDLViewController: UIViewController {
     
     @IBOutlet weak var twitterEntryText: UITextField!
@@ -33,18 +29,6 @@ public class TwitterDLViewController: UIViewController {
             try TwitterAPI.sharedInstance.getMediaURLs(usingTweetURL: twitterEntryText.text ?? "")
         }
         .then { (thumbnailURL: String, videoURL: String?) -> Promise<(data: Data, response: PMKAlamofireDataResponse)>  in
-            
-            let player = AVPlayer(url: URL(string: videoURL!)!)
-
-            // Create a new AVPlayerViewController and pass it a reference to the player.
-            let controller = AVPlayerViewController()
-            controller.player = player
-
-            // Modally present the player and call the player's play() method when complete.
-            self.present(controller, animated: true) {
-                player.play()
-            }
-            
             return Alamofire.request(thumbnailURL)
                 .validate()
                 .responseData()
