@@ -20,8 +20,7 @@
 		C9FD9D9523BFF156007A7FA4 /* memefolderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FD9D9423BFF156007A7FA4 /* memefolderUITests.swift */; };
 		C9FD9DA923C00D45007A7FA4 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FD9DA823C00D45007A7FA4 /* ShareViewController.swift */; };
 		C9FD9DAC23C00D45007A7FA4 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9FD9DAA23C00D45007A7FA4 /* MainInterface.storyboard */; };
-		C9FD9DB023C00D46007A7FA4 /* GifGrabber.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C9FD9DA623C00D44007A7FA4 /* GifGrabber.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		C9FD9DB623C00FC0007A7FA4 /* TestJS.js in Resources */ = {isa = PBXBuildFile; fileRef = C9FD9DB523C00FC0007A7FA4 /* TestJS.js */; };
+		C9FD9DB023C00D46007A7FA4 /* shareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C9FD9DA623C00D44007A7FA4 /* shareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,7 +57,7 @@
 			containerPortal = C9FD9D6723BFF14B007A7FA4 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = C9FD9DA523C00D44007A7FA4;
-			remoteInfo = gifgrabber;
+			remoteInfo = shareExtension;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -90,7 +89,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				C9FD9DB023C00D46007A7FA4 /* GifGrabber.appex in Embed App Extensions */,
+				C9FD9DB023C00D46007A7FA4 /* shareExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -114,13 +113,12 @@
 		C9FD9D9023BFF156007A7FA4 /* memefolderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = memefolderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9FD9D9423BFF156007A7FA4 /* memefolderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = memefolderUITests.swift; sourceTree = "<group>"; };
 		C9FD9D9623BFF156007A7FA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C9FD9DA623C00D44007A7FA4 /* GifGrabber.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = GifGrabber.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9FD9DA623C00D44007A7FA4 /* shareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = shareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9FD9DA823C00D45007A7FA4 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		C9FD9DAB23C00D45007A7FA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		C9FD9DAD23C00D45007A7FA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C9FD9DB523C00FC0007A7FA4 /* TestJS.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = TestJS.js; sourceTree = "<group>"; };
 		C9FD9DB723C01047007A7FA4 /* memefolder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = memefolder.entitlements; sourceTree = "<group>"; };
-		C9FD9DB823C01074007A7FA4 /* gifgrabber.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = gifgrabber.entitlements; sourceTree = "<group>"; };
+		C9FD9DB823C01074007A7FA4 /* shareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = shareExtension.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,7 +201,7 @@
 				C9FD9D7123BFF14B007A7FA4 /* memefolder */,
 				C9FD9D8823BFF155007A7FA4 /* memefolderTests */,
 				C9FD9D9323BFF156007A7FA4 /* memefolderUITests */,
-				C9FD9DA723C00D45007A7FA4 /* gifgrabber */,
+				C9FD9DA723C00D45007A7FA4 /* shareExtension */,
 				C9FD9D7023BFF14B007A7FA4 /* Products */,
 				C94241D123C12529000FD14E /* Frameworks */,
 				74A73AFFDD268B7DE77DD446 /* Pods */,
@@ -218,7 +216,7 @@
 				C9FD9D6F23BFF14B007A7FA4 /* Meme Folder.app */,
 				C9FD9D8523BFF155007A7FA4 /* memefolderTests.xctest */,
 				C9FD9D9023BFF156007A7FA4 /* memefolderUITests.xctest */,
-				C9FD9DA623C00D44007A7FA4 /* GifGrabber.appex */,
+				C9FD9DA623C00D44007A7FA4 /* shareExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -256,16 +254,15 @@
 			path = memefolderUITests;
 			sourceTree = "<group>";
 		};
-		C9FD9DA723C00D45007A7FA4 /* gifgrabber */ = {
+		C9FD9DA723C00D45007A7FA4 /* shareExtension */ = {
 			isa = PBXGroup;
 			children = (
-				C9FD9DB823C01074007A7FA4 /* gifgrabber.entitlements */,
+				C9FD9DB823C01074007A7FA4 /* shareExtension.entitlements */,
 				C9FD9DA823C00D45007A7FA4 /* ShareViewController.swift */,
 				C9FD9DAA23C00D45007A7FA4 /* MainInterface.storyboard */,
 				C9FD9DAD23C00D45007A7FA4 /* Info.plist */,
-				C9FD9DB523C00FC0007A7FA4 /* TestJS.js */,
 			);
-			path = gifgrabber;
+			path = shareExtension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -341,8 +338,8 @@
 			dependencies = (
 			);
 			name = shareExtension;
-			productName = gifgrabber;
-			productReference = C9FD9DA623C00D44007A7FA4 /* GifGrabber.appex */;
+			productName = shareExtension;
+			productReference = C9FD9DA623C00D44007A7FA4 /* shareExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -446,7 +443,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9FD9DAC23C00D45007A7FA4 /* MainInterface.storyboard in Resources */,
-				C9FD9DB623C00FC0007A7FA4 /* TestJS.js in Resources */,
 				C9F5114323C2CAA40044C61A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -784,11 +780,13 @@
 		C9FD9DB223C00D46007A7FA4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = gifgrabber/gifgrabber.entitlements;
+				CODE_SIGN_ENTITLEMENTS = shareExtension/shareExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = GQZFDKJ72B;
-				INFOPLIST_FILE = gifgrabber/Info.plist;
+				INFOPLIST_FILE = shareExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = "$(inherited)";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -796,7 +794,9 @@
 					"@executable_path/../../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.memefolder.memefolder.shareExtension;
-				PRODUCT_NAME = GifGrabber;
+				PRODUCT_NAME = shareExtension;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
@@ -807,11 +807,13 @@
 		C9FD9DB323C00D46007A7FA4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = gifgrabber/gifgrabber.entitlements;
+				CODE_SIGN_ENTITLEMENTS = shareExtension/shareExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = GQZFDKJ72B;
-				INFOPLIST_FILE = gifgrabber/Info.plist;
+				INFOPLIST_FILE = shareExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = "$(inherited)";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -819,7 +821,9 @@
 					"@executable_path/../../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.memefolder.memefolder.shareExtension;
-				PRODUCT_NAME = GifGrabber;
+				PRODUCT_NAME = shareExtension;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
