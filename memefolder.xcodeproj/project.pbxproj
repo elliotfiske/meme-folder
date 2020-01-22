@@ -14,7 +14,7 @@
 		C9F5114323C2CAA40044C61A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9F5114123C2CAA30044C61A /* GoogleService-Info.plist */; };
 		C9FD9D7323BFF14B007A7FA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FD9D7223BFF14B007A7FA4 /* AppDelegate.swift */; };
 		C9FD9D7A23BFF14B007A7FA4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9FD9D7823BFF14B007A7FA4 /* Main.storyboard */; };
-		C9FD9D7C23BFF155007A7FA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9FD9D7B23BFF155007A7FA4 /* Assets.xcassets */; };
+		C9FD9D7C23BFF155007A7FA4 /* AppIcons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9FD9D7B23BFF155007A7FA4 /* AppIcons.xcassets */; };
 		C9FD9D7F23BFF155007A7FA4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9FD9D7D23BFF155007A7FA4 /* LaunchScreen.storyboard */; };
 		C9FD9D8A23BFF155007A7FA4 /* memefolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FD9D8923BFF155007A7FA4 /* memefolderTests.swift */; };
 		C9FD9D9523BFF156007A7FA4 /* memefolderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FD9D9423BFF156007A7FA4 /* memefolderUITests.swift */; };
@@ -104,7 +104,7 @@
 		C9FD9D6F23BFF14B007A7FA4 /* Meme Folder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Meme Folder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9FD9D7223BFF14B007A7FA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9FD9D7923BFF14B007A7FA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		C9FD9D7B23BFF155007A7FA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C9FD9D7B23BFF155007A7FA4 /* AppIcons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcons.xcassets; sourceTree = "<group>"; };
 		C9FD9D7E23BFF155007A7FA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C9FD9D8023BFF155007A7FA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9FD9D8523BFF155007A7FA4 /* memefolderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = memefolderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -229,7 +229,7 @@
 				C9FD9DB723C01047007A7FA4 /* memefolder.entitlements */,
 				C9FD9D7223BFF14B007A7FA4 /* AppDelegate.swift */,
 				C9FD9D7823BFF14B007A7FA4 /* Main.storyboard */,
-				C9FD9D7B23BFF155007A7FA4 /* Assets.xcassets */,
+				C9FD9D7B23BFF155007A7FA4 /* AppIcons.xcassets */,
 				C9FD9D7D23BFF155007A7FA4 /* LaunchScreen.storyboard */,
 				C9FD9D8023BFF155007A7FA4 /* Info.plist */,
 			);
@@ -419,7 +419,7 @@
 			files = (
 				C9FD9D7F23BFF155007A7FA4 /* LaunchScreen.storyboard in Resources */,
 				C9F5114223C2CAA40044C61A /* GoogleService-Info.plist in Resources */,
-				C9FD9D7C23BFF155007A7FA4 /* Assets.xcassets in Resources */,
+				C9FD9D7C23BFF155007A7FA4 /* AppIcons.xcassets in Resources */,
 				C9FD9D7A23BFF14B007A7FA4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

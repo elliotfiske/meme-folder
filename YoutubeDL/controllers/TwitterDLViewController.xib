@@ -32,7 +32,10 @@
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Paste Twitter URL here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Pk-51-Zzf">
                     <rect key="frame" x="25" y="396" width="364" height="34"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
+                    <connections>
+                        <action selector="buttonPushed:" destination="-1" eventType="editingDidEndOnExit" id="aQ2-Py-8zB"/>
+                    </connections>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="htW-IL-63j">
                     <rect key="frame" x="109" y="438" width="196" height="30"/>
@@ -47,21 +50,31 @@
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="9sy-e2-DPZ">
                     <rect key="frame" x="197" y="658.5" width="20" height="20"/>
                 </activityIndicatorView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="twitter_logo" translatesAutoresizingMaskIntoConstraints="NO" id="VBf-JA-uEU">
+                    <rect key="frame" x="183" y="65" width="48" height="48"/>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="gear_cloud" translatesAutoresizingMaskIntoConstraints="NO" id="r2q-oI-WtM">
+                    <rect key="frame" x="167" y="154" width="80" height="80"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
                 <constraint firstItem="FQh-RT-Aiu" firstAttribute="bottom" secondItem="79k-Nf-jQh" secondAttribute="bottom" constant="20" id="4uI-Fr-WbX"/>
                 <constraint firstItem="htW-IL-63j" firstAttribute="centerX" secondItem="FQh-RT-Aiu" secondAttribute="centerX" id="6AQ-eK-JQo"/>
                 <constraint firstItem="9sy-e2-DPZ" firstAttribute="centerX" secondItem="79k-Nf-jQh" secondAttribute="centerX" id="9Ay-eH-OKC"/>
+                <constraint firstItem="VBf-JA-uEU" firstAttribute="centerX" secondItem="FQh-RT-Aiu" secondAttribute="centerX" id="9VX-gp-Qru"/>
                 <constraint firstItem="7Pk-51-Zzf" firstAttribute="top" secondItem="F1w-QK-TSc" secondAttribute="bottom" constant="8" id="Aa6-no-CxO"/>
                 <constraint firstItem="F1w-QK-TSc" firstAttribute="leading" secondItem="FQh-RT-Aiu" secondAttribute="leading" id="Bts-s8-FKD"/>
+                <constraint firstItem="r2q-oI-WtM" firstAttribute="top" secondItem="VBf-JA-uEU" secondAttribute="bottom" constant="41" id="OSE-qT-ccq"/>
                 <constraint firstItem="79k-Nf-jQh" firstAttribute="width" secondItem="fO9-WW-xd3" secondAttribute="width" multiplier="0.951691" id="XMP-Ig-qVD"/>
                 <constraint firstItem="htW-IL-63j" firstAttribute="top" secondItem="7Pk-51-Zzf" secondAttribute="bottom" constant="8" id="XNk-dF-gHm"/>
                 <constraint firstItem="79k-Nf-jQh" firstAttribute="centerX" secondItem="FQh-RT-Aiu" secondAttribute="centerX" id="cm1-bw-eed"/>
                 <constraint firstItem="7Pk-51-Zzf" firstAttribute="width" secondItem="FQh-RT-Aiu" secondAttribute="width" constant="-50" id="dxi-Va-gpF"/>
                 <constraint firstItem="79k-Nf-jQh" firstAttribute="top" secondItem="htW-IL-63j" secondAttribute="bottom" constant="27" id="exB-Yo-POQ"/>
                 <constraint firstItem="7Pk-51-Zzf" firstAttribute="centerX" secondItem="FQh-RT-Aiu" secondAttribute="centerX" id="f5g-KF-QlB"/>
+                <constraint firstItem="VBf-JA-uEU" firstAttribute="top" secondItem="FQh-RT-Aiu" secondAttribute="top" constant="21" id="hYb-k5-ChT"/>
                 <constraint firstItem="htW-IL-63j" firstAttribute="centerY" secondItem="FQh-RT-Aiu" secondAttribute="centerY" id="hef-kr-hla"/>
+                <constraint firstItem="r2q-oI-WtM" firstAttribute="centerX" secondItem="FQh-RT-Aiu" secondAttribute="centerX" id="pBP-l2-HBx"/>
                 <constraint firstItem="9sy-e2-DPZ" firstAttribute="centerY" secondItem="79k-Nf-jQh" secondAttribute="centerY" id="v8L-Bv-Y9T"/>
                 <constraint firstItem="FQh-RT-Aiu" firstAttribute="trailing" secondItem="F1w-QK-TSc" secondAttribute="trailing" id="yCq-AF-wPQ"/>
             </constraints>
@@ -69,4 +82,8 @@
             <point key="canvasLocation" x="132" y="719"/>
         </view>
     </objects>
+    <resources>
+        <image name="gear_cloud" width="80" height="80"/>
+        <image name="twitter_logo" width="48" height="48"/>
+    </resources>
 </document>
