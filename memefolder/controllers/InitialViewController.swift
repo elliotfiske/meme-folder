@@ -13,6 +13,9 @@ class InitialViewController: UIViewController {
     @IBAction func buttonPressed(_ sender: Any) {
         let controlla = TwitterDLViewController.loadFromNib()
         
+        // Simulates getting a Tweet URL via the Share panel and passing it along
+        controlla.tweetURLToLoad = "https://twitter.com/animatedtext/status/1220134801430024193?s=20"
+        
         present(controlla, animated: true)
     }
 }
