@@ -11,13 +11,13 @@ import UIKit
 import PromiseKit
 import PMKAlamofire
 
-public protocol TwitterMediaModelObserver {
+public protocol TwitterMediaModelObserver : class {
     func stateDidChange(newState: TwitterMediaModel.MediaState)
 }
 
 public class TwitterMediaModel {
     
-    public var stateObserver: TwitterMediaModelObserver?
+    public weak var stateObserver: TwitterMediaModelObserver?
     
     public enum MediaState {
         case idle
@@ -25,7 +25,7 @@ public class TwitterMediaModel {
         case downloadingThumbnail
         case downloadedThumbnail
         
-        case downloadingMedia(Double)       // Value is the download progress 0 -> 1.0
+        case downloadingMedia(CGFloat)       // Value is the download progress 0 -> 1.0
         case downloadedMedia
         
         case savingMediaToCameraRoll
@@ -40,15 +40,15 @@ public class TwitterMediaModel {
     
     public private(set) var thumbnailImage: UIImage?
     
-    public func startDownloadingMedia(forTweetURL tweetURL: String) -> Promise<Int> {
+    public func startDownloadingMedia(forTweetURL tweetURL: String) {
 
         var mediaURLToDownload: String?
         
-        return firstly {
+        firstly {
             try TwitterAPI.sharedInstance.getMediaURLs(usingTweetURL: tweetURL)
         }
         .then { (thumbnailURL: String, mediaURL: String?) ->
-            Promise<(data: Data, response: PMKAlamofireDataResponse)>  in
+            Promise<(data: Data, response: PMKAlamofireDataResponse)> in
             
             mediaURLToDownload = mediaURL
             self.setState(newState: .downloadingThumbnail)
@@ -57,11 +57,16 @@ public class TwitterMediaModel {
                 .validate()
                 .responseData()
         }
-        .map { data, _ in
+        .then { data, _ -> Promise<(data: Data, response: PMKAlamofireDataResponse)> in
             self.thumbnailImage = UIImage(data: data)
             self.setState(newState: .downloadedThumbnail)
-            
-            return 3
+
+            return Alamofire.request(mediaURLToDownload!)
+                .validate()
+                .downloadProgress(closure: { progress in
+                    self.setState(newState: .downloadingMedia(CGFloat(progress.fractionCompleted)))
+                })
+                .responseData()
         }
     }
 }

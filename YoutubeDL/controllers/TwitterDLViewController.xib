@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,6 +13,7 @@
                 <outlet property="errorLabel" destination="F1w-QK-TSc" id="tfW-hY-s2s"/>
                 <outlet property="errorLabelBottomConstraint" destination="Aa6-no-CxO" id="R9g-qQ-9H0"/>
                 <outlet property="imageLoadingActivityIndicator" destination="9sy-e2-DPZ" id="4SJ-2J-uCz"/>
+                <outlet property="imageOverlayBottomOffset" destination="YHa-ng-cve" id="fAa-oS-0ae"/>
                 <outlet property="thumbnailDisplay" destination="79k-Nf-jQh" id="CS2-6k-UsD"/>
                 <outlet property="twitterEntryText" destination="7Pk-51-Zzf" id="kLR-Pd-Gub"/>
                 <outlet property="view" destination="fO9-WW-xd3" id="SXn-2D-gvR"/>
@@ -44,9 +45,33 @@
                         <action selector="buttonPushed:" destination="-1" eventType="touchUpInside" id="XnN-HR-T6n"/>
                     </connections>
                 </button>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="79k-Nf-jQh">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zot-me-eYY" userLabel="Thumbnail Container View">
                     <rect key="frame" x="10" y="495" width="394" height="347"/>
-                </imageView>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="79k-Nf-jQh" customClass="AspectFitImageView" customModule="YoutubeDL" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="394" height="347"/>
+                        </imageView>
+                        <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kiu-Mx-gR1">
+                            <rect key="frame" x="0.0" y="0.0" width="394" height="347"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstItem="79k-Nf-jQh" firstAttribute="centerY" secondItem="zot-me-eYY" secondAttribute="centerY" id="0WP-eU-1Nz"/>
+                        <constraint firstItem="Kiu-Mx-gR1" firstAttribute="leading" secondItem="79k-Nf-jQh" secondAttribute="leading" id="4gg-BF-0qK"/>
+                        <constraint firstItem="Kiu-Mx-gR1" firstAttribute="trailing" secondItem="79k-Nf-jQh" secondAttribute="trailing" id="8jc-AM-wwz"/>
+                        <constraint firstItem="79k-Nf-jQh" firstAttribute="width" relation="lessThanOrEqual" secondItem="zot-me-eYY" secondAttribute="width" id="PKY-xk-P0S"/>
+                        <constraint firstItem="79k-Nf-jQh" firstAttribute="leading" secondItem="zot-me-eYY" secondAttribute="leading" priority="250" id="V3a-lL-M97"/>
+                        <constraint firstItem="Kiu-Mx-gR1" firstAttribute="bottom" secondItem="79k-Nf-jQh" secondAttribute="bottom" id="YHa-ng-cve"/>
+                        <constraint firstItem="79k-Nf-jQh" firstAttribute="top" secondItem="zot-me-eYY" secondAttribute="top" priority="250" id="gOH-s1-OSi"/>
+                        <constraint firstAttribute="bottom" secondItem="79k-Nf-jQh" secondAttribute="bottom" priority="250" id="gQY-FV-fCn"/>
+                        <constraint firstAttribute="trailing" secondItem="79k-Nf-jQh" secondAttribute="trailing" priority="250" id="kNg-jt-bpO"/>
+                        <constraint firstItem="79k-Nf-jQh" firstAttribute="height" relation="lessThanOrEqual" secondItem="zot-me-eYY" secondAttribute="height" id="o4X-Zc-IjR"/>
+                        <constraint firstItem="79k-Nf-jQh" firstAttribute="centerX" secondItem="zot-me-eYY" secondAttribute="centerX" id="xqC-h2-Shd"/>
+                        <constraint firstItem="Kiu-Mx-gR1" firstAttribute="top" secondItem="79k-Nf-jQh" secondAttribute="top" id="z7A-WB-7sq"/>
+                    </constraints>
+                </view>
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="9sy-e2-DPZ">
                     <rect key="frame" x="197" y="658.5" width="20" height="20"/>
                 </activityIndicatorView>
@@ -59,23 +84,23 @@
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstItem="FQh-RT-Aiu" firstAttribute="bottom" secondItem="79k-Nf-jQh" secondAttribute="bottom" constant="20" id="4uI-Fr-WbX"/>
+                <constraint firstItem="FQh-RT-Aiu" firstAttribute="bottom" secondItem="zot-me-eYY" secondAttribute="bottom" constant="20" id="42i-BY-5tW"/>
                 <constraint firstItem="htW-IL-63j" firstAttribute="centerX" secondItem="FQh-RT-Aiu" secondAttribute="centerX" id="6AQ-eK-JQo"/>
-                <constraint firstItem="9sy-e2-DPZ" firstAttribute="centerX" secondItem="79k-Nf-jQh" secondAttribute="centerX" id="9Ay-eH-OKC"/>
                 <constraint firstItem="VBf-JA-uEU" firstAttribute="centerX" secondItem="FQh-RT-Aiu" secondAttribute="centerX" id="9VX-gp-Qru"/>
                 <constraint firstItem="7Pk-51-Zzf" firstAttribute="top" secondItem="F1w-QK-TSc" secondAttribute="bottom" constant="8" id="Aa6-no-CxO"/>
+                <constraint firstItem="9sy-e2-DPZ" firstAttribute="centerY" secondItem="zot-me-eYY" secondAttribute="centerY" id="AvB-47-Ziu"/>
                 <constraint firstItem="F1w-QK-TSc" firstAttribute="leading" secondItem="FQh-RT-Aiu" secondAttribute="leading" id="Bts-s8-FKD"/>
+                <constraint firstItem="zot-me-eYY" firstAttribute="top" secondItem="htW-IL-63j" secondAttribute="bottom" constant="27" id="Mrp-1w-eYB"/>
                 <constraint firstItem="r2q-oI-WtM" firstAttribute="top" secondItem="VBf-JA-uEU" secondAttribute="bottom" constant="41" id="OSE-qT-ccq"/>
-                <constraint firstItem="79k-Nf-jQh" firstAttribute="width" secondItem="fO9-WW-xd3" secondAttribute="width" multiplier="0.951691" id="XMP-Ig-qVD"/>
+                <constraint firstItem="9sy-e2-DPZ" firstAttribute="centerX" secondItem="zot-me-eYY" secondAttribute="centerX" id="Sca-UW-bxO"/>
                 <constraint firstItem="htW-IL-63j" firstAttribute="top" secondItem="7Pk-51-Zzf" secondAttribute="bottom" constant="8" id="XNk-dF-gHm"/>
-                <constraint firstItem="79k-Nf-jQh" firstAttribute="centerX" secondItem="FQh-RT-Aiu" secondAttribute="centerX" id="cm1-bw-eed"/>
                 <constraint firstItem="7Pk-51-Zzf" firstAttribute="width" secondItem="FQh-RT-Aiu" secondAttribute="width" constant="-50" id="dxi-Va-gpF"/>
-                <constraint firstItem="79k-Nf-jQh" firstAttribute="top" secondItem="htW-IL-63j" secondAttribute="bottom" constant="27" id="exB-Yo-POQ"/>
                 <constraint firstItem="7Pk-51-Zzf" firstAttribute="centerX" secondItem="FQh-RT-Aiu" secondAttribute="centerX" id="f5g-KF-QlB"/>
                 <constraint firstItem="VBf-JA-uEU" firstAttribute="top" secondItem="FQh-RT-Aiu" secondAttribute="top" constant="21" id="hYb-k5-ChT"/>
                 <constraint firstItem="htW-IL-63j" firstAttribute="centerY" secondItem="FQh-RT-Aiu" secondAttribute="centerY" id="hef-kr-hla"/>
+                <constraint firstItem="zot-me-eYY" firstAttribute="width" secondItem="FQh-RT-Aiu" secondAttribute="width" constant="-20" id="kbI-1R-Pdq"/>
                 <constraint firstItem="r2q-oI-WtM" firstAttribute="centerX" secondItem="FQh-RT-Aiu" secondAttribute="centerX" id="pBP-l2-HBx"/>
-                <constraint firstItem="9sy-e2-DPZ" firstAttribute="centerY" secondItem="79k-Nf-jQh" secondAttribute="centerY" id="v8L-Bv-Y9T"/>
+                <constraint firstItem="zot-me-eYY" firstAttribute="centerX" secondItem="FQh-RT-Aiu" secondAttribute="centerX" id="pOk-ya-OV9"/>
                 <constraint firstItem="FQh-RT-Aiu" firstAttribute="trailing" secondItem="F1w-QK-TSc" secondAttribute="trailing" id="yCq-AF-wPQ"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="FQh-RT-Aiu"/>

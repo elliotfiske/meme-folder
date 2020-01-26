@@ -21,12 +21,17 @@ public class TwitterDLViewController: UIViewController {
     @IBOutlet weak var errorLabelBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var imageLoadingActivityIndicator: UIActivityIndicatorView!
     
+    // Controls how much of the thumbnail is being covered by the
+    //   "loading" image overlay
+    @IBOutlet weak var imageOverlayBottomOffset: NSLayoutConstraint!
+    
+    
     @IBAction func buttonPushed(_ sender: Any) {
         guard !(twitterEntryText.text?.isEmpty ?? false) else {
             showInputError(for: TwitterAPIError.emptyInput)
             return
         }
-
+        
         twitterEntryText?.resignFirstResponder()
         
         firstly {
@@ -84,12 +89,12 @@ extension TwitterDLViewController: TwitterMediaModelObserver {
         case .downloadedThumbnail:
             imageLoadingActivityIndicator.stopAnimating()
             thumbnailDisplay.image = model.thumbnailImage
-        case .downloadingMedia(_):
-            break // TODO
+        case .downloadingMedia(let progress):
+            imageOverlayBottomOffset.constant = -progress * thumbnailDisplay.bounds.height
         case .downloadedMedia:
-            break // TODO
+        break // TODO
         case .savingMediaToCameraRoll:
-            break // TODO
+        break // TODO
         case .finished:
             break // TODO
         }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		50760B6923C4367A003D88A5 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50760B6823C4367A003D88A5 /* Errors.swift */; };
+		C909550223DD1ED5006FB53C /* AspectFitImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C909550123DD1ED5006FB53C /* AspectFitImageView.swift */; };
 		C92D91E723C98F9A0067150B /* TwitterDLViewController+ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92D91E323C98F8C0067150B /* TwitterDLViewController+ErrorHandler.swift */; };
 		C92D91E923C995810067150B /* TwitterMediaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92D91E823C995810067150B /* TwitterMediaModel.swift */; };
 		C92D91F023C9992B0067150B /* TwitterDLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92D91EE23C9992B0067150B /* TwitterDLViewController.swift */; };
@@ -37,9 +38,10 @@
 
 /* Begin PBXFileReference section */
 		50760B6823C4367A003D88A5 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		C909550123DD1ED5006FB53C /* AspectFitImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AspectFitImageView.swift; sourceTree = "<group>"; };
 		C92D91E323C98F8C0067150B /* TwitterDLViewController+ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TwitterDLViewController+ErrorHandler.swift"; sourceTree = "<group>"; };
 		C92D91E823C995810067150B /* TwitterMediaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterMediaModel.swift; sourceTree = "<group>"; };
-		C92D91EE23C9992B0067150B /* TwitterDLViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterDLViewController.swift; sourceTree = "<group>"; };
+		C92D91EE23C9992B0067150B /* TwitterDLViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TwitterDLViewController.swift; sourceTree = "<group>"; };
 		C93767B323D8063700180F2D /* images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = images.xcassets; sourceTree = "<group>"; };
 		C9B6036523CC43BE0056AEC6 /* TwitterDLViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TwitterDLViewController.xib; path = controllers/TwitterDLViewController.xib; sourceTree = SOURCE_ROOT; };
 		C9B6036923CEDA280056AEC6 /* UIViewController+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Convenience.swift"; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				50760B6823C4367A003D88A5 /* Errors.swift */,
 				C9F5113F23C2BA8C0044C61A /* String+Convenience.swift */,
 				C9B6036923CEDA280056AEC6 /* UIViewController+Convenience.swift */,
+				C909550123DD1ED5006FB53C /* AspectFitImageView.swift */,
 			);
 			path = helpers;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				C92D91F023C9992B0067150B /* TwitterDLViewController.swift in Sources */,
 				C92D91E723C98F9A0067150B /* TwitterDLViewController+ErrorHandler.swift in Sources */,
 				C9F5113223C187150044C61A /* TwitterAPI.swift in Sources */,
+				C909550223DD1ED5006FB53C /* AspectFitImageView.swift in Sources */,
 				C9F5113E23C28AAF0044C61A /* Array+Convenience.swift in Sources */,
 				C9F5114023C2BA8C0044C61A /* String+Convenience.swift in Sources */,
 			);
