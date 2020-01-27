@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		50760B6923C4367A003D88A5 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50760B6823C4367A003D88A5 /* Errors.swift */; };
 		C909550223DD1ED5006FB53C /* AspectFitImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C909550123DD1ED5006FB53C /* AspectFitImageView.swift */; };
+		C909550623DE5BF7006FB53C /* VideoControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C909550423DE5BF7006FB53C /* VideoControlsView.swift */; };
+		C909550723DE5BF7006FB53C /* VideoControlsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C909550523DE5BF7006FB53C /* VideoControlsView.xib */; };
+		C909550923DE8F4F006FB53C /* RoundedCornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C909550823DE8F4F006FB53C /* RoundedCornerView.swift */; };
 		C92D91E723C98F9A0067150B /* TwitterDLViewController+ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92D91E323C98F8C0067150B /* TwitterDLViewController+ErrorHandler.swift */; };
 		C92D91E923C995810067150B /* TwitterMediaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92D91E823C995810067150B /* TwitterMediaModel.swift */; };
 		C92D91F023C9992B0067150B /* TwitterDLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92D91EE23C9992B0067150B /* TwitterDLViewController.swift */; };
@@ -39,6 +42,9 @@
 /* Begin PBXFileReference section */
 		50760B6823C4367A003D88A5 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		C909550123DD1ED5006FB53C /* AspectFitImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AspectFitImageView.swift; sourceTree = "<group>"; };
+		C909550423DE5BF7006FB53C /* VideoControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoControlsView.swift; sourceTree = "<group>"; };
+		C909550523DE5BF7006FB53C /* VideoControlsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoControlsView.xib; sourceTree = "<group>"; };
+		C909550823DE8F4F006FB53C /* RoundedCornerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornerView.swift; sourceTree = "<group>"; };
 		C92D91E323C98F8C0067150B /* TwitterDLViewController+ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TwitterDLViewController+ErrorHandler.swift"; sourceTree = "<group>"; };
 		C92D91E823C995810067150B /* TwitterMediaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterMediaModel.swift; sourceTree = "<group>"; };
 		C92D91EE23C9992B0067150B /* TwitterDLViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TwitterDLViewController.swift; sourceTree = "<group>"; };
@@ -78,11 +84,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C909550323DE5BC7006FB53C /* views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
 		C92D91E423C98F8C0067150B /* controllers */ = {
 			isa = PBXGroup;
 			children = (
 				C92D91EE23C9992B0067150B /* TwitterDLViewController.swift */,
 				C92D91E323C98F8C0067150B /* TwitterDLViewController+ErrorHandler.swift */,
+				C909550423DE5BF7006FB53C /* VideoControlsView.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -107,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				C9B6036523CC43BE0056AEC6 /* TwitterDLViewController.xib */,
+				C909550523DE5BF7006FB53C /* VideoControlsView.xib */,
 			);
 			path = storyboards;
 			sourceTree = "<group>";
@@ -114,6 +129,7 @@
 		C9F5110323C186400044C61A = {
 			isa = PBXGroup;
 			children = (
+				C909550323DE5BC7006FB53C /* views */,
 				C93767B223D8061C00180F2D /* resources */,
 				C9B6036423CC436C0056AEC6 /* storyboards */,
 				C9F5113C23C28A9B0044C61A /* helpers */,
@@ -163,6 +179,7 @@
 				C9F5113F23C2BA8C0044C61A /* String+Convenience.swift */,
 				C9B6036923CEDA280056AEC6 /* UIViewController+Convenience.swift */,
 				C909550123DD1ED5006FB53C /* AspectFitImageView.swift */,
+				C909550823DE8F4F006FB53C /* RoundedCornerView.swift */,
 			);
 			path = helpers;
 			sourceTree = "<group>";
@@ -272,6 +289,7 @@
 			files = (
 				C9B6036623CC43BE0056AEC6 /* TwitterDLViewController.xib in Resources */,
 				C93767B423D8063700180F2D /* images.xcassets in Resources */,
+				C909550723DE5BF7006FB53C /* VideoControlsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C92D91E923C995810067150B /* TwitterMediaModel.swift in Sources */,
+				C909550623DE5BF7006FB53C /* VideoControlsView.swift in Sources */,
 				50760B6923C4367A003D88A5 /* Errors.swift in Sources */,
 				C9B6036A23CEDA280056AEC6 /* UIViewController+Convenience.swift in Sources */,
 				C92D91F023C9992B0067150B /* TwitterDLViewController.swift in Sources */,
@@ -298,6 +317,7 @@
 				C909550223DD1ED5006FB53C /* AspectFitImageView.swift in Sources */,
 				C9F5113E23C28AAF0044C61A /* Array+Convenience.swift in Sources */,
 				C9F5114023C2BA8C0044C61A /* String+Convenience.swift in Sources */,
+				C909550923DE8F4F006FB53C /* RoundedCornerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,7 +472,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = "$(inherited)";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -479,7 +499,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = "$(inherited)";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

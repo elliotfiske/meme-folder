@@ -16,66 +16,18 @@ public class TwitterDLViewController: UIViewController {
     
     var model = TwitterMediaModel()
     
-    @IBOutlet weak var twitterEntryText: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
-    @IBOutlet weak var errorLabelBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var imageLoadingActivityIndicator: UIActivityIndicatorView!
-    
-    // Controls how much of the thumbnail is being covered by the
-    //   "loading" image overlay
-    @IBOutlet weak var imageOverlayBottomOffset: NSLayoutConstraint!
-    
-    
-    @IBAction func buttonPushed(_ sender: Any) {
-        guard !(twitterEntryText.text?.isEmpty ?? false) else {
-            showInputError(for: TwitterAPIError.emptyInput)
-            return
-        }
-        
-        twitterEntryText?.resignFirstResponder()
-        
-        firstly {
-            try TwitterAPI.sharedInstance.getMediaURLs(usingTweetURL: twitterEntryText.text ?? "")
-        }
-        .then { (thumbnailURL: String, videoURL: String?) -> Promise<(data: Data, response: PMKAlamofireDataResponse)>  in
-            return Alamofire.request(thumbnailURL)
-                .validate()
-                .responseData()
-        }
-        .done { data, _ in
-            self.thumbnailDisplay?.image = UIImage(data: data)
-        }
-        .ensure { [weak self] in
-            self?.imageLoadingActivityIndicator.stopAnimating()
-        }
-        .catch { error in
-            switch error {
-            case let error as TwitterAPIError:
-                print("Some issue with the Twitter API :( \(error)")
-                self.showInputError(for: error)
-            default:
-                print("Some other kind of error: \(error.localizedDescription)")
-            }
-        }
-    }
     
     @IBOutlet weak var thumbnailDisplay: UIImageView!
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        twitterEntryText.delegate = self
         model.stateObserver = self
         
         if let tweetURL = tweetURLToLoad {
             model.startDownloadingMedia(forTweetURL: tweetURL)
         }
-    }
-}
-
-extension TwitterDLViewController: UITextFieldDelegate {
-    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        hideInputError()
-        return true
     }
 }
 
@@ -89,8 +41,8 @@ extension TwitterDLViewController: TwitterMediaModelObserver {
         case .downloadedThumbnail:
             imageLoadingActivityIndicator.stopAnimating()
             thumbnailDisplay.image = model.thumbnailImage
-        case .downloadingMedia(let progress):
-            imageOverlayBottomOffset.constant = -progress * thumbnailDisplay.bounds.height
+        case .downloadingMedia(_):
+            break
         case .downloadedMedia:
         break // TODO
         case .savingMediaToCameraRoll:
