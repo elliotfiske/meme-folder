@@ -31,17 +31,6 @@ public class TwitterDLViewController: UIViewController {
         if let tweetURL = tweetURLToLoad {
             model.startDownloadingMedia(forTweetURL: tweetURL)
         }
-        
-        // create animator to control bliur strength
-        self.blurOverlay.effect = nil
-        silly = UIViewPropertyAnimator(duration: 0.5, curve: .easeInOut, animations: nil)
-        
-        silly?.addAnimations {
-            self.blurOverlay.effect = UIBlurEffect(style: .regular)
-        }
-        
-        // 50% blur
-        silly?.fractionComplete = 0.2
     }
 }
 
@@ -52,9 +41,9 @@ extension TwitterDLViewController: TwitterMediaModelObserver {
         case .idle:
             break
         case .downloadingThumbnail:
-            progressBar.setProgress(0.1, animated: true)
+            progressBar.setProgress(0.1, animated: false)
         case .downloadedThumbnail:
-            progressBar.setProgress(0.2, animated: true)
+            progressBar.setProgress(0.2, animated: false)
             thumbnailDisplay.image = model.thumbnailImage
         case .downloadingMedia(_):
             break
@@ -65,11 +54,17 @@ extension TwitterDLViewController: TwitterMediaModelObserver {
                 }
             }
             .done { _ in
-//                UIView.animate(withDuration: 0.3) {
-//                    self.blurOverlay.effect = nil
-//                }
-                self.silly?.continueAnimation(withTimingParameters: .none, durationFactor: 1.0)
-                self.silly?.startAnimation()
+                UIView.animate(withDuration: 0.5) {
+                    let layer = self.progressBar.layer
+                    
+                    let hideProgressBarAnim = CABasicAnimation(keyPath: #keyPath(CALayer.transform))
+                    hideProgressBarAnim.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+                    hideProgressBarAnim.duration = 0.5
+                    hideProgressBarAnim.fromValue = layer.transform
+                    hideProgressBarAnim.toValue = CATransform3DMakeTranslation(0, -10, 0)
+                    layer.add(hideProgressBarAnim, forKey: "hideMe")
+                }
+
             }
         case .savingMediaToCameraRoll:
         break // TODO
