@@ -27,6 +27,9 @@
                     <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="E8h-SA-kV3">
+                    <rect key="frame" x="10" y="344" width="394" height="2"/>
+                </progressView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zot-me-eYY" userLabel="Thumbnail Container View">
                     <rect key="frame" x="10" y="44" width="394" height="300"/>
                     <subviews>
@@ -54,9 +57,6 @@
                         <constraint firstAttribute="height" constant="30" id="k8S-Ph-Zhi"/>
                     </constraints>
                 </view>
-                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="E8h-SA-kV3">
-                    <rect key="frame" x="10" y="344" width="394" height="2"/>
-                </progressView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
@@ -64,8 +64,8 @@
                 <constraint firstItem="E8h-SA-kV3" firstAttribute="centerX" secondItem="FQh-RT-Aiu" secondAttribute="centerX" id="9HE-sa-E8A"/>
                 <constraint firstItem="F1w-QK-TSc" firstAttribute="top" secondItem="QhD-DV-Vla" secondAttribute="bottom" constant="10" id="EY0-CN-v5C"/>
                 <constraint firstItem="F1w-QK-TSc" firstAttribute="width" secondItem="FQh-RT-Aiu" secondAttribute="width" constant="-20" id="FDP-Sa-pMW"/>
-                <constraint firstItem="E8h-SA-kV3" firstAttribute="width" secondItem="zot-me-eYY" secondAttribute="width" id="IcF-ZJ-VAi"/>
                 <constraint firstItem="QhD-DV-Vla" firstAttribute="width" secondItem="FQh-RT-Aiu" secondAttribute="width" constant="-20" id="Pl9-A2-ifV"/>
+                <constraint firstItem="E8h-SA-kV3" firstAttribute="width" secondItem="zot-me-eYY" secondAttribute="width" id="QBQ-9x-Tbr"/>
                 <constraint firstItem="F1w-QK-TSc" firstAttribute="centerX" secondItem="FQh-RT-Aiu" secondAttribute="centerX" id="QUB-gb-rRC"/>
                 <constraint firstItem="E8h-SA-kV3" firstAttribute="top" secondItem="79k-Nf-jQh" secondAttribute="bottom" id="a7q-DC-dyj"/>
                 <constraint firstItem="zot-me-eYY" firstAttribute="top" secondItem="FQh-RT-Aiu" secondAttribute="top" id="fTb-fG-NWo"/>

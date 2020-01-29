@@ -10,6 +10,9 @@ import UIKit
 import PMKAlamofire
 import PromiseKit
 
+import AVKit
+import AVFoundation
+
 public class TwitterDLViewController: UIViewController {
     
     public var tweetURLToLoad: String?
@@ -20,9 +23,6 @@ public class TwitterDLViewController: UIViewController {
     @IBOutlet weak var progressBar: UIProgressView!
     
     @IBOutlet weak var thumbnailDisplay: UIImageView!
-    @IBOutlet weak var blurOverlay: UIVisualEffectView!
-    
-    var silly: UIViewPropertyAnimator?
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -45,31 +45,51 @@ extension TwitterDLViewController: TwitterMediaModelObserver {
         case .downloadedThumbnail:
             progressBar.setProgress(0.2, animated: false)
             thumbnailDisplay.image = model.thumbnailImage
-        case .downloadingMedia(_):
+        case .downloadingMedia(let progress):
+            progressBar.setProgress(Float(progress), animated: false)
             break
         case .downloadedMedia:
             firstly {
-                UIView.animate(.promise, duration: 2.2) {
+                return UIView.animate(.promise, duration: 0.2) {
                     self.progressBar.progress = 1.0
                 }
             }
             .done { _ in
-                UIView.animate(withDuration: 0.5) {
-                    let layer = self.progressBar.layer
-                    
-                    let hideProgressBarAnim = CABasicAnimation(keyPath: #keyPath(CALayer.transform))
-                    hideProgressBarAnim.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
-                    hideProgressBarAnim.duration = 0.5
-                    hideProgressBarAnim.fromValue = layer.transform
-                    hideProgressBarAnim.toValue = CATransform3DMakeTranslation(0, -10, 0)
-                    layer.add(hideProgressBarAnim, forKey: "hideMe")
+                UIView.animate(withDuration: 0.2) {
+                    self.progressBar.alpha = 0.0
                 }
+                
+                // TODO: extract to a method, silly.
+                // Also hook up to video controls (after video controls are done)
+                let item = AVPlayerItem(url: self.model.localMediaURL!)
+                let player = AVPlayer(playerItem: item)
 
+                let superLayer = self.thumbnailDisplay.layer
+
+                let playerLayer = AVPlayerLayer(player: player)
+                playerLayer.frame = self.thumbnailDisplay.bounds
+                playerLayer.videoGravity = .resizeAspect
+                superLayer.addSublayer(playerLayer)
+                player.seek(to: CMTime.zero)
+                player.play()
+                
+                player.actionAtItemEnd = .none
+
+                NotificationCenter.default.addObserver(self,
+                                                       selector: #selector(self.playerItemDidReachEnd(notification:)),
+                                                       name: .AVPlayerItemDidPlayToEndTime,
+                                                       object: player.currentItem)
             }
         case .savingMediaToCameraRoll:
         break // TODO
         case .finished:
             break // TODO
+        }
+    }
+    
+    @objc func playerItemDidReachEnd(notification: Notification) {
+        if let playerItem = notification.object as? AVPlayerItem {
+            playerItem.seek(to: CMTime.zero, completionHandler: nil)
         }
     }
 }

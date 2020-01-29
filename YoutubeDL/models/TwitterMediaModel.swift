@@ -25,7 +25,7 @@ public class TwitterMediaModel {
         case downloadingThumbnail
         case downloadedThumbnail
         
-        case downloadingMedia(CGFloat)       // Value is the download progress 0 -> 1.0
+        case downloadingMedia(Float)       // Value is the download progress 0 -> 1.0
         case downloadedMedia
         
         case savingMediaToCameraRoll
@@ -39,6 +39,14 @@ public class TwitterMediaModel {
     }
     
     public private(set) var thumbnailImage: UIImage?
+    public private(set) var localMediaURL: URL?
+    
+    let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+        var documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        documentsURL.appendPathComponent("test.mp4")
+
+        return (documentsURL, [.removePreviousFile])
+    }
     
     public func startDownloadingMedia(forTweetURL tweetURL: String) {
 
@@ -57,18 +65,26 @@ public class TwitterMediaModel {
                 .validate()
                 .responseData()
         }
-        .then { data, _ -> Promise<(data: Data, response: PMKAlamofireDataResponse)> in
+        .then { data, _ -> Promise<Void> in
             self.thumbnailImage = UIImage(data: data)
             self.setState(newState: .downloadedThumbnail)
 
-            return Alamofire.request(mediaURLToDownload!)
-                .validate()
-                .downloadProgress(closure: { progress in
-                    self.setState(newState: .downloadingMedia(CGFloat(progress.fractionCompleted)))
-                })
-                .responseData()
+            // TODO: pull this out to an extension
+            return Promise<Void>() { seal in
+                Alamofire.download(mediaURLToDownload!, to: self.destination)
+                    .validate()
+                    .downloadProgress(closure: { progress in
+                        self.setState(newState: .downloadingMedia(Float(progress.fractionCompleted)))
+                    })
+                    .response { response in
+                        if response.destinationURL != nil {
+                            self.localMediaURL = response.destinationURL!
+                            seal.fulfill(())
+                        }
+                    }
+            }
         }
-        .done { _, _ in
+        .done { _ in
             self.setState(newState: .downloadedMedia)
         }
     }
