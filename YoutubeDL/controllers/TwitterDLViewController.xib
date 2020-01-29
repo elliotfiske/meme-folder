@@ -10,8 +10,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TwitterDLViewController" customModule="YoutubeDL" customModuleProvider="target">
             <connections>
+                <outlet property="blurOverlay" destination="om8-pD-DHy" id="YdR-A7-mGT"/>
                 <outlet property="errorLabel" destination="F1w-QK-TSc" id="tfW-hY-s2s"/>
-                <outlet property="imageLoadingActivityIndicator" destination="9sy-e2-DPZ" id="4SJ-2J-uCz"/>
+                <outlet property="progressBar" destination="E8h-SA-kV3" id="YAl-sZ-96V"/>
                 <outlet property="thumbnailDisplay" destination="79k-Nf-jQh" id="CS2-6k-UsD"/>
                 <outlet property="view" destination="fO9-WW-xd3" id="SXn-2D-gvR"/>
             </connections>
@@ -22,14 +23,11 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F1w-QK-TSc">
-                    <rect key="frame" x="10" y="364" width="394" height="20.5"/>
+                    <rect key="frame" x="10" y="408" width="394" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="9sy-e2-DPZ">
-                    <rect key="frame" x="197" y="184" width="20" height="20"/>
-                </activityIndicatorView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zot-me-eYY" userLabel="Thumbnail Container View">
                     <rect key="frame" x="10" y="44" width="394" height="300"/>
                     <subviews>
@@ -50,27 +48,43 @@
                         <constraint firstItem="79k-Nf-jQh" firstAttribute="centerX" secondItem="zot-me-eYY" secondAttribute="centerX" id="xqC-h2-Shd"/>
                     </constraints>
                 </view>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="om8-pD-DHy">
+                    <rect key="frame" x="5" y="44" width="404" height="300"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="cjh-SH-hEY">
+                        <rect key="frame" x="0.0" y="0.0" width="404" height="300"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <blurEffect style="regular"/>
+                </visualEffectView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QhD-DV-Vla" customClass="VideoControlsView" customModule="YoutubeDL" customModuleProvider="target">
-                    <rect key="frame" x="10" y="405" width="394" height="30"/>
+                    <rect key="frame" x="10" y="368" width="394" height="30"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="k8S-Ph-Zhi"/>
                     </constraints>
                 </view>
+                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="E8h-SA-kV3">
+                    <rect key="frame" x="10" y="344" width="394" height="2"/>
+                </progressView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
                 <constraint firstItem="QhD-DV-Vla" firstAttribute="centerX" secondItem="FQh-RT-Aiu" secondAttribute="centerX" id="0q3-1Q-Cy9"/>
-                <constraint firstItem="9sy-e2-DPZ" firstAttribute="centerY" secondItem="zot-me-eYY" secondAttribute="centerY" id="AvB-47-Ziu"/>
+                <constraint firstItem="E8h-SA-kV3" firstAttribute="centerX" secondItem="FQh-RT-Aiu" secondAttribute="centerX" id="9HE-sa-E8A"/>
+                <constraint firstItem="zot-me-eYY" firstAttribute="bottom" secondItem="om8-pD-DHy" secondAttribute="bottom" id="AiN-bH-JXg"/>
+                <constraint firstItem="F1w-QK-TSc" firstAttribute="top" secondItem="QhD-DV-Vla" secondAttribute="bottom" constant="10" id="EY0-CN-v5C"/>
                 <constraint firstItem="F1w-QK-TSc" firstAttribute="width" secondItem="FQh-RT-Aiu" secondAttribute="width" constant="-20" id="FDP-Sa-pMW"/>
+                <constraint firstItem="E8h-SA-kV3" firstAttribute="width" secondItem="zot-me-eYY" secondAttribute="width" id="IcF-ZJ-VAi"/>
+                <constraint firstItem="QhD-DV-Vla" firstAttribute="top" secondItem="om8-pD-DHy" secondAttribute="bottom" constant="24" id="Lpn-dA-mAu"/>
+                <constraint firstItem="FQh-RT-Aiu" firstAttribute="top" secondItem="om8-pD-DHy" secondAttribute="top" id="NOU-q3-UAY"/>
                 <constraint firstItem="QhD-DV-Vla" firstAttribute="width" secondItem="FQh-RT-Aiu" secondAttribute="width" constant="-20" id="Pl9-A2-ifV"/>
                 <constraint firstItem="F1w-QK-TSc" firstAttribute="centerX" secondItem="FQh-RT-Aiu" secondAttribute="centerX" id="QUB-gb-rRC"/>
-                <constraint firstItem="9sy-e2-DPZ" firstAttribute="centerX" secondItem="zot-me-eYY" secondAttribute="centerX" id="Sca-UW-bxO"/>
+                <constraint firstItem="om8-pD-DHy" firstAttribute="width" secondItem="FQh-RT-Aiu" secondAttribute="width" multiplier="0.975845" id="RfS-UD-wWM"/>
                 <constraint firstItem="zot-me-eYY" firstAttribute="top" secondItem="FQh-RT-Aiu" secondAttribute="top" id="fTb-fG-NWo"/>
                 <constraint firstItem="zot-me-eYY" firstAttribute="width" secondItem="FQh-RT-Aiu" secondAttribute="width" constant="-20" id="kbI-1R-Pdq"/>
                 <constraint firstItem="zot-me-eYY" firstAttribute="centerX" secondItem="FQh-RT-Aiu" secondAttribute="centerX" id="pOk-ya-OV9"/>
-                <constraint firstItem="F1w-QK-TSc" firstAttribute="top" secondItem="zot-me-eYY" secondAttribute="bottom" constant="20" id="pXh-h9-xM8"/>
-                <constraint firstItem="QhD-DV-Vla" firstAttribute="top" secondItem="F1w-QK-TSc" secondAttribute="bottom" constant="20.5" id="rjf-2O-1CY"/>
+                <constraint firstItem="E8h-SA-kV3" firstAttribute="top" secondItem="om8-pD-DHy" secondAttribute="bottom" id="rv8-bM-3Lo"/>
+                <constraint firstItem="om8-pD-DHy" firstAttribute="centerX" secondItem="FQh-RT-Aiu" secondAttribute="centerX" id="udM-WC-tyR"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="FQh-RT-Aiu"/>
             <point key="canvasLocation" x="131.8840579710145" y="718.52678571428567"/>

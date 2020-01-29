@@ -68,5 +68,8 @@ public class TwitterMediaModel {
                 })
                 .responseData()
         }
+        .done { _, _ in
+            self.setState(newState: .downloadedMedia)
+        }
     }
 }

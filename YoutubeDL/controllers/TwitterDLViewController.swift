@@ -17,9 +17,12 @@ public class TwitterDLViewController: UIViewController {
     var model = TwitterMediaModel()
     
     @IBOutlet weak var errorLabel: UILabel!
-    @IBOutlet weak var imageLoadingActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var progressBar: UIProgressView!
     
     @IBOutlet weak var thumbnailDisplay: UIImageView!
+    @IBOutlet weak var blurOverlay: UIVisualEffectView!
+    
+    var silly: UIViewPropertyAnimator?
     
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +31,17 @@ public class TwitterDLViewController: UIViewController {
         if let tweetURL = tweetURLToLoad {
             model.startDownloadingMedia(forTweetURL: tweetURL)
         }
+        
+        // create animator to control bliur strength
+        self.blurOverlay.effect = nil
+        silly = UIViewPropertyAnimator(duration: 0.5, curve: .easeInOut, animations: nil)
+        
+        silly?.addAnimations {
+            self.blurOverlay.effect = UIBlurEffect(style: .regular)
+        }
+        
+        // 50% blur
+        silly?.fractionComplete = 0.2
     }
 }
 
@@ -35,16 +49,28 @@ extension TwitterDLViewController: TwitterMediaModelObserver {
     public func stateDidChange(newState: TwitterMediaModel.MediaState) {
         switch(newState) {
             
-        case .idle: break
+        case .idle:
+            break
         case .downloadingThumbnail:
-            imageLoadingActivityIndicator.startAnimating()
+            progressBar.setProgress(0.1, animated: true)
         case .downloadedThumbnail:
-            imageLoadingActivityIndicator.stopAnimating()
+            progressBar.setProgress(0.2, animated: true)
             thumbnailDisplay.image = model.thumbnailImage
         case .downloadingMedia(_):
             break
         case .downloadedMedia:
-        break // TODO
+            firstly {
+                UIView.animate(.promise, duration: 2.2) {
+                    self.progressBar.progress = 1.0
+                }
+            }
+            .done { _ in
+//                UIView.animate(withDuration: 0.3) {
+//                    self.blurOverlay.effect = nil
+//                }
+                self.silly?.continueAnimation(withTimingParameters: .none, durationFactor: 1.0)
+                self.silly?.startAnimation()
+            }
         case .savingMediaToCameraRoll:
         break // TODO
         case .finished:
