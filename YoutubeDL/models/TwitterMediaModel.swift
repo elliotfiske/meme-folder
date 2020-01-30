@@ -41,9 +41,17 @@ public class TwitterMediaModel {
     public private(set) var thumbnailImage: UIImage?
     public private(set) var localMediaURL: URL?
     
-    let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+    //
+    // "destination" is a closure that takes the 'remote url' where we got
+    //      the mp4 from, and returns a local URL of where to stick it, and
+    //      how to stick it.
+    //
+    // TODO: This seems to be ending up with something like "CFDownload_woeifj.mp4"
+    //          need to figure out how to get it to the original filename, maybe.
+    //
+    let destination: DownloadRequest.DownloadFileDestination = { url, _ in
         var documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        documentsURL.appendPathComponent("test.mp4")
+        documentsURL.appendPathComponent(url.deletingPathExtension().lastPathComponent + ".mp4")
 
         return (documentsURL, [.removePreviousFile])
     }
@@ -69,7 +77,7 @@ public class TwitterMediaModel {
             self.thumbnailImage = UIImage(data: data)
             self.setState(newState: .downloadedThumbnail)
 
-            // TODO: pull this out to an extension
+            // TODO: pull this out to an extension, maybe
             return Promise<Void>() { seal in
                 Alamofire.download(mediaURLToDownload!, to: self.destination)
                     .validate()

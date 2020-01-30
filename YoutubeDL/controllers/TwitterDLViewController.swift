@@ -35,6 +35,35 @@ public class TwitterDLViewController: UIViewController {
 }
 
 extension TwitterDLViewController: TwitterMediaModelObserver {
+    
+    // Initialize an AVPlayer with the newly downloaded MP4 file.
+    fileprivate func setupPlayer() {
+        let item = AVPlayerItem(url: self.model.localMediaURL!)
+        let player = AVPlayer(playerItem: item)
+        
+        let superLayer = self.thumbnailDisplay.layer
+        
+        let playerLayer = AVPlayerLayer(player: player)
+        playerLayer.frame = self.thumbnailDisplay.bounds
+        playerLayer.videoGravity = .resizeAspect
+        superLayer.addSublayer(playerLayer)
+        player.seek(to: CMTime.zero)
+        player.play()
+        
+        player.actionAtItemEnd = .none
+        
+        NotificationCenter.default
+            .addObserver(forName: .AVPlayerItemDidPlayToEndTime,
+                         object: player.currentItem,
+                         queue: OperationQueue.main,
+                         using: {
+                            notification in
+                            if let playerItem = notification.object as? AVPlayerItem {
+                                playerItem.seek(to: CMTime.zero, completionHandler: nil)
+                            }
+            })
+    }
+    
     public func stateDidChange(newState: TwitterMediaModel.MediaState) {
         switch(newState) {
             
@@ -59,37 +88,12 @@ extension TwitterDLViewController: TwitterMediaModelObserver {
                     self.progressBar.alpha = 0.0
                 }
                 
-                // TODO: extract to a method, silly.
-                // Also hook up to video controls (after video controls are done)
-                let item = AVPlayerItem(url: self.model.localMediaURL!)
-                let player = AVPlayer(playerItem: item)
-
-                let superLayer = self.thumbnailDisplay.layer
-
-                let playerLayer = AVPlayerLayer(player: player)
-                playerLayer.frame = self.thumbnailDisplay.bounds
-                playerLayer.videoGravity = .resizeAspect
-                superLayer.addSublayer(playerLayer)
-                player.seek(to: CMTime.zero)
-                player.play()
-                
-                player.actionAtItemEnd = .none
-
-                NotificationCenter.default.addObserver(self,
-                                                       selector: #selector(self.playerItemDidReachEnd(notification:)),
-                                                       name: .AVPlayerItemDidPlayToEndTime,
-                                                       object: player.currentItem)
+                self.setupPlayer()
             }
         case .savingMediaToCameraRoll:
         break // TODO
         case .finished:
             break // TODO
-        }
-    }
-    
-    @objc func playerItemDidReachEnd(notification: Notification) {
-        if let playerItem = notification.object as? AVPlayerItem {
-            playerItem.seek(to: CMTime.zero, completionHandler: nil)
         }
     }
 }
