@@ -18,6 +18,11 @@
 		C92D91E923C995810067150B /* TwitterMediaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92D91E823C995810067150B /* TwitterMediaModel.swift */; };
 		C92D91F023C9992B0067150B /* TwitterDLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92D91EE23C9992B0067150B /* TwitterDLViewController.swift */; };
 		C93767B423D8063700180F2D /* images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C93767B323D8063700180F2D /* images.xcassets */; };
+		C9A6B23023E663420005A41B /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C9A6B22F23E663420005A41B /* RxSwift */; };
+		C9A6B23223E663420005A41B /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = C9A6B23123E663420005A41B /* RxTest */; };
+		C9A6B23423E663420005A41B /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = C9A6B23323E663420005A41B /* RxRelay */; };
+		C9A6B23623E663420005A41B /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = C9A6B23523E663420005A41B /* RxCocoa */; };
+		C9A6B23823E663420005A41B /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = C9A6B23723E663420005A41B /* RxBlocking */; };
 		C9B6036623CC43BE0056AEC6 /* TwitterDLViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9B6036523CC43BE0056AEC6 /* TwitterDLViewController.xib */; };
 		C9B6036A23CEDA280056AEC6 /* UIViewController+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B6036923CEDA280056AEC6 /* UIViewController+Convenience.swift */; };
 		C9F5111723C186400044C61A /* YoutubeDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F5110D23C186400044C61A /* YoutubeDL.framework */; };
@@ -71,8 +76,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9A6B23623E663420005A41B /* RxCocoa in Frameworks */,
+				C9A6B23423E663420005A41B /* RxRelay in Frameworks */,
 				C9F5113823C18AD60044C61A /* PMKAlamofire in Frameworks */,
 				C9F5114623C446810044C61A /* SwiftyJSON in Frameworks */,
+				C9A6B23023E663420005A41B /* RxSwift in Frameworks */,
 				C9F5113523C188950044C61A /* PromiseKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -81,6 +89,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9A6B23223E663420005A41B /* RxTest in Frameworks */,
+				C9A6B23823E663420005A41B /* RxBlocking in Frameworks */,
 				C9F5111723C186400044C61A /* YoutubeDL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -222,6 +232,9 @@
 				C9F5113423C188950044C61A /* PromiseKit */,
 				C9F5113723C18AD60044C61A /* PMKAlamofire */,
 				C9F5114523C446810044C61A /* SwiftyJSON */,
+				C9A6B22F23E663420005A41B /* RxSwift */,
+				C9A6B23323E663420005A41B /* RxRelay */,
+				C9A6B23523E663420005A41B /* RxCocoa */,
 			);
 			productName = YoutubeDL;
 			productReference = C9F5110D23C186400044C61A /* YoutubeDL.framework */;
@@ -241,6 +254,10 @@
 				C9F5111923C186400044C61A /* PBXTargetDependency */,
 			);
 			name = YoutubeDLTests;
+			packageProductDependencies = (
+				C9A6B23123E663420005A41B /* RxTest */,
+				C9A6B23723E663420005A41B /* RxBlocking */,
+			);
 			productName = YoutubeDLTests;
 			productReference = C9F5111623C186400044C61A /* YoutubeDLTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -277,6 +294,7 @@
 				C9F5113323C188950044C61A /* XCRemoteSwiftPackageReference "PromiseKit" */,
 				C9F5113623C18AD60044C61A /* XCRemoteSwiftPackageReference "PMKAlamofire" */,
 				C9F5114423C446800044C61A /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				C9A6B22E23E663420005A41B /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = C9F5110E23C186400044C61A /* Products */;
 			projectDirPath = "";
@@ -596,6 +614,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		C9A6B22E23E663420005A41B /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
 		C9F5113323C188950044C61A /* XCRemoteSwiftPackageReference "PromiseKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:mxcl/PromiseKit.git";
@@ -623,6 +649,31 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C9A6B22F23E663420005A41B /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9A6B22E23E663420005A41B /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		C9A6B23123E663420005A41B /* RxTest */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9A6B22E23E663420005A41B /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxTest;
+		};
+		C9A6B23323E663420005A41B /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9A6B22E23E663420005A41B /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		C9A6B23523E663420005A41B /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9A6B22E23E663420005A41B /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		C9A6B23723E663420005A41B /* RxBlocking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9A6B22E23E663420005A41B /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxBlocking;
+		};
 		C9F5113423C188950044C61A /* PromiseKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C9F5113323C188950044C61A /* XCRemoteSwiftPackageReference "PromiseKit" */;

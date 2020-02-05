@@ -10,6 +10,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VideoControlsView">
             <connections>
                 <outlet property="playPauseButton" destination="QJ0-3C-m6o" id="VLr-zl-Mf3"/>
+                <outlet property="timelineBase" destination="j49-Jj-V6t" id="EcC-SS-31y"/>
+                <outlet property="timelineProgressConstraint" destination="DmX-O7-av0" id="b10-yX-AIb"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -24,21 +26,38 @@
                     <state key="normal" image="play">
                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="22" scale="large" weight="black"/>
                     </state>
-                    <connections>
-                        <action selector="playPauseTapped:" destination="-1" eventType="touchUpInside" id="nTJ-xE-GCE"/>
-                    </connections>
                 </button>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j49-Jj-V6t" userLabel="TimelineBase" customClass="RoundedCornerView" customModule="YoutubeDL" customModuleProvider="target">
                     <rect key="frame" x="75" y="25" width="464.5" height="14"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9xy-Zb-NaS" userLabel="TimelinePast" customClass="RoundedCornerView" customModule="YoutubeDL" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="14"/>
+                            <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" id="DmX-O7-av0"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="7"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
                     <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
+                        <constraint firstItem="9xy-Zb-NaS" firstAttribute="top" secondItem="j49-Jj-V6t" secondAttribute="top" id="1ai-xn-JGc"/>
                         <constraint firstAttribute="height" constant="14" id="YZ8-M6-lJa"/>
+                        <constraint firstItem="9xy-Zb-NaS" firstAttribute="leading" secondItem="j49-Jj-V6t" secondAttribute="leading" id="eCl-iP-vWC"/>
+                        <constraint firstAttribute="bottom" secondItem="9xy-Zb-NaS" secondAttribute="bottom" id="iFq-7g-ugs"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                             <real key="value" value="7"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="Vzs-3o-9XS" appends="YES" id="Oiq-Zz-Vze"/>
+                    </connections>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00 / 0:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DHV-M4-GBl" userLabel="Time Label">
                     <rect key="frame" x="547.5" y="22" width="85.5" height="20.5"/>
@@ -46,22 +65,43 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WT3-YM-c0H" userLabel="DraggableDot" customClass="RoundedCornerView" customModule="YoutubeDL" customModuleProvider="target">
+                    <rect key="frame" x="65" y="22" width="20" height="20"/>
+                    <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="xll-FT-iFY"/>
+                        <constraint firstAttribute="height" constant="20" id="ztX-Ff-6vs"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <gestureRecognizers/>
             <constraints>
                 <constraint firstItem="QJ0-3C-m6o" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="8gv-Rf-hH5"/>
                 <constraint firstItem="DHV-M4-GBl" firstAttribute="leading" secondItem="j49-Jj-V6t" secondAttribute="trailing" constant="8" id="DmW-1y-dmN"/>
                 <constraint firstAttribute="trailing" secondItem="DHV-M4-GBl" secondAttribute="trailing" constant="8" id="Iv4-xD-L7t"/>
                 <constraint firstItem="DHV-M4-GBl" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="VAe-e5-YSY"/>
                 <constraint firstItem="j49-Jj-V6t" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="X8a-jp-iu8"/>
+                <constraint firstItem="WT3-YM-c0H" firstAttribute="centerY" secondItem="j49-Jj-V6t" secondAttribute="centerY" id="eXb-yL-nr8"/>
                 <constraint firstItem="QJ0-3C-m6o" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" id="lkD-wt-RXu"/>
                 <constraint firstItem="j49-Jj-V6t" firstAttribute="leading" secondItem="QJ0-3C-m6o" secondAttribute="trailing" constant="23" id="wiA-oE-a1X"/>
+                <constraint firstItem="WT3-YM-c0H" firstAttribute="centerX" secondItem="9xy-Zb-NaS" secondAttribute="trailing" id="yCU-4Y-Os1"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="474.63768115942031" y="125.22321428571428"/>
         </view>
+        <panGestureRecognizer minimumNumberOfTouches="1" id="Vzs-3o-9XS">
+            <connections>
+                <action selector="draggedOnTimeline:" destination="-1" id="igC-lN-bKd"/>
+            </connections>
+        </panGestureRecognizer>
     </objects>
     <resources>
         <image name="play" width="32" height="32"/>

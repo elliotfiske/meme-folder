@@ -9,18 +9,18 @@
 import Foundation
 import UIKit
 
-//
-// Adopting 'NibLoadable' makes it possible to have NIBs INSIDE
-//      of other NIBs, and preview the whole thing in Interface Builder.
-//
-// `nibName` defaults to the name of your UIView's class, so be sure to change
-//      it if it's different.
-//
-// See details and caveats here: https://stackoverflow.com/a/47295926/3880742
-//
-// It's also availble at {SOURCE_ROOT}/saved_online_docs/StackOverflowNibLoadableDetails.png
-//      if that link goes down.
-//
+///
+/// Adopting 'NibLoadable' makes it possible to have NIBs INSIDE
+///      of other NIBs, and preview the whole thing in Interface Builder.
+///
+/// `nibName` defaults to the name of your UIView's class, so be sure to change
+///      it if it's different.
+///
+/// See details and caveats here: https://stackoverflow.com/a/47295926/3880742
+///
+/// It's also availble at {SOURCE_ROOT}/saved_online_docs/StackOverflowNibLoadableDetails.png
+///      if that link goes down.
+///
 public protocol NibLoadable {
     static var nibName: String { get }
 }
