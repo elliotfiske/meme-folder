@@ -16,7 +16,8 @@ import RxSwift
 @IBDesignable
 public class VideoControlsView: UIView, NibLoadable {
     
-    // TODO: Move state to a controller (or even better a model)
+    //
+    //      weiird stuff abounds. Will clean up shortly.
     //
     //          I like Rx for handling UI state and interactions,
     //          but I like Promises more for handling network
@@ -24,9 +25,11 @@ public class VideoControlsView: UIView, NibLoadable {
     //
     //          I THINK the two systems should play nice together.
     //
-    public let isPlaying = BehaviorRelay<Bool>(value: true)
+    public let isPlaying = PublishRelay<Bool>()
     
-    // TODO: Pull this out to an extension (I think one might already exist in RxSwift somewhere?)
+    lazy public var playButtonPresses = self.playPauseButton.rx.tap
+    
+    // TODO: Pull this out to an extension (I think one might already exist in RxSwift somewhere?) ((i was thinking of NSObject+Rx.swift))
     let disposeBag = DisposeBag()
     
     @IBOutlet weak var playPauseButton: UIButton!
@@ -40,13 +43,8 @@ public class VideoControlsView: UIView, NibLoadable {
     }
     
     func commonInit() {
-        playPauseButton.rx.tap.subscribe(onNext: {
-            self.isPlaying.accept(!self.isPlaying.value)
-        })
-        .disposed(by: disposeBag)
-        
         isPlaying.subscribe(onNext: { playing in
-            let imageName = playing ? "play" : "pause"
+            let imageName = playing ? "pause" : "play"
             let image = UIImage(named:imageName,
                                 in:Bundle(for: type(of: self)),
                                 compatibleWith:nil)!

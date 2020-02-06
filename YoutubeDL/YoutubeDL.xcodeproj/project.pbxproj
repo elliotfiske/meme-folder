@@ -25,6 +25,7 @@
 		C9A6B23823E663420005A41B /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = C9A6B23723E663420005A41B /* RxBlocking */; };
 		C9B6036623CC43BE0056AEC6 /* TwitterDLViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9B6036523CC43BE0056AEC6 /* TwitterDLViewController.xib */; };
 		C9B6036A23CEDA280056AEC6 /* UIViewController+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B6036923CEDA280056AEC6 /* UIViewController+Convenience.swift */; };
+		C9B98A7523EBCC85003A1EF4 /* TwitterMediaModel+Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B98A7423EBCC85003A1EF4 /* TwitterMediaModel+Player.swift */; };
 		C9F5111723C186400044C61A /* YoutubeDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F5110D23C186400044C61A /* YoutubeDL.framework */; };
 		C9F5111C23C186400044C61A /* YoutubeDLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F5111B23C186400044C61A /* YoutubeDLTests.swift */; };
 		C9F5111E23C186400044C61A /* YoutubeDL.h in Headers */ = {isa = PBXBuildFile; fileRef = C9F5111023C186400044C61A /* YoutubeDL.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -60,6 +61,7 @@
 		C93767B323D8063700180F2D /* images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = images.xcassets; sourceTree = "<group>"; };
 		C9B6036523CC43BE0056AEC6 /* TwitterDLViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TwitterDLViewController.xib; path = controllers/TwitterDLViewController.xib; sourceTree = SOURCE_ROOT; };
 		C9B6036923CEDA280056AEC6 /* UIViewController+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Convenience.swift"; sourceTree = "<group>"; };
+		C9B98A7423EBCC85003A1EF4 /* TwitterMediaModel+Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TwitterMediaModel+Player.swift"; sourceTree = "<group>"; };
 		C9F5110D23C186400044C61A /* YoutubeDL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YoutubeDL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9F5111023C186400044C61A /* YoutubeDL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YoutubeDL.h; sourceTree = "<group>"; };
 		C9F5111123C186400044C61A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				C92D91E823C995810067150B /* TwitterMediaModel.swift */,
+				C9B98A7423EBCC85003A1EF4 /* TwitterMediaModel+Player.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C909550F23E3DA85006FB53C /* UIView+Nibloadable.swift in Sources */,
+				C9B98A7523EBCC85003A1EF4 /* TwitterMediaModel+Player.swift in Sources */,
 				C92D91E923C995810067150B /* TwitterMediaModel.swift in Sources */,
 				C909550623DE5BF7006FB53C /* VideoControlsView.swift in Sources */,
 				C909550D23DFFC7E006FB53C /* UIView+Promise.swift in Sources */,

@@ -13,11 +13,20 @@ import PromiseKit
 import AVKit
 import AVFoundation
 
+import RxCocoa
+import RxSwift
+
 public class TwitterDLViewController: UIViewController {
     
     public var tweetURLToLoad: String?
     
-    var model = TwitterMediaModel()
+    let model = TwitterMediaModel()
+    
+    let disposeBag = DisposeBag()
+    
+    let player = AVPlayer()
+    
+    @IBOutlet weak var videoControlsView: VideoControlsView!
     
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var progressBar: UIProgressView!
@@ -31,6 +40,12 @@ public class TwitterDLViewController: UIViewController {
         if let tweetURL = tweetURLToLoad {
             model.startDownloadingMedia(forTweetURL: tweetURL)
         }
+        
+//        videoControlsView.playButtonPresses.subscribe(onNext: {
+//
+//        })
+        videoControlsView.playButtonPresses.bind(to: model.playButtonPressSink)
+            .disposed(by: disposeBag)
     }
 }
 
@@ -39,7 +54,7 @@ extension TwitterDLViewController: TwitterMediaModelObserver {
     // Initialize an AVPlayer with the newly downloaded MP4 file.
     fileprivate func setupPlayer() {
         let item = AVPlayerItem(url: self.model.localMediaURL!)
-        let player = AVPlayer(playerItem: item)
+        player.replaceCurrentItem(with: item)
         
         let superLayer = self.thumbnailDisplay.layer
         
@@ -48,20 +63,32 @@ extension TwitterDLViewController: TwitterMediaModelObserver {
         playerLayer.videoGravity = .resizeAspect
         superLayer.addSublayer(playerLayer)
         player.seek(to: CMTime.zero)
-        player.play()
         
         player.actionAtItemEnd = .none
         
-        NotificationCenter.default
-            .addObserver(forName: .AVPlayerItemDidPlayToEndTime,
-                         object: player.currentItem,
-                         queue: OperationQueue.main,
-                         using: {
-                            notification in
-                            if let playerItem = notification.object as? AVPlayerItem {
-                                playerItem.seek(to: CMTime.zero, completionHandler: nil)
-                            }
+        model.playerPlaying
+            .subscribe(onNext: {
+                shouldPlay in
+                if shouldPlay {
+                    self.player.play()
+                } else {
+                    self.player.pause()
+                }
             })
+            .disposed(by: disposeBag)
+        
+        model.playerPlaying.debug()
+            .bind(to: videoControlsView.isPlaying)
+        
+        NotificationCenter.default.rx
+            .notification(.AVPlayerItemDidPlayToEndTime, object: player.currentItem)
+            .subscribe(onNext: {
+                notification in
+                if let playerItem = notification.object as? AVPlayerItem {
+                    playerItem.seek(to: CMTime.zero, completionHandler: nil)
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     public func stateDidChange(newState: TwitterMediaModel.MediaState) {

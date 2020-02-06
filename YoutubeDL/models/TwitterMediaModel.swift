@@ -8,8 +8,12 @@
 
 import Foundation
 import UIKit
-import PromiseKit
+
 import PMKAlamofire
+import PromiseKit
+
+import RxRelay
+import RxSwift
 
 public protocol TwitterMediaModelObserver : class {
     func stateDidChange(newState: TwitterMediaModel.MediaState)
@@ -32,14 +36,47 @@ public class TwitterMediaModel {
         case finished
     }
     
-    private var state = MediaState.idle
-    
-    private func setState(newState: MediaState) {
-        stateObserver?.stateDidChange(newState: newState)
-    }
+    /** Hacky, plz fix me */
+        public let playButtonPressSink = PublishRelay<Void>()
+        
+        private let disposeBag = DisposeBag()   // TODO: Extensionize me
+        
+        // True if the player is currently playing.
+        private let playerIsPlaying = BehaviorRelay<Bool>(value: false)
+        public lazy var playerPlaying = playerIsPlaying.asObservable()
+        
+        private var state = MediaState.idle
+        
+        // this sucks hack
+        private let stateObservable = BehaviorRelay<MediaState>(value: .idle)
+        
+        private func setState(newState: MediaState) {
+            stateObserver?.stateDidChange(newState: newState)
+            stateObservable.accept(newState)
+        }
+    /** END Hacky, plz fix me */
     
     public private(set) var thumbnailImage: UIImage?
     public private(set) var localMediaURL: URL?
+    
+    init() {
+        let readyToPlay = stateObservable.filter {
+            if case .downloadedMedia = $0 {
+                return true
+            }
+            return false
+        }
+        .map { _ in Void() }
+        
+        Observable
+            .combineLatest(playButtonPressSink, readyToPlay)
+            .subscribe(onNext: {
+                _ in
+                // this TECHNICALLY works but I'm not happy about it
+                self.playerIsPlaying.accept(!self.playerIsPlaying.value)
+            })
+            .disposed(by:disposeBag)
+    }
     
     //
     // "destination" is a closure that takes the 'remote url' where we got

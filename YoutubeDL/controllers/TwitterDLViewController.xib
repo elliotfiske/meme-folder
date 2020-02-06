@@ -13,6 +13,7 @@
                 <outlet property="errorLabel" destination="F1w-QK-TSc" id="tfW-hY-s2s"/>
                 <outlet property="progressBar" destination="E8h-SA-kV3" id="YAl-sZ-96V"/>
                 <outlet property="thumbnailDisplay" destination="79k-Nf-jQh" id="CS2-6k-UsD"/>
+                <outlet property="videoControlsView" destination="QhD-DV-Vla" id="qfg-gi-6yB"/>
                 <outlet property="view" destination="fO9-WW-xd3" id="SXn-2D-gvR"/>
             </connections>
         </placeholder>
