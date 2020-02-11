@@ -21,6 +21,8 @@ public protocol TwitterMediaModelObserver : class {
 
 public class TwitterMediaModel {
     
+    private let disposeBag = DisposeBag()   // TODO: Extensionize me
+    
     public weak var stateObserver: TwitterMediaModelObserver?
     
     public enum MediaState {
@@ -36,31 +38,31 @@ public class TwitterMediaModel {
         case finished
     }
     
-    /** Hacky, plz fix me */
-        public let playButtonPressSink = PublishRelay<Void>()
-        
-        private let disposeBag = DisposeBag()   // TODO: Extensionize me
-        
-        // True if the player is currently playing.
-        private let playerIsPlaying = BehaviorRelay<Bool>(value: false)
-        public lazy var playerPlaying = playerIsPlaying.asObservable()
-        
-        private var state = MediaState.idle
-        
-        // this sucks hack
-        private let stateObservable = BehaviorRelay<MediaState>(value: .idle)
-        
-        private func setState(newState: MediaState) {
-            stateObserver?.stateDidChange(newState: newState)
-            stateObservable.accept(newState)
-        }
-    /** END Hacky, plz fix me */
+    public let playButtonPressSink = PublishRelay<Void>()
+    
+    // True if the player is currently playing.
+    // My idea is to let other classes see the OBSERVABLE side
+    //      i.e. they can see when the play state changes
+    //      but they shouldn't be able to directly change the state of the
+    //      model. They can send in events via stuff like "playButtonPresses"
+    //      which the model then uses to transform its own internal state.
+    public let playerIsPlaying = BehaviorRelay<Bool>(value: false)
+    
+    private let state_internal = BehaviorRelay<MediaState>(value: .idle)
+    public lazy var state = state_internal.asObservable()
+    
+    private func setState(newState: MediaState) {
+        state_internal.accept(newState)
+    }
     
     public private(set) var thumbnailImage: UIImage?
+    
+    /// Points to where the downloaded media is stored locally.
     public private(set) var localMediaURL: URL?
     
     init() {
-        let readyToPlay = stateObservable.filter {
+        
+        let readyToPlay = state.filter {
             if case .downloadedMedia = $0 {
                 return true
             }
@@ -72,7 +74,9 @@ public class TwitterMediaModel {
             .combineLatest(playButtonPressSink, readyToPlay)
             .subscribe(onNext: {
                 _ in
-                // this TECHNICALLY works but I'm not happy about it
+                // this TECHNICALLY works but I'm not happy about it.
+                //      I think you could do something fancy with Scan or Reduce or something
+                //      and not have to use `value` at all, if you're clever about it.
                 self.playerIsPlaying.accept(!self.playerIsPlaying.value)
             })
             .disposed(by:disposeBag)
@@ -114,7 +118,9 @@ public class TwitterMediaModel {
             self.thumbnailImage = UIImage(data: data)
             self.setState(newState: .downloadedThumbnail)
 
-            // TODO: pull this out to an extension, maybe
+            // TODO: pull this out to an extension. It should look like:
+            //      Alamofire.download(.promise, mediaURLToDownload!, to: self.destination)
+            //          ... and you don't have to use the 'Promise<Void> seal' stuff.
             return Promise<Void>() { seal in
                 Alamofire.download(mediaURLToDownload!, to: self.destination)
                     .validate()
@@ -132,5 +138,7 @@ public class TwitterMediaModel {
         .done { _ in
             self.setState(newState: .downloadedMedia)
         }
+        // TODO: Handle errors down here. Should use 'recover' and then also return,
+        //          so the view controller can handle the errors how it sees fit.
     }
 }

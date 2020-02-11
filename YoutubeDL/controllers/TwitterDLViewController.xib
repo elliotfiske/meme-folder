@@ -30,6 +30,9 @@
                 </label>
                 <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="E8h-SA-kV3">
                     <rect key="frame" x="10" y="344" width="394" height="2"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="2" id="z1e-SX-J4A" userLabel="Progress Bar Shrinker"/>
+                    </constraints>
                 </progressView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zot-me-eYY" userLabel="Thumbnail Container View">
                     <rect key="frame" x="10" y="44" width="394" height="300"/>

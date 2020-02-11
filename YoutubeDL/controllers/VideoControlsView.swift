@@ -25,9 +25,9 @@ public class VideoControlsView: UIView, NibLoadable {
     //
     //          I THINK the two systems should play nice together.
     //
-    public let isPlaying = PublishRelay<Bool>()
+    public let isPlaying = BehaviorRelay<Bool>(value: false)
     
-    lazy public var playButtonPresses = self.playPauseButton.rx.tap
+    public let currPlaybackTime = BehaviorRelay<CGFloat>(value: 0.0)
     
     // TODO: Pull this out to an extension (I think one might already exist in RxSwift somewhere?) ((i was thinking of NSObject+Rx.swift))
     let disposeBag = DisposeBag()
@@ -43,14 +43,28 @@ public class VideoControlsView: UIView, NibLoadable {
     }
     
     func commonInit() {
-        isPlaying.subscribe(onNext: { playing in
-            let imageName = playing ? "pause" : "play"
-            let image = UIImage(named:imageName,
-                                in:Bundle(for: type(of: self)),
-                                compatibleWith:nil)!
-            self.playPauseButton.setImage(image, for: .normal)
-        })
-        .disposed(by: disposeBag)
+        currPlaybackTime
+            .map { $0 * self.timelineBase.bounds.size.width / 2 }   // TODO: Why doesn't this line up? grrr.
+            .bind(to: timelineProgressConstraint.rx.constant)
+            .disposed(by: disposeBag)
+        
+        isPlaying
+            .map { playing in
+                let imageName = playing ? "pause" : "play"
+                let image = UIImage(named:imageName,
+                                    in:Bundle(for: type(of: self)),
+                                    compatibleWith:nil)!
+                return image
+            }
+            .bind(to: self.playPauseButton.rx.image())
+            .disposed(by: disposeBag)
+        
+        self.playPauseButton.rx.tap
+            .subscribe(onNext: {
+                self.isPlaying.accept(!self.isPlaying.value)  // Todo: maybe pull this out to an extension?
+                //  it could look like tap.toggles(isPlaying)
+            })
+            .disposed(by: disposeBag)
     }
     
     required init?(coder aDecoder: NSCoder) {

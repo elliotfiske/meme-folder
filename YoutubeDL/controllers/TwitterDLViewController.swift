@@ -35,24 +35,25 @@ public class TwitterDLViewController: UIViewController {
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        model.stateObserver = self
         
         if let tweetURL = tweetURLToLoad {
             model.startDownloadingMedia(forTweetURL: tweetURL)
         }
         
-//        videoControlsView.playButtonPresses.subscribe(onNext: {
-//
-//        })
-        videoControlsView.playButtonPresses.bind(to: model.playButtonPressSink)
+        
+        
+        model.state
+            .subscribe(onNext: { newState in
+                self.stateDidChange(newState: newState)
+            })
             .disposed(by: disposeBag)
     }
 }
 
-extension TwitterDLViewController: TwitterMediaModelObserver {
+extension TwitterDLViewController {
     
     // Initialize an AVPlayer with the newly downloaded MP4 file.
-    fileprivate func setupPlayer() {
+    func setupPlayer() {
         let item = AVPlayerItem(url: self.model.localMediaURL!)
         player.replaceCurrentItem(with: item)
         
@@ -66,19 +67,17 @@ extension TwitterDLViewController: TwitterMediaModelObserver {
         
         player.actionAtItemEnd = .none
         
-        model.playerPlaying
-            .subscribe(onNext: {
-                shouldPlay in
-                if shouldPlay {
-                    self.player.play()
-                } else {
-                    self.player.pause()
-                }
-            })
+        (model.playerIsPlaying <-> videoControlsView.isPlaying)
             .disposed(by: disposeBag)
         
-        model.playerPlaying.debug()
-            .bind(to: videoControlsView.isPlaying)
+        model.playerIsPlaying
+            .bind(to: player.rx.isPlaying)
+            .disposed(by: disposeBag)
+        
+        player.rx.periodicTimeObserver(interval: CMTime(value: 1, timescale: 10))
+            .map { CGFloat(CMTimeGetSeconds($0)) }
+            .bind(to: videoControlsView.currPlaybackTime)
+            .disposed(by: disposeBag)
         
         NotificationCenter.default.rx
             .notification(.AVPlayerItemDidPlayToEndTime, object: player.currentItem)
@@ -91,7 +90,7 @@ extension TwitterDLViewController: TwitterMediaModelObserver {
             .disposed(by: disposeBag)
     }
     
-    public func stateDidChange(newState: TwitterMediaModel.MediaState) {
+    func stateDidChange(newState: TwitterMediaModel.MediaState) {
         switch(newState) {
             
         case .idle:
@@ -116,6 +115,9 @@ extension TwitterDLViewController: TwitterMediaModelObserver {
                 }
                 
                 self.setupPlayer()
+                
+                // Start playing when loaded
+                self.model.playerIsPlaying.accept(true)
             }
         case .savingMediaToCameraRoll:
         break // TODO
