@@ -51,19 +51,21 @@ class RxChannel<E>: NSObject {
         leadingSubject
             .ignoreElements()
             .subscribe(onCompleted: {
-                followingSubject.onCompleted()
-            }) { error in
-                followingSubject.onError(error)
-            }
+//                followingSubject.onCompleted()     // TODO: Ahhhh bring back.
+//            }) { error in
+//                followingSubject.onError(error)
+//          }
+            })
             .disposed(by: self.disposeBag)
         
         followingSubject
             .ignoreElements()
             .subscribe(onCompleted: {
-                leadingSubject.onCompleted()
-            }) { error in
-                leadingSubject.onError(error)
-            }
+//                leadingSubject.onCompleted()      // TODO: Ahhhh bring back.
+//            }) { error in
+//                leadingSubject.onError(error)
+//          }
+            })
             .disposed(by: self.disposeBag)
         
         self.leadingTerminal = RxChannelTerminal<E>.init(withValues: AnyObservableType<E>(leadingSubject),

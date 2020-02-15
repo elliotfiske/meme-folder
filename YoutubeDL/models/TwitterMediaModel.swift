@@ -92,7 +92,7 @@ public class TwitterMediaModel {
     //
     let destination: DownloadRequest.DownloadFileDestination = { url, _ in
         var documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        documentsURL.appendPathComponent(url.deletingPathExtension().lastPathComponent + ".mp4")
+        documentsURL.appendPathComponent("familyguy.mp4")
 
         return (documentsURL, [.removePreviousFile])
     }
@@ -104,15 +104,22 @@ public class TwitterMediaModel {
         firstly {
             try TwitterAPI.sharedInstance.getMediaURLs(usingTweetURL: tweetURL)
         }
-        .then { (thumbnailURL: String, mediaURL: String?) ->
+        .then { mediaResults ->
             Promise<(data: Data, response: PMKAlamofireDataResponse)> in
             
-            mediaURLToDownload = mediaURL
             self.setState(newState: .downloadingThumbnail)
             
-            return Alamofire.request(thumbnailURL)
-                .validate()
-                .responseData()
+            switch (mediaResults) {
+            case .videos(let thumbnail, let variants):
+                mediaURLToDownload = variants[0]
+                return Alamofire.request(thumbnail)
+                    .validate()
+                    .responseData()
+            case .images(let urls):
+                return Alamofire.request(urls[0])
+                    .validate()
+                    .responseData()
+            }
         }
         .then { data, _ -> Promise<Void> in
             self.thumbnailImage = UIImage(data: data)

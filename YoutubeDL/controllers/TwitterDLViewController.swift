@@ -40,12 +40,8 @@ public class TwitterDLViewController: UIViewController {
             model.startDownloadingMedia(forTweetURL: tweetURL)
         }
         
-        
-        
         model.state
-            .subscribe(onNext: { newState in
-                self.stateDidChange(newState: newState)
-            })
+            .subscribe(onNext: self.stateDidChange)
             .disposed(by: disposeBag)
     }
 }
@@ -53,6 +49,7 @@ public class TwitterDLViewController: UIViewController {
 extension TwitterDLViewController {
     
     // Initialize an AVPlayer with the newly downloaded MP4 file.
+    // TODO: pull me out to my own bona-fide view, and do the AV layer stuff in there.
     func setupPlayer() {
         let item = AVPlayerItem(url: self.model.localMediaURL!)
         player.replaceCurrentItem(with: item)
@@ -72,6 +69,32 @@ extension TwitterDLViewController {
         
         model.playerIsPlaying
             .bind(to: player.rx.isPlaying)
+            .disposed(by: disposeBag)
+        
+        let lengthInSeconds = CGFloat(CMTimeGetSeconds(item.asset.duration))
+        
+        videoControlsView.totalPlaybackLength
+            .accept(lengthInSeconds)
+        
+        videoControlsView.requestedSeekProgress
+            .throttle(.milliseconds(250), scheduler: MainScheduler.instance)
+            .flatMap({
+                progress -> Observable<Bool> in
+                let secs = Double(lengthInSeconds * progress)
+                let time = CMTime(seconds: secs, preferredTimescale: 600)
+                
+                return Observable<Bool>.create {
+                    observer in
+                    self.player.seek(to: time,
+                                     toleranceBefore: CMTime.zero,
+                                     toleranceAfter: CMTime.zero,
+                                     completionHandler: { observer.onNext($0) })
+                    return Disposables.create()
+                }
+            })
+            .subscribe(onNext: {
+                print("Did it? \($0)")
+            })
             .disposed(by: disposeBag)
         
         player.rx.periodicTimeObserver(interval: CMTime(value: 1, timescale: 10))
@@ -110,7 +133,7 @@ extension TwitterDLViewController {
                 }
             }
             .done { _ in
-                UIView.animate(withDuration: 0.2) {
+                UIView.animate(withDuration: 0.1) {
                     self.progressBar.alpha = 0.0
                 }
                 

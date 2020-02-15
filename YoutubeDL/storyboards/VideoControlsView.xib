@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="ipad9_7" orientation="landscape" layout="fullscreen" appearance="dark"/>
+    <device id="ipad9_7" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
@@ -9,8 +9,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VideoControlsView">
             <connections>
+                <outlet property="currTimeLabel" destination="DHV-M4-GBl" id="gZo-tW-yUN"/>
                 <outlet property="playPauseButton" destination="QJ0-3C-m6o" id="VLr-zl-Mf3"/>
                 <outlet property="timelineBase" destination="j49-Jj-V6t" id="EcC-SS-31y"/>
+                <outlet property="timelineDragGesture" destination="Vzs-3o-9XS" id="LXa-Pe-ARg"/>
                 <outlet property="timelineProgressConstraint" destination="DmX-O7-av0" id="b10-yX-AIb"/>
             </connections>
         </placeholder>
@@ -97,11 +99,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="474.63768115942031" y="125.22321428571428"/>
         </view>
-        <panGestureRecognizer minimumNumberOfTouches="1" id="Vzs-3o-9XS">
-            <connections>
-                <action selector="draggedOnTimeline:" destination="-1" id="igC-lN-bKd"/>
-            </connections>
-        </panGestureRecognizer>
+        <panGestureRecognizer minimumNumberOfTouches="1" id="Vzs-3o-9XS"/>
     </objects>
     <resources>
         <image name="play" width="32" height="32"/>

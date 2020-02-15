@@ -18,10 +18,13 @@
 		C92D91E923C995810067150B /* TwitterMediaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92D91E823C995810067150B /* TwitterMediaModel.swift */; };
 		C92D91F023C9992B0067150B /* TwitterDLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92D91EE23C9992B0067150B /* TwitterDLViewController.swift */; };
 		C93767B423D8063700180F2D /* images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C93767B323D8063700180F2D /* images.xcassets */; };
+		C9388A8D23F7AD0F002E2BC2 /* DecodableTwitterStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9388A8C23F7AD0F002E2BC2 /* DecodableTwitterStatus.swift */; };
 		C96BD9D823EFC9560008CDC8 /* RxChannelTerminal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96BD9D723EFC9560008CDC8 /* RxChannelTerminal.swift */; };
 		C96BD9DA23EFC97E0008CDC8 /* RxChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96BD9D923EFC97E0008CDC8 /* RxChannel.swift */; };
 		C96BD9DC23EFC9960008CDC8 /* AnyObservableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96BD9DB23EFC9960008CDC8 /* AnyObservableType.swift */; };
 		C96BD9E023F26E210008CDC8 /* AVPlayer+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96BD9DF23F26E210008CDC8 /* AVPlayer+Rx.swift */; };
+		C96BD9E423F393620008CDC8 /* StringFormatHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96BD9E323F393620008CDC8 /* StringFormatHelpers.swift */; };
+		C96BD9E623F39D940008CDC8 /* MathHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96BD9E523F39D940008CDC8 /* MathHelpers.swift */; };
 		C9A6B23023E663420005A41B /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C9A6B22F23E663420005A41B /* RxSwift */; };
 		C9A6B23223E663420005A41B /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = C9A6B23123E663420005A41B /* RxTest */; };
 		C9A6B23423E663420005A41B /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = C9A6B23323E663420005A41B /* RxRelay */; };
@@ -63,10 +66,13 @@
 		C92D91E823C995810067150B /* TwitterMediaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterMediaModel.swift; sourceTree = "<group>"; };
 		C92D91EE23C9992B0067150B /* TwitterDLViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TwitterDLViewController.swift; sourceTree = "<group>"; };
 		C93767B323D8063700180F2D /* images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = images.xcassets; sourceTree = "<group>"; };
+		C9388A8C23F7AD0F002E2BC2 /* DecodableTwitterStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodableTwitterStatus.swift; sourceTree = "<group>"; };
 		C96BD9D723EFC9560008CDC8 /* RxChannelTerminal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxChannelTerminal.swift; sourceTree = "<group>"; };
 		C96BD9D923EFC97E0008CDC8 /* RxChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxChannel.swift; sourceTree = "<group>"; };
 		C96BD9DB23EFC9960008CDC8 /* AnyObservableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyObservableType.swift; sourceTree = "<group>"; };
 		C96BD9DF23F26E210008CDC8 /* AVPlayer+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVPlayer+Rx.swift"; sourceTree = "<group>"; };
+		C96BD9E323F393620008CDC8 /* StringFormatHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringFormatHelpers.swift; sourceTree = "<group>"; };
+		C96BD9E523F39D940008CDC8 /* MathHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathHelpers.swift; sourceTree = "<group>"; };
 		C9B6036523CC43BE0056AEC6 /* TwitterDLViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TwitterDLViewController.xib; path = controllers/TwitterDLViewController.xib; sourceTree = SOURCE_ROOT; };
 		C9B6036923CEDA280056AEC6 /* UIViewController+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Convenience.swift"; sourceTree = "<group>"; };
 		C9B98A7423EBCC85003A1EF4 /* TwitterMediaModel+Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TwitterMediaModel+Player.swift"; sourceTree = "<group>"; };
@@ -210,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				C9F5113123C187150044C61A /* TwitterAPI.swift */,
+				C9388A8C23F7AD0F002E2BC2 /* DecodableTwitterStatus.swift */,
 			);
 			path = api;
 			sourceTree = "<group>";
@@ -227,6 +234,8 @@
 				C909550823DE8F4F006FB53C /* RoundedCornerView.swift */,
 				C909550C23DFFC7E006FB53C /* UIView+Promise.swift */,
 				C909550E23E3DA85006FB53C /* UIView+Nibloadable.swift */,
+				C96BD9E323F393620008CDC8 /* StringFormatHelpers.swift */,
+				C96BD9E523F39D940008CDC8 /* MathHelpers.swift */,
 			);
 			path = helpers;
 			sourceTree = "<group>";
@@ -371,14 +380,17 @@
 				C9B6036A23CEDA280056AEC6 /* UIViewController+Convenience.swift in Sources */,
 				C96BD9DC23EFC9960008CDC8 /* AnyObservableType.swift in Sources */,
 				C92D91F023C9992B0067150B /* TwitterDLViewController.swift in Sources */,
+				C96BD9E623F39D940008CDC8 /* MathHelpers.swift in Sources */,
 				C92D91E723C98F9A0067150B /* TwitterDLViewController+ErrorHandler.swift in Sources */,
 				C9F5113223C187150044C61A /* TwitterAPI.swift in Sources */,
 				C909550223DD1ED5006FB53C /* AspectFitImageView.swift in Sources */,
 				C9F5113E23C28AAF0044C61A /* Array+Convenience.swift in Sources */,
+				C96BD9E423F393620008CDC8 /* StringFormatHelpers.swift in Sources */,
 				C9F5114023C2BA8C0044C61A /* String+Convenience.swift in Sources */,
 				C96BD9DA23EFC97E0008CDC8 /* RxChannel.swift in Sources */,
 				C909550923DE8F4F006FB53C /* RoundedCornerView.swift in Sources */,
 				C96BD9D823EFC9560008CDC8 /* RxChannelTerminal.swift in Sources */,
+				C9388A8D23F7AD0F002E2BC2 /* DecodableTwitterStatus.swift in Sources */,
 				C96BD9E023F26E210008CDC8 /* AVPlayer+Rx.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -654,8 +666,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:ReactiveX/RxSwift.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.1;
+				branch = develop;
+				kind = branch;
 			};
 		};
 		C9F5113323C188950044C61A /* XCRemoteSwiftPackageReference "PromiseKit" */ = {
