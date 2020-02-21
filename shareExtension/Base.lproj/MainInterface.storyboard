@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="j1y-V4-xli">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="j1y-V4-xli">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,33 +15,13 @@
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="wbc-yd-nQP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fXf-HL-bsh" userLabel="SafeView">
-                                <rect key="frame" x="0.0" y="44" width="103.5" height="818"/>
-                                <color key="backgroundColor" systemColor="systemBrownColor" red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FVK-vb-Lvk" userLabel="DANGERView">
-                                <rect key="frame" x="310.5" y="44" width="103.5" height="818"/>
-                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="fXf-HL-bsh" firstAttribute="width" secondItem="wbc-yd-nQP" secondAttribute="width" multiplier="0.25" id="522-U3-qtQ"/>
-                            <constraint firstAttribute="trailing" secondItem="FVK-vb-Lvk" secondAttribute="trailing" id="6nv-DF-j18"/>
-                            <constraint firstItem="fXf-HL-bsh" firstAttribute="leading" secondItem="1Xd-am-t49" secondAttribute="leading" id="7tw-yr-re7"/>
-                            <constraint firstItem="FVK-vb-Lvk" firstAttribute="width" secondItem="wbc-yd-nQP" secondAttribute="width" multiplier="0.25" id="Cqc-hg-xVV"/>
-                            <constraint firstItem="fXf-HL-bsh" firstAttribute="centerY" secondItem="1Xd-am-t49" secondAttribute="centerY" id="Phc-Op-2MA"/>
-                            <constraint firstItem="FVK-vb-Lvk" firstAttribute="centerY" secondItem="wbc-yd-nQP" secondAttribute="centerY" constant="5" id="bKp-0c-hGH"/>
-                            <constraint firstItem="FVK-vb-Lvk" firstAttribute="height" secondItem="wbc-yd-nQP" secondAttribute="height" multiplier="0.912946" id="q4p-q5-TZY"/>
-                            <constraint firstItem="fXf-HL-bsh" firstAttribute="height" secondItem="1Xd-am-t49" secondAttribute="height" id="stN-cN-0aY"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="1Xd-am-t49"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CEy-Cv-SGf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="127"/>
+            <point key="canvasLocation" x="35" y="90"/>
         </scene>
     </scenes>
 </document>

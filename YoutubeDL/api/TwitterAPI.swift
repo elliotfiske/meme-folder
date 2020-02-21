@@ -59,23 +59,19 @@ public class TwitterAPI {
             return callAPI(endpoint: "statuses/show/\(tweetID).json", parameters: params)
         }
         .map { data in
-            let d = JSONDecoder()
-            let twitterStatus = try? d.decode(TwitterStatus.self, from: data)
+            let twitterStatus = try JSONDecoder().decode(TwitterAPIType.self, from: data)
             
-            let something = twitterStatus?.extendedEntities.media
+            let mediaArray = twitterStatus.extendedEntities.media
             
-            let json = try parseJSON(data: data)
-            guard let media = json["extended_entities"]["media"].array else {
+            guard mediaArray.count > 0 else {
                 throw TwitterAPIError.tweetHasNoMedia
             }
             
-            guard let type = media[0]["type"].string else {
-                throw InternetError.unparsableJSON("Couldn't get media type from JSON: \(media)")
-            }
+            let mediaType = mediaArray[0].type
             
-            if type == "video" {
-                return try self.parseVideoInfo(media: media[0])
-            } else if type == "image" {
+            if mediaType == "video" {
+                return try self.parseVideoInfo(media: mediaArray[0])
+            } else if mediaType == "image" {
                 return .images(urls: [])    // TODO: This
             } else {
                 fatalError("AHHHH")
@@ -89,34 +85,20 @@ public class TwitterAPI {
     /// Given the media content of a tweet with type == "video", parse out the
     ///     thumbnail and the video variant URLs.
     ///
-    func parseVideoInfo(media: JSON) throws -> MediaResultURLs {
-        guard let thumbnailURL = media["media_url_https"].string else {
-            throw InternetError.unparsableJSON("Couldn't get thumbnail from JSON: \(media)")
-        }
+    func parseVideoInfo(media: Media) throws -> MediaResultURLs {
+        var variants = media.videoInfo!.variants
         
-        guard var variants = media["video_info"]["variants"].array else {
-            throw InternetError.unparsableJSON("`media[0].variants` wasn't an array: \(media)")
-        }
-        
-        variants = try variants.filter {
+        variants = variants.filter {
             variant in
-            guard let mediaType = variant["content_type"].string else {
-                throw InternetError.unparsableJSON("variant had bad content type: \(media)")
-            }
-            
-            return mediaType == "video/mp4"
+            return variant.contentType == "video/mp4"
         }
         
-        let variantURLs = try variants.map {
-            variant -> String in
-            guard let url = variant["url"].string else {
-                throw InternetError.unparsableJSON("variant had bad URL: \(media)")
-            }
-            
-            return url
+        let variantURLs = variants.map {
+            variant in
+            variant.url
         }
         
-        return .videos(thumbnail: thumbnailURL, urls: variantURLs)
+        return .videos(thumbnail: media.mediaURLHTTPS, urls: variantURLs)
     }
     
     // We will need this guest token to access Twitter as a guest, until

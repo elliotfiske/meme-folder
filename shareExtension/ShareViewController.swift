@@ -8,6 +8,7 @@
 
 import UIKit
 import Social
+import YoutubeDL
 
 class ShareViewController: UIViewController {
     
@@ -27,6 +28,15 @@ class ShareViewController: UIViewController {
         itemProvider.loadItem(forTypeIdentifier: "public.url", options: nil) { (url, error) in
             if let shareURL = url as? NSURL {
                 print(shareURL)
+                
+                DispatchQueue.main.async {
+                    let controlla = TwitterDLViewController.loadFromNib()
+                    controlla.tweetURLToLoad = shareURL.absoluteString
+                    self.addChild(controlla)
+                    controlla.view.frame = self.view.frame
+                    self.view.addSubview(controlla.view)
+                    controlla.didMove(toParent: self)
+                }
             }
         }
         

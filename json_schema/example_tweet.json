@@ -1,0 +1,109 @@
+{
+    "id_str": "1217858057201504257",
+    "entities": {
+        "media": [
+            {
+                "id_str": "1217857907733286918",
+                "media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/1217857907733286918/pu/img/VSiA94y5LnTqKvpY.jpg",
+                "type": "photo",
+                "original_info": {
+                    "width": 1280,
+                    "height": 720
+                },
+                "sizes": {
+                    "thumb": {
+                        "w": 150,
+                        "h": 150,
+                        "resize": "crop"
+                    },
+                    "medium": {
+                        "w": 1200,
+                        "h": 675,
+                        "resize": "fit"
+                    },
+                    "small": {
+                        "w": 680,
+                        "h": 383,
+                        "resize": "fit"
+                    },
+                    "large": {
+                        "w": 1280,
+                        "h": 720,
+                        "resize": "fit"
+                    }
+                }
+            }
+        ]
+    },
+    "extended_entities": {
+        "media": [
+            {
+                "id_str": "1217857907733286918",
+                "media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/1217857907733286918/pu/img/VSiA94y5LnTqKvpY.jpg",
+                "type": "video",
+                "original_info": {
+                    "width": 1280,
+                    "height": 720
+                },
+                "sizes": {
+                    "thumb": {
+                        "w": 150,
+                        "h": 150,
+                        "resize": "crop"
+                    },
+                    "medium": {
+                        "w": 1200,
+                        "h": 675,
+                        "resize": "fit"
+                    },
+                    "small": {
+                        "w": 680,
+                        "h": 383,
+                        "resize": "fit"
+                    },
+                    "large": {
+                        "w": 1280,
+                        "h": 720,
+                        "resize": "fit"
+                    }
+                },
+                "video_info": {
+                    "aspect_ratio": [
+                        16,
+                        9
+                    ],
+                    "duration_millis": 88823,
+                    "variants": [
+                        {
+                            "content_type": "application/x-mpegURL",
+                            "url": "https://video.twimg.com/ext_tw_video/1217857907733286918/pu/pl/ajc78ixrohiiyx9T.m3u8?tag=10"
+                        },
+                        {
+                            "bitrate": 2176000,
+                            "content_type": "video/mp4",
+                            "url": "https://video.twimg.com/ext_tw_video/1217857907733286918/pu/vid/1280x720/a9MbptEhMSj_V3yc.mp4?tag=10"
+                        },
+                        {
+                            "bitrate": 256000,
+                            "content_type": "video/mp4",
+                            "url": "https://video.twimg.com/ext_tw_video/1217857907733286918/pu/vid/480x270/KufNzxx0sPgqLpZi.mp4?tag=10"
+                        },
+                        {
+                            "bitrate": 832000,
+                            "content_type": "video/mp4",
+                            "url": "https://video.twimg.com/ext_tw_video/1217857907733286918/pu/vid/640x360/0WjNb_0BehXUPklK.mp4?tag=10"
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "user": {
+        "id_str": "1200087758842351618",
+        "name": "squidward dances to",
+        "screen_name": "tortellinidance",
+        "protected": false
+    },
+    "possibly_sensitive": false,
+    "lang": null
+}

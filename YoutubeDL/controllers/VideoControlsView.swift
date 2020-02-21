@@ -58,6 +58,7 @@ public class VideoControlsView: UIView, NibLoadable {
         
         dotDraggedToTime
             .map { $0 / self.timelineLength }
+            .map { $0.clamped(to: (0...0.999))}  // Seeking to the very end resets the video to the beginning.
             .bind(to: requestedSeekProgress)
             .disposed(by: disposeBag)
         
