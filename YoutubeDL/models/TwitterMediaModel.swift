@@ -60,28 +60,6 @@ public class TwitterMediaModel {
     /// Points to where the downloaded media is stored locally.
     public private(set) var localMediaURL: URL?
     
-    init() {
-        
-        let readyToPlay = state.filter {
-            if case .downloadedMedia = $0 {
-                return true
-            }
-            return false
-        }
-        .map { _ in Void() }
-        
-        Observable
-            .combineLatest(playButtonPressSink, readyToPlay)
-            .subscribe(onNext: {
-                _ in
-                // this TECHNICALLY works but I'm not happy about it.
-                //      I think you could do something fancy with Scan or Reduce or something
-                //      and not have to use `value` at all, if you're clever about it.
-                self.playerIsPlaying.accept(!self.playerIsPlaying.value)
-            })
-            .disposed(by:disposeBag)
-    }
-    
     //
     // "destination" is a closure that takes the 'remote url' where we got
     //      the mp4 from, and returns a local URL of where to stick it, and

@@ -30,7 +30,7 @@
                     </state>
                 </button>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j49-Jj-V6t" userLabel="TimelineBase" customClass="RoundedCornerView" customModule="YoutubeDL" customModuleProvider="target">
-                    <rect key="frame" x="75" y="25" width="464.5" height="14"/>
+                    <rect key="frame" x="75" y="25" width="456.5" height="14"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9xy-Zb-NaS" userLabel="TimelinePast" customClass="RoundedCornerView" customModule="YoutubeDL" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="0.0" height="14"/>
@@ -85,7 +85,7 @@
             <gestureRecognizers/>
             <constraints>
                 <constraint firstItem="QJ0-3C-m6o" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="8gv-Rf-hH5"/>
-                <constraint firstItem="DHV-M4-GBl" firstAttribute="leading" secondItem="j49-Jj-V6t" secondAttribute="trailing" constant="8" id="DmW-1y-dmN"/>
+                <constraint firstItem="DHV-M4-GBl" firstAttribute="leading" secondItem="j49-Jj-V6t" secondAttribute="trailing" constant="16" id="DmW-1y-dmN"/>
                 <constraint firstAttribute="trailing" secondItem="DHV-M4-GBl" secondAttribute="trailing" constant="8" id="Iv4-xD-L7t"/>
                 <constraint firstItem="DHV-M4-GBl" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="VAe-e5-YSY"/>
                 <constraint firstItem="j49-Jj-V6t" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="X8a-jp-iu8"/>

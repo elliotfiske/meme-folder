@@ -58,7 +58,7 @@ public class VideoControlsView: UIView, NibLoadable {
         
         dotDraggedToTime
             .map { $0 / self.timelineLength }
-            .map { $0.clamped(to: (0...0.999))}  // Seeking to the very end resets the video to the beginning.
+            .map { $0.clamped(to: (0...0.999))}  // Seeking to the very end resets the video to the beginning, for some reason.
             .bind(to: requestedSeekProgress)
             .disposed(by: disposeBag)
         
@@ -70,8 +70,11 @@ public class VideoControlsView: UIView, NibLoadable {
     }
     
     func setupTimelineLabel() {
+        let oldFont = currTimeLabel.font!
+        currTimeLabel.font = UIFont.monospacedDigitSystemFont(ofSize: oldFont.pointSize, weight: UIFont.Weight.regular)
+        
         let totalLengthString = totalPlaybackLength
-            .map { Int($0) - 1 }
+            .map { Int($0) }
             .distinctUntilChanged()
             .map(durationText)
         
@@ -107,9 +110,6 @@ public class VideoControlsView: UIView, NibLoadable {
     }
     
     func commonInit() {
-        let oldFont = currTimeLabel.font!
-        currTimeLabel.font = UIFont.monospacedDigitSystemFont(ofSize: oldFont.pointSize, weight: UIFont.Weight.regular)
-        
         setupTimelineBehavior()
         setupTimelineLabel()
         setupPlayPauseButton()
