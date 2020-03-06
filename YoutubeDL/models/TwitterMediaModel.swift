@@ -46,8 +46,6 @@ public class TwitterMediaModel {
     //      but they shouldn't be able to directly change the state of the
     //      model. They can send in events via stuff like "playButtonPresses"
     //      which the model then uses to transform its own internal state.
-    public let playerIsPlaying = BehaviorRelay<Bool>(value: false)
-    
     private let state_internal = BehaviorRelay<MediaState>(value: .idle)
     public lazy var state = state_internal.asObservable()
     

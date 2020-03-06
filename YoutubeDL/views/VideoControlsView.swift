@@ -22,6 +22,13 @@ public class VideoControlsView: UIView, NibLoadable {
     public let totalPlaybackLength = PublishRelay<CGFloat>()
     public let requestedSeekProgress = PublishRelay<CGFloat>()
     
+    public var enabled: Binder<Bool> {
+        return Binder(self) { [weak self] (controls, isEnabled) in
+            self?.alpha = isEnabled ? 1.0 : 0.3
+            self?.playPauseButton.isEnabled = isEnabled
+        }
+    }
+    
     // TODO: Pull this out to an extension (I think one might already exist in RxSwift somewhere?) ((i was thinking of NSObject+Rx.swift))
     let disposeBag = DisposeBag()
     
@@ -63,6 +70,7 @@ public class VideoControlsView: UIView, NibLoadable {
             .disposed(by: disposeBag)
         
         Observable.combineLatest(currPlaybackTime, totalPlaybackLength)
+            .filter { $1 != 0 }
             .map { $0 / $1 }
             .map { $0 * self.timelineLength }
             .bind(to: timelineProgressConstraint.rx.constant)
