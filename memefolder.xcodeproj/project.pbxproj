@@ -156,26 +156,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		74A73AFFDD268B7DE77DD446 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		C92D91EA23C998ED0067150B /* controllers */ = {
 			isa = PBXGroup;
 			children = (
 				C92D91EC23C999010067150B /* InitialViewController.swift */,
 			);
 			path = controllers;
-			sourceTree = "<group>";
-		};
-		C92D91EB23C998F40067150B /* models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = models;
 			sourceTree = "<group>";
 		};
 		C94241D123C12529000FD14E /* Frameworks */ = {
@@ -206,7 +192,6 @@
 				C9FD9DA723C00D45007A7FA4 /* shareExtension */,
 				C9FD9D7023BFF14B007A7FA4 /* Products */,
 				C94241D123C12529000FD14E /* Frameworks */,
-				74A73AFFDD268B7DE77DD446 /* Pods */,
 			);
 			indentWidth = 4;
 			sourceTree = "<group>";
@@ -226,7 +211,6 @@
 		C9FD9D7123BFF14B007A7FA4 /* memefolder */ = {
 			isa = PBXGroup;
 			children = (
-				C92D91EB23C998F40067150B /* models */,
 				C92D91EA23C998ED0067150B /* controllers */,
 				C9FD9DB723C01047007A7FA4 /* memefolder.entitlements */,
 				C9FD9D7223BFF14B007A7FA4 /* AppDelegate.swift */,
@@ -583,7 +567,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -637,7 +621,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -657,7 +641,7 @@
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = GQZFDKJ72B;
 				INFOPLIST_FILE = memefolder/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = "$(inherited)";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -680,7 +664,7 @@
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = GQZFDKJ72B;
 				INFOPLIST_FILE = memefolder/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = "$(inherited)";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -789,7 +773,7 @@
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = GQZFDKJ72B;
 				INFOPLIST_FILE = shareExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = "$(inherited)";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -816,7 +800,7 @@
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = GQZFDKJ72B;
 				INFOPLIST_FILE = shareExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = "$(inherited)";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

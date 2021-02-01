@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TwitterDLViewController" customModule="YoutubeDL" customModuleProvider="target">
             <connections>
                 <outlet property="errorLabel" destination="F1w-QK-TSc" id="tfW-hY-s2s"/>
+                <outlet property="saveToCameraRollButton" destination="eeg-bj-qMu" id="ThA-Nz-3nJ"/>
+                <outlet property="successLabel" destination="Oh6-Iv-iYe" id="2nw-wE-alm"/>
                 <outlet property="videoPlayerController" destination="VIw-MO-Blm" id="9kK-0a-IG7"/>
                 <outlet property="view" destination="fO9-WW-xd3" id="SXn-2D-gvR"/>
             </connections>
@@ -22,18 +25,33 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VIw-MO-Blm" customClass="VideoPlayerViewController" customModule="YoutubeDL" customModuleProvider="target">
                     <rect key="frame" x="10" y="44" width="394" height="245.5"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F1w-QK-TSc">
                     <rect key="frame" x="169.5" y="297.5" width="75" height="18"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                    <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="textColor" systemColor="systemRedColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eeg-bj-qMu">
+                    <rect key="frame" x="116.5" y="360" width="181" height="30"/>
+                    <state key="normal" title="Save Video to Camera Roll"/>
+                </button>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Success Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oh6-Iv-iYe">
+                    <rect key="frame" x="152" y="406" width="110" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" systemColor="systemGreenColor"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <viewLayoutGuide key="safeArea" id="FQh-RT-Aiu"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="VIw-MO-Blm" firstAttribute="width" secondItem="FQh-RT-Aiu" secondAttribute="width" constant="-20" id="8zv-o3-eAc"/>
+                <constraint firstItem="Oh6-Iv-iYe" firstAttribute="centerX" secondItem="eeg-bj-qMu" secondAttribute="centerX" id="BZ2-ku-XAe"/>
+                <constraint firstItem="Oh6-Iv-iYe" firstAttribute="top" secondItem="eeg-bj-qMu" secondAttribute="bottom" constant="16" id="BjD-Xq-U2j"/>
+                <constraint firstItem="eeg-bj-qMu" firstAttribute="centerX" secondItem="FQh-RT-Aiu" secondAttribute="centerX" id="G9y-Lb-1Db"/>
+                <constraint firstItem="eeg-bj-qMu" firstAttribute="top" secondItem="VIw-MO-Blm" secondAttribute="bottom" constant="70.5" id="MWz-bn-t9b"/>
                 <constraint firstItem="F1w-QK-TSc" firstAttribute="centerX" secondItem="FQh-RT-Aiu" secondAttribute="centerX" id="WsC-AD-oUb"/>
                 <constraint firstItem="F1w-QK-TSc" firstAttribute="width" relation="lessThanOrEqual" secondItem="fO9-WW-xd3" secondAttribute="width" constant="40" id="Yfr-Wg-Zsl"/>
                 <constraint firstItem="VIw-MO-Blm" firstAttribute="height" secondItem="FQh-RT-Aiu" secondAttribute="height" multiplier="0.3" id="f32-38-vi0"/>
@@ -41,8 +59,18 @@
                 <constraint firstItem="F1w-QK-TSc" firstAttribute="top" secondItem="VIw-MO-Blm" secondAttribute="bottom" constant="8" id="rpD-0B-g2S"/>
                 <constraint firstItem="VIw-MO-Blm" firstAttribute="centerX" secondItem="FQh-RT-Aiu" secondAttribute="centerX" id="wzC-CP-axT"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="FQh-RT-Aiu"/>
             <point key="canvasLocation" x="131.8840579710145" y="718.52678571428567"/>
         </view>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

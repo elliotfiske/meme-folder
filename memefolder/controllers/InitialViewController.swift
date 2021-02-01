@@ -20,6 +20,10 @@ class InitialViewController: UIViewController {
         
 //        controlla.tweetURLToLoad = "https://twitter.com/tortellinidance/status/1217858057201504257?s=20"    // 1:30 video
         
+        
+        controlla.presentationController?.delegate = controlla
         present(controlla, animated: true)
+        
+        
     }
 }

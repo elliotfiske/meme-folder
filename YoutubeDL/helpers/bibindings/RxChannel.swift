@@ -80,9 +80,9 @@ extension RxChannel {
     convenience init(withProperty property: ControlProperty<E>) {
         self.init()
         
-        _ = property.do { [weak self] in
+        _ = property.do(onDispose:  { [weak self] in
             self?.leadingTerminal?.onCompleted()
-        }
+        })
         
         guard let gLeaTer = self.leadingTerminal else {
             return
@@ -115,9 +115,9 @@ extension RxChannel {
         
         _ = relay
             .asObservable()
-            .do { [weak self] in
+            .do(onDispose: { [weak self] in
                 self?.leadingTerminal?.onCompleted()
-        }
+        })
         
         guard let gLeaTer = self.leadingTerminal else {
             return

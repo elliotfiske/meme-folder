@@ -12,6 +12,7 @@
 import UIKit
 import RxCocoa
 import RxSwift
+import NSObject_Rx
 
 @IBDesignable
 public class VideoControlsView: UIView, NibLoadable {
@@ -29,9 +30,6 @@ public class VideoControlsView: UIView, NibLoadable {
         }
     }
     
-    // TODO: Pull this out to an extension (I think one might already exist in RxSwift somewhere?) ((i was thinking of NSObject+Rx.swift))
-    let disposeBag = DisposeBag()
-    
     @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var timelineProgressConstraint: NSLayoutConstraint!
     @IBOutlet weak var timelineBase: RoundedCornerView!
@@ -48,7 +46,7 @@ public class VideoControlsView: UIView, NibLoadable {
             .filter { $0.state == .began }
             .map { _ in false }
             .bind(to: isPlaying)
-            .disposed(by: disposeBag)
+            .disposed(by: rx.disposeBag)
         
         let dotDraggedToTime = timelineDragGesture.rx.event
             .filter { $0.state == .changed }
@@ -61,20 +59,20 @@ public class VideoControlsView: UIView, NibLoadable {
             
         dotDraggedToTime
             .bind(to: timelineProgressConstraint.rx.constant)
-            .disposed(by: disposeBag)
+            .disposed(by: rx.disposeBag)
         
         dotDraggedToTime
             .map { $0 / self.timelineLength }
             .map { $0.clamped(to: (0...0.999))}  // Seeking to the very end resets the video to the beginning, for some reason.
             .bind(to: requestedSeekProgress)
-            .disposed(by: disposeBag)
+            .disposed(by: rx.disposeBag)
         
         Observable.combineLatest(currPlaybackTime, totalPlaybackLength)
             .filter { $1 != 0 }
             .map { $0 / $1 }
             .map { $0 * self.timelineLength }
             .bind(to: timelineProgressConstraint.rx.constant)
-            .disposed(by: disposeBag)
+            .disposed(by: rx.disposeBag)
     }
     
     func setupTimelineLabel() {
@@ -94,7 +92,7 @@ public class VideoControlsView: UIView, NibLoadable {
         Observable.combineLatest(currTimeString, totalLengthString)
             .map { $0 + " / " + $1 }
             .bind(to: currTimeLabel.rx.text)
-            .disposed(by: disposeBag)
+            .disposed(by: rx.disposeBag)
     }
     
     func setupPlayPauseButton() {
@@ -107,14 +105,14 @@ public class VideoControlsView: UIView, NibLoadable {
                 return image
             }
             .bind(to: self.playPauseButton.rx.image())
-            .disposed(by: disposeBag)
+            .disposed(by: rx.disposeBag)
         
         self.playPauseButton.rx.tap
             .subscribe(onNext: {
                 self.isPlaying.accept(!self.isPlaying.value)  // Todo: maybe pull this out to an extension?
                 //  it could look like tap.toggles(isPlaying)
             })
-            .disposed(by: disposeBag)
+            .disposed(by: rx.disposeBag)
     }
     
     func commonInit() {

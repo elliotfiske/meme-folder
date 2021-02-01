@@ -38,6 +38,7 @@
 		C9B6036623CC43BE0056AEC6 /* TwitterDLViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9B6036523CC43BE0056AEC6 /* TwitterDLViewController.xib */; };
 		C9B6036A23CEDA280056AEC6 /* UIViewController+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B6036923CEDA280056AEC6 /* UIViewController+Convenience.swift */; };
 		C9B98A7523EBCC85003A1EF4 /* TwitterMediaModel+Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B98A7423EBCC85003A1EF4 /* TwitterMediaModel+Player.swift */; };
+		C9C75DDB25B947DB00764114 /* NSObject-Rx in Frameworks */ = {isa = PBXBuildFile; productRef = C9C75DDA25B947DB00764114 /* NSObject-Rx */; };
 		C9F5111723C186400044C61A /* YoutubeDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F5110D23C186400044C61A /* YoutubeDL.framework */; };
 		C9F5111C23C186400044C61A /* YoutubeDLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F5111B23C186400044C61A /* YoutubeDLTests.swift */; };
 		C9F5111E23C186400044C61A /* YoutubeDL.h in Headers */ = {isa = PBXBuildFile; fileRef = C9F5111023C186400044C61A /* YoutubeDL.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -107,6 +108,7 @@
 				C9F5113823C18AD60044C61A /* PMKAlamofire in Frameworks */,
 				C9F5114623C446810044C61A /* SwiftyJSON in Frameworks */,
 				C9A6B23023E663420005A41B /* RxSwift in Frameworks */,
+				C9C75DDB25B947DB00764114 /* NSObject-Rx in Frameworks */,
 				C9F5113523C188950044C61A /* PromiseKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,6 +292,7 @@
 				C9A6B22F23E663420005A41B /* RxSwift */,
 				C9A6B23323E663420005A41B /* RxRelay */,
 				C9A6B23523E663420005A41B /* RxCocoa */,
+				C9C75DDA25B947DB00764114 /* NSObject-Rx */,
 			);
 			productName = YoutubeDL;
 			productReference = C9F5110D23C186400044C61A /* YoutubeDL.framework */;
@@ -350,6 +353,7 @@
 				C9F5113623C18AD60044C61A /* XCRemoteSwiftPackageReference "PMKAlamofire" */,
 				C9F5114423C446800044C61A /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				C9A6B22E23E663420005A41B /* XCRemoteSwiftPackageReference "RxSwift" */,
+				C9C75DD925B947DB00764114 /* XCRemoteSwiftPackageReference "NSObject-Rx" */,
 			);
 			productRefGroup = C9F5110E23C186400044C61A /* Products */;
 			projectDirPath = "";
@@ -485,7 +489,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -542,7 +546,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -567,7 +571,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -595,7 +599,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -692,6 +696,14 @@
 				kind = branch;
 			};
 		};
+		C9C75DD925B947DB00764114 /* XCRemoteSwiftPackageReference "NSObject-Rx" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/NSObject-Rx";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.0;
+			};
+		};
 		C9F5113323C188950044C61A /* XCRemoteSwiftPackageReference "PromiseKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:mxcl/PromiseKit.git";
@@ -743,6 +755,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C9A6B22E23E663420005A41B /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxBlocking;
+		};
+		C9C75DDA25B947DB00764114 /* NSObject-Rx */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9C75DD925B947DB00764114 /* XCRemoteSwiftPackageReference "NSObject-Rx" */;
+			productName = "NSObject-Rx";
 		};
 		C9F5113423C188950044C61A /* PromiseKit */ = {
 			isa = XCSwiftPackageProductDependency;

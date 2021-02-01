@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Photos
 
 import PMKAlamofire
 import PromiseKit
@@ -36,6 +37,8 @@ public class TwitterMediaModel {
         
         case savingMediaToCameraRoll
         case finished
+        
+        case error(Error)
     }
     
     public let playButtonPressSink = PublishRelay<Void>()
@@ -71,6 +74,22 @@ public class TwitterMediaModel {
         documentsURL.appendPathComponent("familyguy.mp4")
 
         return (documentsURL, [.removePreviousFile])
+    }
+    
+    public func saveMediaToCameraRoll() {
+        // TODO: Maybe rxify this stuff instead?
+        PHPhotoLibrary.shared().performChanges({
+            let request = PHAssetCreationRequest.forAsset()
+            request.addResource(with: .video, fileURL: self.localMediaURL!, options: nil)
+        }) { (result, error) in
+            DispatchQueue.main.async {
+                if let error = error {
+                    self.setState(newState: .error(error))
+                } else {
+                    self.setState(newState: .finished)
+                }
+            }
+        }
     }
     
     public func startDownloadingMedia(forTweetURL tweetURL: String) {

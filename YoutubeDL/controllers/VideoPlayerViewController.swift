@@ -8,7 +8,9 @@
 
 import Foundation
 import UIKit
+
 import RxSwift
+import NSObject_Rx
 
 @IBDesignable
 public class VideoPlayerViewController: UIView, NibLoadable {
@@ -16,30 +18,32 @@ public class VideoPlayerViewController: UIView, NibLoadable {
     @IBOutlet weak var videoPlayerView: AVVideoPlayerView!
     @IBOutlet weak var videoControlsView: VideoControlsView!
     
-    let disposeBag = DisposeBag()
-    
     public lazy var itemToPlay = self.videoPlayerView.itemToPlay
     public lazy var loadingProgress = self.videoPlayerView.loadingProgress
     
     func commonInit() {
         videoPlayerView.readyToPlay
             .bind(to: videoControlsView.enabled)
-            .disposed(by: disposeBag)
+            .disposed(by: rx.disposeBag)
         
         (videoControlsView.isPlaying <-> videoPlayerView.isPlaying)
-            .disposed(by: disposeBag)
+            .disposed(by: rx.disposeBag)
         
         videoPlayerView.itemLength
             .bind(to: videoControlsView.totalPlaybackLength)
-            .disposed(by: disposeBag)
+            .disposed(by: rx.disposeBag)
         
         videoPlayerView.currPlaybackTime
             .bind(to: videoControlsView.currPlaybackTime)
-            .disposed(by: disposeBag)
+            .disposed(by: rx.disposeBag)
         
         videoControlsView.requestedSeekProgress
             .bind(to: videoPlayerView.requestedSeekTime)
-            .disposed(by: disposeBag)
+            .disposed(by: rx.disposeBag)
+    }
+    
+    func stopPlaying() {
+        videoPlayerView.stop()
     }
     
     required init?(coder aDecoder: NSCoder) {
