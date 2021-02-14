@@ -45,10 +45,6 @@ class AVVideoPlayerView: UIView, NibLoadable {
     var player: AVPlayer? = AVPlayer()
     weak var playerLayer: AVPlayerLayer?
     
-    deinit {
-        print("Is this even getting called?")
-    }
-    
     func stop() {
         player?.replaceCurrentItem(with: nil)
         player = nil
@@ -109,19 +105,19 @@ class AVVideoPlayerView: UIView, NibLoadable {
             .disposed(by: rx.disposeBag)
         
         self.requestedSeekTime
-            .throttle(.milliseconds(250), scheduler: MainScheduler.instance)
+            .throttle(.milliseconds(20), scheduler: MainScheduler.instance)
             .flatMap({
                 [weak self] (progress) -> Observable<Bool> in
                 
-                let secs = Double(self?.itemLength.value ?? 0.0 * progress)
+                let secs = Double((self?.itemLength.value ?? 0.0) * progress)
                 let time = CMTime(seconds: secs, preferredTimescale: 600)
                 
                 return Observable<Bool>.create {
                     observer in
                     self?.player?.seek(to: time,
-                                      toleranceBefore: CMTime.zero,
-                                      toleranceAfter: CMTime.zero,
-                                      completionHandler: { observer.onNext($0) })
+                                       toleranceBefore: CMTime.init(seconds: 0.1, preferredTimescale: 600),
+                                      toleranceAfter: CMTime.init(seconds: 0.1, preferredTimescale: 600),
+                                      completionHandler: observer.onNext)
                     return Disposables.create()
                 }
             })

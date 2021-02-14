@@ -96,7 +96,7 @@ public class TwitterMediaModel {
 
         var mediaURLToDownload: String?
         
-        firstly {
+        let _ = firstly {
             try TwitterAPI.sharedInstance.getMediaURLs(usingTweetURL: tweetURL)
         }
         .then { mediaResults ->

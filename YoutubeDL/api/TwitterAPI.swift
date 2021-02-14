@@ -87,16 +87,8 @@ public class TwitterAPI {
     ///
     func parseVideoInfo(media: Media) throws -> MediaResultURLs {
         var variants = media.videoInfo!.variants
-        
-        variants = variants.filter {
-            variant in
-            return variant.contentType == "video/mp4"
-        }
-        
-        let variantURLs = variants.map {
-            variant in
-            variant.url
-        }
+        variants = variants.filter { $0.contentType == "video/mp4" }
+        let variantURLs = variants.map { $0.url }
         
         return .videos(thumbnail: media.mediaURLHTTPS, urls: variantURLs)
     }

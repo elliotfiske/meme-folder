@@ -28,14 +28,12 @@ public class TwitterDLViewController: UIViewController, UIAdaptivePresentationCo
     @IBOutlet weak var successLabel: UILabel!
     @IBOutlet weak var saveToCameraRollButton: UIButton!
     
-    deinit {
-    }
-    
     public override func willMove(toParent parent: UIViewController?) {
         self.parent?.presentationController?.delegate = self
     }
     
-    public func presentationControllerWillDismiss(_ presentationController: UIPresentationController) {
+    
+    public func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
         print("hey there")
         videoPlayerController.stopPlaying()
     }

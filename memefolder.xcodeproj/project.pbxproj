@@ -9,10 +9,16 @@
 /* Begin PBXBuildFile section */
 		C92D91ED23C999010067150B /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92D91EC23C999010067150B /* InitialViewController.swift */; };
 		C9388A9023FE5208002E2BC2 /* YoutubeDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F5112D23C186410044C61A /* YoutubeDL.framework */; };
+		C93B407E25CCB01100E703BA /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93B407D25CCB01100E703BA /* PhotoModel.swift */; };
 		C9F5110123C17B770044C61A /* YoutubeDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F5110023C17B770044C61A /* YoutubeDL.framework */; };
 		C9F5110223C17B770044C61A /* YoutubeDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C9F5110023C17B770044C61A /* YoutubeDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C9F5114223C2CAA40044C61A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9F5114123C2CAA30044C61A /* GoogleService-Info.plist */; };
 		C9F5114323C2CAA40044C61A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9F5114123C2CAA30044C61A /* GoogleService-Info.plist */; };
+		C9F6E50625D0970000F115B3 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F6E50425D0970000F115B3 /* TestViewController.swift */; };
+		C9F6E50F25D330ED00F115B3 /* RecentImageCollectionMediatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F6E50D25D330ED00F115B3 /* RecentImageCollectionMediatingView.swift */; };
+		C9F6E51025D330ED00F115B3 /* RecentImageCollectionMediatingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9F6E50E25D330ED00F115B3 /* RecentImageCollectionMediatingView.xib */; };
+		C9F6E52325D33BB400F115B3 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F6E52125D33BB400F115B3 /* ImageCell.swift */; };
+		C9F6E52425D33BB400F115B3 /* ImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9F6E52225D33BB400F115B3 /* ImageCell.xib */; };
 		C9FD9D7323BFF14B007A7FA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FD9D7223BFF14B007A7FA4 /* AppDelegate.swift */; };
 		C9FD9D7A23BFF14B007A7FA4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9FD9D7823BFF14B007A7FA4 /* Main.storyboard */; };
 		C9FD9D7C23BFF155007A7FA4 /* AppIcons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9FD9D7B23BFF155007A7FA4 /* AppIcons.xcassets */; };
@@ -99,9 +105,15 @@
 
 /* Begin PBXFileReference section */
 		C92D91EC23C999010067150B /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
+		C93B407D25CCB01100E703BA /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
 		C9F5110023C17B770044C61A /* YoutubeDL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = YoutubeDL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9F5112723C186400044C61A /* YoutubeDL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = YoutubeDL.xcodeproj; path = YoutubeDL/YoutubeDL.xcodeproj; sourceTree = "<group>"; };
 		C9F5114123C2CAA30044C61A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C9F6E50425D0970000F115B3 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		C9F6E50D25D330ED00F115B3 /* RecentImageCollectionMediatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentImageCollectionMediatingView.swift; sourceTree = "<group>"; };
+		C9F6E50E25D330ED00F115B3 /* RecentImageCollectionMediatingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecentImageCollectionMediatingView.xib; sourceTree = "<group>"; };
+		C9F6E52125D33BB400F115B3 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		C9F6E52225D33BB400F115B3 /* ImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCell.xib; sourceTree = "<group>"; };
 		C9FD9D6F23BFF14B007A7FA4 /* Meme Folder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Meme Folder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9FD9D7223BFF14B007A7FA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9FD9D7923BFF14B007A7FA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -160,8 +172,17 @@
 			isa = PBXGroup;
 			children = (
 				C92D91EC23C999010067150B /* InitialViewController.swift */,
+				C9F6E50425D0970000F115B3 /* TestViewController.swift */,
 			);
 			path = controllers;
+			sourceTree = "<group>";
+		};
+		C93B407C25CCAFFC00E703BA /* models */ = {
+			isa = PBXGroup;
+			children = (
+				C93B407D25CCB01100E703BA /* PhotoModel.swift */,
+			);
+			path = models;
 			sourceTree = "<group>";
 		};
 		C94241D123C12529000FD14E /* Frameworks */ = {
@@ -179,6 +200,17 @@
 				C9F5112F23C186410044C61A /* YoutubeDLTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		C9F6E50C25D330AF00F115B3 /* mediators */ = {
+			isa = PBXGroup;
+			children = (
+				C9F6E50D25D330ED00F115B3 /* RecentImageCollectionMediatingView.swift */,
+				C9F6E50E25D330ED00F115B3 /* RecentImageCollectionMediatingView.xib */,
+				C9F6E52125D33BB400F115B3 /* ImageCell.swift */,
+				C9F6E52225D33BB400F115B3 /* ImageCell.xib */,
+			);
+			path = mediators;
 			sourceTree = "<group>";
 		};
 		C9FD9D6623BFF14B007A7FA4 = {
@@ -211,6 +243,8 @@
 		C9FD9D7123BFF14B007A7FA4 /* memefolder */ = {
 			isa = PBXGroup;
 			children = (
+				C9F6E50C25D330AF00F115B3 /* mediators */,
+				C93B407C25CCAFFC00E703BA /* models */,
 				C92D91EA23C998ED0067150B /* controllers */,
 				C9FD9DB723C01047007A7FA4 /* memefolder.entitlements */,
 				C9FD9D7223BFF14B007A7FA4 /* AppDelegate.swift */,
@@ -335,7 +369,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1130;
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1230;
 				ORGANIZATIONNAME = "Meme Folder";
 				TargetAttributes = {
 					C9FD9D6E23BFF14B007A7FA4 = {
@@ -404,7 +438,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9FD9D7F23BFF155007A7FA4 /* LaunchScreen.storyboard in Resources */,
+				C9F6E51025D330ED00F115B3 /* RecentImageCollectionMediatingView.xib in Resources */,
 				C9F5114223C2CAA40044C61A /* GoogleService-Info.plist in Resources */,
+				C9F6E52425D33BB400F115B3 /* ImageCell.xib in Resources */,
 				C9FD9D7C23BFF155007A7FA4 /* AppIcons.xcassets in Resources */,
 				C9FD9D7A23BFF14B007A7FA4 /* Main.storyboard in Resources */,
 			);
@@ -440,8 +476,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9F6E50625D0970000F115B3 /* TestViewController.swift in Sources */,
 				C9FD9D7323BFF14B007A7FA4 /* AppDelegate.swift in Sources */,
 				C92D91ED23C999010067150B /* InitialViewController.swift in Sources */,
+				C93B407E25CCB01100E703BA /* PhotoModel.swift in Sources */,
+				C9F6E50F25D330ED00F115B3 /* RecentImageCollectionMediatingView.swift in Sources */,
+				C9F6E52325D33BB400F115B3 /* ImageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -543,6 +583,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -603,6 +644,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

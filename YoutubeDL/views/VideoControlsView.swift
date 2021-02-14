@@ -43,8 +43,13 @@ public class VideoControlsView: UIView, NibLoadable {
     
     func setupTimelineBehavior() {
         timelineDragGesture.rx.event
-            .filter { $0.state == .began }
-            .map { _ in false }
+            .map {
+                if $0.state == .ended || $0.state == .cancelled {
+                    return true
+                }
+                
+                return false
+            }
             .bind(to: isPlaying)
             .disposed(by: rx.disposeBag)
         
@@ -63,7 +68,7 @@ public class VideoControlsView: UIView, NibLoadable {
         
         dotDraggedToTime
             .map { $0 / self.timelineLength }
-            .map { $0.clamped(to: (0...0.999))}  // Seeking to the very end resets the video to the beginning, for some reason.
+            .map { $0.clamped(to: (0...0.999)) }  // Seeking to the very end resets the video to the beginning, for some reason.
             .bind(to: requestedSeekProgress)
             .disposed(by: rx.disposeBag)
         

@@ -14,6 +14,8 @@
 		C909550923DE8F4F006FB53C /* RoundedCornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C909550823DE8F4F006FB53C /* RoundedCornerView.swift */; };
 		C909550D23DFFC7E006FB53C /* UIView+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = C909550C23DFFC7E006FB53C /* UIView+Promise.swift */; };
 		C909550F23E3DA85006FB53C /* UIView+Nibloadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C909550E23E3DA85006FB53C /* UIView+Nibloadable.swift */; };
+		C927E75825C78F4C00F835C1 /* RxBiBinding in Frameworks */ = {isa = PBXBuildFile; productRef = C927E75725C78F4C00F835C1 /* RxBiBinding */; };
+		C927E76F25C8A83500F835C1 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = C927E76E25C8A83500F835C1 /* SwiftyJSON */; };
 		C92D91E723C98F9A0067150B /* TwitterDLViewController+ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92D91E323C98F8C0067150B /* TwitterDLViewController+ErrorHandler.swift */; };
 		C92D91E923C995810067150B /* TwitterMediaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92D91E823C995810067150B /* TwitterMediaModel.swift */; };
 		C92D91F023C9992B0067150B /* TwitterDLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92D91EE23C9992B0067150B /* TwitterDLViewController.swift */; };
@@ -24,9 +26,6 @@
 		C938B5442400DD6500AFD740 /* AVVideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C938B5432400DD6500AFD740 /* AVVideoPlayerView.swift */; };
 		C938B54724039C9200AFD740 /* AVVideoPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C938B54624039C9200AFD740 /* AVVideoPlayerView.xib */; };
 		C938B5492404DC9E00AFD740 /* AVPlayerItem+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C938B5482404DC9E00AFD740 /* AVPlayerItem+Rx.swift */; };
-		C96BD9D823EFC9560008CDC8 /* RxChannelTerminal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96BD9D723EFC9560008CDC8 /* RxChannelTerminal.swift */; };
-		C96BD9DA23EFC97E0008CDC8 /* RxChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96BD9D923EFC97E0008CDC8 /* RxChannel.swift */; };
-		C96BD9DC23EFC9960008CDC8 /* AnyObservableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96BD9DB23EFC9960008CDC8 /* AnyObservableType.swift */; };
 		C96BD9E023F26E210008CDC8 /* AVPlayer+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96BD9DF23F26E210008CDC8 /* AVPlayer+Rx.swift */; };
 		C96BD9E423F393620008CDC8 /* StringFormatHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96BD9E323F393620008CDC8 /* StringFormatHelpers.swift */; };
 		C96BD9E623F39D940008CDC8 /* MathHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96BD9E523F39D940008CDC8 /* MathHelpers.swift */; };
@@ -39,15 +38,14 @@
 		C9B6036A23CEDA280056AEC6 /* UIViewController+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B6036923CEDA280056AEC6 /* UIViewController+Convenience.swift */; };
 		C9B98A7523EBCC85003A1EF4 /* TwitterMediaModel+Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B98A7423EBCC85003A1EF4 /* TwitterMediaModel+Player.swift */; };
 		C9C75DDB25B947DB00764114 /* NSObject-Rx in Frameworks */ = {isa = PBXBuildFile; productRef = C9C75DDA25B947DB00764114 /* NSObject-Rx */; };
+		C9DC270F25C8B03D0046C0FE /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = C9DC270E25C8B03D0046C0FE /* PromiseKit */; };
 		C9F5111723C186400044C61A /* YoutubeDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F5110D23C186400044C61A /* YoutubeDL.framework */; };
 		C9F5111C23C186400044C61A /* YoutubeDLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F5111B23C186400044C61A /* YoutubeDLTests.swift */; };
 		C9F5111E23C186400044C61A /* YoutubeDL.h in Headers */ = {isa = PBXBuildFile; fileRef = C9F5111023C186400044C61A /* YoutubeDL.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C9F5113223C187150044C61A /* TwitterAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F5113123C187150044C61A /* TwitterAPI.swift */; };
-		C9F5113523C188950044C61A /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = C9F5113423C188950044C61A /* PromiseKit */; };
 		C9F5113823C18AD60044C61A /* PMKAlamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C9F5113723C18AD60044C61A /* PMKAlamofire */; };
 		C9F5113E23C28AAF0044C61A /* Array+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F5113D23C28AAF0044C61A /* Array+Convenience.swift */; };
 		C9F5114023C2BA8C0044C61A /* String+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F5113F23C2BA8C0044C61A /* String+Convenience.swift */; };
-		C9F5114623C446810044C61A /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = C9F5114523C446810044C61A /* SwiftyJSON */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,9 +76,6 @@
 		C938B5432400DD6500AFD740 /* AVVideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVVideoPlayerView.swift; sourceTree = "<group>"; };
 		C938B54624039C9200AFD740 /* AVVideoPlayerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AVVideoPlayerView.xib; sourceTree = "<group>"; };
 		C938B5482404DC9E00AFD740 /* AVPlayerItem+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVPlayerItem+Rx.swift"; sourceTree = "<group>"; };
-		C96BD9D723EFC9560008CDC8 /* RxChannelTerminal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxChannelTerminal.swift; sourceTree = "<group>"; };
-		C96BD9D923EFC97E0008CDC8 /* RxChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxChannel.swift; sourceTree = "<group>"; };
-		C96BD9DB23EFC9960008CDC8 /* AnyObservableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyObservableType.swift; sourceTree = "<group>"; };
 		C96BD9DF23F26E210008CDC8 /* AVPlayer+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVPlayer+Rx.swift"; sourceTree = "<group>"; };
 		C96BD9E323F393620008CDC8 /* StringFormatHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringFormatHelpers.swift; sourceTree = "<group>"; };
 		C96BD9E523F39D940008CDC8 /* MathHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathHelpers.swift; sourceTree = "<group>"; };
@@ -104,12 +99,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9A6B23623E663420005A41B /* RxCocoa in Frameworks */,
+				C9DC270F25C8B03D0046C0FE /* PromiseKit in Frameworks */,
 				C9A6B23423E663420005A41B /* RxRelay in Frameworks */,
+				C927E76F25C8A83500F835C1 /* SwiftyJSON in Frameworks */,
 				C9F5113823C18AD60044C61A /* PMKAlamofire in Frameworks */,
-				C9F5114623C446810044C61A /* SwiftyJSON in Frameworks */,
+				C927E75825C78F4C00F835C1 /* RxBiBinding in Frameworks */,
 				C9A6B23023E663420005A41B /* RxSwift in Frameworks */,
 				C9C75DDB25B947DB00764114 /* NSObject-Rx in Frameworks */,
-				C9F5113523C188950044C61A /* PromiseKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,16 +156,6 @@
 				C93767B323D8063700180F2D /* images.xcassets */,
 			);
 			path = resources;
-			sourceTree = "<group>";
-		};
-		C96BD9DD23F26D150008CDC8 /* bibindings */ = {
-			isa = PBXGroup;
-			children = (
-				C96BD9D723EFC9560008CDC8 /* RxChannelTerminal.swift */,
-				C96BD9DB23EFC9960008CDC8 /* AnyObservableType.swift */,
-				C96BD9D923EFC97E0008CDC8 /* RxChannel.swift */,
-			);
-			path = bibindings;
 			sourceTree = "<group>";
 		};
 		C96BD9DE23F26E130008CDC8 /* reactive extensions */ = {
@@ -242,7 +228,6 @@
 			isa = PBXGroup;
 			children = (
 				C96BD9DE23F26E130008CDC8 /* reactive extensions */,
-				C96BD9DD23F26D150008CDC8 /* bibindings */,
 				C9F5113D23C28AAF0044C61A /* Array+Convenience.swift */,
 				50760B6823C4367A003D88A5 /* Errors.swift */,
 				C9F5113F23C2BA8C0044C61A /* String+Convenience.swift */,
@@ -286,13 +271,14 @@
 			);
 			name = YoutubeDL;
 			packageProductDependencies = (
-				C9F5113423C188950044C61A /* PromiseKit */,
 				C9F5113723C18AD60044C61A /* PMKAlamofire */,
-				C9F5114523C446810044C61A /* SwiftyJSON */,
 				C9A6B22F23E663420005A41B /* RxSwift */,
 				C9A6B23323E663420005A41B /* RxRelay */,
 				C9A6B23523E663420005A41B /* RxCocoa */,
 				C9C75DDA25B947DB00764114 /* NSObject-Rx */,
+				C927E75725C78F4C00F835C1 /* RxBiBinding */,
+				C927E76E25C8A83500F835C1 /* SwiftyJSON */,
+				C9DC270E25C8B03D0046C0FE /* PromiseKit */,
 			);
 			productName = YoutubeDL;
 			productReference = C9F5110D23C186400044C61A /* YoutubeDL.framework */;
@@ -327,7 +313,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1130;
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1230;
 				ORGANIZATIONNAME = "Meme Folder";
 				TargetAttributes = {
 					C9F5110C23C186400044C61A = {
@@ -349,11 +335,12 @@
 			);
 			mainGroup = C9F5110323C186400044C61A;
 			packageReferences = (
-				C9F5113323C188950044C61A /* XCRemoteSwiftPackageReference "PromiseKit" */,
 				C9F5113623C18AD60044C61A /* XCRemoteSwiftPackageReference "PMKAlamofire" */,
-				C9F5114423C446800044C61A /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				C9A6B22E23E663420005A41B /* XCRemoteSwiftPackageReference "RxSwift" */,
 				C9C75DD925B947DB00764114 /* XCRemoteSwiftPackageReference "NSObject-Rx" */,
+				C927E75625C78F4B00F835C1 /* XCRemoteSwiftPackageReference "RxBiBinding" */,
+				C927E76D25C8A83500F835C1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				C9DC270D25C8B03D0046C0FE /* XCRemoteSwiftPackageReference "PromiseKit" */,
 			);
 			productRefGroup = C9F5110E23C186400044C61A /* Products */;
 			projectDirPath = "";
@@ -402,7 +389,6 @@
 				C9B6036A23CEDA280056AEC6 /* UIViewController+Convenience.swift in Sources */,
 				C938B5492404DC9E00AFD740 /* AVPlayerItem+Rx.swift in Sources */,
 				C938B5422400DB0700AFD740 /* VideoPlayerViewController.swift in Sources */,
-				C96BD9DC23EFC9960008CDC8 /* AnyObservableType.swift in Sources */,
 				C92D91F023C9992B0067150B /* TwitterDLViewController.swift in Sources */,
 				C96BD9E623F39D940008CDC8 /* MathHelpers.swift in Sources */,
 				C92D91E723C98F9A0067150B /* TwitterDLViewController+ErrorHandler.swift in Sources */,
@@ -411,9 +397,7 @@
 				C9F5113E23C28AAF0044C61A /* Array+Convenience.swift in Sources */,
 				C96BD9E423F393620008CDC8 /* StringFormatHelpers.swift in Sources */,
 				C9F5114023C2BA8C0044C61A /* String+Convenience.swift in Sources */,
-				C96BD9DA23EFC97E0008CDC8 /* RxChannel.swift in Sources */,
 				C909550923DE8F4F006FB53C /* RoundedCornerView.swift in Sources */,
-				C96BD9D823EFC9560008CDC8 /* RxChannelTerminal.swift in Sources */,
 				C9388A8D23F7AD0F002E2BC2 /* DecodableTwitterStatus.swift in Sources */,
 				C96BD9E023F26E210008CDC8 /* AVPlayer+Rx.swift in Sources */,
 			);
@@ -464,6 +448,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -527,6 +512,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -688,12 +674,28 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		C927E75625C78F4B00F835C1 /* XCRemoteSwiftPackageReference "RxBiBinding" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxBiBinding";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.5;
+			};
+		};
+		C927E76D25C8A83500F835C1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/DenTelezhkin/SwiftyJSON";
+			requirement = {
+				branch = "xcode-12";
+				kind = branch;
+			};
+		};
 		C9A6B22E23E663420005A41B /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:ReactiveX/RxSwift.git";
 			requirement = {
-				branch = develop;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
 			};
 		};
 		C9C75DD925B947DB00764114 /* XCRemoteSwiftPackageReference "NSObject-Rx" */ = {
@@ -704,12 +706,12 @@
 				minimumVersion = 5.2.0;
 			};
 		};
-		C9F5113323C188950044C61A /* XCRemoteSwiftPackageReference "PromiseKit" */ = {
+		C9DC270D25C8B03D0046C0FE /* XCRemoteSwiftPackageReference "PromiseKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:mxcl/PromiseKit.git";
+			repositoryURL = "https://github.com/elliotfiske/PromiseKit";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 6.12.0;
+				minimumVersion = 6.13.3;
 			};
 		};
 		C9F5113623C18AD60044C61A /* XCRemoteSwiftPackageReference "PMKAlamofire" */ = {
@@ -720,17 +722,19 @@
 				minimumVersion = 3.2.4;
 			};
 		};
-		C9F5114423C446800044C61A /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C927E75725C78F4C00F835C1 /* RxBiBinding */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C927E75625C78F4B00F835C1 /* XCRemoteSwiftPackageReference "RxBiBinding" */;
+			productName = RxBiBinding;
+		};
+		C927E76E25C8A83500F835C1 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C927E76D25C8A83500F835C1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
 		C9A6B22F23E663420005A41B /* RxSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C9A6B22E23E663420005A41B /* XCRemoteSwiftPackageReference "RxSwift" */;
@@ -761,20 +765,15 @@
 			package = C9C75DD925B947DB00764114 /* XCRemoteSwiftPackageReference "NSObject-Rx" */;
 			productName = "NSObject-Rx";
 		};
-		C9F5113423C188950044C61A /* PromiseKit */ = {
+		C9DC270E25C8B03D0046C0FE /* PromiseKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = C9F5113323C188950044C61A /* XCRemoteSwiftPackageReference "PromiseKit" */;
+			package = C9DC270D25C8B03D0046C0FE /* XCRemoteSwiftPackageReference "PromiseKit" */;
 			productName = PromiseKit;
 		};
 		C9F5113723C18AD60044C61A /* PMKAlamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C9F5113623C18AD60044C61A /* XCRemoteSwiftPackageReference "PMKAlamofire" */;
 			productName = PMKAlamofire;
-		};
-		C9F5114523C446810044C61A /* SwiftyJSON */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C9F5114423C446800044C61A /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
-			productName = SwiftyJSON;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

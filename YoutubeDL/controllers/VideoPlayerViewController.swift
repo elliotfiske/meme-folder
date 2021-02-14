@@ -11,6 +11,7 @@ import UIKit
 
 import RxSwift
 import NSObject_Rx
+import RxBiBinding
 
 @IBDesignable
 public class VideoPlayerViewController: UIView, NibLoadable {
