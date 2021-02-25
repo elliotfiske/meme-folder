@@ -23,23 +23,23 @@ public class PhotoModel: NSObject, PHPhotoLibraryChangeObserver {
         }
     }
     
-    var fetchResult: PHFetchResult<PHAsset>?
+    public var allPhotosFetchResult: PHFetchResult<PHAsset>?
     
     public func photoLibraryDidChange(_ changeInstance: PHChange) {
         print("Oh yeah we do be here now \(changeInstance)")
-        print("but what about me??? \(self.fetchResult!)")
+//        print("but what about me??? \(self.allPhotosFetchResult!)")
         
-//        if let changeDetails = changeInstance.changeDetails(for: fetchResult) {
+//        if let changeDetails = changeInstance.changeDetails(for: allPhotosFetchResult) {
 //            print("aight")
 //        }
     }
     
     func numPhotos() -> Int {
-        return fetchResult?.count ?? 0
+        return allPhotosFetchResult?.count ?? 0
     }
     
     func asset(at index: Int) -> PHAsset? {
-        return fetchResult?[index]
+        return allPhotosFetchResult?[index]
     }
     
     public let cacher = PHCachingImageManager()
@@ -60,9 +60,9 @@ public class PhotoModel: NSObject, PHPhotoLibraryChangeObserver {
         return Observable.create {
             observer in
             
-            self.fetchResult = PHAsset.fetchAssets(with: allPhotosOptions)
+            self.allPhotosFetchResult = PHAsset.fetchAssets(with: allPhotosOptions)
             
-//            cacher.startCachingImages(for: self.fetchResult!, targetSize: CGSize.init(width: 200, height: 200), contentMode: .aspectFill, options: nil)
+//            cacher.startCachingImages(for: self.allPhotosFetchResult!, targetSize: CGSize.init(width: 200, height: 200), contentMode: .aspectFill, options: nil)
             
             PHPhotoLibrary.shared().register(self)
             
@@ -70,7 +70,7 @@ public class PhotoModel: NSObject, PHPhotoLibraryChangeObserver {
             let manager = PHImageManager.default()
             
             
-            if let lastAsset: PHAsset = self.fetchResult?.lastObject {
+            if let lastAsset: PHAsset = self.allPhotosFetchResult?.lastObject {
                 let imageRequestOptions = PHImageRequestOptions()
                 imageRequestOptions.deliveryMode = .fastFormat
                 

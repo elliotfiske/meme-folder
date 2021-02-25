@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecentPhotosCollectionViewController" customModule="Meme_Folder" customModuleProvider="target">
+            <connections>
+                <outlet property="collectionView" destination="bvs-kO-YEv" id="7Vj-Hm-Eb2"/>
+                <outlet property="collectionViewLayout" destination="mea-RG-Tt9" id="2Fr-b4-LHD"/>
+                <outlet property="view" destination="fR5-Oc-oZj" id="Bde-Oy-hK9"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="fR5-Oc-oZj">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="bvs-kO-YEv">
+                    <rect key="frame" x="0.0" y="110" width="414" height="752"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mea-RG-Tt9">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="5mP-rF-6zQ"/>
+                        <outlet property="delegate" destination="-1" id="QIQ-7T-KhA"/>
+                    </connections>
+                </collectionView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TYh-do-3ba" customClass="SegmentHeader" customModule="Meme_Folder" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="44" width="414" height="66"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="66" id="uej-Wt-UL7"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="DO4-o9-Iba"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="DO4-o9-Iba" firstAttribute="bottom" secondItem="bvs-kO-YEv" secondAttribute="bottom" id="FJ3-CP-rlv"/>
+                <constraint firstItem="bvs-kO-YEv" firstAttribute="leading" secondItem="DO4-o9-Iba" secondAttribute="leading" id="R4K-vG-jMf"/>
+                <constraint firstItem="TYh-do-3ba" firstAttribute="leading" secondItem="DO4-o9-Iba" secondAttribute="leading" id="TMb-Br-Vhb"/>
+                <constraint firstItem="DO4-o9-Iba" firstAttribute="trailing" secondItem="TYh-do-3ba" secondAttribute="trailing" id="be2-aM-eDB"/>
+                <constraint firstItem="DO4-o9-Iba" firstAttribute="top" secondItem="TYh-do-3ba" secondAttribute="top" id="eUp-jy-IJl"/>
+                <constraint firstItem="bvs-kO-YEv" firstAttribute="top" secondItem="TYh-do-3ba" secondAttribute="bottom" id="gFs-xo-k8l"/>
+                <constraint firstItem="bvs-kO-YEv" firstAttribute="trailing" secondItem="DO4-o9-Iba" secondAttribute="trailing" id="or7-hh-6Xv"/>
+            </constraints>
+            <point key="canvasLocation" x="-1391.304347826087" y="-19.419642857142858"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

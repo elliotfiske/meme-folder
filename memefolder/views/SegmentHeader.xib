@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SegmentHeader" customModule="Meme_Folder" customModuleProvider="target">
+            <connections>
+                <outlet property="segmentControl" destination="cOw-MA-Dfh" id="zSd-29-Rfq"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="119"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="cOw-MA-Dfh">
+                    <rect key="frame" x="20" y="44" width="440" height="42"/>
+                    <segments>
+                        <segment title="All Images"/>
+                        <segment title="Downloaded Via Meme Folder"/>
+                    </segments>
+                </segmentedControl>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="cOw-MA-Dfh" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="topMargin" id="iSZ-Yr-Hac"/>
+                <constraint firstItem="cOw-MA-Dfh" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="qi0-Bp-30c"/>
+                <constraint firstAttribute="trailingMargin" secondItem="cOw-MA-Dfh" secondAttribute="trailing" id="w6S-u1-69e"/>
+                <constraint firstAttribute="bottomMargin" secondItem="cOw-MA-Dfh" secondAttribute="bottom" id="wPA-c2-UZh"/>
+            </constraints>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="179.71014492753625" y="179.12946428571428"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

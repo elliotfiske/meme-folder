@@ -10,6 +10,28 @@ import UIKit
 import YoutubeDL
 
 class InitialViewController: UIViewController {
+    @IBOutlet weak var recentPhotosContainer: UIView!
+    
+    var recentPhotosController: RecentPhotosCollectionViewController?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // TODO: I'll almost certainly need to do this again so we should make a helper for it.
+        recentPhotosController = RecentPhotosCollectionViewController.loadFromNib()
+        recentPhotosController!.view.translatesAutoresizingMaskIntoConstraints = false
+        
+        addChild(recentPhotosController!)
+        recentPhotosContainer.addSubview(recentPhotosController!.view)
+        
+        NSLayoutConstraint.activate([
+            recentPhotosController!.view.leadingAnchor.constraint(equalTo: recentPhotosContainer.leadingAnchor),
+            recentPhotosController!.view.trailingAnchor.constraint(equalTo: recentPhotosContainer.trailingAnchor),
+            recentPhotosController!.view.topAnchor.constraint(equalTo: recentPhotosContainer.topAnchor),
+            recentPhotosController!.view.bottomAnchor.constraint(equalTo: recentPhotosContainer.bottomAnchor)
+        ])
+    }
+    
     @IBAction func buttonPressed(_ sender: Any) {
         let controlla = TwitterDLViewController.loadFromNib()
         
@@ -23,7 +45,6 @@ class InitialViewController: UIViewController {
         
         controlla.presentationController?.delegate = controlla
         present(controlla, animated: true)
-        
         
     }
 }

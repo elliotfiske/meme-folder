@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C90E11A725E70E2F0029DBC1 /* SegmentHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = C90E11A625E70E2F0029DBC1 /* SegmentHeader.xib */; };
+		C90E11AD25E710D10029DBC1 /* SegmentHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90E11AC25E710D10029DBC1 /* SegmentHeader.swift */; };
 		C92D91ED23C999010067150B /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92D91EC23C999010067150B /* InitialViewController.swift */; };
+		C936FA2825D9C9F2000F0AD1 /* RecentPhotosCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C936FA2625D9C9F2000F0AD1 /* RecentPhotosCollectionViewController.swift */; };
+		C936FA2925D9C9F2000F0AD1 /* RecentPhotosCollectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C936FA2725D9C9F2000F0AD1 /* RecentPhotosCollectionViewController.xib */; };
 		C9388A9023FE5208002E2BC2 /* YoutubeDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F5112D23C186410044C61A /* YoutubeDL.framework */; };
 		C93B407E25CCB01100E703BA /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93B407D25CCB01100E703BA /* PhotoModel.swift */; };
 		C9F5110123C17B770044C61A /* YoutubeDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F5110023C17B770044C61A /* YoutubeDL.framework */; };
@@ -104,7 +108,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C90E11A625E70E2F0029DBC1 /* SegmentHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SegmentHeader.xib; sourceTree = "<group>"; };
+		C90E11AC25E710D10029DBC1 /* SegmentHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentHeader.swift; sourceTree = "<group>"; };
 		C92D91EC23C999010067150B /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
+		C936FA2625D9C9F2000F0AD1 /* RecentPhotosCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentPhotosCollectionViewController.swift; sourceTree = "<group>"; };
+		C936FA2725D9C9F2000F0AD1 /* RecentPhotosCollectionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecentPhotosCollectionViewController.xib; sourceTree = "<group>"; };
 		C93B407D25CCB01100E703BA /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
 		C9F5110023C17B770044C61A /* YoutubeDL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = YoutubeDL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9F5112723C186400044C61A /* YoutubeDL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = YoutubeDL.xcodeproj; path = YoutubeDL/YoutubeDL.xcodeproj; sourceTree = "<group>"; };
@@ -168,11 +176,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C90E11A325E70E0E0029DBC1 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				C90E11A625E70E2F0029DBC1 /* SegmentHeader.xib */,
+				C90E11AC25E710D10029DBC1 /* SegmentHeader.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
 		C92D91EA23C998ED0067150B /* controllers */ = {
 			isa = PBXGroup;
 			children = (
 				C92D91EC23C999010067150B /* InitialViewController.swift */,
 				C9F6E50425D0970000F115B3 /* TestViewController.swift */,
+				C936FA2625D9C9F2000F0AD1 /* RecentPhotosCollectionViewController.swift */,
+				C936FA2725D9C9F2000F0AD1 /* RecentPhotosCollectionViewController.xib */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -243,6 +262,7 @@
 		C9FD9D7123BFF14B007A7FA4 /* memefolder */ = {
 			isa = PBXGroup;
 			children = (
+				C90E11A325E70E0E0029DBC1 /* views */,
 				C9F6E50C25D330AF00F115B3 /* mediators */,
 				C93B407C25CCAFFC00E703BA /* models */,
 				C92D91EA23C998ED0067150B /* controllers */,
@@ -441,7 +461,9 @@
 				C9F6E51025D330ED00F115B3 /* RecentImageCollectionMediatingView.xib in Resources */,
 				C9F5114223C2CAA40044C61A /* GoogleService-Info.plist in Resources */,
 				C9F6E52425D33BB400F115B3 /* ImageCell.xib in Resources */,
+				C936FA2925D9C9F2000F0AD1 /* RecentPhotosCollectionViewController.xib in Resources */,
 				C9FD9D7C23BFF155007A7FA4 /* AppIcons.xcassets in Resources */,
+				C90E11A725E70E2F0029DBC1 /* SegmentHeader.xib in Resources */,
 				C9FD9D7A23BFF14B007A7FA4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -477,6 +499,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9F6E50625D0970000F115B3 /* TestViewController.swift in Sources */,
+				C936FA2825D9C9F2000F0AD1 /* RecentPhotosCollectionViewController.swift in Sources */,
+				C90E11AD25E710D10029DBC1 /* SegmentHeader.swift in Sources */,
 				C9FD9D7323BFF14B007A7FA4 /* AppDelegate.swift in Sources */,
 				C92D91ED23C999010067150B /* InitialViewController.swift in Sources */,
 				C93B407E25CCB01100E703BA /* PhotoModel.swift in Sources */,

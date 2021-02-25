@@ -24,22 +24,24 @@
                                     <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aw9-JF-S5G"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uXh-pH-pCq" customClass="RecentImageCollectionMediatingView" customModule="Meme_Folder" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="74" width="414" height="788"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xFS-UF-c22">
+                                <rect key="frame" x="0.0" y="92" width="414" height="770"/>
+                            </containerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="uXh-pH-pCq" firstAttribute="top" secondItem="akf-17-HIq" secondAttribute="bottom" id="cwL-OT-Ml2"/>
-                            <constraint firstItem="uXh-pH-pCq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="f8C-K5-mbO"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="xFS-UF-c22" secondAttribute="bottom" id="GQ7-Lq-Kaz"/>
                             <constraint firstItem="akf-17-HIq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="mIb-mr-Oxl"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="uXh-pH-pCq" secondAttribute="bottom" id="oTH-A7-OI4"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uXh-pH-pCq" secondAttribute="trailing" id="rZj-nm-DhZ"/>
+                            <constraint firstItem="xFS-UF-c22" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="sIC-Yd-HLo"/>
                             <constraint firstItem="akf-17-HIq" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="u22-au-EAc"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xFS-UF-c22" secondAttribute="trailing" id="upo-au-UK0"/>
+                            <constraint firstItem="xFS-UF-c22" firstAttribute="top" secondItem="akf-17-HIq" secondAttribute="bottom" constant="18" id="zPu-HT-hej"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="recentPhotosContainer" destination="xFS-UF-c22" id="1pC-Fn-rAP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

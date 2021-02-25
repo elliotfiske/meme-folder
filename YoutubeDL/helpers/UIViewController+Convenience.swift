@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 
 extension UIViewController {
+    // This code assumes you have a nib with the same class name as the controller you're
+    //      trying to instantiate.
     public static func loadFromNib() -> Self {
         func instantiateFromNib<T: UIViewController>() -> T {
             let bundle = Bundle(for: T.self)
