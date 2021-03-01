@@ -43,7 +43,6 @@ class RecentPhotosCollectionViewController: UIViewController, UICollectionViewDe
 
         // Register cell classes
         self.collectionView.register(UINib(nibName: "ImageCell", bundle: .main), forCellWithReuseIdentifier: reuseIdentifier)
-        self.collectionView.register(SegmentHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerReuseIdentifier)
         
         PhotoModel.shared.getRecentPhotos()
             .subscribe(onNext: {
@@ -92,12 +91,6 @@ class RecentPhotosCollectionViewController: UIViewController, UICollectionViewDe
         })
     
         return imageCell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseIdentifier, for: indexPath)
-        
-        return view
     }
 
     // MARK: UICollectionViewDelegate
