@@ -23,8 +23,8 @@
             <constraints>
                 <constraint firstItem="Soz-EK-Hrf" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="Ocw-mA-1yB"/>
                 <constraint firstItem="Soz-EK-Hrf" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="Qhg-Uz-tBI"/>
-                <constraint firstItem="Soz-EK-Hrf" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="width" id="m7Z-3b-kRq"/>
                 <constraint firstItem="Soz-EK-Hrf" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" id="nlU-xv-G59"/>
+                <constraint firstItem="Soz-EK-Hrf" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" id="vIN-du-pAC"/>
             </constraints>
             <size key="customSize" width="106" height="135"/>
             <connections>

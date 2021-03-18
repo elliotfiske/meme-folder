@@ -9,8 +9,13 @@
 import UIKit
 import Photos
 
+import RxSwift
+import RxCocoa
+
 private let reuseIdentifier = "Cell"
-private let headerReuseIdentifier = "header"
+
+extension Reactive where Base: PHCachingImageManager {
+}
 
 //
 // Elliot is still trying to figure out the best way to set this up with xibs, storyboards and nonsense.
@@ -26,7 +31,8 @@ private let headerReuseIdentifier = "header"
 //  from there to here.
 //
 
-class RecentPhotosCollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class RecentPhotosCollectionViewController: UIViewController, UICollectionViewDelegate,
+                                            UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     fileprivate let cachingManager = PHCachingImageManager()
     
@@ -50,6 +56,9 @@ class RecentPhotosCollectionViewController: UIViewController, UICollectionViewDe
                 self?.collectionView.reloadData()
             })
             .disposed(by: rx.disposeBag)
+        
+        let itemWidth = view.bounds.width / 4
+        collectionViewLayout.itemSize = CGSize(width: itemWidth, height: itemWidth)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -63,7 +72,6 @@ class RecentPhotosCollectionViewController: UIViewController, UICollectionViewDe
     // MARK: UICollectionViewDataSource
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
         return PhotoModel.shared.allPhotosFetchResult?.count ?? 0
     }
 
@@ -93,8 +101,34 @@ class RecentPhotosCollectionViewController: UIViewController, UICollectionViewDe
         return imageCell
     }
 
+    // MARK: UICollectionViewDelegateFlowLayout
+    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        let numCols = 4
+//
+//        let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+//        let totalSpace = flowLayout.sectionInset.left
+//            + flowLayout.sectionInset.right
+//            + (flowLayout.minimumInteritemSpacing * CGFloat(numCols - 1))
+//        let size = (collectionView.bounds.width - totalSpace) / CGFloat(numCols)
+//
+//        thumbnailSize = CGSize(width: size, height: size)
+//
+//        return thumbnailSize
+//    }
+    
     // MARK: UICollectionViewDelegate
-
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let asset = PhotoModel.shared.allPhotosFetchResult?.object(at: indexPath.row) else {
+            return
+        }
+        
+        let photoController = PhotoViewController.loadFromNib()
+        photoController.assetToDisplay = asset
+        navigationController?.pushViewController(photoController, animated: true)
+    }
+    
     /*
     // Uncomment this method to specify if the specified item should be highlighted during tracking
     override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
@@ -123,5 +157,27 @@ class RecentPhotosCollectionViewController: UIViewController, UICollectionViewDe
     
     }
     */
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        coordinator.animate(alongsideTransition: nil, completion: {
+            [weak self] context in
+            
+            guard let collectionView = self?.collectionView,
+                  let layout = self?.collectionViewLayout else {
+                return
+            }
+            
+            collectionView.performBatchUpdates({
+                let newWidth = size.width / 4
+                layout.itemSize = CGSize.init(width: newWidth, height: newWidth)
+                
+                collectionView.setCollectionViewLayout(layout, animated: false)
+            })
+        })
+    }
+    
+    
     
 }

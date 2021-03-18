@@ -17,18 +17,23 @@ class InitialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // TODO: I'll almost certainly need to do this again so we should make a helper for it.
-        recentPhotosController = RecentPhotosCollectionViewController.loadFromNib()
-        recentPhotosController!.view.translatesAutoresizingMaskIntoConstraints = false
+        // TODO: I'll almost certainly need to do this again so I should make a helper for it.
         
-        addChild(recentPhotosController!)
-        recentPhotosContainer.addSubview(recentPhotosController!.view)
+        let storyboard = UIStoryboard(name: "RecentPhotosCollectionViewController", bundle: nil)
+        guard let controller = storyboard.instantiateInitialViewController() else {
+            return
+        }
+        
+        controller.view.translatesAutoresizingMaskIntoConstraints = false
+        
+        addChild(controller)
+        recentPhotosContainer.addSubview(controller.view)
         
         NSLayoutConstraint.activate([
-            recentPhotosController!.view.leadingAnchor.constraint(equalTo: recentPhotosContainer.leadingAnchor),
-            recentPhotosController!.view.trailingAnchor.constraint(equalTo: recentPhotosContainer.trailingAnchor),
-            recentPhotosController!.view.topAnchor.constraint(equalTo: recentPhotosContainer.topAnchor),
-            recentPhotosController!.view.bottomAnchor.constraint(equalTo: recentPhotosContainer.bottomAnchor)
+            controller.view.leadingAnchor.constraint(equalTo: recentPhotosContainer.leadingAnchor),
+            controller.view.trailingAnchor.constraint(equalTo: recentPhotosContainer.trailingAnchor),
+            controller.view.topAnchor.constraint(equalTo: recentPhotosContainer.topAnchor),
+            controller.view.bottomAnchor.constraint(equalTo: recentPhotosContainer.bottomAnchor)
         ])
     }
     

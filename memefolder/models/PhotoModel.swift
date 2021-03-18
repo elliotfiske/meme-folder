@@ -29,9 +29,9 @@ public class PhotoModel: NSObject, PHPhotoLibraryChangeObserver {
         print("Oh yeah we do be here now \(changeInstance)")
 //        print("but what about me??? \(self.allPhotosFetchResult!)")
         
-//        if let changeDetails = changeInstance.changeDetails(for: allPhotosFetchResult) {
-//            print("aight")
-//        }
+        if let changeDetails = changeInstance.changeDetails(for: allPhotosFetchResult!) {
+            print("aight")
+        }
     }
     
     func numPhotos() -> Int {
@@ -42,7 +42,29 @@ public class PhotoModel: NSObject, PHPhotoLibraryChangeObserver {
         return allPhotosFetchResult?[index]
     }
     
-    public let cacher = PHCachingImageManager()
+    func getPhotoData(for asset: PHAsset) -> Observable<UIImage> {
+        return Observable.create {
+            subscriber in
+            
+            let requestId = PHImageManager
+                .default()
+                .requestImage(for: asset, targetSize: CGSize.zero, contentMode: .aspectFit, options: nil, resultHandler: {
+                    image, infoDict in
+                    guard let imageUnwrapped = image else {
+                        subscriber.onError(PhotoRetrievalError(message: "Oh no some kind of error! Didn't get the photo data!"))
+                        return
+                    }
+                    
+                    subscriber.onNext(imageUnwrapped)
+                })
+            
+            return Disposables.create {
+                PHImageManager
+                    .default()
+                    .cancelImageRequest(requestId)
+            }
+        }
+    }
     
     func getRecentPhotos() -> Observable<UIImage> {
         let allPhotosOptions = PHFetchOptions()
@@ -51,7 +73,9 @@ public class PhotoModel: NSObject, PHPhotoLibraryChangeObserver {
             key: "creationDate",
             ascending: false)
         ]
-//        allPhotosOptions.fetchLimit = 10
+        
+        
+        allPhotosOptions.fetchLimit = 10
         allPhotosOptions.includeAssetSourceTypes = [.typeCloudShared, .typeUserLibrary, .typeiTunesSynced]
         
         let auth = PHPhotoLibrary.authorizationStatus()
@@ -61,8 +85,6 @@ public class PhotoModel: NSObject, PHPhotoLibraryChangeObserver {
             observer in
             
             self.allPhotosFetchResult = PHAsset.fetchAssets(with: allPhotosOptions)
-            
-//            cacher.startCachingImages(for: self.allPhotosFetchResult!, targetSize: CGSize.init(width: 200, height: 200), contentMode: .aspectFill, options: nil)
             
             PHPhotoLibrary.shared().register(self)
             
@@ -83,7 +105,7 @@ public class PhotoModel: NSObject, PHPhotoLibraryChangeObserver {
                                                     if let imageUnwrapped = image {
                                                         observer.onNext(imageUnwrapped)
                                                     } else {
-                                                        if let errorMessage = dict?[PHImageResultIsDegradedKey] as? String {
+                                                        if let errorMessage = dict?[PHImageErrorKey] as? String {
                                                             observer.onError(PhotoRetrievalError(message: errorMessage))
                                                         } else {
                                                             observer.onError(PhotoRetrievalError(message: "Couldn't retrieve image..."))
