@@ -16,6 +16,7 @@
 		C9388A9023FE5208002E2BC2 /* YoutubeDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F5112D23C186410044C61A /* YoutubeDL.framework */; };
 		C93B407E25CCB01100E703BA /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93B407D25CCB01100E703BA /* PhotoModel.swift */; };
 		C993A2E325F436C000198EFC /* RecentPhotosCollectionViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C993A2E225F436C000198EFC /* RecentPhotosCollectionViewController.storyboard */; };
+		C9A171182736E9A400121626 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A171172736E9A400121626 /* main.swift */; };
 		C9F5110123C17B770044C61A /* YoutubeDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F5110023C17B770044C61A /* YoutubeDL.framework */; };
 		C9F5110223C17B770044C61A /* YoutubeDL.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C9F5110023C17B770044C61A /* YoutubeDL.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C9F5114223C2CAA40044C61A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C9F5114123C2CAA30044C61A /* GoogleService-Info.plist */; };
@@ -93,6 +94,15 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C9A171132736E9A400121626 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		C9FD9DB423C00D46007A7FA4 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -115,6 +125,8 @@
 		C937C37F25EEE269009A8410 /* PhotoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoViewController.xib; sourceTree = "<group>"; };
 		C93B407D25CCB01100E703BA /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
 		C993A2E225F436C000198EFC /* RecentPhotosCollectionViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RecentPhotosCollectionViewController.storyboard; sourceTree = "<group>"; };
+		C9A171152736E9A400121626 /* climediasnipper */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = climediasnipper; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9A171172736E9A400121626 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		C9F5110023C17B770044C61A /* YoutubeDL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = YoutubeDL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9F5112723C186400044C61A /* YoutubeDL.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = YoutubeDL.xcodeproj; path = YoutubeDL/YoutubeDL.xcodeproj; sourceTree = "<group>"; };
 		C9F5114123C2CAA30044C61A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -141,6 +153,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		C9A171122736E9A400121626 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C9FD9D6C23BFF14B007A7FA4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -213,6 +232,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C9A171162736E9A400121626 /* climediasnipper */ = {
+			isa = PBXGroup;
+			children = (
+				C9A171172736E9A400121626 /* main.swift */,
+			);
+			path = climediasnipper;
+			sourceTree = "<group>";
+		};
 		C9F5112823C186400044C61A /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,6 +258,7 @@
 				C9FD9D8823BFF155007A7FA4 /* memefolderTests */,
 				C9FD9D9323BFF156007A7FA4 /* memefolderUITests */,
 				C9FD9DA723C00D45007A7FA4 /* shareExtension */,
+				C9A171162736E9A400121626 /* climediasnipper */,
 				C9FD9D7023BFF14B007A7FA4 /* Products */,
 				C94241D123C12529000FD14E /* Frameworks */,
 			);
@@ -245,6 +273,7 @@
 				C9FD9D8523BFF155007A7FA4 /* memefolderTests.xctest */,
 				C9FD9D9023BFF156007A7FA4 /* memefolderUITests.xctest */,
 				C9FD9DA623C00D44007A7FA4 /* shareExtension.appex */,
+				C9A171152736E9A400121626 /* climediasnipper */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -297,6 +326,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		C9A171142736E9A400121626 /* climediasnipper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C9A1711D2736E9A400121626 /* Build configuration list for PBXNativeTarget "climediasnipper" */;
+			buildPhases = (
+				C9A171112736E9A400121626 /* Sources */,
+				C9A171122736E9A400121626 /* Frameworks */,
+				C9A171132736E9A400121626 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = climediasnipper;
+			productName = climediasnipper;
+			productReference = C9A171152736E9A400121626 /* climediasnipper */;
+			productType = "com.apple.product-type.tool";
+		};
 		C9FD9D6E23BFF14B007A7FA4 /* memefolder */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C9FD9D9923BFF156007A7FA4 /* Build configuration list for PBXNativeTarget "memefolder" */;
@@ -377,10 +423,13 @@
 		C9FD9D6723BFF14B007A7FA4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1130;
+				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1230;
 				ORGANIZATIONNAME = "Meme Folder";
 				TargetAttributes = {
+					C9A171142736E9A400121626 = {
+						CreatedOnToolsVersion = 12.5.1;
+					};
 					C9FD9D6E23BFF14B007A7FA4 = {
 						CreatedOnToolsVersion = 11.3;
 					};
@@ -420,6 +469,7 @@
 				C9FD9D8423BFF155007A7FA4 /* memefolderTests */,
 				C9FD9D8F23BFF156007A7FA4 /* memefolderUITests */,
 				C9FD9DA523C00D44007A7FA4 /* shareExtension */,
+				C9A171142736E9A400121626 /* climediasnipper */,
 			);
 		};
 /* End PBXProject section */
@@ -483,6 +533,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		C9A171112736E9A400121626 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9A171182736E9A400121626 /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C9FD9D6B23BFF14B007A7FA4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -569,6 +627,32 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		C9A171192736E9A400121626 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GQZFDKJ72B;
+				ENABLE_HARDENED_RUNTIME = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		C9A1711A2736E9A400121626 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GQZFDKJ72B;
+				ENABLE_HARDENED_RUNTIME = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 		C9FD9D9723BFF156007A7FA4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -876,6 +960,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		C9A1711D2736E9A400121626 /* Build configuration list for PBXNativeTarget "climediasnipper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9A171192736E9A400121626 /* Debug */,
+				C9A1711A2736E9A400121626 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C9FD9D6A23BFF14B007A7FA4 /* Build configuration list for PBXProject "memefolder" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

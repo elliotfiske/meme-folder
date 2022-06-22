@@ -15,14 +15,6 @@ import RxSwift
 public class PhotoModel: NSObject, PHPhotoLibraryChangeObserver {
     static let shared = PhotoModel()
     
-    public class PhotoRetrievalError: Error {
-        var message: String
-        
-        init(message: String) {
-            self.message = message
-        }
-    }
-    
     public var allPhotosFetchResult: PHFetchResult<PHAsset>?
     
     public func photoLibraryDidChange(_ changeInstance: PHChange) {
@@ -45,23 +37,23 @@ public class PhotoModel: NSObject, PHPhotoLibraryChangeObserver {
     func getPhotoData(for asset: PHAsset) -> Observable<UIImage> {
         return Observable.create {
             subscriber in
-            
+
             let requestId = PHImageManager
                 .default()
                 .requestImage(for: asset, targetSize: CGSize.zero, contentMode: .aspectFit, options: nil, resultHandler: {
                     image, infoDict in
                     guard let imageUnwrapped = image else {
-                        subscriber.onError(PhotoRetrievalError(message: "Oh no some kind of error! Didn't get the photo data!"))
+//                        subscriber.onError(PhotoRetrievalError(message: "Oh no some kind of error! Didn't get the photo data!"))
                         return
                     }
-                    
+
                     subscriber.onNext(imageUnwrapped)
                 })
-            
+
             return Disposables.create {
-                PHImageManager
-                    .default()
-                    .cancelImageRequest(requestId)
+//                PHImageManager
+//                    .default()
+//                    .cancelImageRequest(requestId)
             }
         }
     }
@@ -85,8 +77,7 @@ public class PhotoModel: NSObject, PHPhotoLibraryChangeObserver {
             observer in
             
             self.allPhotosFetchResult = PHAsset.fetchAssets(with: allPhotosOptions)
-            
-            PHPhotoLibrary.shared().register(self)
+
             
             var requestId: PHImageRequestID?
             let manager = PHImageManager.default()
@@ -96,22 +87,22 @@ public class PhotoModel: NSObject, PHPhotoLibraryChangeObserver {
                 let imageRequestOptions = PHImageRequestOptions()
                 imageRequestOptions.deliveryMode = .fastFormat
                 
-                requestId = manager.requestImage(for: lastAsset,
-                                                 targetSize: CGSize.init(width: 200, height: 200),
-                                                 contentMode: .aspectFit,
-                                                 options: imageRequestOptions,
-                                                 resultHandler: {
-                                                    image, dict in
-                                                    if let imageUnwrapped = image {
-                                                        observer.onNext(imageUnwrapped)
-                                                    } else {
-                                                        if let errorMessage = dict?[PHImageErrorKey] as? String {
-                                                            observer.onError(PhotoRetrievalError(message: errorMessage))
-                                                        } else {
-                                                            observer.onError(PhotoRetrievalError(message: "Couldn't retrieve image..."))
-                                                        }
-                                                    }
-                                                 })
+//                requestId = manager.requestImage(for: lastAsset,
+//                                                 targetSize: CGSize.init(width: 200, height: 200),
+//                                                 contentMode: .aspectFit,
+//                                                 options: imageRequestOptions,
+//                                                 resultHandler: {
+//                                                    image, dict in
+//                                                    if let imageUnwrapped = image {
+//                                                        observer.onNext(imageUnwrapped)
+//                                                    } else {
+//                                                        if let errorMessage = dict?[PHImageErrorKey] as? String {
+//                                                            observer.onError(PhotoRetrievalError(message: errorMessage))
+//                                                        } else {
+//                                                            observer.onError(PhotoRetrievalError(message: "Couldn't retrieve image..."))
+//                                                        }
+//                                                    }
+//                                                 })
             }
             
             return Disposables.create {

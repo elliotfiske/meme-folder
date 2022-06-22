@@ -12,10 +12,9 @@ import Photos
 import RxSwift
 import RxCocoa
 
-private let reuseIdentifier = "Cell"
+import YoutubeDL
 
-extension Reactive where Base: PHCachingImageManager {
-}
+private let reuseIdentifier = "Cell"
 
 //
 // Elliot is still trying to figure out the best way to set this up with xibs, storyboards and nonsense.
@@ -31,9 +30,11 @@ extension Reactive where Base: PHCachingImageManager {
 //  from there to here.
 //
 
-class RecentPhotosCollectionViewController: UIViewController, UICollectionViewDelegate,
-                                            UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class RecentPhotosCollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
+    
+    fileprivate var allPhotosFetchResult: PHFetchResult<PHAsset>?
+    fileprivate let changeObserver = PhotoLibraryChangeObserver()
     fileprivate let cachingManager = PHCachingImageManager()
     
     @IBOutlet weak var collectionViewLayout: UICollectionViewFlowLayout!
@@ -43,22 +44,42 @@ class RecentPhotosCollectionViewController: UIViewController, UICollectionViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
+        
+        let allPhotosOptions = PHFetchOptions()
+        allPhotosOptions.sortDescriptors = [
+            NSSortDescriptor(
+                key: "creationDate",
+                ascending: false)
+        ]
+        
+        allPhotosOptions.fetchLimit = 100
+        allPhotosOptions.includeAssetSourceTypes = [.typeCloudShared, .typeUserLibrary, .typeiTunesSynced]
+        
+        allPhotosFetchResult = PHAsset.fetchAssets(with: allPhotosOptions)
+        
         // Register cell classes
         self.collectionView.register(UINib(nibName: "ImageCell", bundle: .main), forCellWithReuseIdentifier: reuseIdentifier)
         
-        PhotoModel.shared.getRecentPhotos()
-            .subscribe(onNext: {
-                [weak self] _ in
-                self?.collectionView.reloadData()
-            })
-            .disposed(by: rx.disposeBag)
-        
         let itemWidth = view.bounds.width / 4
         collectionViewLayout.itemSize = CGSize(width: itemWidth, height: itemWidth)
+        
+        changeObserver.rx.photoLibraryDidChange
+            .observe(on: MainScheduler.instance)
+            .bind(onNext: {
+                [weak self] change in
+                self?.handleChange(change)
+            })
+            .disposed(by: rx.disposeBag)
+    }
+    
+    func handleChange(_ change: PHChange) {
+        guard let fetchResult = allPhotosFetchResult,
+              let changes = change.changeDetails(for: fetchResult)
+            else { return }
+        
+        allPhotosFetchResult = changes.fetchResultAfterChanges
+        
+        collectionView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -72,7 +93,7 @@ class RecentPhotosCollectionViewController: UIViewController, UICollectionViewDe
     // MARK: UICollectionViewDataSource
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return PhotoModel.shared.allPhotosFetchResult?.count ?? 0
+        return allPhotosFetchResult?.count ?? 0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -83,44 +104,33 @@ class RecentPhotosCollectionViewController: UIViewController, UICollectionViewDe
             return cell
         }
         
-        guard let asset = PhotoModel.shared.allPhotosFetchResult?.object(at: indexPath.row) else {
+        guard let asset = allPhotosFetchResult?.object(at: indexPath.row) else {
             return imageCell
         }
         
         imageCell.assetIdentifier = asset.localIdentifier
-        cachingManager.requestImage(for: asset, targetSize: thumbnailSize, contentMode: .aspectFill, options: nil, resultHandler: {
-            image, _ in
-            
-            // The cell may have been recycled by the time this handler gets called;
-            // set the cell's thumbnail image only if it's still showing the same asset.
-            if imageCell.assetIdentifier == asset.localIdentifier {
+        
+        cachingManager.rx.requestImage(for: asset,
+                                       targetSize: thumbnailSize,
+                                       contentMode: .aspectFill,
+                                       options: nil)
+            .subscribe(onNext: {
+                image in
                 imageCell.imageView.image = image
-            }
-        })
+            }, onError: {
+                err in
+                // TODO: Surface error to user, and also send it to Firebase.
+                print("Some kind of error! \(err)")
+            })
+            .disposed(by: imageCell.reuseDisposeBag)
     
         return imageCell
     }
 
-    // MARK: UICollectionViewDelegateFlowLayout
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let numCols = 4
-//
-//        let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
-//        let totalSpace = flowLayout.sectionInset.left
-//            + flowLayout.sectionInset.right
-//            + (flowLayout.minimumInteritemSpacing * CGFloat(numCols - 1))
-//        let size = (collectionView.bounds.width - totalSpace) / CGFloat(numCols)
-//
-//        thumbnailSize = CGSize(width: size, height: size)
-//
-//        return thumbnailSize
-//    }
-    
     // MARK: UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let asset = PhotoModel.shared.allPhotosFetchResult?.object(at: indexPath.row) else {
+        guard let asset = allPhotosFetchResult?.object(at: indexPath.row) else {
             return
         }
         
@@ -128,35 +138,6 @@ class RecentPhotosCollectionViewController: UIViewController, UICollectionViewDe
         photoController.assetToDisplay = asset
         navigationController?.pushViewController(photoController, animated: true)
     }
-    
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
@@ -171,13 +152,11 @@ class RecentPhotosCollectionViewController: UIViewController, UICollectionViewDe
             
             collectionView.performBatchUpdates({
                 let newWidth = size.width / 4
+                
                 layout.itemSize = CGSize.init(width: newWidth, height: newWidth)
                 
                 collectionView.setCollectionViewLayout(layout, animated: false)
             })
         })
     }
-    
-    
-    
 }

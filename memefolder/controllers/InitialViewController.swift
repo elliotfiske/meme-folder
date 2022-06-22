@@ -43,7 +43,9 @@ class InitialViewController: UIViewController {
         // Simulates getting a Tweet URL via the Share panel and passing it along
 //        controlla.tweetURLToLoad = "https://twitter.com/animatedtext/status/1220134801430024193?s=20"     // 0:03 gif
         
-        controlla.tweetURLToLoad = "https://twitter.com/CultureCrave/status/1226622427599257601"          // 0:16 video
+//        controlla.tweetURLToLoad = "https://twitter.com/CultureCrave/status/1226622427599257601"          // 0:16 video
+        
+        controlla.tweetURLToLoad = "https://twitter.com/cyberglittter/status/1413344653408153600?s=20" // 2 Images
         
 //        controlla.tweetURLToLoad = "https://twitter.com/tortellinidance/status/1217858057201504257?s=20"    // 1:30 video
         

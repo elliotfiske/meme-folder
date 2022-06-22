@@ -40,6 +40,14 @@ public enum InternetError: Error {
    case badlyStructuredJSON(String)
 }
 
+public class PhotoRetrievalError: Error {
+    var message: String
+    
+    init(message: String) {
+        self.message = message
+    }
+}
+
 //
 // Helper method: Swift's default JSON decoder throws an unhelpful
 //    "NSError" instead of a nice usable Error type.

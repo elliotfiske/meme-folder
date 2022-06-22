@@ -70,9 +70,9 @@ public class TwitterAPI {
             let mediaType = mediaArray[0].type
             
             if mediaType == "video" {
-                return try self.parseVideoInfo(media: mediaArray[0])
-            } else if mediaType == "image" {
-                return .images(urls: [])    // TODO: This
+                return self.parseVideoInfo(media: mediaArray[0])
+            } else if mediaType == "photo" {
+                return .images(urls: mediaArray.map { $0.mediaURLHTTPS })
             } else {
                 fatalError("AHHHH")
             }
@@ -85,14 +85,14 @@ public class TwitterAPI {
     /// Given the media content of a tweet with type == "video", parse out the
     ///     thumbnail and the video variant URLs.
     ///
-    func parseVideoInfo(media: Media) throws -> MediaResultURLs {
+    func parseVideoInfo(media: Media) -> MediaResultURLs {
         var variants = media.videoInfo!.variants
         variants = variants.filter { $0.contentType == "video/mp4" }
         let variantURLs = variants.map { $0.url }
         
         return .videos(thumbnail: media.mediaURLHTTPS, urls: variantURLs)
     }
-    
+     
     // We will need this guest token to access Twitter as a guest, until
     //    Twitter approves my developer account
     var cachedGuestToken: String?

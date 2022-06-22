@@ -44,12 +44,21 @@ class PhotoViewController: UIViewController {
     }
     
     func loadPhoto() {
-        PhotoModel.shared.getPhotoData(for: assetToDisplay!)
-            .subscribe(onNext: {
-                [weak self] image in
+        guard let asset = assetToDisplay else {
+            return
+        }
+        
+        let requestId = PHImageManager
+            .default()
+            .requestImage(for: asset, targetSize: self.view.bounds.size, contentMode: .aspectFit, options: nil, resultHandler: {
+                [weak self] image, infoDict in
+                guard let imageUnwrapped = image else {
+//                    subscriber.onError(PhotoRetrievalError(message: "Oh no some kind of error! Didn't get the photo data!"))
+                    return
+                }
+
                 self?.photoViewer.image = image
             })
-            .disposed(by: rx.disposeBag)
     }
     
     func loadVideo() {

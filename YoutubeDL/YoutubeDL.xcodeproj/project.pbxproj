@@ -29,6 +29,7 @@
 		C96BD9E023F26E210008CDC8 /* AVPlayer+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96BD9DF23F26E210008CDC8 /* AVPlayer+Rx.swift */; };
 		C96BD9E423F393620008CDC8 /* StringFormatHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96BD9E323F393620008CDC8 /* StringFormatHelpers.swift */; };
 		C96BD9E623F39D940008CDC8 /* MathHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96BD9E523F39D940008CDC8 /* MathHelpers.swift */; };
+		C97A52E12607D7C3008B76BD /* PhotoLibraryChangeObserver+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97A52E02607D7C3008B76BD /* PhotoLibraryChangeObserver+Rx.swift */; };
 		C9A6B23023E663420005A41B /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C9A6B22F23E663420005A41B /* RxSwift */; };
 		C9A6B23223E663420005A41B /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = C9A6B23123E663420005A41B /* RxTest */; };
 		C9A6B23423E663420005A41B /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = C9A6B23323E663420005A41B /* RxRelay */; };
@@ -39,6 +40,7 @@
 		C9B98A7523EBCC85003A1EF4 /* TwitterMediaModel+Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B98A7423EBCC85003A1EF4 /* TwitterMediaModel+Player.swift */; };
 		C9C75DDB25B947DB00764114 /* NSObject-Rx in Frameworks */ = {isa = PBXBuildFile; productRef = C9C75DDA25B947DB00764114 /* NSObject-Rx */; };
 		C9DC270F25C8B03D0046C0FE /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = C9DC270E25C8B03D0046C0FE /* PromiseKit */; };
+		C9E240F42603E2B4008BE153 /* Photos+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E240F32603E2B4008BE153 /* Photos+Rx.swift */; };
 		C9F5111723C186400044C61A /* YoutubeDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F5110D23C186400044C61A /* YoutubeDL.framework */; };
 		C9F5111C23C186400044C61A /* YoutubeDLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F5111B23C186400044C61A /* YoutubeDLTests.swift */; };
 		C9F5111E23C186400044C61A /* YoutubeDL.h in Headers */ = {isa = PBXBuildFile; fileRef = C9F5111023C186400044C61A /* YoutubeDL.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -79,9 +81,11 @@
 		C96BD9DF23F26E210008CDC8 /* AVPlayer+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVPlayer+Rx.swift"; sourceTree = "<group>"; };
 		C96BD9E323F393620008CDC8 /* StringFormatHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringFormatHelpers.swift; sourceTree = "<group>"; };
 		C96BD9E523F39D940008CDC8 /* MathHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathHelpers.swift; sourceTree = "<group>"; };
+		C97A52E02607D7C3008B76BD /* PhotoLibraryChangeObserver+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoLibraryChangeObserver+Rx.swift"; sourceTree = "<group>"; };
 		C9B6036523CC43BE0056AEC6 /* TwitterDLViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TwitterDLViewController.xib; path = controllers/TwitterDLViewController.xib; sourceTree = SOURCE_ROOT; };
 		C9B6036923CEDA280056AEC6 /* UIViewController+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Convenience.swift"; sourceTree = "<group>"; };
 		C9B98A7423EBCC85003A1EF4 /* TwitterMediaModel+Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TwitterMediaModel+Player.swift"; sourceTree = "<group>"; };
+		C9E240F32603E2B4008BE153 /* Photos+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Photos+Rx.swift"; sourceTree = "<group>"; };
 		C9F5110D23C186400044C61A /* YoutubeDL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YoutubeDL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9F5111023C186400044C61A /* YoutubeDL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YoutubeDL.h; sourceTree = "<group>"; };
 		C9F5111123C186400044C61A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -161,8 +165,10 @@
 		C96BD9DE23F26E130008CDC8 /* reactive extensions */ = {
 			isa = PBXGroup;
 			children = (
+				C97A52E02607D7C3008B76BD /* PhotoLibraryChangeObserver+Rx.swift */,
 				C96BD9DF23F26E210008CDC8 /* AVPlayer+Rx.swift */,
 				C938B5482404DC9E00AFD740 /* AVPlayerItem+Rx.swift */,
+				C9E240F32603E2B4008BE153 /* Photos+Rx.swift */,
 			);
 			path = "reactive extensions";
 			sourceTree = "<group>";
@@ -176,6 +182,15 @@
 				C938B54624039C9200AFD740 /* AVVideoPlayerView.xib */,
 			);
 			path = storyboards;
+			sourceTree = "<group>";
+		};
+		C9E240F72603E469008BE153 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				C909550123DD1ED5006FB53C /* AspectFitImageView.swift */,
+				C909550823DE8F4F006FB53C /* RoundedCornerView.swift */,
+			);
+			path = views;
 			sourceTree = "<group>";
 		};
 		C9F5110323C186400044C61A = {
@@ -227,13 +242,12 @@
 		C9F5113C23C28A9B0044C61A /* helpers */ = {
 			isa = PBXGroup;
 			children = (
+				C9E240F72603E469008BE153 /* views */,
 				C96BD9DE23F26E130008CDC8 /* reactive extensions */,
 				C9F5113D23C28AAF0044C61A /* Array+Convenience.swift */,
 				50760B6823C4367A003D88A5 /* Errors.swift */,
 				C9F5113F23C2BA8C0044C61A /* String+Convenience.swift */,
 				C9B6036923CEDA280056AEC6 /* UIViewController+Convenience.swift */,
-				C909550123DD1ED5006FB53C /* AspectFitImageView.swift */,
-				C909550823DE8F4F006FB53C /* RoundedCornerView.swift */,
 				C909550C23DFFC7E006FB53C /* UIView+Promise.swift */,
 				C909550E23E3DA85006FB53C /* UIView+Nibloadable.swift */,
 				C96BD9E323F393620008CDC8 /* StringFormatHelpers.swift */,
@@ -381,6 +395,7 @@
 			files = (
 				C909550F23E3DA85006FB53C /* UIView+Nibloadable.swift in Sources */,
 				C9B98A7523EBCC85003A1EF4 /* TwitterMediaModel+Player.swift in Sources */,
+				C97A52E12607D7C3008B76BD /* PhotoLibraryChangeObserver+Rx.swift in Sources */,
 				C92D91E923C995810067150B /* TwitterMediaModel.swift in Sources */,
 				C909550623DE5BF7006FB53C /* VideoControlsView.swift in Sources */,
 				C938B5442400DD6500AFD740 /* AVVideoPlayerView.swift in Sources */,
@@ -397,6 +412,7 @@
 				C9F5113E23C28AAF0044C61A /* Array+Convenience.swift in Sources */,
 				C96BD9E423F393620008CDC8 /* StringFormatHelpers.swift in Sources */,
 				C9F5114023C2BA8C0044C61A /* String+Convenience.swift in Sources */,
+				C9E240F42603E2B4008BE153 /* Photos+Rx.swift in Sources */,
 				C909550923DE8F4F006FB53C /* RoundedCornerView.swift in Sources */,
 				C9388A8D23F7AD0F002E2BC2 /* DecodableTwitterStatus.swift in Sources */,
 				C96BD9E023F26E210008CDC8 /* AVPlayer+Rx.swift in Sources */,

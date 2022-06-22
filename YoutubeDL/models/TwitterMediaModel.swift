@@ -16,7 +16,7 @@ import PromiseKit
 import RxRelay
 import RxSwift
 
-public protocol TwitterMediaModelObserver : class {
+public protocol TwitterMediaModelObserver : AnyObject {
     func stateDidChange(newState: TwitterMediaModel.MediaState)
 }
 
@@ -92,6 +92,7 @@ public class TwitterMediaModel {
         }
     }
     
+    // - Tag: myCoolTag
     public func startDownloadingMedia(forTweetURL tweetURL: String) {
 
         var mediaURLToDownload: String?
@@ -103,6 +104,14 @@ public class TwitterMediaModel {
             Promise<(data: Data, response: PMKAlamofireDataResponse)> in
             
             self.setState(newState: .downloadingThumbnail)
+            
+//            Observable.flatMap(Observable.create {
+//                subscriber in
+//                
+//                mediaResults
+//                
+//                return Disposables.create()
+//            })
             
             switch (mediaResults) {
             case .videos(let thumbnail, let variants):
