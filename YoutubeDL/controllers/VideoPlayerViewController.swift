@@ -23,24 +23,21 @@ public class VideoPlayerViewController: UIView, NibLoadable {
     public lazy var loadingProgress = self.videoPlayerView.loadingProgress
     
     func commonInit() {
-        videoPlayerView.readyToPlay
-            .bind(to: videoControlsView.enabled)
-            .disposed(by: rx.disposeBag)
-        
-        (videoControlsView.isPlaying <-> videoPlayerView.isPlaying)
-            .disposed(by: rx.disposeBag)
-        
-        videoPlayerView.itemLength
-            .bind(to: videoControlsView.totalPlaybackLength)
-            .disposed(by: rx.disposeBag)
-        
-        videoPlayerView.currPlaybackTime
-            .bind(to: videoControlsView.currPlaybackTime)
-            .disposed(by: rx.disposeBag)
-        
-        videoControlsView.requestedSeekProgress
-            .bind(to: videoPlayerView.requestedSeekTime)
-            .disposed(by: rx.disposeBag)
+        rx.disposeBag.insert([
+            videoPlayerView.readyToPlay
+                .bind(to: videoControlsView.enabled),
+            
+            (videoControlsView.isPlaying <-> videoPlayerView.isPlaying),
+            
+            videoPlayerView.itemLength
+                .bind(to: videoControlsView.totalPlaybackLength),
+            
+            videoPlayerView.currPlaybackTime
+                .bind(to: videoControlsView.currPlaybackTime),
+            
+            videoControlsView.requestedSeekProgress
+                .bind(to: videoPlayerView.requestedSeekTime)
+        ])
     }
     
     func stopPlaying() {

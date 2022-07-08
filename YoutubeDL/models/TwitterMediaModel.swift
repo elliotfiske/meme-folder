@@ -16,13 +16,13 @@ import PromiseKit
 import RxRelay
 import RxSwift
 
+import NSObject_Rx
+
 public protocol TwitterMediaModelObserver : AnyObject {
     func stateDidChange(newState: TwitterMediaModel.MediaState)
 }
 
-public class TwitterMediaModel {
-    
-    private let disposeBag = DisposeBag()   // TODO: Extensionize me
+public class TwitterMediaModel: HasDisposeBag {
     
     public weak var stateObserver: TwitterMediaModelObserver?
     
@@ -51,6 +51,7 @@ public class TwitterMediaModel {
     //      which the model then uses to transform its own internal state.
     private let state_internal = BehaviorRelay<MediaState>(value: .idle)
     public lazy var state = state_internal.asObservable()
+    
     
     private func setState(newState: MediaState) {
         state_internal.accept(newState)

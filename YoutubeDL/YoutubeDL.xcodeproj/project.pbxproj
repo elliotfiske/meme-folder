@@ -29,6 +29,11 @@
 		C96BD9E023F26E210008CDC8 /* AVPlayer+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96BD9DF23F26E210008CDC8 /* AVPlayer+Rx.swift */; };
 		C96BD9E423F393620008CDC8 /* StringFormatHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96BD9E323F393620008CDC8 /* StringFormatHelpers.swift */; };
 		C96BD9E623F39D940008CDC8 /* MathHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96BD9E523F39D940008CDC8 /* MathHelpers.swift */; };
+		C977FB8D286D2D580038CF82 /* ReSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C977FB8C286D2D580038CF82 /* ReSwift */; };
+		C977FB8F286E74F50038CF82 /* APIDefiner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C977FB8E286E74F50038CF82 /* APIDefiner.swift */; };
+		C977FB93287105EB0038CF82 /* EpicMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = C977FB92287105EA0038CF82 /* EpicMiddleware.swift */; };
+		C977FB9528727D160038CF82 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = C977FB9428727D160038CF82 /* Store.swift */; };
+		C977FB97287387270038CF82 /* Store+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C977FB96287387270038CF82 /* Store+Rx.swift */; };
 		C97A52E12607D7C3008B76BD /* PhotoLibraryChangeObserver+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97A52E02607D7C3008B76BD /* PhotoLibraryChangeObserver+Rx.swift */; };
 		C9A6B23023E663420005A41B /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C9A6B22F23E663420005A41B /* RxSwift */; };
 		C9A6B23223E663420005A41B /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = C9A6B23123E663420005A41B /* RxTest */; };
@@ -81,6 +86,10 @@
 		C96BD9DF23F26E210008CDC8 /* AVPlayer+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVPlayer+Rx.swift"; sourceTree = "<group>"; };
 		C96BD9E323F393620008CDC8 /* StringFormatHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringFormatHelpers.swift; sourceTree = "<group>"; };
 		C96BD9E523F39D940008CDC8 /* MathHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathHelpers.swift; sourceTree = "<group>"; };
+		C977FB8E286E74F50038CF82 /* APIDefiner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDefiner.swift; sourceTree = "<group>"; };
+		C977FB92287105EA0038CF82 /* EpicMiddleware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpicMiddleware.swift; sourceTree = "<group>"; };
+		C977FB9428727D160038CF82 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		C977FB96287387270038CF82 /* Store+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Store+Rx.swift"; sourceTree = "<group>"; };
 		C97A52E02607D7C3008B76BD /* PhotoLibraryChangeObserver+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoLibraryChangeObserver+Rx.swift"; sourceTree = "<group>"; };
 		C9B6036523CC43BE0056AEC6 /* TwitterDLViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TwitterDLViewController.xib; path = controllers/TwitterDLViewController.xib; sourceTree = SOURCE_ROOT; };
 		C9B6036923CEDA280056AEC6 /* UIViewController+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Convenience.swift"; sourceTree = "<group>"; };
@@ -105,6 +114,7 @@
 				C9A6B23623E663420005A41B /* RxCocoa in Frameworks */,
 				C9DC270F25C8B03D0046C0FE /* PromiseKit in Frameworks */,
 				C9A6B23423E663420005A41B /* RxRelay in Frameworks */,
+				C977FB8D286D2D580038CF82 /* ReSwift in Frameworks */,
 				C927E76F25C8A83500F835C1 /* SwiftyJSON in Frameworks */,
 				C9F5113823C18AD60044C61A /* PMKAlamofire in Frameworks */,
 				C927E75825C78F4C00F835C1 /* RxBiBinding in Frameworks */,
@@ -148,8 +158,12 @@
 		C92D91E523C98F8C0067150B /* models */ = {
 			isa = PBXGroup;
 			children = (
+				C977FB92287105EA0038CF82 /* EpicMiddleware.swift */,
 				C92D91E823C995810067150B /* TwitterMediaModel.swift */,
 				C9B98A7423EBCC85003A1EF4 /* TwitterMediaModel+Player.swift */,
+				C977FB8E286E74F50038CF82 /* APIDefiner.swift */,
+				C977FB9428727D160038CF82 /* Store.swift */,
+				C977FB96287387270038CF82 /* Store+Rx.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -293,6 +307,7 @@
 				C927E75725C78F4C00F835C1 /* RxBiBinding */,
 				C927E76E25C8A83500F835C1 /* SwiftyJSON */,
 				C9DC270E25C8B03D0046C0FE /* PromiseKit */,
+				C977FB8C286D2D580038CF82 /* ReSwift */,
 			);
 			productName = YoutubeDL;
 			productReference = C9F5110D23C186400044C61A /* YoutubeDL.framework */;
@@ -355,6 +370,7 @@
 				C927E75625C78F4B00F835C1 /* XCRemoteSwiftPackageReference "RxBiBinding" */,
 				C927E76D25C8A83500F835C1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				C9DC270D25C8B03D0046C0FE /* XCRemoteSwiftPackageReference "PromiseKit" */,
+				C977FB8B286D2D580038CF82 /* XCRemoteSwiftPackageReference "ReSwift" */,
 			);
 			productRefGroup = C9F5110E23C186400044C61A /* Products */;
 			projectDirPath = "";
@@ -395,9 +411,12 @@
 			files = (
 				C909550F23E3DA85006FB53C /* UIView+Nibloadable.swift in Sources */,
 				C9B98A7523EBCC85003A1EF4 /* TwitterMediaModel+Player.swift in Sources */,
+				C977FB8F286E74F50038CF82 /* APIDefiner.swift in Sources */,
+				C977FB93287105EB0038CF82 /* EpicMiddleware.swift in Sources */,
 				C97A52E12607D7C3008B76BD /* PhotoLibraryChangeObserver+Rx.swift in Sources */,
 				C92D91E923C995810067150B /* TwitterMediaModel.swift in Sources */,
 				C909550623DE5BF7006FB53C /* VideoControlsView.swift in Sources */,
+				C977FB9528727D160038CF82 /* Store.swift in Sources */,
 				C938B5442400DD6500AFD740 /* AVVideoPlayerView.swift in Sources */,
 				C909550D23DFFC7E006FB53C /* UIView+Promise.swift in Sources */,
 				50760B6923C4367A003D88A5 /* Errors.swift in Sources */,
@@ -414,6 +433,7 @@
 				C9F5114023C2BA8C0044C61A /* String+Convenience.swift in Sources */,
 				C9E240F42603E2B4008BE153 /* Photos+Rx.swift in Sources */,
 				C909550923DE8F4F006FB53C /* RoundedCornerView.swift in Sources */,
+				C977FB97287387270038CF82 /* Store+Rx.swift in Sources */,
 				C9388A8D23F7AD0F002E2BC2 /* DecodableTwitterStatus.swift in Sources */,
 				C96BD9E023F26E210008CDC8 /* AVPlayer+Rx.swift in Sources */,
 			);
@@ -706,6 +726,14 @@
 				kind = branch;
 			};
 		};
+		C977FB8B286D2D580038CF82 /* XCRemoteSwiftPackageReference "ReSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReSwift/ReSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
 		C9A6B22E23E663420005A41B /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:ReactiveX/RxSwift.git";
@@ -750,6 +778,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C927E76D25C8A83500F835C1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
+		};
+		C977FB8C286D2D580038CF82 /* ReSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C977FB8B286D2D580038CF82 /* XCRemoteSwiftPackageReference "ReSwift" */;
+			productName = ReSwift;
 		};
 		C9A6B22F23E663420005A41B /* RxSwift */ = {
 			isa = XCSwiftPackageProductDependency;

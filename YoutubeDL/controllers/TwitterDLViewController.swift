@@ -29,6 +29,7 @@ public class TwitterDLViewController: UIViewController, UIAdaptivePresentationCo
     @IBOutlet weak var saveToCameraRollButton: UIButton!
     
     public override func willMove(toParent parent: UIViewController?) {
+        super.willMove(toParent: parent)
         self.parent?.presentationController?.delegate = self
     }
     

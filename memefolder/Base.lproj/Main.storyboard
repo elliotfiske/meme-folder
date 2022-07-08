@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,30 +18,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="akf-17-HIq">
-                                <rect key="frame" x="94" y="44" width="226" height="30"/>
-                                <state key="normal" title="click to simulate &quot;share&quot; pressed"/>
-                                <connections>
-                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aw9-JF-S5G"/>
-                                </connections>
-                            </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xFS-UF-c22">
-                                <rect key="frame" x="0.0" y="92" width="414" height="770"/>
+                                <rect key="frame" x="0.0" y="78" width="414" height="784"/>
                             </containerView>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="oW2-T9-M9u">
+                                <rect key="frame" x="80" y="48" width="254" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="akf-17-HIq">
+                                        <rect key="frame" x="0.0" y="0.0" width="226" height="30"/>
+                                        <state key="normal" title="click to simulate &quot;share&quot; pressed"/>
+                                        <connections>
+                                            <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aw9-JF-S5G"/>
+                                        </connections>
+                                    </button>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="afM-Aw-XR2">
+                                        <rect key="frame" x="234" y="5" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="akf-17-HIq" secondAttribute="bottom" id="5B2-Ln-lNo"/>
+                                    <constraint firstItem="akf-17-HIq" firstAttribute="top" secondItem="oW2-T9-M9u" secondAttribute="top" id="fba-0M-9B3"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="xFS-UF-c22" secondAttribute="bottom" id="GQ7-Lq-Kaz"/>
-                            <constraint firstItem="akf-17-HIq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="mIb-mr-Oxl"/>
+                            <constraint firstItem="oW2-T9-M9u" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Zaa-bO-xzx"/>
+                            <constraint firstItem="oW2-T9-M9u" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="4" id="hRb-Qf-XVI"/>
                             <constraint firstItem="xFS-UF-c22" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="sIC-Yd-HLo"/>
-                            <constraint firstItem="akf-17-HIq" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="u22-au-EAc"/>
+                            <constraint firstItem="xFS-UF-c22" firstAttribute="top" secondItem="oW2-T9-M9u" secondAttribute="bottom" id="tfG-fb-q9R"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xFS-UF-c22" secondAttribute="trailing" id="upo-au-UK0"/>
-                            <constraint firstItem="xFS-UF-c22" firstAttribute="top" secondItem="akf-17-HIq" secondAttribute="bottom" constant="18" id="zPu-HT-hej"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="coolButton" destination="akf-17-HIq" id="VWC-1y-Fsz"/>
                         <outlet property="recentPhotosContainer" destination="xFS-UF-c22" id="1pC-Fn-rAP"/>
+                        <outlet property="testActivityView" destination="afM-Aw-XR2" id="uwM-hR-wxO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
