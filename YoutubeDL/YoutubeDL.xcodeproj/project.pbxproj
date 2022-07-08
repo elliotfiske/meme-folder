@@ -26,6 +26,7 @@
 		C938B5442400DD6500AFD740 /* AVVideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C938B5432400DD6500AFD740 /* AVVideoPlayerView.swift */; };
 		C938B54724039C9200AFD740 /* AVVideoPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C938B54624039C9200AFD740 /* AVVideoPlayerView.xib */; };
 		C938B5492404DC9E00AFD740 /* AVPlayerItem+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C938B5482404DC9E00AFD740 /* AVPlayerItem+Rx.swift */; };
+		C93E998D2877AEF7005FE6AD /* Get in Frameworks */ = {isa = PBXBuildFile; productRef = C93E998C2877AEF7005FE6AD /* Get */; };
 		C96BD9E023F26E210008CDC8 /* AVPlayer+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96BD9DF23F26E210008CDC8 /* AVPlayer+Rx.swift */; };
 		C96BD9E423F393620008CDC8 /* StringFormatHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96BD9E323F393620008CDC8 /* StringFormatHelpers.swift */; };
 		C96BD9E623F39D940008CDC8 /* MathHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96BD9E523F39D940008CDC8 /* MathHelpers.swift */; };
@@ -120,6 +121,7 @@
 				C927E75825C78F4C00F835C1 /* RxBiBinding in Frameworks */,
 				C9A6B23023E663420005A41B /* RxSwift in Frameworks */,
 				C9C75DDB25B947DB00764114 /* NSObject-Rx in Frameworks */,
+				C93E998D2877AEF7005FE6AD /* Get in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +310,7 @@
 				C927E76E25C8A83500F835C1 /* SwiftyJSON */,
 				C9DC270E25C8B03D0046C0FE /* PromiseKit */,
 				C977FB8C286D2D580038CF82 /* ReSwift */,
+				C93E998C2877AEF7005FE6AD /* Get */,
 			);
 			productName = YoutubeDL;
 			productReference = C9F5110D23C186400044C61A /* YoutubeDL.framework */;
@@ -371,6 +374,7 @@
 				C927E76D25C8A83500F835C1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				C9DC270D25C8B03D0046C0FE /* XCRemoteSwiftPackageReference "PromiseKit" */,
 				C977FB8B286D2D580038CF82 /* XCRemoteSwiftPackageReference "ReSwift" */,
+				C93E998B2877AEF7005FE6AD /* XCRemoteSwiftPackageReference "Get" */,
 			);
 			productRefGroup = C9F5110E23C186400044C61A /* Products */;
 			projectDirPath = "";
@@ -726,6 +730,14 @@
 				kind = branch;
 			};
 		};
+		C93E998B2877AEF7005FE6AD /* XCRemoteSwiftPackageReference "Get" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Get";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.8.0;
+			};
+		};
 		C977FB8B286D2D580038CF82 /* XCRemoteSwiftPackageReference "ReSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReSwift/ReSwift";
@@ -778,6 +790,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C927E76D25C8A83500F835C1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
+		};
+		C93E998C2877AEF7005FE6AD /* Get */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C93E998B2877AEF7005FE6AD /* XCRemoteSwiftPackageReference "Get" */;
+			productName = Get;
 		};
 		C977FB8C286D2D580038CF82 /* ReSwift */ = {
 			isa = XCSwiftPackageProductDependency;
