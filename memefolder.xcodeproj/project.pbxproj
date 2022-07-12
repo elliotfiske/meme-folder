@@ -15,6 +15,9 @@
 		C937C38125EEE269009A8410 /* PhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C937C37F25EEE269009A8410 /* PhotoViewController.xib */; };
 		C9388A9023FE5208002E2BC2 /* YoutubeDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F5112D23C186410044C61A /* YoutubeDL.framework */; };
 		C93B407E25CCB01100E703BA /* PhotoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93B407D25CCB01100E703BA /* PhotoModel.swift */; };
+		C93E99962877B415005FE6AD /* .create-api.yaml in Resources */ = {isa = PBXBuildFile; fileRef = C93E99952877B415005FE6AD /* .create-api.yaml */; };
+		C9864971287A89A100DE65D4 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9864970287A89A100DE65D4 /* TutorialView.swift */; };
+		C9864975287A89E000DE65D4 /* TutorialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9864974287A89E000DE65D4 /* TutorialView.xib */; };
 		C993A2E325F436C000198EFC /* RecentPhotosCollectionViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C993A2E225F436C000198EFC /* RecentPhotosCollectionViewController.storyboard */; };
 		C9A171182736E9A400121626 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A171172736E9A400121626 /* main.swift */; };
 		C9F5110123C17B770044C61A /* YoutubeDL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F5110023C17B770044C61A /* YoutubeDL.framework */; };
@@ -124,6 +127,9 @@
 		C937C37E25EEE269009A8410 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		C937C37F25EEE269009A8410 /* PhotoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoViewController.xib; sourceTree = "<group>"; };
 		C93B407D25CCB01100E703BA /* PhotoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModel.swift; sourceTree = "<group>"; };
+		C93E99952877B415005FE6AD /* .create-api.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = ".create-api.yaml"; sourceTree = "<group>"; };
+		C9864970287A89A100DE65D4 /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
+		C9864974287A89E000DE65D4 /* TutorialView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TutorialView.xib; sourceTree = "<group>"; };
 		C993A2E225F436C000198EFC /* RecentPhotosCollectionViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RecentPhotosCollectionViewController.storyboard; sourceTree = "<group>"; };
 		C9A171152736E9A400121626 /* climediasnipper */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = climediasnipper; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9A171172736E9A400121626 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -200,6 +206,8 @@
 				C9F6E52125D33BB400F115B3 /* ImageCell.swift */,
 				C90E11A625E70E2F0029DBC1 /* SegmentHeader.xib */,
 				C90E11AC25E710D10029DBC1 /* SegmentHeader.swift */,
+				C9864970287A89A100DE65D4 /* TutorialView.swift */,
+				C9864974287A89E000DE65D4 /* TutorialView.xib */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -252,6 +260,7 @@
 		C9FD9D6623BFF14B007A7FA4 = {
 			isa = PBXGroup;
 			children = (
+				C93E99952877B415005FE6AD /* .create-api.yaml */,
 				C9F5114123C2CAA30044C61A /* GoogleService-Info.plist */,
 				C9F5112723C186400044C61A /* YoutubeDL.xcodeproj */,
 				C9FD9D7123BFF14B007A7FA4 /* memefolder */,
@@ -496,10 +505,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9864975287A89E000DE65D4 /* TutorialView.xib in Resources */,
 				C937C38125EEE269009A8410 /* PhotoViewController.xib in Resources */,
 				C9FD9D7F23BFF155007A7FA4 /* LaunchScreen.storyboard in Resources */,
 				C9F5114223C2CAA40044C61A /* GoogleService-Info.plist in Resources */,
 				C9F6E52425D33BB400F115B3 /* ImageCell.xib in Resources */,
+				C93E99962877B415005FE6AD /* .create-api.yaml in Resources */,
 				C9FD9D7C23BFF155007A7FA4 /* AppIcons.xcassets in Resources */,
 				C90E11A725E70E2F0029DBC1 /* SegmentHeader.xib in Resources */,
 				C9FD9D7A23BFF14B007A7FA4 /* Main.storyboard in Resources */,
@@ -549,6 +560,7 @@
 				C90E11AD25E710D10029DBC1 /* SegmentHeader.swift in Sources */,
 				C9FD9D7323BFF14B007A7FA4 /* AppDelegate.swift in Sources */,
 				C92D91ED23C999010067150B /* InitialViewController.swift in Sources */,
+				C9864971287A89A100DE65D4 /* TutorialView.swift in Sources */,
 				C937C38025EEE269009A8410 /* PhotoViewController.swift in Sources */,
 				C93B407E25CCB01100E703BA /* PhotoModel.swift in Sources */,
 				C9F6E52325D33BB400F115B3 /* ImageCell.swift in Sources */,

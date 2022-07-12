@@ -10,6 +10,7 @@ import UIKit
 import SwiftyJSON
 
 public enum TwitterAPIError: Error {
+    
    case invalidToken(String)
    case invalidInput(String)
    case emptyInput

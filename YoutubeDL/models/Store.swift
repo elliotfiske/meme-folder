@@ -36,6 +36,11 @@ public enum NumbersAPIAction: Action {
     case numberFact(APIState<String>)
 }
 
+public enum TwitterAPIAction: Action {
+    case getGuestToken(APIState<String>)
+    case getTweetInfo(APIState<TwitterAPIType>)
+}
+
 func appReducer(action: Action, state: TwitterMediaGrabberState?) -> TwitterMediaGrabberState {
     var state = state ?? TwitterMediaGrabberState()
     
@@ -48,45 +53,7 @@ func appReducer(action: Action, state: TwitterMediaGrabberState?) -> TwitterMedi
     return state
 }
 
-let myEpic: Epic<TwitterMediaGrabberState> = {
-    action$, getState in
-    
-    
-    
-    return action$.compactMap {
-        action -> String? in
-        if case let NumbersAPIAction.getNumberFact(num) = action {
-            return "https://pokeapi.co/api/v2/type/\(num)"
-        }
-        return nil
-    }.flatMap {
-        url in
-        
-        return Observable.create {
-            observer in
-            
-            observer.onNext(NumbersAPIAction.numberFact(.pending))
-            
-            firstly {
-                return Alamofire
-                    .request(url, method: .get)
-                    .responseData()
-            }
-            .done { data, _ in
-                let json = try parseJSON(data: data)
-                observer.onNext(NumbersAPIAction.numberFact(.fulfilled(json["name"].stringValue)))
-            }
-            .catch {
-                error in
-                observer.onNext(NumbersAPIAction.numberFact(.error(error)))
-            }
-            
-            return Disposables.create()
-        }
-    }
-}
-
-let epicMiddleware = EpicMiddleware<TwitterMediaGrabberState>(epic: myEpic).createMiddleware()
+let epicMiddleware = EpicMiddleware<TwitterMediaGrabberState>(epic: networkingEpic).createMiddleware()
 
 public let store = Store(reducer: appReducer, state: nil, middleware: [epicMiddleware])
 

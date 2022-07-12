@@ -6,7 +6,7 @@
 import Foundation
 
 // MARK: - TwitterAPIType
-struct TwitterAPIType: Codable {
+public struct TwitterAPIType: Codable {
     let idStr: String
     let entities, extendedEntities: Entities
     let user: User

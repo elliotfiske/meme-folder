@@ -25,6 +25,8 @@ class InitialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         store.subscribeToValue(keyPath: \.coolPokemonFact)
             .map { if case .pending = $0 { return false } else { return true } }
             .debounce(.milliseconds(250), scheduler: MainScheduler.instance)
@@ -53,7 +55,6 @@ class InitialViewController: UIViewController {
         
         
         // TODO: I'll almost certainly need to do this again so I should make a helper for it.
-        
         let storyboard = UIStoryboard(name: "RecentPhotosCollectionViewController", bundle: nil)
         guard let controller = storyboard.instantiateInitialViewController() else {
             return

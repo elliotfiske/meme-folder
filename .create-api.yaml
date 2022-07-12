@@ -1,0 +1,3 @@
+rename:
+    entities:
+        Error: "TwitterError"

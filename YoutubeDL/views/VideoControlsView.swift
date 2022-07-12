@@ -14,6 +14,8 @@ import RxCocoa
 import RxSwift
 import NSObject_Rx
 
+import Rswift
+
 @IBDesignable
 public class VideoControlsView: UIView, NibLoadable {
     
@@ -103,11 +105,8 @@ public class VideoControlsView: UIView, NibLoadable {
     func setupPlayPauseButton() {
         isPlaying
             .map { playing in
-                let imageName = playing ? "pause" : "play"
-                let image = UIImage(named:imageName,
-                                    in:Bundle(for: type(of: self)),
-                                    compatibleWith:nil)!
-                return image
+                let image = playing ? R.image.play() : R.image.pause()
+                return image!
             }
             .bind(to: self.playPauseButton.rx.image())
             .disposed(by: rx.disposeBag)

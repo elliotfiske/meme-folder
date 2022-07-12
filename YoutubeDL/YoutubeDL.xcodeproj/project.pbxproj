@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,13 +20,13 @@
 		C92D91E923C995810067150B /* TwitterMediaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92D91E823C995810067150B /* TwitterMediaModel.swift */; };
 		C92D91F023C9992B0067150B /* TwitterDLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92D91EE23C9992B0067150B /* TwitterDLViewController.swift */; };
 		C93767B423D8063700180F2D /* images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C93767B323D8063700180F2D /* images.xcassets */; };
-		C9388A8D23F7AD0F002E2BC2 /* DecodableTwitterStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9388A8C23F7AD0F002E2BC2 /* DecodableTwitterStatus.swift */; };
 		C938B5402400DAD300AFD740 /* VideoPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C938B53F2400DAD300AFD740 /* VideoPlayerViewController.xib */; };
 		C938B5422400DB0700AFD740 /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C938B5412400DB0700AFD740 /* VideoPlayerViewController.swift */; };
 		C938B5442400DD6500AFD740 /* AVVideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C938B5432400DD6500AFD740 /* AVVideoPlayerView.swift */; };
 		C938B54724039C9200AFD740 /* AVVideoPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C938B54624039C9200AFD740 /* AVVideoPlayerView.xib */; };
 		C938B5492404DC9E00AFD740 /* AVPlayerItem+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C938B5482404DC9E00AFD740 /* AVPlayerItem+Rx.swift */; };
 		C93E998D2877AEF7005FE6AD /* Get in Frameworks */ = {isa = PBXBuildFile; productRef = C93E998C2877AEF7005FE6AD /* Get */; };
+		C93E99942877B227005FE6AD /* URLQueryEncoder in Frameworks */ = {isa = PBXBuildFile; productRef = C93E99932877B227005FE6AD /* URLQueryEncoder */; };
 		C96BD9E023F26E210008CDC8 /* AVPlayer+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96BD9DF23F26E210008CDC8 /* AVPlayer+Rx.swift */; };
 		C96BD9E423F393620008CDC8 /* StringFormatHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96BD9E323F393620008CDC8 /* StringFormatHelpers.swift */; };
 		C96BD9E623F39D940008CDC8 /* MathHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96BD9E523F39D940008CDC8 /* MathHelpers.swift */; };
@@ -36,6 +36,12 @@
 		C977FB9528727D160038CF82 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = C977FB9428727D160038CF82 /* Store.swift */; };
 		C977FB97287387270038CF82 /* Store+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C977FB96287387270038CF82 /* Store+Rx.swift */; };
 		C97A52E12607D7C3008B76BD /* PhotoLibraryChangeObserver+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97A52E02607D7C3008B76BD /* PhotoLibraryChangeObserver+Rx.swift */; };
+		C986496F2879136500DE65D4 /* DecodableTwitterStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C986496E2879136500DE65D4 /* DecodableTwitterStatus.swift */; };
+		C986497C287A8BE700DE65D4 /* Rswift in Frameworks */ = {isa = PBXBuildFile; productRef = C986497B287A8BE700DE65D4 /* Rswift */; };
+		C986497E287A8C3100DE65D4 /* rswift in Resources */ = {isa = PBXBuildFile; fileRef = C986497D287A8C3100DE65D4 /* rswift */; };
+		C9864980287A8DCE00DE65D4 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C986497F287A8DCE00DE65D4 /* R.generated.swift */; };
+		C9864982287BB38B00DE65D4 /* NetworkingEpic.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9864981287BB38B00DE65D4 /* NetworkingEpic.swift */; };
+		C9864984287CF58900DE65D4 /* RetryingTokenNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9864983287CF58900DE65D4 /* RetryingTokenNetworkService.swift */; };
 		C9A6B23023E663420005A41B /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C9A6B22F23E663420005A41B /* RxSwift */; };
 		C9A6B23223E663420005A41B /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = C9A6B23123E663420005A41B /* RxTest */; };
 		C9A6B23423E663420005A41B /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = C9A6B23323E663420005A41B /* RxRelay */; };
@@ -78,7 +84,6 @@
 		C92D91E823C995810067150B /* TwitterMediaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterMediaModel.swift; sourceTree = "<group>"; };
 		C92D91EE23C9992B0067150B /* TwitterDLViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TwitterDLViewController.swift; sourceTree = "<group>"; };
 		C93767B323D8063700180F2D /* images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = images.xcassets; sourceTree = "<group>"; };
-		C9388A8C23F7AD0F002E2BC2 /* DecodableTwitterStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodableTwitterStatus.swift; sourceTree = "<group>"; };
 		C938B53F2400DAD300AFD740 /* VideoPlayerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoPlayerViewController.xib; sourceTree = "<group>"; };
 		C938B5412400DB0700AFD740 /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
 		C938B5432400DD6500AFD740 /* AVVideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVVideoPlayerView.swift; sourceTree = "<group>"; };
@@ -92,6 +97,11 @@
 		C977FB9428727D160038CF82 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		C977FB96287387270038CF82 /* Store+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Store+Rx.swift"; sourceTree = "<group>"; };
 		C97A52E02607D7C3008B76BD /* PhotoLibraryChangeObserver+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoLibraryChangeObserver+Rx.swift"; sourceTree = "<group>"; };
+		C986496E2879136500DE65D4 /* DecodableTwitterStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecodableTwitterStatus.swift; sourceTree = "<group>"; };
+		C986497D287A8C3100DE65D4 /* rswift */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = rswift; sourceTree = "<group>"; };
+		C986497F287A8DCE00DE65D4 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		C9864981287BB38B00DE65D4 /* NetworkingEpic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingEpic.swift; sourceTree = "<group>"; };
+		C9864983287CF58900DE65D4 /* RetryingTokenNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetryingTokenNetworkService.swift; sourceTree = "<group>"; };
 		C9B6036523CC43BE0056AEC6 /* TwitterDLViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TwitterDLViewController.xib; path = controllers/TwitterDLViewController.xib; sourceTree = SOURCE_ROOT; };
 		C9B6036923CEDA280056AEC6 /* UIViewController+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Convenience.swift"; sourceTree = "<group>"; };
 		C9B98A7423EBCC85003A1EF4 /* TwitterMediaModel+Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TwitterMediaModel+Player.swift"; sourceTree = "<group>"; };
@@ -112,6 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C986497C287A8BE700DE65D4 /* Rswift in Frameworks */,
 				C9A6B23623E663420005A41B /* RxCocoa in Frameworks */,
 				C9DC270F25C8B03D0046C0FE /* PromiseKit in Frameworks */,
 				C9A6B23423E663420005A41B /* RxRelay in Frameworks */,
@@ -122,6 +133,7 @@
 				C9A6B23023E663420005A41B /* RxSwift in Frameworks */,
 				C9C75DDB25B947DB00764114 /* NSObject-Rx in Frameworks */,
 				C93E998D2877AEF7005FE6AD /* Get in Frameworks */,
+				C93E99942877B227005FE6AD /* URLQueryEncoder in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,6 +178,8 @@
 				C977FB8E286E74F50038CF82 /* APIDefiner.swift */,
 				C977FB9428727D160038CF82 /* Store.swift */,
 				C977FB96287387270038CF82 /* Store+Rx.swift */,
+				C9864981287BB38B00DE65D4 /* NetworkingEpic.swift */,
+				C9864983287CF58900DE65D4 /* RetryingTokenNetworkService.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -212,6 +226,8 @@
 		C9F5110323C186400044C61A = {
 			isa = PBXGroup;
 			children = (
+				C986497F287A8DCE00DE65D4 /* R.generated.swift */,
+				C986497D287A8C3100DE65D4 /* rswift */,
 				C909550323DE5BC7006FB53C /* views */,
 				C93767B223D8061C00180F2D /* resources */,
 				C9B6036423CC436C0056AEC6 /* storyboards */,
@@ -249,8 +265,8 @@
 		C9F5113023C187080044C61A /* api */ = {
 			isa = PBXGroup;
 			children = (
+				C986496E2879136500DE65D4 /* DecodableTwitterStatus.swift */,
 				C9F5113123C187150044C61A /* TwitterAPI.swift */,
-				C9388A8C23F7AD0F002E2BC2 /* DecodableTwitterStatus.swift */,
 			);
 			path = api;
 			sourceTree = "<group>";
@@ -291,6 +307,7 @@
 			buildConfigurationList = C9F5112123C186400044C61A /* Build configuration list for PBXNativeTarget "YoutubeDL" */;
 			buildPhases = (
 				C9F5110823C186400044C61A /* Headers */,
+				C9864979287A8AB600DE65D4 /* ShellScript */,
 				C9F5110923C186400044C61A /* Sources */,
 				C9F5110A23C186400044C61A /* Frameworks */,
 				C9F5110B23C186400044C61A /* Resources */,
@@ -311,6 +328,8 @@
 				C9DC270E25C8B03D0046C0FE /* PromiseKit */,
 				C977FB8C286D2D580038CF82 /* ReSwift */,
 				C93E998C2877AEF7005FE6AD /* Get */,
+				C93E99932877B227005FE6AD /* URLQueryEncoder */,
+				C986497B287A8BE700DE65D4 /* Rswift */,
 			);
 			productName = YoutubeDL;
 			productReference = C9F5110D23C186400044C61A /* YoutubeDL.framework */;
@@ -375,6 +394,8 @@
 				C9DC270D25C8B03D0046C0FE /* XCRemoteSwiftPackageReference "PromiseKit" */,
 				C977FB8B286D2D580038CF82 /* XCRemoteSwiftPackageReference "ReSwift" */,
 				C93E998B2877AEF7005FE6AD /* XCRemoteSwiftPackageReference "Get" */,
+				C93E99922877B227005FE6AD /* XCRemoteSwiftPackageReference "URLQueryEncoder" */,
+				C986497A287A8BE600DE65D4 /* XCRemoteSwiftPackageReference "R.swift" */,
 			);
 			productRefGroup = C9F5110E23C186400044C61A /* Products */;
 			projectDirPath = "";
@@ -396,6 +417,7 @@
 				C93767B423D8063700180F2D /* images.xcassets in Resources */,
 				C938B54724039C9200AFD740 /* AVVideoPlayerView.xib in Resources */,
 				C909550723DE5BF7006FB53C /* VideoControlsView.xib in Resources */,
+				C986497E287A8C3100DE65D4 /* rswift in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,6 +430,29 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		C9864979287A8AB600DE65D4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"",
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				$SRCROOT/R.generated.swift,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$SRCROOT/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C9F5110923C186400044C61A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -415,6 +460,7 @@
 			files = (
 				C909550F23E3DA85006FB53C /* UIView+Nibloadable.swift in Sources */,
 				C9B98A7523EBCC85003A1EF4 /* TwitterMediaModel+Player.swift in Sources */,
+				C986496F2879136500DE65D4 /* DecodableTwitterStatus.swift in Sources */,
 				C977FB8F286E74F50038CF82 /* APIDefiner.swift in Sources */,
 				C977FB93287105EB0038CF82 /* EpicMiddleware.swift in Sources */,
 				C97A52E12607D7C3008B76BD /* PhotoLibraryChangeObserver+Rx.swift in Sources */,
@@ -427,9 +473,12 @@
 				C9B6036A23CEDA280056AEC6 /* UIViewController+Convenience.swift in Sources */,
 				C938B5492404DC9E00AFD740 /* AVPlayerItem+Rx.swift in Sources */,
 				C938B5422400DB0700AFD740 /* VideoPlayerViewController.swift in Sources */,
+				C9864980287A8DCE00DE65D4 /* R.generated.swift in Sources */,
+				C9864984287CF58900DE65D4 /* RetryingTokenNetworkService.swift in Sources */,
 				C92D91F023C9992B0067150B /* TwitterDLViewController.swift in Sources */,
 				C96BD9E623F39D940008CDC8 /* MathHelpers.swift in Sources */,
 				C92D91E723C98F9A0067150B /* TwitterDLViewController+ErrorHandler.swift in Sources */,
+				C9864982287BB38B00DE65D4 /* NetworkingEpic.swift in Sources */,
 				C9F5113223C187150044C61A /* TwitterAPI.swift in Sources */,
 				C909550223DD1ED5006FB53C /* AspectFitImageView.swift in Sources */,
 				C9F5113E23C28AAF0044C61A /* Array+Convenience.swift in Sources */,
@@ -438,7 +487,6 @@
 				C9E240F42603E2B4008BE153 /* Photos+Rx.swift in Sources */,
 				C909550923DE8F4F006FB53C /* RoundedCornerView.swift in Sources */,
 				C977FB97287387270038CF82 /* Store+Rx.swift in Sources */,
-				C9388A8D23F7AD0F002E2BC2 /* DecodableTwitterStatus.swift in Sources */,
 				C96BD9E023F26E210008CDC8 /* AVPlayer+Rx.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -738,12 +786,28 @@
 				minimumVersion = 0.8.0;
 			};
 		};
+		C93E99922877B227005FE6AD /* XCRemoteSwiftPackageReference "URLQueryEncoder" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CreateAPI/URLQueryEncoder";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.0;
+			};
+		};
 		C977FB8B286D2D580038CF82 /* XCRemoteSwiftPackageReference "ReSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReSwift/ReSwift";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 6.0.0;
+			};
+		};
+		C986497A287A8BE600DE65D4 /* XCRemoteSwiftPackageReference "R.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mac-cain13/R.swift.Library";
+			requirement = {
+				branch = master;
+				kind = branch;
 			};
 		};
 		C9A6B22E23E663420005A41B /* XCRemoteSwiftPackageReference "RxSwift" */ = {
@@ -796,10 +860,20 @@
 			package = C93E998B2877AEF7005FE6AD /* XCRemoteSwiftPackageReference "Get" */;
 			productName = Get;
 		};
+		C93E99932877B227005FE6AD /* URLQueryEncoder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C93E99922877B227005FE6AD /* XCRemoteSwiftPackageReference "URLQueryEncoder" */;
+			productName = URLQueryEncoder;
+		};
 		C977FB8C286D2D580038CF82 /* ReSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C977FB8B286D2D580038CF82 /* XCRemoteSwiftPackageReference "ReSwift" */;
 			productName = ReSwift;
+		};
+		C986497B287A8BE700DE65D4 /* Rswift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C986497A287A8BE600DE65D4 /* XCRemoteSwiftPackageReference "R.swift" */;
+			productName = Rswift;
 		};
 		C9A6B22F23E663420005A41B /* RxSwift */ = {
 			isa = XCSwiftPackageProductDependency;

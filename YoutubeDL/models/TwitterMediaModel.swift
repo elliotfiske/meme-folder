@@ -96,60 +96,50 @@ public class TwitterMediaModel: HasDisposeBag {
     // - Tag: myCoolTag
     public func startDownloadingMedia(forTweetURL tweetURL: String) {
 
-        var mediaURLToDownload: String?
         
-        let _ = firstly {
-            try TwitterAPI.sharedInstance.getMediaURLs(usingTweetURL: tweetURL)
-        }
-        .then { mediaResults ->
-            Promise<(data: Data, response: PMKAlamofireDataResponse)> in
+        Task {
+            var mediaURLToDownload: String?
             
-            self.setState(newState: .downloadingThumbnail)
+            let mediaResults = try await TwitterAPI.sharedInstance.getMediaURLs(usingTweetURL: tweetURL)
             
-//            Observable.flatMap(Observable.create {
-//                subscriber in
-//                
-//                mediaResults
-//                
-//                return Disposables.create()
-//            })
-            
-            switch (mediaResults) {
-            case .videos(let thumbnail, let variants):
-                mediaURLToDownload = variants[0]
-                return Alamofire.request(thumbnail)
-                    .validate()
-                    .responseData()
-            case .images(let urls):
-                return Alamofire.request(urls[0])
-                    .validate()
-                    .responseData()
-            }
-        }
-        .then { data, _ -> Promise<Void> in
-            self.thumbnailImage = UIImage(data: data)
             self.setState(newState: .downloadedThumbnail)
-
-            // TODO: pull this out to an extension. It should look like:
-            //      Alamofire.download(.promise, mediaURLToDownload!, to: self.destination)
-            //          ... and you don't have to use the 'Promise<Void> seal' stuff.
-            return Promise<Void>() { seal in
-                Alamofire.download(mediaURLToDownload!, to: self.destination)
-                    .validate()
-                    .downloadProgress(closure: { progress in
-                        self.setState(newState: .downloadingMedia(Float(progress.fractionCompleted)))
-                    })
-                    .response { response in
-                        if response.destinationURL != nil {
-                            self.localMediaURL = response.destinationURL!
-                            seal.fulfill(())
-                        }
-                    }
-            }
+            
+            var thumbnailData: Data
+            
+//            switch (mediaResults) {
+//            case .videos(let thumbnail, let variants):
+//                mediaURLToDownload = variants[0]
+//                (thumbnailData, _) = try await URLSession.shared.data(from: URL(string: thumbnail)!)
+//            case .images(let urls):
+//                (thumbnailData, _) = try await URLSession.shared.data(from: URL(string: urls[0])!)
+//            }
         }
-        .done { _ in
-            self.setState(newState: .downloadedMedia)
-        }
+            
+//        }
+//        .then { data, _ -> Promise<Void> in
+//            self.thumbnailImage = UIImage(data: data)
+//            self.setState(newState: .downloadedThumbnail)
+//
+//            // TODO: pull this out to an extension. It should look like:
+//            //      Alamofire.download(.promise, mediaURLToDownload!, to: self.destination)
+//            //          ... and you don't have to use the 'Promise<Void> seal' stuff.
+//            return Promise<Void>() { seal in
+//                Alamofire.download(mediaURLToDownload!, to: self.destination)
+//                    .validate()
+//                    .downloadProgress(closure: { progress in
+//                        self.setState(newState: .downloadingMedia(Float(progress.fractionCompleted)))
+//                    })
+//                    .response { response in
+//                        if response.destinationURL != nil {
+//                            self.localMediaURL = response.destinationURL!
+//                            seal.fulfill(())
+//                        }
+//                    }
+//            }
+//        }
+//        .done { _ in
+//            self.setState(newState: .downloadedMedia)
+//        }
         // TODO: Handle errors down here. Should use 'recover' and then also return,
         //          so the view controller can handle the errors how it sees fit.
     }
