@@ -27,6 +27,7 @@ public func getData<T>(tokenAcquisitionService: TokenAcquisitionService<T>, requ
         .map { try request($0) }
         .flatMap { response($0) }
         .map { response in
+            guard response.response.statusCode != 400 else { throw TokenAcquisitionError.unauthorized }
             guard response.response.statusCode != 401 else { throw TokenAcquisitionError.unauthorized }
             return response
         }
@@ -49,7 +50,7 @@ public final class TokenAcquisitionService<T> {
         return _token.asObservable()
     }
 
-    public typealias GetToken = (T) -> Observable<(response: HTTPURLResponse, data: Data)>
+    public typealias GetToken = () -> Observable<(response: HTTPURLResponse, data: Data)>
 
     /// Creates a `TokenAcquisitionService` object that will store the most recent authorization token acquired and will acquire new ones as needed.
     ///
@@ -57,14 +58,16 @@ public final class TokenAcquisitionService<T> {
     ///   - initialToken: The token the service should start with. Provide a token from storage or an empty string (object reprenting a missing token) if one has not been acquired yet.
     ///   - getToken: A function responsible for acquiring new tokens when needed.
     ///   - extractToken: A function that can extract a token from the data returned by `getToken`.
-    public init(initialToken: T, getToken: @escaping GetToken, extractToken: @escaping (Data) throws -> T) {
+    public init(initialToken: T?, getToken: @escaping GetToken, extractToken: @escaping (Data) throws -> T) {
         relay
-            .flatMapFirst { getToken($0) }
+            .flatMapFirst { _ in getToken() }
             .map { (urlResponse) -> T in
-                guard urlResponse.response.statusCode / 100 == 2 else { throw TokenAcquisitionError.refusedToken(response: urlResponse.response, data: urlResponse.data) }
+                guard urlResponse.response.statusCode / 100 == 2 else {
+                    throw TokenAcquisitionError.refusedToken(response: urlResponse.response, data: urlResponse.data) }
                 return try extractToken(urlResponse.data)
             }
             .startWith(initialToken)
+            .compactMap { $0 }
             .subscribe(_token)
             .disposed(by: disposeBag)
     }

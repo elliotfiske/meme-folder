@@ -19,7 +19,7 @@ public enum TwitterAPIError: Error {
    public var message: String {
       switch self {
       case .invalidToken(let message):
-         return message
+         return "Couldn't authorize with Twitter: \(message)"
       case .invalidInput(let message):
          return message
       case .emptyInput:

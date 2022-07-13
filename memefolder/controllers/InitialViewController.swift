@@ -25,7 +25,10 @@ class InitialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        // todo: this should move somewhere else, maybe like a "InitialLoadEpic" or something
+        if let savedToken = UserDefaults.standard.string(forKey: "twitter_guest_token") {
+            store.dispatch(TwitterAPIAction.setToken(savedToken))
+        }
         
         store.subscribeToValue(keyPath: \.coolPokemonFact)
             .map { if case .pending = $0 { return false } else { return true } }
@@ -33,25 +36,25 @@ class InitialViewController: UIViewController {
             .bind(to: testActivityView.rx.isHidden)
             .disposed(by: rx.disposeBag)
         
-        store.subscribeToValue(keyPath: \.coolPokemonFact)
-            .compactMap {
-                if case let .fulfilled(str) = $0 {
-                    return str
-                } else if case let .error(error) = $0 {
-                    return error.localizedDescription
-                } else {
-                    return nil
-                }
-            }
-            .bind(to: coolButton.rx.title())
-            .disposed(by: rx.disposeBag)
-        
-        coolButton.rx.tap
-            .subscribe {
-                _ in
-                store.dispatch(NumbersAPIAction.getNumberFact(3))
-            }
-            .disposed(by: rx.disposeBag)
+//        store.subscribeToValue(keyPath: \.coolPokemonFact)
+//            .compactMap {
+//                if case let .fulfilled(str) = $0 {
+//                    return str
+//                } else if case let .error(error) = $0 {
+//                    return error.localizedDescription
+//                } else {
+//                    return nil
+//                }
+//            }
+//            .bind(to: coolButton.rx.title())
+//            .disposed(by: rx.disposeBag)
+//
+//        coolButton.rx.tap
+//            .subscribe {
+//                _ in
+//                store.dispatch(NumbersAPIAction.getNumberFact(3))
+//            }
+//            .disposed(by: rx.disposeBag)
         
         
         // TODO: I'll almost certainly need to do this again so I should make a helper for it.
@@ -74,17 +77,17 @@ class InitialViewController: UIViewController {
     }
     
     @IBAction func buttonPressed(_ sender: Any) {
-//        let controlla = TwitterDLViewController.loadFromNib()
+        let controlla = TwitterDLViewController.loadFromNib()
         
         // Simulates getting a Tweet URL via the Share panel and passing it along
 //        controlla.tweetURLToLoad = "https://twitter.com/animatedtext/status/1220134801430024193?s=20"     // 0:03 gif
 //        controlla.tweetURLToLoad = "https://twitter.com/CultureCrave/status/1226622427599257601"          // 0:16 video
 //        controlla.tweetURLToLoad = "https://twitter.com/cyberglittter/status/1413344653408153600?s=20" // 2 Images
         
-//        controlla.tweetURLToLoad = "https://twitter.com/tortellinidance/status/1217858057201504257?s=20"    // 1:30 video
+        controlla.tweetURLToLoad = "https://twitter.com/matthen2/status/1543226572592783362"    // 0:55 video
         
-//        controlla.presentationController?.delegate = controlla
-//        present(controlla, animated: true)
+        controlla.presentationController?.delegate = controlla
+        present(controlla, animated: true)
         
         
     }

@@ -13,14 +13,16 @@ import RxSwift
 import PromiseKit
 import PMKAlamofire
 
-/** The Weird Zone **/
-
 public struct TwitterMediaGrabberState {
     /// Points to where the downloaded media is stored locally.
     var localMediaURL: URL?
     var thumbnailURL: URL?
     
-    var tweetURL: URL?
+    var tweetURL: String?
+    
+    var twitterGuestToken: APIState<String> = .idle
+    
+    var mediaResultURL: APIState<TwitterAPI.MediaResultURLs> = .idle
     
     public var coolPokemonFact: APIState<String> = .idle
 }
@@ -37,8 +39,11 @@ public enum NumbersAPIAction: Action {
 }
 
 public enum TwitterAPIAction: Action {
-    case getGuestToken(APIState<String>)
-    case getTweetInfo(APIState<TwitterAPIType>)
+    case getMediaFromTweet(String)
+    case mediaURLs(APIState<TwitterAPI.MediaResultURLs>)
+    
+    case refreshToken
+    case setToken(String)
 }
 
 func appReducer(action: Action, state: TwitterMediaGrabberState?) -> TwitterMediaGrabberState {
@@ -47,6 +52,11 @@ func appReducer(action: Action, state: TwitterMediaGrabberState?) -> TwitterMedi
     switch action {
     case NumbersAPIAction.numberFact(let result):
         state.coolPokemonFact = result
+    case TwitterAPIAction.getMediaFromTweet(let url):
+        state.tweetURL = url
+    case TwitterAPIAction.mediaURLs(let result):
+        state.mediaResultURL = result
+        
     default: break
     }
     
@@ -56,4 +66,5 @@ func appReducer(action: Action, state: TwitterMediaGrabberState?) -> TwitterMedi
 let epicMiddleware = EpicMiddleware<TwitterMediaGrabberState>(epic: networkingEpic).createMiddleware()
 
 public let store = Store(reducer: appReducer, state: nil, middleware: [epicMiddleware])
+
 

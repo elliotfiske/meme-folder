@@ -30,7 +30,8 @@ public class TwitterAPI: APIClientDelegate, HasDisposeBag {
     
     static let BASE_API = "https://api.twitter.com/1.1/"
     static let BASE_HEADERS: HTTPHeaders = [
-//        "Authorization" : TwitterAPI.BEARER_TOKEN,
+        // yoinked from YoutubeDL's repo :3 (remember to switch over to my own at some point)
+        "Authorization" : "Bearer AAAAAAAAAAAAAAAAAAAAAPYXBAAAAAAACLXUNDekMxqa8h%2F40K4moUkGsoc%3DTYfbDKbT3jJPCEVnMYqilB28NHfOPqkca3qaAxGfsyKCs0wRbw",
         "Accept" : "application/json"
     ]
     
@@ -44,12 +45,11 @@ public class TwitterAPI: APIClientDelegate, HasDisposeBag {
     private let tokenService: TokenAcquisitionService<String>
     
     init() {
-        let savedToken = UserDefaults.standard.string(forKey: "twitter_guest_token") ?? ""
+        let savedToken = UserDefaults.standard.string(forKey: "twitter_guest_token")
         
         tokenService = TokenAcquisitionService(
             initialToken: savedToken,
             getToken: {
-                _ in
                 let url = URL(string: TwitterAPI.BASE_API + "guest/activate.json")!
                 let request = try! URLRequest(url: url, method: .post)
                 return URLSession.shared.rx.response(request: request)
@@ -65,10 +65,10 @@ public class TwitterAPI: APIClientDelegate, HasDisposeBag {
                 return token
             })
         
-        tokenService.token.subscribe {
+        tokenService.token.subscribe(onNext: {
             token in
             UserDefaults.standard.set(token, forKey: "twitter_guest_token")
-        }
+        })
         .disposed(by: disposeBag)
     }
     
@@ -84,7 +84,7 @@ public class TwitterAPI: APIClientDelegate, HasDisposeBag {
         
         return getData(tokenAcquisitionService: tokenService, request: {
             token in
-            let url = TwitterAPI.BASE_API + "statuses/show\(tweetID).json"
+            let url = TwitterAPI.BASE_API + "statuses/show/\(tweetID).json"
             
             var combinedHeaders = TwitterAPI.BASE_HEADERS
                 .merging(headers ?? [:],
@@ -158,13 +158,6 @@ public class TwitterAPI: APIClientDelegate, HasDisposeBag {
         let variantURLs = variants.map { $0.url }
         
         return .videos(thumbnail: media.mediaURLHTTPS, urls: variantURLs)
-    }
-    
-    public func shouldClientRetry(_ client: APIClient, for request: URLRequest, withError error: Error) async throws -> Bool {
-        if case .unacceptableStatusCode(let statusCode) = (error as? APIError), statusCode == 401 {
-            return await refreshAccessToken()
-        }
-        return false
     }
     
     // We will need this guest token to access Twitter as a guest, until

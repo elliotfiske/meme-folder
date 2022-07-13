@@ -43,21 +43,20 @@ public class TwitterDLViewController: UIViewController, UIAdaptivePresentationCo
         super.viewDidLoad()
         
         if let tweetURL = tweetURLToLoad {
-            model.startDownloadingMedia(forTweetURL: tweetURL)
+            store.dispatch(TwitterAPIAction.getMediaFromTweet(tweetURL))
         }
         
-        model.state
-            .subscribe(onNext: {
-                [weak self] state in
-                self?.stateDidChange(newState: state)
-            })
-            .disposed(by: rx.disposeBag)
-        
-        saveToCameraRollButton.rx.tap
-            .subscribe(onNext: {
-                [weak self] in
-                self?.model.saveMediaToCameraRoll()
-            })
+        store.subscribeToValue(keyPath: \.mediaResultURL)
+            .compactMap {
+                result in
+                if case let .fulfilled(mediaResult) = result {
+                    if case let .videos(thumbnailUrl, _) = mediaResult {
+                        return thumbnailUrl
+                    }
+                }
+                return nil
+            }
+            .bind(to: self.saveToCameraRollButton.rx.title())
             .disposed(by: rx.disposeBag)
     }
 }
