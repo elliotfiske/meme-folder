@@ -10,9 +10,6 @@ import Foundation
 import ReSwift
 import RxSwift
 
-import PromiseKit
-import PMKAlamofire
-
 public struct TwitterMediaGrabberState {
     /// Points to where the downloaded media is stored locally.
     var localMediaURL: URL?
@@ -24,13 +21,45 @@ public struct TwitterMediaGrabberState {
     
     var mediaResultURL: APIState<TwitterAPI.MediaResultURLs> = .idle
     
+    
+    
     public var coolPokemonFact: APIState<String> = .idle
 }
 
-public enum APIState<Result> {
+public protocol APIStateLike {
+    associatedtype Result
+    
+    func isIdle() -> Bool
+    func getError() -> Error?
+    func getResult() -> Result?
+}
+
+public enum APIState<T>: APIStateLike {
+    public typealias Result = T
     case idle, pending
     case error(Error)
     case fulfilled(Result)
+    
+    public func isIdle() -> Bool {
+        if case .idle = self {
+            return true
+        }
+        return false
+    }
+    
+    public func getError() -> Error? {
+        if case let .error(err) = self {
+            return err
+        }
+        return nil
+    }
+    
+    public func getResult() -> T? {
+        if case let .fulfilled(result) = self {
+            return result
+        }
+        return nil
+    }
 }
 
 public enum NumbersAPIAction: Action {

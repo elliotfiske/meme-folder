@@ -31,7 +31,7 @@ class ObserverSub<State, ObservedValueType>: StoreSubscriber {
  * Extension that lets us create Observable streams from the Store and a given key path
  */
 extension Store {
-    open func subscribeToValue<Result>(keyPath: KeyPath<State, Result>) -> Observable<Result> {
+    open func observableFromPath<Result>(keyPath: KeyPath<State, Result>) -> Observable<Result> {
         return Observable<Result>.create {
             [self] observer in
             
@@ -46,3 +46,28 @@ extension Store {
     }
 }
 
+extension ObservableConvertibleType where Element: APIStateLike {
+    public typealias Result = Element.Result
+    
+    public func apiError() -> Observable<Error> {
+        return self.asObservable().compactMap {
+                return $0.getError()
+            }
+    }
+    
+    // True if the API request is currently running
+    public func activity() -> Observable<Bool> {
+        return self.asObservable().compactMap {
+            // TODO: Implement this
+            _ in
+            return true
+        }
+    }
+    
+    // Gotta be a type-smarter way to do this yo. I can't get it to have a generic around the APIState requirement.
+    public func apiResult() -> Observable<Result> {
+        return self.asObservable().compactMap {
+            $0.getResult()
+        }
+    }
+}

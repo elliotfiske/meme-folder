@@ -28,7 +28,9 @@ public func getData<T>(tokenAcquisitionService: TokenAcquisitionService<T>, requ
         .flatMap { response($0) }
         .map { response in
             guard response.response.statusCode != 400 else { throw TokenAcquisitionError.unauthorized }
-            guard response.response.statusCode != 401 else { throw TokenAcquisitionError.unauthorized }
+            guard response.response.statusCode != 403 else {
+                throw TokenAcquisitionError.unauthorized
+            }
             return response
         }
         .retry { $0.renewToken(with: tokenAcquisitionService) }
@@ -68,6 +70,19 @@ public final class TokenAcquisitionService<T> {
             }
             .startWith(initialToken)
             .compactMap { $0 }
+//            .flatMap {
+//                initialToken -> Observable<T> in
+//                if let token = initialToken {
+//                    return Observable.just(token)
+//                }
+//
+//                return getToken()
+//                    .map { (urlResponse) -> T in
+//                        guard urlResponse.response.statusCode / 100 == 2 else {
+//                            throw TokenAcquisitionError.refusedToken(response: urlResponse.response, data: urlResponse.data) }
+//                        return try extractToken(urlResponse.data)
+//                    }
+//            }
             .subscribe(_token)
             .disposed(by: disposeBag)
     }

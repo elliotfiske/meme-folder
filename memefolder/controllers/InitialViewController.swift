@@ -30,7 +30,7 @@ class InitialViewController: UIViewController {
             store.dispatch(TwitterAPIAction.setToken(savedToken))
         }
         
-        store.subscribeToValue(keyPath: \.coolPokemonFact)
+        store.observableFromPath(keyPath: \.coolPokemonFact)
             .map { if case .pending = $0 { return false } else { return true } }
             .debounce(.milliseconds(250), scheduler: MainScheduler.instance)
             .bind(to: testActivityView.rx.isHidden)

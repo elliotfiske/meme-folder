@@ -1,0 +1,23 @@
+{
+  "name": "meme-folder",
+  "version": "1.0.0",
+  "description": "For now, just run prettier when files change",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/elliot_fiske/meme-folder.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://bitbucket.org/elliot_fiske/meme-folder/issues"
+  },
+  "homepage": "https://bitbucket.org/elliot_fiske/meme-folder#readme",
+  "dependencies": {
+    "onchange": "^7.1.0",
+    "prettier": "^2.7.1"
+  }
+}

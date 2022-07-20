@@ -10,9 +10,6 @@ import Foundation
 import UIKit
 import Photos
 
-import PMKAlamofire
-import PromiseKit
-
 import RxRelay
 import RxSwift
 
@@ -70,12 +67,12 @@ public class TwitterMediaModel: HasDisposeBag {
     // TODO: This seems to be ending up with something like "CFDownload_woeifj.mp4"
     //          need to figure out how to get it to the original filename, maybe.
     //
-    let destination: DownloadRequest.DownloadFileDestination = { url, _ in
-        var documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        documentsURL.appendPathComponent("familyguy.mp4")
-
-        return (documentsURL, [.removePreviousFile])
-    }
+//    let destination: DownloadRequest.DownloadFileDestination = { url, _ in
+//        var documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+//        documentsURL.appendPathComponent("familyguy.mp4")
+//
+//        return (documentsURL, [.removePreviousFile])
+//    }
     
     public func saveMediaToCameraRoll() {
         // TODO: Maybe rxify this stuff instead?
