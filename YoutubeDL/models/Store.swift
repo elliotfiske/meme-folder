@@ -12,7 +12,9 @@ import RxSwift
 
 public struct TwitterMediaGrabberState {
     /// Points to where the downloaded media is stored locally.
-    var localMediaURL: URL?
+    var localMediaURL: APIState<URL> = .idle
+    var downloadedMediaProgress: Double = 0
+    
     var thumbnailURL: URL?
     
     var tweetURL: String?
@@ -20,8 +22,6 @@ public struct TwitterMediaGrabberState {
     var twitterGuestToken: APIState<String> = .idle
     
     var mediaResultURL: APIState<TwitterAPI.MediaResultURLs> = .idle
-    
-    
     
     public var coolPokemonFact: APIState<String> = .idle
 }
@@ -36,7 +36,7 @@ public protocol APIStateLike {
 
 public enum APIState<T>: APIStateLike {
     public typealias Result = T
-    case idle, pending
+    case idle, pending, progress(Float)
     case error(Error)
     case fulfilled(Result)
     
@@ -60,6 +60,13 @@ public enum APIState<T>: APIStateLike {
         }
         return nil
     }
+    
+    public func getProgress() -> Float? {
+        if case let .progress(poggers) = self {
+            return poggers
+        }
+        return nil
+    }
 }
 
 public enum NumbersAPIAction: Action {
@@ -70,6 +77,9 @@ public enum NumbersAPIAction: Action {
 public enum TwitterAPIAction: Action {
     case getMediaFromTweet(String)
     case mediaURLs(APIState<TwitterAPI.MediaResultURLs>)
+    
+    case downloadMedia(url: String)
+    case downloadedMediaProgress(APIState<URL>, Double)
     
     case refreshToken
     case setToken(String)
@@ -85,6 +95,9 @@ func appReducer(action: Action, state: TwitterMediaGrabberState?) -> TwitterMedi
         state.tweetURL = url
     case TwitterAPIAction.mediaURLs(let result):
         state.mediaResultURL = result
+    case TwitterAPIAction.downloadedMediaProgress(let result, let progress):
+        state.localMediaURL = result
+        state.downloadedMediaProgress = progress
         
     default: break
     }

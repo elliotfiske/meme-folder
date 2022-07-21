@@ -122,6 +122,41 @@ public class TwitterAPI: HasDisposeBag {
     }
   }
 
+  let destination: DownloadRequest.Destination = { url, _ in
+    var documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    documentsURL.appendPathComponent("familyguy.mp4")
+
+    return (documentsURL, [.removePreviousFile])
+  }
+
+  public func downloadMedia(atUrl url: String) -> Observable<
+    (progress: Double, localUrl: URL?)
+  > {
+
+      return Observable<(progress: Double, localUrl: URL?)>.create {
+      subscriber in
+        
+      guard let parsedUrl = URL(string: url) else {
+          subscriber.onError(TwitterAPIError.invalidInput("Bad Media URL: \(url)"))
+          return Disposables.create()
+      }
+        
+          let cancelToken = AF.download(parsedUrl, to: self.destination)
+        .downloadProgress {
+          progress in
+          subscriber.onNext((progress.fractionCompleted, nil))
+        }
+        .response {
+          response in
+          subscriber.onNext((1, response.fileURL))
+        }
+
+      return Disposables.create {
+        cancelToken.cancel()
+      }
+    }
+  }
+
   // Given a Tweet URL, grab the URL(s) that point to the media.
   //   Meme Folder currently supports either 1 video/gif or 1-4 images.
   public func getMediaURLs(usingTweetURL url: String) async throws -> MediaResultURLs {

@@ -13,7 +13,7 @@ import ReSwift
 public let networkingEpic: Epic<TwitterMediaGrabberState> = {
     action$, getState in
     
-    let twitter: Observable<Action> = action$.compactMap {
+    let getMediaUrl: Observable<Action> = action$.compactMap {
         if case let TwitterAPIAction.getMediaFromTweet(url) = $0 {
             return url
         }
@@ -23,31 +23,30 @@ public let networkingEpic: Epic<TwitterMediaGrabberState> = {
         return try TwitterAPI.sharedInstance.getMediaURLsRx(for: $0)
             .map {
                 mediaUrls in
-                TwitterAPIAction.mediaURLs(APIState.fulfilled(mediaUrls))
+                TwitterAPIAction.mediaURLs(.fulfilled(mediaUrls))
             }
             .catch {
                 return Observable.just(TwitterAPIAction.mediaURLs(APIState.error($0)))
             }
     }
     
-    let pokemon: Observable<Action> = action$.compactMap {
-        action -> String? in
-        if case let NumbersAPIAction.getNumberFact(num) = action {
-            return "https://pokeapi.co/api/v2/type/\(num)"
+    let downloadMedia: Observable<Action> = action$.compactMap {
+        if case let TwitterAPIAction.downloadMedia(url) = $0 {
+            return url
         }
         return nil
-    }.flatMap {
-        url -> Observable<Data> in
-        
-        let request = URLRequest(url: URL(string: url)!)
-        
-        return URLSession.shared.rx.data(request: request)
-    }.map {
-        let json = try parseJSON(data: $0)
-        return NumbersAPIAction.numberFact(.fulfilled(json["name"].stringValue))
-    }.catch {
-        return Observable.just(NumbersAPIAction.numberFact(.error($0)))
+    }
+    .flatMapLatest {
+        return TwitterAPI.sharedInstance.downloadMedia(atUrl: $0)
+            .map {
+                if let url = $0.localUrl {
+                    return TwitterAPIAction.downloadedMediaProgress(.fulfilled(url), 1.0)
+                } else {
+                    return TwitterAPIAction.downloadedMediaProgress(APIState.pending, $0.progress)
+                }
+            }
     }
     
-    return Observable<Action>.merge(twitter, pokemon)
+    
+    return Observable<Action>.merge(getMediaUrl, downloadMedia)
 }

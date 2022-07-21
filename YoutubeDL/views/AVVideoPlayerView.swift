@@ -18,7 +18,8 @@ import NSObject_Rx
 class AVVideoPlayerView: UIView, NibLoadable {
     
     @IBOutlet weak var videoLoadingProgress: UIProgressView!
-    public lazy var loadingProgress = self.videoLoadingProgress.rx.progress
+    
+    public var loadingProgress = BehaviorRelay<Float>(value: 0)
     
     public let readyToPlay = PublishRelay<Bool>()
     
@@ -27,11 +28,7 @@ class AVVideoPlayerView: UIView, NibLoadable {
     /// The currently loaded item's length in seconds
     public let itemLength = BehaviorRelay<CGFloat>(value: 0)
     
-    public var itemToPlay: Binder<AVPlayerItem>? {
-        guard let playerToPlay = self.player else {
-            return nil
-        }
-        
+    public var itemToPlay: Binder<AVPlayerItem> {
         return Binder(playerToPlay) { [weak self] (player, newItem) in
             player.replaceCurrentItem(with: newItem)
             self?.readyToPlay.accept(false)
@@ -42,12 +39,11 @@ class AVVideoPlayerView: UIView, NibLoadable {
     
     public var isPlaying = BehaviorRelay<Bool>(value: false)
     
-    var player: AVPlayer? = AVPlayer()
+    var player: AVPlayer = AVPlayer()
     weak var playerLayer: AVPlayerLayer?
     
     func stop() {
-        player?.replaceCurrentItem(with: nil)
-        player = nil
+        player.replaceCurrentItem(with: nil)
     }
     
     func commonInit() {
@@ -56,53 +52,50 @@ class AVVideoPlayerView: UIView, NibLoadable {
         
         strongPlayerLayer.videoGravity = .resizeAspect
         self.layer.addSublayer(strongPlayerLayer)
-        player?.actionAtItemEnd = .none
-        player?.seek(to: CMTime.zero)
+        player.actionAtItemEnd = .none
+        player.seek(to: CMTime.zero)
         
-        self.player?.rx.status
+        rx.disposeBag.insert(
+        loadingProgress.bind(to: self.videoLoadingProgress.rx.progress),
+        
+        self.player.rx.status
             .map { $0 == .readyToPlay }
-            .bind(to: self.readyToPlay)
-            .disposed(by: rx.disposeBag)
+            .bind(to: self.readyToPlay),
         
         // Auto-play the video the first time it loads
         self.readyToPlay
             .filter { $0 == true }
             .take(1)
-            .bind(to: isPlaying)
-            .disposed(by: rx.disposeBag)
+            .bind(to: isPlaying),
         
         isPlaying
-            .bind(to: player!.rx.isPlaying)
-            .disposed(by: rx.disposeBag)
+            .bind(to: player.rx.isPlaying),
         
         self.readyToPlay
             .filter { $0 == true }
             .map({ [weak self] _ in
-                guard let playerItem = self?.player?.currentItem else { return 0 }
+                guard let playerItem = self?.player.currentItem else { return 0 }
                 
                 let lengthInSeconds = CGFloat(CMTimeGetSeconds(playerItem.asset.duration))
                 return lengthInSeconds
             })
-            .bind(to: self.itemLength)
-            .disposed(by: rx.disposeBag)
+            .bind(to: self.itemLength),
         
-        player?.rx.periodicTimeObserver(interval: CMTime(value: 1, timescale: 10))
+        player.rx.periodicTimeObserver(interval: CMTime(value: 1, timescale: 10))
             .map { CGFloat(CMTimeGetSeconds($0)) }
             .do(onDispose: {
                 print("disposed!")
             })
-            .bind(to: currPlaybackTime)
-            .disposed(by: rx.disposeBag)
+            .bind(to: currPlaybackTime),
         
         NotificationCenter.default.rx
-            .notification(.AVPlayerItemDidPlayToEndTime, object: self.player?.currentItem)
+            .notification(.AVPlayerItemDidPlayToEndTime, object: self.player.currentItem)
             .subscribe(onNext: {
                 notification in
                 if let playerItem = notification.object as? AVPlayerItem {
                     playerItem.seek(to: CMTime.zero, completionHandler: nil)
                 }
-            })
-            .disposed(by: rx.disposeBag)
+            }),
         
         self.requestedSeekTime
             .throttle(.milliseconds(20), scheduler: MainScheduler.instance)
@@ -114,7 +107,7 @@ class AVVideoPlayerView: UIView, NibLoadable {
                 
                 return Observable<Bool>.create {
                     observer in
-                    self?.player?.seek(to: time,
+                    self?.player.seek(to: time,
                                        toleranceBefore: CMTime.init(seconds: 0.1, preferredTimescale: 600),
                                       toleranceAfter: CMTime.init(seconds: 0.1, preferredTimescale: 600),
                                       completionHandler: observer.onNext)
@@ -123,8 +116,7 @@ class AVVideoPlayerView: UIView, NibLoadable {
             })
             .subscribe(onNext: {
                 print("Did it seek properly? \($0)")
-            })
-            .disposed(by: rx.disposeBag)
+            }))
     }
     
     override func layoutSubviews() {
