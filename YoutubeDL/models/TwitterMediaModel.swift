@@ -67,12 +67,6 @@ public class TwitterMediaModel: HasDisposeBag {
     // TODO: This seems to be ending up with something like "CFDownload_woeifj.mp4"
     //          need to figure out how to get it to the original filename, maybe.
     //
-//    let destination: DownloadRequest.DownloadFileDestination = { url, _ in
-//        var documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-//        documentsURL.appendPathComponent("familyguy.mp4")
-//
-//        return (documentsURL, [.removePreviousFile])
-//    }
     
     public func saveMediaToCameraRoll() {
         // TODO: Maybe rxify this stuff instead?
@@ -88,56 +82,5 @@ public class TwitterMediaModel: HasDisposeBag {
                 }
             }
         }
-    }
-    
-    // - Tag: myCoolTag
-    public func startDownloadingMedia(forTweetURL tweetURL: String) {
-
-        
-        Task {
-            var mediaURLToDownload: String?
-            
-            let mediaResults = try await TwitterAPI.sharedInstance.getMediaURLs(usingTweetURL: tweetURL)
-            
-            self.setState(newState: .downloadedThumbnail)
-            
-            var thumbnailData: Data
-            
-//            switch (mediaResults) {
-//            case .videos(let thumbnail, let variants):
-//                mediaURLToDownload = variants[0]
-//                (thumbnailData, _) = try await URLSession.shared.data(from: URL(string: thumbnail)!)
-//            case .images(let urls):
-//                (thumbnailData, _) = try await URLSession.shared.data(from: URL(string: urls[0])!)
-//            }
-        }
-            
-//        }
-//        .then { data, _ -> Promise<Void> in
-//            self.thumbnailImage = UIImage(data: data)
-//            self.setState(newState: .downloadedThumbnail)
-//
-//            // TODO: pull this out to an extension. It should look like:
-//            //      Alamofire.download(.promise, mediaURLToDownload!, to: self.destination)
-//            //          ... and you don't have to use the 'Promise<Void> seal' stuff.
-//            return Promise<Void>() { seal in
-//                Alamofire.download(mediaURLToDownload!, to: self.destination)
-//                    .validate()
-//                    .downloadProgress(closure: { progress in
-//                        self.setState(newState: .downloadingMedia(Float(progress.fractionCompleted)))
-//                    })
-//                    .response { response in
-//                        if response.destinationURL != nil {
-//                            self.localMediaURL = response.destinationURL!
-//                            seal.fulfill(())
-//                        }
-//                    }
-//            }
-//        }
-//        .done { _ in
-//            self.setState(newState: .downloadedMedia)
-//        }
-        // TODO: Handle errors down here. Should use 'recover' and then also return,
-        //          so the view controller can handle the errors how it sees fit.
     }
 }

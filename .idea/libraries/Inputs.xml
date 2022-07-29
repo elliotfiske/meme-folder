@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Inputs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/swift-format/.build/checkouts/swift-tools-support-core/Tests/TSCUtilityTests/Inputs/archive.zip!/" />
+      <root url="jar://$PROJECT_DIR$/swift-format/.build/checkouts/swift-tools-support-core/Tests/TSCUtilityTests/Inputs/invalid_archive.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

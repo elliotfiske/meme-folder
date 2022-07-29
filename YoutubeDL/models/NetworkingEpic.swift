@@ -30,6 +30,28 @@ public let networkingEpic: Epic<TwitterMediaGrabberState> = {
             }
     }
     
+    let getMediaSizes: Observable<Action> = action$.compactMap {
+        if case let TwitterAPIAction.mediaURLs(state) = $0 {
+            if case let .fulfilled(mediaUrls) = state {
+                if case let .videos(thumbnail: _, urls: vidUrls) = mediaUrls {
+                    return vidUrls
+                }
+            }
+        }
+        return nil
+    }
+    .flatMapLatest {
+        (urls: [String]) in
+        return Observable.merge(
+            try urls.map {
+                url in
+                try TwitterAPI.sharedInstance.getMediaSize(for: url).map {
+                    return TwitterAPIAction.gotVideoSize(url: url, size: $0)
+                }
+            }
+        )
+    }
+    
     let downloadMedia: Observable<Action> = action$.compactMap {
         if case let TwitterAPIAction.downloadMedia(url) = $0 {
             return url
@@ -48,5 +70,5 @@ public let networkingEpic: Epic<TwitterMediaGrabberState> = {
     }
     
     
-    return Observable<Action>.merge(getMediaUrl, downloadMedia)
+    return Observable<Action>.merge(getMediaUrl, getMediaSizes, downloadMedia)
 }

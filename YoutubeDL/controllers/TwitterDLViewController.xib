@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,6 +13,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TwitterDLViewController" customModule="YoutubeDL" customModuleProvider="target">
             <connections>
                 <outlet property="errorLabel" destination="F1w-QK-TSc" id="tfW-hY-s2s"/>
+                <outlet property="filesizeButton1" destination="McT-5K-Szz" id="Y1t-vL-QHF"/>
+                <outlet property="filesizeButton2" destination="nuU-72-O04" id="dbd-dh-7LP"/>
+                <outlet property="filesizeButton3" destination="KaF-ah-phh" id="paL-mc-yxU"/>
                 <outlet property="saveToCameraRollButton" destination="eeg-bj-qMu" id="ThA-Nz-3nJ"/>
                 <outlet property="successLabel" destination="Oh6-Iv-iYe" id="2nw-wE-alm"/>
                 <outlet property="videoPlayerController" destination="VIw-MO-Blm" id="9kK-0a-IG7"/>
@@ -37,12 +41,41 @@
                     <rect key="frame" x="116.5" y="360" width="181" height="30"/>
                     <state key="normal" title="Save Video to Camera Roll"/>
                 </button>
-                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Success Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oh6-Iv-iYe">
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Success Label" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oh6-Iv-iYe">
                     <rect key="frame" x="8" y="406" width="398" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" systemColor="systemGreenColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="NrV-PE-gex">
+                    <rect key="frame" x="207" y="457" width="0.0" height="0.0"/>
+                    <subviews>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="McT-5K-Szz" customClass="FilesizeButton" customModule="YoutubeDL" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="80" id="6aL-zg-9qQ"/>
+                                <constraint firstAttribute="height" constant="80" id="XTA-15-Fz9"/>
+                            </constraints>
+                        </view>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nuU-72-O04" customClass="FilesizeButton" customModule="YoutubeDL" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="80" id="afF-lF-Cgl"/>
+                                <constraint firstAttribute="height" constant="80" id="wwF-Ay-YGI"/>
+                            </constraints>
+                        </view>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KaF-ah-phh" customClass="FilesizeButton" customModule="YoutubeDL" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="80" id="BqG-Cm-XkB"/>
+                                <constraint firstAttribute="height" constant="80" id="T4W-ag-reO"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="FQh-RT-Aiu"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -54,6 +87,8 @@
                 <constraint firstItem="eeg-bj-qMu" firstAttribute="centerX" secondItem="FQh-RT-Aiu" secondAttribute="centerX" id="G9y-Lb-1Db"/>
                 <constraint firstItem="eeg-bj-qMu" firstAttribute="top" secondItem="VIw-MO-Blm" secondAttribute="bottom" constant="70.5" id="MWz-bn-t9b"/>
                 <constraint firstItem="FQh-RT-Aiu" firstAttribute="trailing" secondItem="Oh6-Iv-iYe" secondAttribute="trailing" constant="8" id="Nx2-gy-Xa9"/>
+                <constraint firstItem="NrV-PE-gex" firstAttribute="top" secondItem="Oh6-Iv-iYe" secondAttribute="bottom" constant="30.5" id="OBb-0i-nwh"/>
+                <constraint firstItem="NrV-PE-gex" firstAttribute="centerX" secondItem="Oh6-Iv-iYe" secondAttribute="centerX" id="UjQ-ET-UBP"/>
                 <constraint firstItem="F1w-QK-TSc" firstAttribute="centerX" secondItem="FQh-RT-Aiu" secondAttribute="centerX" id="WsC-AD-oUb"/>
                 <constraint firstItem="F1w-QK-TSc" firstAttribute="width" relation="lessThanOrEqual" secondItem="fO9-WW-xd3" secondAttribute="width" constant="40" id="Yfr-Wg-Zsl"/>
                 <constraint firstItem="VIw-MO-Blm" firstAttribute="height" secondItem="FQh-RT-Aiu" secondAttribute="height" multiplier="0.3" id="f32-38-vi0"/>

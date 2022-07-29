@@ -17,7 +17,7 @@ import NSObject_Rx
 import Rswift
 
 @IBDesignable
-public class VideoControlsView: UIView, NibLoadable {
+public class VideoControlsView: UIView, NibLoadable, UIGestureRecognizerDelegate {
     
     public let isPlaying = BehaviorRelay<Bool>(value: false)
     
@@ -38,9 +38,14 @@ public class VideoControlsView: UIView, NibLoadable {
     @IBOutlet weak var currTimeLabel: UILabel!
     
     @IBOutlet weak var timelineDragGesture: UIPanGestureRecognizer!
+    @IBOutlet weak var timelineTapGesture: UITapGestureRecognizer!
     
     var timelineLength: CGFloat {
         timelineBase.bounds.size.width
+    }
+    
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        true
     }
     
     func setupTimelineBehavior() {
@@ -55,8 +60,12 @@ public class VideoControlsView: UIView, NibLoadable {
             .bind(to: isPlaying)
             .disposed(by: rx.disposeBag)
         
-        let dotDraggedToTime = timelineDragGesture.rx.event
-            .filter { $0.state == .changed }
+        let timelineSelected = Observable<UIGestureRecognizer>.merge(
+            timelineDragGesture.rx.event.filter { $0.state == .changed }.map { $0 as UIGestureRecognizer },
+            timelineTapGesture.rx.event.filter { $0.state == .began }.map { $0 as UIGestureRecognizer }
+        )
+        
+        let dotDraggedToTime = timelineSelected
             .map { $0.location(in: self.timelineBase).x }
             .map({
                 dragLocation in

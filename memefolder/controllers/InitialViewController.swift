@@ -30,32 +30,6 @@ class InitialViewController: UIViewController {
             store.dispatch(TwitterAPIAction.setToken(savedToken))
         }
         
-        store.observableFromPath(keyPath: \.coolPokemonFact)
-            .map { if case .pending = $0 { return false } else { return true } }
-            .debounce(.milliseconds(250), scheduler: MainScheduler.instance)
-            .bind(to: testActivityView.rx.isHidden)
-            .disposed(by: rx.disposeBag)
-        
-//        store.subscribeToValue(keyPath: \.coolPokemonFact)
-//            .compactMap {
-//                if case let .fulfilled(str) = $0 {
-//                    return str
-//                } else if case let .error(error) = $0 {
-//                    return error.localizedDescription
-//                } else {
-//                    return nil
-//                }
-//            }
-//            .bind(to: coolButton.rx.title())
-//            .disposed(by: rx.disposeBag)
-//
-//        coolButton.rx.tap
-//            .subscribe {
-//                _ in
-//                store.dispatch(NumbersAPIAction.getNumberFact(3))
-//            }
-//            .disposed(by: rx.disposeBag)
-        
         
         // TODO: I'll almost certainly need to do this again so I should make a helper for it.
         let storyboard = UIStoryboard(name: "RecentPhotosCollectionViewController", bundle: nil)

@@ -52,7 +52,7 @@ class PhotoViewController: UIViewController {
             .default()
             .requestImage(for: asset, targetSize: self.view.bounds.size, contentMode: .aspectFit, options: nil, resultHandler: {
                 [weak self] image, infoDict in
-                guard let imageUnwrapped = image else {
+                guard image != nil else {
 //                    subscriber.onError(PhotoRetrievalError(message: "Oh no some kind of error! Didn't get the photo data!"))
                     return
                 }
@@ -72,15 +72,7 @@ class PhotoViewController: UIViewController {
                                     // TODO-EF: Error time, baby
                                     return
                                 }
-                                self?.videoPlayer.itemToPlay?.onNext(playerItemUnwrapped)
+                                self?.videoPlayer.itemToPlay.onNext(playerItemUnwrapped)
                                })
-    }
-
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
 }

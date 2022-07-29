@@ -144,10 +144,12 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.nib` struct is generated, and contains static references to 4 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 5 nibs.
   struct nib {
     /// Nib `AVVideoPlayerView`.
     static let avVideoPlayerView = _R.nib._AVVideoPlayerView()
+    /// Nib `FilesizeButton`.
+    static let filesizeButton = _R.nib._FilesizeButton()
     /// Nib `TwitterDLViewController`.
     static let twitterDLViewController = _R.nib._TwitterDLViewController()
     /// Nib `VideoControlsView`.
@@ -160,6 +162,14 @@ struct R: Rswift.Validatable {
     @available(*, deprecated, message: "Use UINib(resource: R.nib.avVideoPlayerView) instead")
     static func avVideoPlayerView(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.avVideoPlayerView)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UINib(name: "FilesizeButton", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.filesizeButton) instead")
+    static func filesizeButton(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.filesizeButton)
     }
     #endif
 
@@ -189,6 +199,10 @@ struct R: Rswift.Validatable {
 
     static func avVideoPlayerView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
       return R.nib.avVideoPlayerView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+    }
+
+    static func filesizeButton(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+      return R.nib.filesizeButton.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
     }
 
     static func twitterDLViewController(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
@@ -243,6 +257,17 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
 
+    struct _FilesizeButton: Rswift.NibResourceType {
+      let bundle = R.hostingBundle
+      let name = "FilesizeButton"
+
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+      }
+
+      fileprivate init() {}
+    }
+
     struct _TwitterDLViewController: Rswift.NibResourceType {
       let bundle = R.hostingBundle
       let name = "TwitterDLViewController"
@@ -264,6 +289,10 @@ struct _R: Rswift.Validatable {
 
       func secondView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[1] as? UIKit.UIView
+      }
+
+      func thirdView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[2] as? UIKit.UIView
       }
 
       static func validate() throws {

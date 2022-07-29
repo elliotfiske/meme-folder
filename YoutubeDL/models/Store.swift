@@ -19,11 +19,10 @@ public struct TwitterMediaGrabberState {
     
     var tweetURL: String?
     
-    var twitterGuestToken: APIState<String> = .idle
-    
     var mediaResultURL: APIState<TwitterAPI.MediaResultURLs> = .idle
     
-    public var coolPokemonFact: APIState<String> = .idle
+//    var mediaResultURL2: TwitterAPI.MediaResultURLs_struct = TwitterAPI.MediaResultURLs_struct()
+    var sizeForUrl: [String:Int] = [:]
 }
 
 public protocol APIStateLike {
@@ -69,17 +68,14 @@ public enum APIState<T>: APIStateLike {
     }
 }
 
-public enum NumbersAPIAction: Action {
-    case getNumberFact(Int)
-    case numberFact(APIState<String>)
-}
-
 public enum TwitterAPIAction: Action {
     case getMediaFromTweet(String)
     case mediaURLs(APIState<TwitterAPI.MediaResultURLs>)
     
     case downloadMedia(url: String)
     case downloadedMediaProgress(APIState<URL>, Double)
+    
+    case gotVideoSize(url: String, size: Int)
     
     case refreshToken
     case setToken(String)
@@ -89,8 +85,6 @@ func appReducer(action: Action, state: TwitterMediaGrabberState?) -> TwitterMedi
     var state = state ?? TwitterMediaGrabberState()
     
     switch action {
-    case NumbersAPIAction.numberFact(let result):
-        state.coolPokemonFact = result
     case TwitterAPIAction.getMediaFromTweet(let url):
         state.tweetURL = url
     case TwitterAPIAction.mediaURLs(let result):
@@ -98,6 +92,8 @@ func appReducer(action: Action, state: TwitterMediaGrabberState?) -> TwitterMedi
     case TwitterAPIAction.downloadedMediaProgress(let result, let progress):
         state.localMediaURL = result
         state.downloadedMediaProgress = progress
+    case TwitterAPIAction.gotVideoSize(url: let url, size: let size):
+        state.sizeForUrl[url] = size
         
     default: break
     }

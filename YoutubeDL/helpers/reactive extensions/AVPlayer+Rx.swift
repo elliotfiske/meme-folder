@@ -54,23 +54,31 @@ extension Reactive where Base: AVPlayer {
     }
     
     public func periodicTimeObserver(interval: CMTime) -> Observable<CMTime> {
-        return Observable.create { observer in
-            let t = self.base.addPeriodicTimeObserver(forInterval: interval, queue: nil) { time in
+        return Observable.create { [weak base] observer in
+            let t = base?.addPeriodicTimeObserver(forInterval: interval, queue: nil) { time in
                 observer.onNext(time)
             }
             
-            return Disposables.create { self.base.removeTimeObserver(t) }
+            return Disposables.create {
+                if let t = t {
+                    base?.removeTimeObserver(t)
+                }
+            }
         }
     }
     
     public func boundaryTimeObserver(times: [CMTime]) -> Observable<Void> {
-        return Observable.create { observer in
+        return Observable.create { [weak base] observer in
             let timeValues = times.map() { NSValue(time: $0) }
-            let t = self.base.addBoundaryTimeObserver(forTimes: timeValues, queue: nil) {
+            let t = base?.addBoundaryTimeObserver(forTimes: timeValues, queue: nil) {
                 observer.onNext(())
             }
             
-            return Disposables.create { self.base.removeTimeObserver(t) }
+            return Disposables.create {
+                if let t = t {   
+                    self.base.removeTimeObserver(t)
+                }
+            }
         }
     }
 }
