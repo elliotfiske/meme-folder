@@ -114,7 +114,7 @@ public class VideoControlsView: UIView, NibLoadable, UIGestureRecognizerDelegate
     func setupPlayPauseButton() {
         isPlaying
             .map { playing in
-                let image = playing ? R.image.play() : R.image.pause()
+                let image = playing ? R.image.pause() : R.image.play()
                 return image!
             }
             .bind(to: self.playPauseButton.rx.image())

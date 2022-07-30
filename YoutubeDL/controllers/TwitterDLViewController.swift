@@ -93,6 +93,20 @@ public class TwitterDLViewController: UIViewController, UIAdaptivePresentationCo
                 }
                 .bind(to: successLabel.rx.text),
             
+            store.observableFromPath(keyPath: \.mediaResultURL).apiResult()
+                .observe(on: MainScheduler.instance)
+                .compactMap {
+                    if case let .videos(thumbnail: thumb, urls: _) = $0 {
+                        return thumb
+                    }
+                    return nil
+                }
+                .distinctUntilChanged()
+                .subscribe(onNext: {
+                    [weak self] (thumb: String) in
+                    self?.videoPlayerController.thumbnailView.source = thumb
+                }),
+            
             store.observableFromPath(keyPath: \.mediaResultURL)
                 .apiError()
                 .map {
@@ -130,15 +144,5 @@ public class TwitterDLViewController: UIViewController, UIAdaptivePresentationCo
                 .bind(to: videoPlayerController.loadingProgress)
         )
         
-    }
-}
-
-extension TwitterDLViewController {
-    
-    // Initialize an AVPlayer with the newly downloaded MP4 file.
-    // TODO: pull me out to my own bona-fide view, and do the AV layer stuff in there.
-    func setupPlayer() {
-        let item = AVPlayerItem(url: self.model.localMediaURL!)
-        videoPlayerController.itemToPlay.on(.next(item))
     }
 }

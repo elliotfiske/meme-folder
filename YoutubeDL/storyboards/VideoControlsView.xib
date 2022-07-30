@@ -84,7 +84,6 @@
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <gestureRecognizers/>
             <constraints>
                 <constraint firstItem="QJ0-3C-m6o" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="8gv-Rf-hH5"/>
@@ -115,9 +114,6 @@
     </objects>
     <resources>
         <image name="play" width="32" height="32"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
