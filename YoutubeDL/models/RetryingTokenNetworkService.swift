@@ -23,7 +23,9 @@ public let defaultResponse: Response = {
 /// - Returns: response of a guaranteed authorized network request.
 public func getData<T>(tokenAcquisitionService: TokenAcquisitionService<T>, request: @escaping (T) throws -> URLRequest, response: @escaping Response = defaultResponse) -> Observable<(response: HTTPURLResponse, data: Data)> {
     return Observable
-        .deferred { tokenAcquisitionService.token.take(1) }
+        .deferred {
+            tokenAcquisitionService.token.take(1)
+        }
         .map { try request($0) }
         .flatMap { response($0) }
         .map { response in
@@ -62,7 +64,9 @@ public final class TokenAcquisitionService<T> {
     ///   - extractToken: A function that can extract a token from the data returned by `getToken`.
     public init(initialToken: T?, getToken: @escaping GetToken, extractToken: @escaping (Data) throws -> T) {
         relay
-            .flatMapFirst { _ in getToken() }
+            .flatMapFirst { _ in
+                getToken()
+            }
             .map { (urlResponse) -> T in
                 guard urlResponse.response.statusCode / 100 == 2 else {
                     throw TokenAcquisitionError.refusedToken(response: urlResponse.response, data: urlResponse.data) }

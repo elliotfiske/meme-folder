@@ -51,3 +51,4 @@ extension Reactive where Base == PhotoLibraryChangeObserver {
             })
     }
 }
+

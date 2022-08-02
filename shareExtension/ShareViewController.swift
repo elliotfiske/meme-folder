@@ -31,7 +31,10 @@ class ShareViewController: UIViewController {
                 
                 DispatchQueue.main.async {
                     let controlla = TwitterDLViewController.loadFromNib()
-                    controlla.tweetURLToLoad = shareURL.absoluteString
+                    let tweetURL = shareURL.absoluteString
+                    
+                    store.dispatch(TwitterAPIAction.getMediaFromTweet(tweetURL!))
+                    
                     self.addChild(controlla)
                     controlla.view.frame = self.view.frame
                     self.view.addSubview(controlla.view)

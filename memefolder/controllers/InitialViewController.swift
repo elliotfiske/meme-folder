@@ -58,11 +58,11 @@ class InitialViewController: UIViewController {
 //        controlla.tweetURLToLoad = "https://twitter.com/CultureCrave/status/1226622427599257601"          // 0:16 video
 //        controlla.tweetURLToLoad = "https://twitter.com/cyberglittter/status/1413344653408153600?s=20" // 2 Images
         
-        controlla.tweetURLToLoad = "https://twitter.com/matthen2/status/1543226572592783362"    // 0:55 video
+//        controlla.tweetURLToLoad = "https://twitter.com/matthen2/status/1543226572592783362"    // 0:55 video
         
         controlla.presentationController?.delegate = controlla
         present(controlla, animated: true)
         
-        
+        store.dispatch(TwitterAPIAction.getMediaFromTweet("https://twitter.com/OshawottKing23/status/1554228323575816193"))
     }
 }

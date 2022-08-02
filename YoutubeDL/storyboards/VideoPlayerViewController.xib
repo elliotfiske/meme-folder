@@ -28,7 +28,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="619" height="176"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
-                                <constraint firstAttribute="width" secondItem="ts5-hg-DrL" secondAttribute="height" multiplier="619:176" id="dq4-OD-aEZ"/>
+                                <constraint firstAttribute="width" secondItem="ts5-hg-DrL" secondAttribute="height" multiplier="619:176" priority="750" id="dq4-OD-aEZ"/>
                             </constraints>
                         </view>
                     </subviews>

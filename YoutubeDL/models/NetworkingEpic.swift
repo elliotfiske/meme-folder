@@ -9,6 +9,7 @@
 import Foundation
 import RxSwift
 import ReSwift
+import Photos
 
 public let networkingEpic: Epic<TwitterMediaGrabberState> = {
     action$, getState in
@@ -69,6 +70,30 @@ public let networkingEpic: Epic<TwitterMediaGrabberState> = {
             }
     }
     
+    let saveMedia: Observable<Action> = action$.compactMap {
+        if case let TwitterAPIAction.downloadedMediaProgress(status, _) = $0 {
+            if case let .fulfilled(url) = status {
+                return url
+            }
+        }
+        return nil
+    }
+    .flatMap {
+        (url: URL) -> Single<Action> in
+        
+        return PHPhotoLibrary.shared().rx.rxPerformChanges({
+            let request = PHAssetCreationRequest.forAsset()
+            request.addResource(with: .video, fileURL: url, options: nil)
+        })
+        .map {
+            result in
+            return TwitterAPIAction.savedToCameraRoll
+        }
+        .catchAndReturn(
+            TwitterAPIAction.failedToSaveToCameraRoll
+        )
+    }
     
-    return Observable<Action>.merge(getMediaUrl, getMediaSizes, downloadMedia)
+    
+    return Observable<Action>.merge(getMediaUrl, getMediaSizes, downloadMedia, saveMedia)
 }

@@ -23,6 +23,8 @@ public struct TwitterMediaGrabberState {
     
 //    var mediaResultURL2: TwitterAPI.MediaResultURLs_struct = TwitterAPI.MediaResultURLs_struct()
     var sizeForUrl: [String:Int] = [:]
+    
+    var savedToCameraRoll: Bool = false
 }
 
 public protocol APIStateLike {
@@ -75,6 +77,9 @@ public enum TwitterAPIAction: Action {
     case downloadMedia(url: String)
     case downloadedMediaProgress(APIState<URL>, Double)
     
+    case savedToCameraRoll
+    case failedToSaveToCameraRoll
+    
     case gotVideoSize(url: String, size: Int)
     
     case refreshToken
@@ -94,6 +99,10 @@ func appReducer(action: Action, state: TwitterMediaGrabberState?) -> TwitterMedi
         state.downloadedMediaProgress = progress
     case TwitterAPIAction.gotVideoSize(url: let url, size: let size):
         state.sizeForUrl[url] = size
+    case TwitterAPIAction.savedToCameraRoll:
+        state.savedToCameraRoll = true
+    case TwitterAPIAction.failedToSaveToCameraRoll:
+        state.savedToCameraRoll = false
         
     default: break
     }

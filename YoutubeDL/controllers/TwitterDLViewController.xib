@@ -16,8 +16,6 @@
                 <outlet property="filesizeButton1" destination="McT-5K-Szz" id="Y1t-vL-QHF"/>
                 <outlet property="filesizeButton2" destination="nuU-72-O04" id="dbd-dh-7LP"/>
                 <outlet property="filesizeButton3" destination="KaF-ah-phh" id="paL-mc-yxU"/>
-                <outlet property="saveToCameraRollButton" destination="eeg-bj-qMu" id="ThA-Nz-3nJ"/>
-                <outlet property="successLabel" destination="Oh6-Iv-iYe" id="2nw-wE-alm"/>
                 <outlet property="videoPlayerController" destination="VIw-MO-Blm" id="9kK-0a-IG7"/>
                 <outlet property="view" destination="fO9-WW-xd3" id="SXn-2D-gvR"/>
             </connections>
@@ -27,70 +25,61 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="NR3-xn-iWj">
-                    <rect key="frame" x="0.0" y="44" width="414" height="359"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VIw-MO-Blm" customClass="VideoPlayerViewController" customModule="YoutubeDL" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="44" width="414" height="184"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F1w-QK-TSc">
+                    <rect key="frame" x="8" y="236" width="398" height="14.5"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                    <color key="textColor" systemColor="systemRedColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="NrV-PE-gex">
+                    <rect key="frame" x="207" y="842" width="0.0" height="0.0"/>
                     <subviews>
-                        <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VIw-MO-Blm" customClass="VideoPlayerViewController" customModule="YoutubeDL" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="279"/>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="McT-5K-Szz" customClass="FilesizeButton" customModule="YoutubeDL" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="80" id="6aL-zg-9qQ"/>
+                                <constraint firstAttribute="height" constant="80" id="XTA-15-Fz9"/>
+                            </constraints>
                         </view>
-                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F1w-QK-TSc">
-                            <rect key="frame" x="176" y="291.5" width="62" height="0.0"/>
-                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                            <color key="textColor" systemColor="systemRedColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eeg-bj-qMu">
-                            <rect key="frame" x="116.5" y="304" width="181" height="30"/>
-                            <state key="normal" title="Save Video to Camera Roll"/>
-                        </button>
-                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Success Label" textAlignment="center" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oh6-Iv-iYe">
-                            <rect key="frame" x="152" y="346.5" width="110" height="0.0"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" systemColor="systemGreenColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="NrV-PE-gex">
-                            <rect key="frame" x="207" y="359" width="0.0" height="0.0"/>
-                            <subviews>
-                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="McT-5K-Szz" customClass="FilesizeButton" customModule="YoutubeDL" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="80" id="6aL-zg-9qQ"/>
-                                        <constraint firstAttribute="height" constant="80" id="XTA-15-Fz9"/>
-                                    </constraints>
-                                </view>
-                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nuU-72-O04" customClass="FilesizeButton" customModule="YoutubeDL" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="80" id="afF-lF-Cgl"/>
-                                        <constraint firstAttribute="height" constant="80" id="wwF-Ay-YGI"/>
-                                    </constraints>
-                                </view>
-                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KaF-ah-phh" customClass="FilesizeButton" customModule="YoutubeDL" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="80" id="BqG-Cm-XkB"/>
-                                        <constraint firstAttribute="height" constant="80" id="T4W-ag-reO"/>
-                                    </constraints>
-                                </view>
-                            </subviews>
-                        </stackView>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nuU-72-O04" customClass="FilesizeButton" customModule="YoutubeDL" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="80" id="afF-lF-Cgl"/>
+                                <constraint firstAttribute="height" constant="80" id="wwF-Ay-YGI"/>
+                            </constraints>
+                        </view>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KaF-ah-phh" customClass="FilesizeButton" customModule="YoutubeDL" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="80" id="BqG-Cm-XkB"/>
+                                <constraint firstAttribute="height" constant="80" id="T4W-ag-reO"/>
+                            </constraints>
+                        </view>
                     </subviews>
-                    <constraints>
-                        <constraint firstItem="VIw-MO-Blm" firstAttribute="width" secondItem="NR3-xn-iWj" secondAttribute="width" id="uvT-Im-Yoa"/>
-                    </constraints>
                 </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="FQh-RT-Aiu"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="FQh-RT-Aiu" firstAttribute="trailing" secondItem="NR3-xn-iWj" secondAttribute="trailing" id="6ML-eV-FpS"/>
-                <constraint firstItem="NR3-xn-iWj" firstAttribute="top" secondItem="FQh-RT-Aiu" secondAttribute="top" id="CnI-cm-E4h"/>
-                <constraint firstItem="FQh-RT-Aiu" firstAttribute="leading" secondItem="NR3-xn-iWj" secondAttribute="leading" id="Gk7-Ej-4u4"/>
+                <constraint firstItem="F1w-QK-TSc" firstAttribute="centerX" secondItem="FQh-RT-Aiu" secondAttribute="centerX" id="7pZ-Po-x4R"/>
+                <constraint firstItem="F1w-QK-TSc" firstAttribute="leading" secondItem="FQh-RT-Aiu" secondAttribute="leading" constant="8" id="KsI-eh-S4I"/>
+                <constraint firstItem="NrV-PE-gex" firstAttribute="top" relation="greaterThanOrEqual" secondItem="F1w-QK-TSc" secondAttribute="bottom" constant="20" id="Mdq-cc-jzO"/>
+                <constraint firstItem="FQh-RT-Aiu" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="NrV-PE-gex" secondAttribute="trailing" constant="8" id="Od1-yg-eTq"/>
+                <constraint firstItem="NrV-PE-gex" firstAttribute="centerX" secondItem="FQh-RT-Aiu" secondAttribute="centerX" id="PUZ-o6-YKB"/>
+                <constraint firstItem="NrV-PE-gex" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="FQh-RT-Aiu" secondAttribute="leading" constant="8" id="Pv6-Uo-4wz"/>
+                <constraint firstItem="VIw-MO-Blm" firstAttribute="leading" secondItem="FQh-RT-Aiu" secondAttribute="leading" id="Q2c-Rz-mBz"/>
+                <constraint firstItem="FQh-RT-Aiu" firstAttribute="trailing" secondItem="F1w-QK-TSc" secondAttribute="trailing" constant="8" id="SKQ-nj-cLD"/>
+                <constraint firstItem="FQh-RT-Aiu" firstAttribute="bottom" secondItem="NrV-PE-gex" secondAttribute="bottom" constant="20" id="X5R-Y1-k4x"/>
+                <constraint firstItem="FQh-RT-Aiu" firstAttribute="trailing" secondItem="VIw-MO-Blm" secondAttribute="trailing" id="X6Y-Kc-icz"/>
+                <constraint firstItem="VIw-MO-Blm" firstAttribute="top" secondItem="FQh-RT-Aiu" secondAttribute="top" id="hru-xs-Kkn"/>
+                <constraint firstItem="F1w-QK-TSc" firstAttribute="top" secondItem="VIw-MO-Blm" secondAttribute="baseline" constant="8" symbolType="layoutAnchor" id="jjd-lA-Ync"/>
             </constraints>
             <point key="canvasLocation" x="131.8840579710145" y="718.52678571428567"/>
         </view>
@@ -98,9 +87,6 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

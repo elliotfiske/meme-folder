@@ -51,7 +51,7 @@ public class TwitterAPI: HasDisposeBag {
     private let tokenService: TokenAcquisitionService<String>
     
     init() {
-        let savedToken = UserDefaults.standard.string(forKey: "twitter_guest_token")
+        let savedToken = UserDefaults.standard.string(forKey: "twitter_guest_token") ?? "bad_token"
         
         tokenService = TokenAcquisitionService(
             initialToken: savedToken,
