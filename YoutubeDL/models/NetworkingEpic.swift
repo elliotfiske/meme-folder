@@ -11,72 +11,78 @@ import RxSwift
 import ReSwift
 import Photos
 
+
+
 public let networkingEpic: Epic<TwitterMediaGrabberState> = {
     action$, getState in
     
     let getMediaUrl: Observable<Action> = action$.compactMap {
-        if case let TwitterAPIAction.getMediaFromTweet(url) = $0 {
-            return url
+        guard let url = ($0 as? GetMediaURLsFromTweet)?.payload else {
+            return nil
         }
-        return nil
+        
+        return url
     }
-    .flatMapLatest {
-        return try TwitterAPI.sharedInstance.getMediaURLsRx(for: $0)
-            .map {
-                mediaUrls in
-                TwitterAPIAction.mediaURLs(.fulfilled(mediaUrls))
-            }
-            .catch {
-                return Observable.just(TwitterAPIAction.mediaURLs(APIState.error($0)))
-            }
-    }
+        .flatMapLatest {
+            return try TwitterAPI.sharedInstance.getMediaURLsRx(for: $0)
+                .map {
+                    mediaUrls in
+                    return .fulfilled(mediaUrls)
+                }
+                .catch {
+                    return Observable.just(.error($0))
+                }
+                .map {
+                    return FetchedMediaURLsFromTweet(urls: $0)
+                }
+        }
     
     let getMediaSizes: Observable<Action> = action$.compactMap {
-        if case let TwitterAPIAction.mediaURLs(state) = $0 {
-            if case let .fulfilled(mediaUrls) = state {
-                if case let .videos(thumbnail: _, urls: vidUrls) = mediaUrls {
-                    return vidUrls
-                }
-            }
+        guard case let .fulfilled(media) = ($0 as? FetchedMediaURLsFromTweet)?.urls else {
+            return nil
         }
-        return nil
+        
+        guard let videos = media.videos else {
+            return nil
+        }
+        
+        return videos
     }
     .flatMapLatest {
-        (urls: [String]) in
+        (videos: [TwitterAPI.MediaResultURLs_struct.Video]) in
         return Observable.merge(
-            try urls.map {
-                url in
-                try TwitterAPI.sharedInstance.getMediaSize(for: url).map {
-                    return TwitterAPIAction.gotVideoSize(url: url, size: $0)
+            try videos.map {
+                video in
+                try TwitterAPI.sharedInstance.getMediaSize(for: video.url).map {
+                    return FetchedVideoVariantFilesize(url: video.url, size: $0)
                 }
             }
         )
     }
     
     let downloadMedia: Observable<Action> = action$.compactMap {
-        if case let TwitterAPIAction.downloadMedia(url) = $0 {
-            return url
+        guard let url = ($0 as? DownloadMedia)?.url else {
+            return nil
         }
-        return nil
+        
+        return url
     }
     .flatMapLatest {
         return TwitterAPI.sharedInstance.downloadMedia(atUrl: $0)
             .map {
                 if let url = $0.localUrl {
-                    return TwitterAPIAction.downloadedMediaProgress(.fulfilled(url), 1.0)
+                    return DownloadMediaProgress(localMediaURL: .fulfilled(url), progress: 1.0)
                 } else {
-                    return TwitterAPIAction.downloadedMediaProgress(APIState.pending, $0.progress)
+                    return DownloadMediaProgress(localMediaURL: APIState.pending, progress: $0.progress)
                 }
             }
     }
     
     let saveMedia: Observable<Action> = action$.compactMap {
-        if case let TwitterAPIAction.downloadedMediaProgress(status, _) = $0 {
-            if case let .fulfilled(url) = status {
-                return url
-            }
+        guard case let .fulfilled(url) = ($0 as? DownloadMediaProgress)?.localMediaURL else {
+            return nil
         }
-        return nil
+        return url
     }
     .flatMap {
         (url: URL) -> Single<Action> in
@@ -87,10 +93,10 @@ public let networkingEpic: Epic<TwitterMediaGrabberState> = {
         })
         .map {
             result in
-            return TwitterAPIAction.savedToCameraRoll
+            return SavedToCameraRoll(success: true)
         }
         .catchAndReturn(
-            TwitterAPIAction.failedToSaveToCameraRoll
+            SavedToCameraRoll(success: false)
         )
     }
     

@@ -25,12 +25,6 @@ class InitialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // todo: this should move somewhere else, maybe like a "InitialLoadEpic" or something
-        if let savedToken = UserDefaults.standard.string(forKey: "twitter_guest_token") {
-            store.dispatch(TwitterAPIAction.setToken(savedToken))
-        }
-        
-        
         // TODO: I'll almost certainly need to do this again so I should make a helper for it.
         let storyboard = UIStoryboard(name: "RecentPhotosCollectionViewController", bundle: nil)
         guard let controller = storyboard.instantiateInitialViewController() else {
@@ -63,6 +57,6 @@ class InitialViewController: UIViewController {
         controlla.presentationController?.delegate = controlla
         present(controlla, animated: true)
         
-        store.dispatch(TwitterAPIAction.getMediaFromTweet("https://twitter.com/OshawottKing23/status/1554228323575816193"))
+        store.dispatch(GetMediaURLsFromTweet(payload: "https://twitter.com/OshawottKing23/status/1554228323575816193"))
     }
 }

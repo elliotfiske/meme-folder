@@ -71,7 +71,7 @@ public class TwitterDLViewController: UIViewController, UIAdaptivePresentationCo
                     
                     // BAD SMELL: Subscribe in subscribe. Lazy solution for now.
                     button.pressed.subscribe(onNext: {
-                        store.dispatch(TwitterAPIAction.downloadMedia(url: url))
+                        store.dispatch(DownloadMedia(url: url))
                     })
                     .disposed(by: self.rx.disposeBag)
                 }
@@ -82,7 +82,7 @@ public class TwitterDLViewController: UIViewController, UIAdaptivePresentationCo
             store.observableFromPath(keyPath: \.mediaResultURL).apiResult()
                 .observe(on: MainScheduler.instance)
                 .compactMap {
-                    if case let .videos(thumbnail: thumb, urls: _) = $0 {
+                    if let thumb = $0.thumbnail {
                         return thumb
                     }
                     return nil

@@ -17,11 +17,8 @@ public struct TwitterMediaGrabberState {
     
     var thumbnailURL: URL?
     
-    var tweetURL: String?
+    var mediaResultURL: APIState<TwitterAPI.MediaResultURLs_struct> = .idle
     
-    var mediaResultURL: APIState<TwitterAPI.MediaResultURLs> = .idle
-    
-//    var mediaResultURL2: TwitterAPI.MediaResultURLs_struct = TwitterAPI.MediaResultURLs_struct()
     var sizeForUrl: [String:Int] = [:]
     
     var savedToCameraRoll: Bool = false
@@ -70,41 +67,63 @@ public enum APIState<T>: APIStateLike {
     }
 }
 
-public enum TwitterAPIAction: Action {
-    case getMediaFromTweet(String)
-    case mediaURLs(APIState<TwitterAPI.MediaResultURLs>)
+public protocol PayloadAction: Action {
+    associatedtype PayloadType
+    var payload: PayloadType { get set }
     
-    case downloadMedia(url: String)
-    case downloadedMediaProgress(APIState<URL>, Double)
+    init(payload: PayloadType)
+}
+
+public struct GetMediaURLsFromTweet: PayloadAction {
+    public var payload: String
     
-    case savedToCameraRoll
-    case failedToSaveToCameraRoll
+    public init(payload: String) {
+        self.payload = payload
+    }
+}
+
+public struct FetchedMediaURLsFromTweet: Action {
+    let urls: APIState<TwitterAPI.MediaResultURLs_struct>
+}
+
+public struct DownloadMedia: Action {
+    public init(url: String) {
+        self.url = url
+    }
     
-    case gotVideoSize(url: String, size: Int)
-    
-    case refreshToken
-    case setToken(String)
+    let url: String
+}
+
+public struct DownloadMediaProgress: Action {
+    let localMediaURL: APIState<URL>
+    let progress: Double
+}
+
+public struct FetchedVideoVariantFilesize: Action {
+    let url: String
+    let size: Int
+}
+
+public struct SavedToCameraRoll: Action {
+    let success: Bool
 }
 
 func appReducer(action: Action, state: TwitterMediaGrabberState?) -> TwitterMediaGrabberState {
     var state = state ?? TwitterMediaGrabberState()
     
     switch action {
-    case TwitterAPIAction.getMediaFromTweet(let url):
-        state.tweetURL = url
-    case TwitterAPIAction.mediaURLs(let result):
-        state.mediaResultURL = result
-    case TwitterAPIAction.downloadedMediaProgress(let result, let progress):
-        state.localMediaURL = result
-        state.downloadedMediaProgress = progress
-    case TwitterAPIAction.gotVideoSize(url: let url, size: let size):
-        state.sizeForUrl[url] = size
-    case TwitterAPIAction.savedToCameraRoll:
-        state.savedToCameraRoll = true
-    case TwitterAPIAction.failedToSaveToCameraRoll:
-        state.savedToCameraRoll = false
-        
-    default: break
+    case let action as FetchedMediaURLsFromTweet:
+        state.mediaResultURL = action.urls
+    case let action as DownloadMediaProgress:
+        state.localMediaURL = action.localMediaURL
+        state.downloadedMediaProgress = action.progress
+    case let action as FetchedVideoVariantFilesize:
+        state.sizeForUrl[action.url] = action.size
+    case let action as SavedToCameraRoll:
+        state.savedToCameraRoll = action.success
+
+    default:
+        break
     }
     
     return state

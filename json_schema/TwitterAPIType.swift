@@ -1,15 +1,15 @@
 // This file was generated from JSON Schema using quicktype, do not modify it directly.
 // To parse the JSON, add this file to your project and do:
 //
-//   let twitterAPIType = try? newJSONDecoder().decode(TwitterAPIType.self, from: jsonData)
+//   let twitterAPIType = try? JSONDecoder().decode(TwitterAPIType.self, from: jsonData)
 
 import Foundation
 
 // MARK: - TwitterAPIType
 struct TwitterAPIType: Codable {
-    let idStr: String
-    let entities, extendedEntities: Entities
-    let user: User
+    let idStr: String?
+    let entities, extendedEntities: Entities?
+    let user: User?
     let possiblySensitive: Bool?
     let lang: String?
 
@@ -25,16 +25,16 @@ struct TwitterAPIType: Codable {
 
 // MARK: - Entities
 struct Entities: Codable {
-    let media: [Media]
+    let media: [Media]?
 }
 
 // MARK: - Media
 struct Media: Codable {
-    let idStr: String
-    let mediaURLHTTPS: String
-    let type: String
-    let originalInfo: OriginalInfo
-    let sizes: Sizes
+    let idStr: String?
+    let mediaURLHTTPS: String?
+    let type: String?
+    let originalInfo: OriginalInfo?
+    let sizes: Sizes?
     let videoInfo: VideoInfo?
 
     enum CodingKeys: String, CodingKey {
@@ -49,7 +49,7 @@ struct Media: Codable {
 
 // MARK: - OriginalInfo
 struct OriginalInfo: Codable {
-    let width, height: Int
+    let width, height: Int?
     let focusRects: [FocusRect]?
 
     enum CodingKeys: String, CodingKey {
@@ -60,18 +60,18 @@ struct OriginalInfo: Codable {
 
 // MARK: - FocusRect
 struct FocusRect: Codable {
-    let x, y, h, w: Int
+    let x, y, h, w: Int?
 }
 
 // MARK: - Sizes
 struct Sizes: Codable {
-    let thumb, medium, small, large: Large
+    let thumb, medium, small, large: Large?
 }
 
 // MARK: - Large
 struct Large: Codable {
-    let w, h: Int
-    let resize: Resize
+    let w, h: Int?
+    let resize: Resize?
 }
 
 enum Resize: String, Codable {
@@ -81,9 +81,9 @@ enum Resize: String, Codable {
 
 // MARK: - VideoInfo
 struct VideoInfo: Codable {
-    let aspectRatio: [Int]
-    let durationMillis: Int
-    let variants: [Variant]
+    let aspectRatio: [Int]?
+    let durationMillis: Int?
+    let variants: [Variant]?
 
     enum CodingKeys: String, CodingKey {
         case aspectRatio = "aspect_ratio"
@@ -94,8 +94,8 @@ struct VideoInfo: Codable {
 
 // MARK: - Variant
 struct Variant: Codable {
-    let contentType: String
-    let url: String
+    let contentType: String?
+    let url: String?
     let bitrate: Int?
 
     enum CodingKeys: String, CodingKey {
@@ -106,8 +106,8 @@ struct Variant: Codable {
 
 // MARK: - User
 struct User: Codable {
-    let idStr, name, screenName: String
-    let protected: Bool
+    let idStr, name, screenName: String?
+    let protected: Bool?
 
     enum CodingKeys: String, CodingKey {
         case idStr = "id_str"

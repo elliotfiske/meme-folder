@@ -64,10 +64,24 @@ extension ObservableConvertibleType where Element: APIStateLike {
         }
     }
     
-    // Gotta be a type-smarter way to do this yo. I can't get it to have a generic around the APIState requirement.
+    // An Observable that emits when the API request is fulfilled
     public func apiResult() -> Observable<Result> {
         return self.asObservable().compactMap {
             $0.getResult()
+        }
+    }
+}
+
+
+extension ObservableConvertibleType where Element: Action {
+    public func ofType<SpecificPayloadAction: PayloadAction>(type: SpecificPayloadAction.Type) -> Observable<SpecificPayloadAction.PayloadType> {
+        return self.asObservable().compactMap {
+            action in
+            if let payload = (action as? SpecificPayloadAction)?.payload {
+                return payload
+            }
+            
+            return nil
         }
     }
 }

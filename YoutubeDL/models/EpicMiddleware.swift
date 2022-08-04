@@ -41,9 +41,8 @@ class EpicMiddleware<State> {
         
             return { next in
                 return { action in
-                    let result = next(action)
+                    next(action)
                     actionSubject.onNext(action)
-                    return result
                 }
             }
         }

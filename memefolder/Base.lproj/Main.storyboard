@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xaV-7z-ZOk">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Initial View Controller-->
+        <!--Media-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="InitialViewController" customModule="Meme_Folder" customModuleProvider="target" sceneMemberID="viewController">
@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xFS-UF-c22">
-                                <rect key="frame" x="0.0" y="78" width="414" height="784"/>
+                                <rect key="frame" x="0.0" y="78" width="414" height="735"/>
                             </containerView>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="oW2-T9-M9u">
                                 <rect key="frame" x="80" y="48" width="254" height="30"/>
@@ -52,6 +52,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xFS-UF-c22" secondAttribute="trailing" id="upo-au-UK0"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Media" image="photo.on.rectangle" catalog="system" id="vfe-3R-3kn"/>
                     <connections>
                         <outlet property="coolButton" destination="akf-17-HIq" id="VWC-1y-Fsz"/>
                         <outlet property="recentPhotosContainer" destination="xFS-UF-c22" id="1pC-Fn-rAP"/>
@@ -60,10 +61,79 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="131.8840579710145" y="71.651785714285708"/>
+            <point key="canvasLocation" x="1072" y="-109"/>
+        </scene>
+        <!--Paste a Link-->
+        <scene sceneID="sMx-xg-f85">
+            <objects>
+                <viewController id="qgV-WN-pDX" customClass="PasteLinkViewController" customModule="Meme_Folder" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aAk-6W-icU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Paste a link to a Twitter Status with a video here!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M5k-c0-nbq">
+                                <rect key="frame" x="8" y="465.5" width="398" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ttm-hl-xqF">
+                                <rect key="frame" x="97" y="411.5" width="220" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Paste a link to a Twitter Status with a video here!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vph-2p-LXD">
+                                <rect key="frame" x="8" y="494" width="398" height="20.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="udS-S4-Uhe"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="M5k-c0-nbq" firstAttribute="centerX" secondItem="udS-S4-Uhe" secondAttribute="centerX" id="1pX-DH-UsA"/>
+                            <constraint firstItem="M5k-c0-nbq" firstAttribute="top" secondItem="Ttm-hl-xqF" secondAttribute="bottom" constant="20" id="9nh-xu-DDj"/>
+                            <constraint firstItem="Ttm-hl-xqF" firstAttribute="centerY" secondItem="udS-S4-Uhe" secondAttribute="centerY" id="BCb-4s-fLw"/>
+                            <constraint firstItem="udS-S4-Uhe" firstAttribute="trailing" secondItem="M5k-c0-nbq" secondAttribute="trailing" constant="8" id="OlS-Lm-XCq"/>
+                            <constraint firstItem="M5k-c0-nbq" firstAttribute="leading" secondItem="udS-S4-Uhe" secondAttribute="leading" constant="8" id="XZM-3O-hhi"/>
+                            <constraint firstItem="Ttm-hl-xqF" firstAttribute="centerX" secondItem="udS-S4-Uhe" secondAttribute="centerX" id="Z1b-YP-JeA"/>
+                            <constraint firstItem="Ttm-hl-xqF" firstAttribute="width" secondItem="udS-S4-Uhe" secondAttribute="width" multiplier="0.531401" id="x9P-wN-lbF"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Paste a Link" image="link" catalog="system" id="y2A-HK-anu"/>
+                    <connections>
+                        <outlet property="statusLabel" destination="vph-2p-LXD" id="ro3-Fh-qg9"/>
+                        <outlet property="tweetLinkInput" destination="Ttm-hl-xqF" id="M8W-g3-JY7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SbX-Ql-leY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1071.0144927536232" y="551.11607142857144"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="34A-jO-Qvp">
+            <objects>
+                <tabBarController id="xaV-7z-ZOk" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WLR-rL-r54">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="qgV-WN-pDX" kind="relationship" relationship="viewControllers" id="Buw-dn-hZJ"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="hLk-UY-sZJ"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xe0-YN-H4r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="184" y="248"/>
         </scene>
     </scenes>
     <resources>
+        <image name="link" catalog="system" width="128" height="122"/>
+        <image name="photo.on.rectangle" catalog="system" width="128" height="97"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

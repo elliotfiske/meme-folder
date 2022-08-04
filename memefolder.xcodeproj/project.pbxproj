@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C9006D79289A03410038601C /* PasteLinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9006D78289A03410038601C /* PasteLinkViewController.swift */; };
 		C90E11A725E70E2F0029DBC1 /* SegmentHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = C90E11A625E70E2F0029DBC1 /* SegmentHeader.xib */; };
 		C90E11AD25E710D10029DBC1 /* SegmentHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90E11AC25E710D10029DBC1 /* SegmentHeader.swift */; };
 		C92D91ED23C999010067150B /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92D91EC23C999010067150B /* InitialViewController.swift */; };
@@ -120,6 +121,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C9006D78289A03410038601C /* PasteLinkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasteLinkViewController.swift; sourceTree = "<group>"; };
 		C90E11A625E70E2F0029DBC1 /* SegmentHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SegmentHeader.xib; sourceTree = "<group>"; };
 		C90E11AC25E710D10029DBC1 /* SegmentHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentHeader.swift; sourceTree = "<group>"; };
 		C92D91EC23C999010067150B /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 				C937C37E25EEE269009A8410 /* PhotoViewController.swift */,
 				C937C37F25EEE269009A8410 /* PhotoViewController.xib */,
 				C993A2E225F436C000198EFC /* RecentPhotosCollectionViewController.storyboard */,
+				C9006D78289A03410038601C /* PasteLinkViewController.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -562,6 +565,7 @@
 				C92D91ED23C999010067150B /* InitialViewController.swift in Sources */,
 				C9864971287A89A100DE65D4 /* TutorialView.swift in Sources */,
 				C937C38025EEE269009A8410 /* PhotoViewController.swift in Sources */,
+				C9006D79289A03410038601C /* PasteLinkViewController.swift in Sources */,
 				C93B407E25CCB01100E703BA /* PhotoModel.swift in Sources */,
 				C9F6E52325D33BB400F115B3 /* ImageCell.swift in Sources */,
 			);

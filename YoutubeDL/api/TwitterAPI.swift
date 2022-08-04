@@ -28,11 +28,10 @@ public class TwitterAPI: HasDisposeBag {
     
     public struct MediaResultURLs_struct {
         public struct Video {
-            var thumbnail: String
             var url: String
-            var size: Int
         }
         
+        let thumbnail: String?
         let images: [String]?
         let videos: [Video]?
     }
@@ -79,9 +78,7 @@ public class TwitterAPI: HasDisposeBag {
         .disposed(by: disposeBag)
     }
     
-    public func getMediaURLsRx(for url: String, headers: HTTPHeaders? = nil) throws -> Observable<
-        MediaResultURLs
-    > {
+    public static func getTweetIDFrom(url: String) -> String? {
         let matchedGroups = url.groups(
             for:
                 #"https?://(?:(?:www|m(?:obile)?)\.)?twitter\.com/(?:(?:i/web|[^\/]+)/status|statuses)/(?<id>\d+)"#
@@ -90,6 +87,18 @@ public class TwitterAPI: HasDisposeBag {
         guard let splitURL = matchedGroups.get(index: 0),
               let tweetID = splitURL.get(index: 1)
         else {
+            // TODO-EF: Send a non-fatal to Firebase
+            print("Couldn't find tweet ID from URL...")
+            return nil
+        }
+        
+        return tweetID
+    }
+    
+    public func getMediaURLsRx(for url: String, headers: HTTPHeaders? = nil) throws -> Observable<
+        MediaResultURLs_struct
+    > {
+        guard let tweetID = TwitterAPI.getTweetIDFrom(url: url) else {
             // TODO-EF: Send a non-fatal to Firebase
             print("Couldn't find tweet ID from URL...")
             throw TwitterAPIError.invalidInput("Invalid Twitter URL: \(url)")
@@ -126,11 +135,17 @@ public class TwitterAPI: HasDisposeBag {
             let mediaType = mediaArray.last!.type
             
             if mediaType == "video" {
-                return self.parseVideoInfo(media: mediaArray.last!)
+                return try self.parseVideoInfo(media: mediaArray.last!)
             } else if mediaType == "photo" {
-                return .images(urls: mediaArray.map { $0.mediaURLHTTPS ?? "no url!! AHHHH" })
+                let images: [String] = try mediaArray.map {
+                    guard let url = $0.mediaURLHTTPS else {
+                        throw TwitterAPIError.unexpectedDataShape("No URL in media array: \(String(describing: $0))")
+                    }
+                    return url
+                }
+                return MediaResultURLs_struct(thumbnail: nil, images: images, videos: nil)
             } else {
-                fatalError("UNHANDLED MEDIA TYPE YO")
+                throw TwitterAPIError.unexpectedDataShape("Unknown media type \(String(describing: mediaType))")
             }
         }
     }
@@ -199,12 +214,19 @@ public class TwitterAPI: HasDisposeBag {
     /// Given the media content of a tweet with type == "video", parse out the
     ///     thumbnail and the video variant URLs.
     ///
-    func parseVideoInfo(media: Media) -> MediaResultURLs {
-        // todo: don't crash if this doesn't exist, throw an error like "unexpectedDataShapeFromAPI"
-        var variants = media.videoInfo!.variants!
-        variants = variants.filter { $0.contentType == "video/mp4" }
-        let variantURLs = variants.map { $0.url! }
+    func parseVideoInfo(media: Media) throws -> MediaResultURLs_struct {
+        guard let variants = media.videoInfo?.variants else {
+            throw TwitterAPIError.unexpectedDataShape("Bad video info, expected variants: \(String(describing: media.videoInfo))")
+        }
         
-        return .videos(thumbnail: media.mediaURLHTTPS!, urls: variantURLs)
+        let filteredVariants = variants.filter { $0.contentType == "video/mp4" }
+        let videoVariants: [MediaResultURLs_struct.Video] = try filteredVariants.map {
+            guard let url = $0.url else {
+                throw TwitterAPIError.unexpectedDataShape("No URL for video: \($0)")
+            }
+            return MediaResultURLs_struct.Video(url: url)
+        }
+        
+        return MediaResultURLs_struct(thumbnail: media.mediaURLHTTPS, images: nil, videos: videoVariants)
     }
 }
