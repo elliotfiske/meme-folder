@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SwiftFormatSettings">
+    <option name="enabled" value="ENABLED" />
+    <option name="swiftFormatPath" value="$PROJECT_DIR$/swift-format/.build/release/swift-format" />
+    <option name="useCustomConfiguration" value="true" />
+    <option name="config" value="{&#10;    &quot;fileScopedDeclarationPrivacy&quot;: {&#10;        &quot;accessLevel&quot;: &quot;fileprivate&quot;&#10;    },&#10;    &quot;indentation&quot;: {&#10;        &quot;spaces&quot;: 4&#10;    },&#10;    &quot;indentSwitchCaseLabels&quot;: true,&#10;    &quot;lineBreakBeforeEachArgument&quot;: false,&#10;    &quot;maximumBlankLines&quot;: 1,&#10;    &quot;prioritizeKeepingFunctionOutputTogether&quot;: true,&#10;    &quot;respectsExistingLineBreaks&quot;: true,&#10;    &quot;rules&quot;: {&#10;        &quot;UseEarlyExits&quot;: false&#10;    },&#10;    &quot;tabWidth&quot;: 4&#10;}" />
+  </component>
+</project>

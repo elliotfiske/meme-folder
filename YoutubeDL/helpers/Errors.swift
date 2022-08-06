@@ -1,70 +1,38 @@
 //
-//  ViewController+Errors.swift
+//  Errors.swift
 //  memefolder
 //
 //  Created by Max Linsenbard on 1/6/20.
 //  Copyright © 2020 Meme Folder. All rights reserved.
 //
-
-import UIKit
 import SwiftyJSON
-
+import UIKit
 public enum ErrorCategory: String {
     case networkError
     case unexpectedDataShape
     case tokenNeedsRefresh
-    
     case invalidUserInput
-    
     case generic
 }
 
-public class ElliotError: NSError {
+public class ElliotError: Error {
+    internal init(
+        localizedMessage: String,
+        developerMessage: String = "No message provided!",
+        category: ErrorCategory = .generic,
+        userCanRetry: Bool = false
+    ) {
+        self.localizedDescription = localizedMessage
+        self.userCanRetry = userCanRetry
+        self.developerMessage = developerMessage
+        self.category = category
+    }
+
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+
     var userCanRetry: Bool = false
-    var category: ErrorCategory = .generic
-}
-
-public enum TwitterAPIError: Error {
-    
-    case invalidToken(String)
-    case invalidInput(String)
-    case unexpectedDataShape(String)  // Twitter API gave us back something we didn't expect
-    case emptyInput
-    case tweetHasNoMedia
-    
-    public var message: String {
-        switch self {
-        case .invalidToken(let message):
-            return "Couldn't authorize with Twitter: \(message)"
-        case .invalidInput(let message):
-            return message
-        case .unexpectedDataShape(let message):
-            return message
-        case .emptyInput:
-            return "Oops, looks like you didn't type anything."
-        case .tweetHasNoMedia:
-            return "Looks like that tweet has no media."
-        }
-    }
-    
-    public var color: UIColor {
-        return .systemRed
-    }
-}
-
-// TODO: Parse out internet errors like 404, rate limit etc.
-//          into more helpful stuff here
-public enum InternetError: Error {
-    case unparsableJSON(String)
-    case badlyStructuredJSON(String)
-}
-
-public class PhotoRetrievalError: Error {
-    var message: String
-    
-    init(message: String) {
-        self.message = message
-    }
+    var developerMessage: String
+    var category: ErrorCategory
 }
 
 //
@@ -76,7 +44,11 @@ public func parseJSON(data: Data) throws -> JSON {
         return try JSON(data: data)
     } catch {
         let badJSON = String(data: data, encoding: .utf8)
-        throw InternetError.unparsableJSON(badJSON ?? "Couldn't parse data to String: \(data)")
+        let error = ElliotError(
+            developerMessage:
+                "Couldn't parse this to JSON: \(badJSON ?? "couldn't even parse it to a UTF8 string!")",
+            category: .unexpectedDataShape
+        )
+        throw error
     }
 }
-

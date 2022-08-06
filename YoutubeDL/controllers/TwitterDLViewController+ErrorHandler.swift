@@ -9,9 +9,8 @@
 import UIKit
 
 extension TwitterDLViewController {
-    func showInputError(for error: TwitterAPIError) {
-        errorLabel.text = error.message
-        errorLabel.textColor = error.color
+    func showInputError(for error: ElliotError) {
+        errorLabel.text = error.localizedDescription
 
         if errorLabel.isHidden {
             view.sendSubviewToBack(errorLabel)
