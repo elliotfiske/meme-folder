@@ -125,6 +125,11 @@ public class TwitterAPI: HasDisposeBag {
             }
         ).map {
             response, data in
+            guard response.statusCode != 404 else {
+                let error = NSError()
+                throw TwitterAPIError.invalidInput("That doesn't seem to point to an actual tweet.")
+            }
+            
             let twitterStatus = try JSONDecoder().decode(TwitterAPIType.self, from: data)
             let optMediaArray = twitterStatus.extendedEntities?.media
             

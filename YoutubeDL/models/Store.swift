@@ -17,7 +17,7 @@ public struct TwitterMediaGrabberState {
     
     var thumbnailURL: URL?
     
-    var mediaResultURL: APIState<TwitterAPI.MediaResultURLs_struct> = .idle
+    public var mediaResultURL: APIState<TwitterAPI.MediaResultURLs_struct> = .idle
     
     var sizeForUrl: [String:Int] = [:]
     

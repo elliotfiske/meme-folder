@@ -9,6 +9,21 @@
 import UIKit
 import SwiftyJSON
 
+public enum ErrorCategory: String {
+    case networkError
+    case unexpectedDataShape
+    case tokenNeedsRefresh
+    
+    case invalidUserInput
+    
+    case generic
+}
+
+public class ElliotError: NSError {
+    var userCanRetry: Bool = false
+    var category: ErrorCategory = .generic
+}
+
 public enum TwitterAPIError: Error {
     
     case invalidToken(String)

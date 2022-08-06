@@ -52,11 +52,14 @@ class InitialViewController: UIViewController {
 //        controlla.tweetURLToLoad = "https://twitter.com/CultureCrave/status/1226622427599257601"          // 0:16 video
 //        controlla.tweetURLToLoad = "https://twitter.com/cyberglittter/status/1413344653408153600?s=20" // 2 Images
         
-//        controlla.tweetURLToLoad = "https://twitter.com/matthen2/status/1543226572592783362"    // 0:55 video
+//            controlla.tweetURLToLoad = "https://twitter.com/matthen2/status/1543226572592783362"    // 0:55 video
+        
+        // short video that breaks aspect ratio for some reason:
+        // https://twitter.com/memeskillyou/status/1553367299872231425?s=20&t=b3q9LM7-x3tZmXlpXP56-g
         
         controlla.presentationController?.delegate = controlla
         present(controlla, animated: true)
         
-        store.dispatch(GetMediaURLsFromTweet(payload: "https://twitter.com/OshawottKing23/status/1554228323575816193"))
+        store.dispatch(GetMediaURLsFromTweet(payload: "https://twitter.com/memeskillyou/status/1553367299872231425?s=20&t=b3q9LM7-x3tZmXlpXP56-g"))
     }
 }
