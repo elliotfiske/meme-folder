@@ -95,8 +95,6 @@ public class TwitterAPI: HasDisposeBag {
         guard let splitURL = matchedGroups.get(index: 0),
             let tweetID = splitURL.get(index: 1)
         else {
-            // TODO-EF: Send a non-fatal to Firebase
-            print("Couldn't find tweet ID from URL...")
             return nil
         }
 
@@ -111,8 +109,10 @@ public class TwitterAPI: HasDisposeBag {
     > {
         guard let tweetID = TwitterAPI.getTweetIDFrom(url: url) else {
             // TODO-EF: Send a non-fatal to Firebase
-            print("Couldn't find tweet ID from URL...")
-            throw TwitterAPIError.invalidInput("Invalid Twitter URL: \(url)")
+            throw ElliotError(
+                localizedMessage: "That doesn't look like a link to a Tweet.",
+                developerMessage: "Couldn't parse Tweet ID from Tweet: \(url)",
+                category: .invalidUserInput)
         }
 
         return getData(
@@ -137,15 +137,19 @@ public class TwitterAPI: HasDisposeBag {
         ).map {
             response, data in
             guard response.statusCode != 404 else {
-                let error = NSError()
-                throw TwitterAPIError.invalidInput("That doesn't seem to point to an actual tweet.")
+                throw ElliotError(
+                    localizedMessage: "I couldn't find a Tweet at that URL.",
+                    developerMessage: "Error 404 for tweet URL: \(url)", category: .networkError)
             }
 
             let twitterStatus = try JSONDecoder().decode(TwitterAPIType.self, from: data)
             let optMediaArray = twitterStatus.extendedEntities?.media
 
             guard let mediaArray = optMediaArray, mediaArray.count > 0 else {
-                throw TwitterAPIError.tweetHasNoMedia
+                throw ElliotError(
+                    localizedMessage: "It looks like that Tweet doesn't have any videos or images.",
+                    developerMessage: "Media array empty for tweet with URL \(url)",
+                    category: .invalidUserInput)
             }
 
             let mediaType = mediaArray.last!.type
@@ -155,17 +159,22 @@ public class TwitterAPI: HasDisposeBag {
             } else if mediaType == "photo" {
                 let images: [String] = try mediaArray.map {
                     guard let url = $0.mediaURLHTTPS else {
-                        throw TwitterAPIError.unexpectedDataShape(
-                            "No URL in media array: \(String(describing: $0))"
-                        )
+                        throw ElliotError(
+                            localizedMessage:
+                                "I couldn't find the download link for the media in this Tweet...",
+                            developerMessage: "No URL in media object: \(String(describing: $0))",
+                            category: .unexpectedDataShape)
                     }
                     return url
                 }
                 return MediaResultURLs_struct(thumbnail: nil, images: images, videos: nil)
             } else {
-                throw TwitterAPIError.unexpectedDataShape(
-                    "Unknown media type \(String(describing: mediaType))"
-                )
+                throw ElliotError(
+                    localizedMessage:
+                        "I can't download the type of media that's attached to this Tweet.",
+                    developerMessage:
+                        "Unknown media type \(String(describing: mediaType)) on Tweet.",
+                    category: .unexpectedDataShape)
             }
         }
     }
@@ -185,13 +194,18 @@ public class TwitterAPI: HasDisposeBag {
         .map {
             response, data in
             guard let len = response.headers.value(for: "Content-Length") else {
-                throw TwitterAPIError.unexpectedDataShape(
-                    "Couldn't get Content-Length headers. All headers: \(response.headers)"
-                )
+                throw ElliotError(
+                    localizedMessage: "Couldn't get size of video...",
+                    developerMessage:
+                        "Content-Length headers didn't show up. Headers: \(response.headers)",
+                    category: .unexpectedDataShape)
             }
 
             guard let numLen = Int(len) else {
-                throw TwitterAPIError.unexpectedDataShape("Content-Length not number: \(len)")
+                throw ElliotError(
+                    localizedMessage: "Couldn't get size of video...",
+                    developerMessage: "Content-Length header not number: \(response.headers)",
+                    category: .unexpectedDataShape)
             }
 
             return numLen
@@ -214,7 +228,11 @@ public class TwitterAPI: HasDisposeBag {
             subscriber in
 
             guard let parsedUrl = URL(string: url) else {
-                subscriber.onError(TwitterAPIError.invalidInput("Bad Media URL: \(url)"))
+                subscriber.onError(
+                    ElliotError(
+                        localizedMessage: "Couldn't get media from Tweet",
+                        developerMessage: "Error parsing media URL. Got URL: \(url)",
+                        category: .unexpectedDataShape))
                 return Disposables.create()
             }
 
@@ -242,15 +260,21 @@ public class TwitterAPI: HasDisposeBag {
     ///
     func parseVideoInfo(media: Media) throws -> MediaResultURLs_struct {
         guard let variants = media.videoInfo?.variants else {
-            throw TwitterAPIError.unexpectedDataShape(
-                "Bad video info, expected variants: \(String(describing: media.videoInfo))"
-            )
+            throw ElliotError(
+                localizedMessage: "Couldn't get video from Tweet :(",
+                developerMessage:
+                    "Bad video info. Expected variants, got \(String(describing: media.videoInfo))",
+                category: .unexpectedDataShape)
         }
 
         let filteredVariants = variants.filter { $0.contentType == "video/mp4" }
         let videoVariants: [MediaResultURLs_struct.Video] = try filteredVariants.map {
             guard let url = $0.url else {
-                throw TwitterAPIError.unexpectedDataShape("No URL for video: \($0)")
+                throw ElliotError(
+                    localizedMessage: "Couldn't get video from Tweet :(",
+                    developerMessage:
+                        "No URL for variant. All video variants: \(String(describing: filteredVariants))",
+                    category: .unexpectedDataShape)
             }
             return MediaResultURLs_struct.Video(url: url)
         }
