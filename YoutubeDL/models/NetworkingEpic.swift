@@ -11,41 +11,63 @@ import RxSwift
 import ReSwift
 import Photos
 
+public struct SillyAction: Action {
+    var payload: String
+}
 
+func forkEpic<State>(
+    epicFactory: (Observable<Action>) -> Epic<State>, action: Action
+) -> Epic<State> {
+    let actions$ = Observable.just(action)
+    return epicFactory(actions$)
+}
+
+public func getPokemonByNameEpic(action$: Observable<Action>) {
+    return action$.compactMap {
+
+    }
+}
 
 public let networkingEpic: Epic<TwitterMediaGrabberState> = {
     action$, getState in
-    
+
+    let handleSillyAction: Observable<String> = action$.compactMap {
+        guard let pokemonName = ($0 as? SillyAction)?.payload else {
+            return nil
+        }
+        return pokemonName
+    }
+
     let getMediaUrl: Observable<Action> = action$.compactMap {
         guard let url = ($0 as? GetMediaURLsFromTweet)?.payload else {
             return nil
         }
-        
+
         return url
     }
-        .flatMapLatest {
-            return try TwitterAPI.sharedInstance.getMediaURLsRx(for: $0)
-                .map {
-                    mediaUrls in
-                    return .fulfilled(mediaUrls)
-                }
-                .catch {
-                    return Observable.just(.error($0))
-                }
-                .map {
-                    return FetchedMediaURLsFromTweet(urls: $0)
-                }
-        }
-    
+    .flatMapLatest {
+        return try TwitterAPI.sharedInstance.getMediaURLsRx(for: $0)
+            .map {
+                mediaUrls in
+                return .fulfilled(mediaUrls)
+            }
+            .catch {
+                return Observable.just(.error($0))
+            }
+            .map {
+                return FetchedMediaURLsFromTweet(urls: $0)
+            }
+    }
+
     let getMediaSizes: Observable<Action> = action$.compactMap {
         guard case let .fulfilled(media) = ($0 as? FetchedMediaURLsFromTweet)?.urls else {
             return nil
         }
-        
+
         guard let videos = media.videos else {
             return nil
         }
-        
+
         return videos
     }
     .flatMapLatest {
@@ -59,12 +81,12 @@ public let networkingEpic: Epic<TwitterMediaGrabberState> = {
             }
         )
     }
-    
+
     let downloadMedia: Observable<Action> = action$.compactMap {
         guard let url = ($0 as? DownloadMedia)?.url else {
             return nil
         }
-        
+
         return url
     }
     .flatMapLatest {
@@ -73,11 +95,12 @@ public let networkingEpic: Epic<TwitterMediaGrabberState> = {
                 if let url = $0.localUrl {
                     return DownloadMediaProgress(localMediaURL: .fulfilled(url), progress: 1.0)
                 } else {
-                    return DownloadMediaProgress(localMediaURL: APIState.pending, progress: $0.progress)
+                    return DownloadMediaProgress(
+                        localMediaURL: APIState.pending, progress: $0.progress)
                 }
             }
     }
-    
+
     let saveMedia: Observable<Action> = action$.compactMap {
         guard case let .fulfilled(url) = ($0 as? DownloadMediaProgress)?.localMediaURL else {
             return nil
@@ -86,7 +109,7 @@ public let networkingEpic: Epic<TwitterMediaGrabberState> = {
     }
     .flatMap {
         (url: URL) -> Single<Action> in
-        
+
         return PHPhotoLibrary.shared().rx.rxPerformChanges({
             let request = PHAssetCreationRequest.forAsset()
             request.addResource(with: .video, fileURL: url, options: nil)
@@ -99,7 +122,6 @@ public let networkingEpic: Epic<TwitterMediaGrabberState> = {
             SavedToCameraRoll(success: false)
         )
     }
-    
-    
+
     return Observable<Action>.merge(getMediaUrl, getMediaSizes, downloadMedia, saveMedia)
 }

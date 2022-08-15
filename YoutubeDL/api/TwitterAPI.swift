@@ -25,13 +25,13 @@ public class TwitterAPI: HasDisposeBag {
     }
 
     public struct MediaResultURLs_struct {
-        public struct Video {
+        public struct Video: Equatable {
             var url: String
         }
 
-        let thumbnail: String?
-        let images: [String]?
-        let videos: [Video]?
+        public let thumbnail: String?
+        public let images: [String]?
+        public let videos: [Video]?
     }
 
     public static let sharedInstance: TwitterAPI = TwitterAPI()
@@ -89,7 +89,7 @@ public class TwitterAPI: HasDisposeBag {
     public static func getTweetIDFrom(url: String) -> String? {
         let matchedGroups = url.groups(
             for:
-                #"(https?://)?(?:(?:www|m(?:obile)?)\.)?twitter\.com/(?:(?:i/web|[^\/]+)/status|statuses)/(?<id>\d+)"#
+                #"(?:https?://)?(?:(?:www|m(?:obile)?)\.)?twitter\.com/(?:(?:i/web|[^\/]+)/status|statuses)/(?<id>\d+)"#
         )
 
         guard let splitURL = matchedGroups.get(index: 0),
@@ -154,7 +154,7 @@ public class TwitterAPI: HasDisposeBag {
 
             let mediaType = mediaArray.last!.type
 
-            if mediaType == "video" {
+            if mediaType == "video" || mediaType == "animated_gif" {
                 return try self.parseVideoInfo(media: mediaArray.last!)
             } else if mediaType == "photo" {
                 let images: [String] = try mediaArray.map {
@@ -212,9 +212,10 @@ public class TwitterAPI: HasDisposeBag {
         }
     }
 
+    /// Configuration closure for AlamoFire that tells it where to download the video.
     let destination: DownloadRequest.Destination = { url, _ in
         var documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        documentsURL.appendPathComponent("familyguy.mp4")
+        documentsURL.appendPathComponent("MemeFolder-download.mp4")
 
         return (documentsURL, [.removePreviousFile])
     }

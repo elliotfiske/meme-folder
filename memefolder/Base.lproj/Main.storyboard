@@ -82,9 +82,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Paste a link to a Twitter Status with a video here!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vph-2p-LXD">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nothing to report so far captain!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vph-2p-LXD">
                                 <rect key="frame" x="8" y="494" width="398" height="20.5"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -96,9 +95,13 @@
                             <constraint firstItem="M5k-c0-nbq" firstAttribute="centerX" secondItem="udS-S4-Uhe" secondAttribute="centerX" id="1pX-DH-UsA"/>
                             <constraint firstItem="M5k-c0-nbq" firstAttribute="top" secondItem="Ttm-hl-xqF" secondAttribute="bottom" constant="20" id="9nh-xu-DDj"/>
                             <constraint firstItem="Ttm-hl-xqF" firstAttribute="centerY" secondItem="udS-S4-Uhe" secondAttribute="centerY" id="BCb-4s-fLw"/>
+                            <constraint firstItem="vph-2p-LXD" firstAttribute="leading" secondItem="udS-S4-Uhe" secondAttribute="leading" constant="8" id="GFU-GK-wuv"/>
+                            <constraint firstItem="vph-2p-LXD" firstAttribute="top" secondItem="M5k-c0-nbq" secondAttribute="bottom" constant="8" symbolic="YES" id="L7s-Cc-N22"/>
+                            <constraint firstItem="udS-S4-Uhe" firstAttribute="trailing" secondItem="vph-2p-LXD" secondAttribute="trailing" constant="8" id="MRr-P2-Hwr"/>
                             <constraint firstItem="udS-S4-Uhe" firstAttribute="trailing" secondItem="M5k-c0-nbq" secondAttribute="trailing" constant="8" id="OlS-Lm-XCq"/>
                             <constraint firstItem="M5k-c0-nbq" firstAttribute="leading" secondItem="udS-S4-Uhe" secondAttribute="leading" constant="8" id="XZM-3O-hhi"/>
                             <constraint firstItem="Ttm-hl-xqF" firstAttribute="centerX" secondItem="udS-S4-Uhe" secondAttribute="centerX" id="Z1b-YP-JeA"/>
+                            <constraint firstItem="vph-2p-LXD" firstAttribute="centerX" secondItem="M5k-c0-nbq" secondAttribute="centerX" id="q60-tR-UWW"/>
                             <constraint firstItem="Ttm-hl-xqF" firstAttribute="width" secondItem="udS-S4-Uhe" secondAttribute="width" multiplier="0.531401" id="x9P-wN-lbF"/>
                         </constraints>
                     </view>

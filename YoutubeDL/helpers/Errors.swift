@@ -12,6 +12,8 @@ public enum ErrorCategory: String {
     case unexpectedDataShape
     case tokenNeedsRefresh
     case invalidUserInput
+    /// Stuff like "can't retrieve a photo for some reason"
+    case iosError
     case generic
 }
 
@@ -22,7 +24,7 @@ public class ElliotError: Error {
         category: ErrorCategory = .generic,
         userCanRetry: Bool = false
     ) {
-        self.localizedDescription = localizedMessage
+        self.userMessage = localizedMessage
         self.userCanRetry = userCanRetry
         self.developerMessage = developerMessage
         self.category = category
@@ -30,6 +32,7 @@ public class ElliotError: Error {
 
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
+    var userMessage: String
     var userCanRetry: Bool = false
     var developerMessage: String
     var category: ErrorCategory
@@ -45,6 +48,7 @@ public func parseJSON(data: Data) throws -> JSON {
     } catch {
         let badJSON = String(data: data, encoding: .utf8)
         let error = ElliotError(
+            localizedMessage: "Error accessing Twitter.",
             developerMessage:
                 "Couldn't parse this to JSON: \(badJSON ?? "couldn't even parse it to a UTF8 string!")",
             category: .unexpectedDataShape

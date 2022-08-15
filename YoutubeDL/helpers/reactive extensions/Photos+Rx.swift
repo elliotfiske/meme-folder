@@ -14,31 +14,41 @@ import RxSwift
 import RxCocoa
 
 extension Reactive where Base: PHCachingImageManager {
-    public func requestImage(for asset: PHAsset,
-                             targetSize: CGSize,
-                             contentMode: PHImageContentMode,
-                             options: PHImageRequestOptions?) -> Observable<UIImage> {
+    public func requestImage(
+        for asset: PHAsset,
+        targetSize: CGSize,
+        contentMode: PHImageContentMode,
+        options: PHImageRequestOptions?
+    ) -> Observable<UIImage> {
         return Observable.create {
-            subscriber in
-            
-            let requestId = self.base.requestImage(for: asset,
-                                   targetSize: targetSize,
-                                   contentMode: contentMode,
-                                   options: options) {
+            [weak base] subscriber in
+
+            let requestId = base?.requestImage(
+                for: asset,
+                targetSize: targetSize,
+                contentMode: contentMode,
+                options: options
+            ) {
                 image, infoDict in
                 guard let imageUnwrapped = image else {
                     let error = infoDict?[PHImageErrorKey] as? NSError
                     let message = error?.localizedDescription ?? "Unknown error occurred"
-                    
-                    subscriber.onError(PhotoRetrievalError(message: message))
+
+                    subscriber.onError(
+                        ElliotError(
+                            localizedMessage: "Couldn't fetch photo.",
+                            developerMessage:
+                                "Error retrieving photo. Description: \(String(describing: error?.localizedDescription)). Full error: \(String(describing: error))",
+                            category: .iosError))
                     return
                 }
-                
+
                 subscriber.onNext(imageUnwrapped)
             }
-            
+
             return Disposables.create {
-                self.base.cancelImageRequest(requestId)
+                guard let requestId = requestId else { return }
+                base?.cancelImageRequest(requestId)
             }
         }
     }
