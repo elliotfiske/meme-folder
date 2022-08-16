@@ -22,6 +22,8 @@ public struct TwitterMediaGrabberState {
     var sizeForUrl: [String: Int] = [:]
 
     var savedToCameraRoll: Bool = false
+
+    public var pokemonAbilityDescription: String = ""
 }
 
 public protocol APIStateLike {
@@ -125,6 +127,8 @@ func appReducer(action: Action, state: TwitterMediaGrabberState?) -> TwitterMedi
             state.sizeForUrl[action.url] = action.size
         case let action as SavedToCameraRoll:
             state.savedToCameraRoll = action.success
+        case let action as GetPokemonAbilityInfoByPokemonName_Fulfilled:
+            state.pokemonAbilityDescription = action.payload
 
         default:
             break

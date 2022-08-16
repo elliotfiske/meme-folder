@@ -17,7 +17,9 @@ public enum ErrorCategory: String {
     case generic
 }
 
-public class ElliotError: Error {
+public class ElliotError: Error, CustomStringConvertible {
+    public var description: String { return self.developerMessage }
+
     internal init(
         localizedMessage: String,
         developerMessage: String = "No message provided!",

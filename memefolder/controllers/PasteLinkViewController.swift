@@ -25,15 +25,25 @@ class PasteLinkViewController: UIViewController {
         }
 
         rx.disposeBag.insert(
-            isValidTwitterLink
-                .filter { $0 }
-                .withLatestFrom(tweetLinkInput.rx.text)
+            //            isValidTwitterLink
+            //                .filter { $0 }
+            //                .withLatestFrom(tweetLinkInput.rx.text)
+            //                .compactMap { $0 }
+            //                .debounce(.milliseconds(200), scheduler: MainScheduler.instance)
+            //                .distinctUntilChanged()
+            //                .subscribe(onNext: {
+            //                    url in
+            //                    store.dispatch(GetMediaURLsFromTweet(payload: url))
+            //                }),
+
+            tweetLinkInput.rx.text
                 .compactMap { $0 }
+                .filter { $0.count > 0 }
                 .debounce(.milliseconds(200), scheduler: MainScheduler.instance)
                 .distinctUntilChanged()
                 .subscribe(onNext: {
                     url in
-                    store.dispatch(GetMediaURLsFromTweet(payload: url))
+                    store.dispatch(GetPokemonAbilityInfoByPokemonName(payload: url))
                 }),
 
             store.observableFromPath(keyPath: \.mediaResultURL)
@@ -57,17 +67,20 @@ class PasteLinkViewController: UIViewController {
                     self?.statusLabel.text = err.localizedDescription
                 }),
 
-            isValidTwitterLink.map {
-                $0 ? "Valid Twitter link, checking for media..." : "Not a Twitter link!"
-            }
-            .withLatestFrom(tweetLinkInput.rx.text) {
-                (message, text) in
-                guard let text = text, text.count > 0 else {
-                    return ""
-                }
-                return message
-            }
-            .bind(to: statusLabel.rx.text)
+            store.observableFromPath(keyPath: \.pokemonAbilityDescription)
+                .bind(to: statusLabel.rx.text)
+
+            //            isValidTwitterLink.map {
+            //                $0 ? "Valid Twitter link, checking for media..." : "Not a Twitter link!"
+            //            }
+            //            .withLatestFrom(tweetLinkInput.rx.text) {
+            //                (message, text) in
+            //                guard let text = text, text.count > 0 else {
+            //                    return ""
+            //                }
+            //                return message
+            //            }
+            //            .bind(to: statusLabel.rx.text)
         )
 
     }

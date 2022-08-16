@@ -3,7 +3,7 @@ import ReSwift
 
 public typealias Epic<State> = (Observable<Action>, @escaping () -> State?) -> Observable<Action>
 
-public func CombineEpics<State>(epics: [Epic<State>]) -> Epic<State> {
+public func combineEpics<State>(epics: [Epic<State>]) -> Epic<State> {
     return {
         (actions: Observable<Action>, getState: @escaping () -> State?) -> Observable<Action> in
         return Observable.from(epics)
