@@ -22,8 +22,6 @@ public struct TwitterMediaGrabberState {
     var sizeForUrl: [String: Int] = [:]
 
     var savedToCameraRoll: Bool = false
-
-    public var pokemonAbilityDescription: String = ""
 }
 
 public protocol APIStateLike {
@@ -76,6 +74,16 @@ public protocol PayloadAction: Action {
     init(payload: PayloadType)
 }
 
+public struct PreviewTweet: PayloadAction {
+    public var payload: String
+
+    public init(
+        payload: String
+    ) {
+        self.payload = payload
+    }
+}
+
 public struct GetMediaURLsFromTweet: PayloadAction {
     public var payload: String
 
@@ -110,6 +118,10 @@ public struct FetchedVideoVariantFilesize: Action {
     let size: Int
 }
 
+public struct SaveToCameraRoll: Action {
+
+}
+
 public struct SavedToCameraRoll: Action {
     let success: Bool
 }
@@ -127,8 +139,6 @@ func appReducer(action: Action, state: TwitterMediaGrabberState?) -> TwitterMedi
             state.sizeForUrl[action.url] = action.size
         case let action as SavedToCameraRoll:
             state.savedToCameraRoll = action.success
-        case let action as GetPokemonAbilityInfoByPokemonName_Fulfilled:
-            state.pokemonAbilityDescription = action.payload
 
         default:
             break

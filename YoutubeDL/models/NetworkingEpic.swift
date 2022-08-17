@@ -14,106 +14,42 @@ import RxAlamofire
 import Alamofire
 import SwiftyJSON
 
-public struct GetPokemonAbilityInfoByPokemonName: Action {
-    public init(payload: String) { self.payload = payload }
-    var payload: String
+let previewTweetEpic: Epic<TwitterMediaGrabberState> = {
+    action$, getState in
+
+    return action$.compactMap {
+        guard let tweet = ($0 as? PreviewTweet)?.payload else {
+            return nil
+        }
+
+        return tweet
+    }
+    .flatMap { tweet in
+        return mediaUrlsForTweetEpic(
+            Observable.just(GetMediaURLsFromTweet(payload: tweet)), getState
+        )
+        .flatMap {
+            (action) -> Observable<Action> in
+
+            guard let action = action as? FetchedMediaURLsFromTweet,
+                case let .fulfilled(media) = action.urls
+            else {
+                return Observable.just(action)
+            }
+
+            let downloadMediaAction = DownloadMedia(url: media.videos!.last!.url)
+
+            return Observable.concat(
+                Observable.just(action),
+                downloadMediaEpic(Observable.just(downloadMediaAction), getState))
+        }
+    }
 }
 
-public struct GetPokemonAbilityInfoByPokemonName_Fulfilled: Action {
-    var payload: String
-}
-
-public struct GetPokemonInfoByName: Action {
-    var payload: String
-}
-
-public struct GetPokemonInfoByName_Fulfilled: Action {
-    var payload: JSON
-}
-
-func forkEpic(
-    epic: (Observable<Action>) -> Observable<Action>, action: Action
-) -> Observable<Action> {
-    let actions$ = Observable.just(action)
-    return epic(actions$)
-}
-
-public let getPokemonInfoEpic: Epic<TwitterMediaGrabberState> = {
+let mediaUrlsForTweetEpic: Epic<TwitterMediaGrabberState> = {
     action$, _ in
 
-    return action$.compactMap {
-        guard let pokemonName = ($0 as? GetPokemonInfoByName)?.payload else {
-            return nil
-        }
-        return pokemonName
-    }
-    .flatMap { (pokemonName: String) -> Observable<Data> in
-        let session = Session.default
-        return session.rx.data(.get, "https://pokeapi.co/api/v2/pokemon/\(pokemonName)")
-            .catchAndReturn("Error getting pokemon!".data(using: .utf8)!)
-    }
-    .map {
-        data in
-        let json =
-            try (try? parseJSON(data: data))
-            ?? (try parseJSON(data: "[\"foo\"]".data(using: .utf8)!))
-
-        return GetPokemonInfoByName_Fulfilled(
-            payload: json
-        )
-    }
-}
-
-public let getPokemonAbilityInfoByNameEpic: Epic<TwitterMediaGrabberState> = {
-    action$, getState in
-
-    return action$.compactMap {
-        guard let pokemonName = ($0 as? GetPokemonAbilityInfoByPokemonName)?.payload else {
-            return nil
-        }
-        return pokemonName
-    }.flatMap {
-        pokemonName -> Observable<GetPokemonInfoByName_Fulfilled> in
-        return getPokemonInfoEpic(
-            Observable.just(GetPokemonInfoByName(payload: pokemonName)), getState
-        )
-        .compactMap {
-            guard let action = $0 as? GetPokemonInfoByName_Fulfilled else { return nil }
-            return action
-        }
-    }
-    .flatMap { action -> Observable<Action> in
-        guard
-            let pokemonAbilityUrl: String = action.payload["abilities"][0]["ability"]["url"].string
-        else {
-            return Observable.just(
-                GetPokemonAbilityInfoByPokemonName_Fulfilled(
-                    payload:
-                        "Error, couldn't find a URL in the first pokemon info object. Found \(action.payload.rawString() ?? "nothing")"
-                )
-            )
-        }
-
-        return Session.default.rx.data(.get, pokemonAbilityUrl)
-            .map {
-                data in
-                let json = try parseJSON(data: data)
-
-                guard let abilityDescription = json["effect_entries"][0]["effect"].string else {
-                    throw ElliotError(
-                        localizedMessage: "Unexpected JSON: \(json.rawString() ?? "ahh")")
-                }
-
-                return GetPokemonAbilityInfoByPokemonName_Fulfilled(payload: abilityDescription)
-            }
-    }
-    .observe(on: MainScheduler.instance)
-}
-
-public let simple_networkingEpic: Epic<TwitterMediaGrabberState> = {
-    action$, getState in
-
-    let getMediaUrl: Observable<Action> = action$.compactMap {
+    action$.compactMap {
         guard let url = ($0 as? GetMediaURLsFromTweet)?.payload else {
             return nil
         }
@@ -122,6 +58,7 @@ public let simple_networkingEpic: Epic<TwitterMediaGrabberState> = {
     }
     .flatMapLatest {
         return try TwitterAPI.sharedInstance.getMediaURLsRx(for: $0)
+            // TODO: I could abstract this to a nice function
             .map {
                 mediaUrls in
                 return .fulfilled(mediaUrls)
@@ -133,8 +70,64 @@ public let simple_networkingEpic: Epic<TwitterMediaGrabberState> = {
                 return FetchedMediaURLsFromTweet(urls: $0)
             }
     }
+}
 
-    let getMediaSizes: Observable<Action> = action$.compactMap {
+let downloadMediaEpic: Epic<TwitterMediaGrabberState> = {
+    action$, _ in
+
+    action$.compactMap {
+        guard let url = ($0 as? DownloadMedia)?.url else {
+            return nil
+        }
+
+        return url
+    }
+    .flatMapLatest {
+        return TwitterAPI.sharedInstance.downloadMedia(atUrl: $0)
+            .map {
+                if let url = $0.localUrl {
+                    return DownloadMediaProgress(localMediaURL: .fulfilled(url), progress: 1.0)
+                } else {
+                    return DownloadMediaProgress(
+                        localMediaURL: APIState.pending, progress: $0.progress)
+                }
+            }
+    }
+}
+
+let saveMediaToCameraRollEpic: Epic<TwitterMediaGrabberState> = {
+    action$, getState in
+
+    action$.compactMap {
+        guard $0 is SaveToCameraRoll else {
+            return nil
+        }
+        return ()
+    }
+    .flatMap {
+        (_: Void) -> Single<Action> in
+
+        guard case let .fulfilled(url) = getState()!.localMediaURL else {
+            throw ElliotError(localizedMessage: "couldn't save to camera roll!")
+        }
+
+        return PHPhotoLibrary.shared().rx.rxPerformChanges({
+            let request = PHAssetCreationRequest.forAsset()
+            request.addResource(with: .video, fileURL: url, options: nil)
+        })
+        .map {
+            result in
+            return SavedToCameraRoll(success: true)
+        }
+        .catchAndReturn(
+            SavedToCameraRoll(success: false)
+        )
+    }
+}
+
+public let getVideoFilesizesEpic: Epic<TwitterMediaGrabberState> = {
+    action$, getState in
+    return action$.compactMap {
         guard case let .fulfilled(media) = ($0 as? FetchedMediaURLsFromTweet)?.urls else {
             return nil
         }
@@ -156,51 +149,12 @@ public let simple_networkingEpic: Epic<TwitterMediaGrabberState> = {
             }
         )
     }
-
-    let downloadMedia: Observable<Action> = action$.compactMap {
-        guard let url = ($0 as? DownloadMedia)?.url else {
-            return nil
-        }
-
-        return url
-    }
-    .flatMapLatest {
-        return TwitterAPI.sharedInstance.downloadMedia(atUrl: $0)
-            .map {
-                if let url = $0.localUrl {
-                    return DownloadMediaProgress(localMediaURL: .fulfilled(url), progress: 1.0)
-                } else {
-                    return DownloadMediaProgress(
-                        localMediaURL: APIState.pending, progress: $0.progress)
-                }
-            }
-    }
-
-    let saveMedia: Observable<Action> = action$.compactMap {
-        guard case let .fulfilled(url) = ($0 as? DownloadMediaProgress)?.localMediaURL else {
-            return nil
-        }
-        return url
-    }
-    .flatMap {
-        (url: URL) -> Single<Action> in
-
-        return PHPhotoLibrary.shared().rx.rxPerformChanges({
-            let request = PHAssetCreationRequest.forAsset()
-            request.addResource(with: .video, fileURL: url, options: nil)
-        })
-        .map {
-            result in
-            return SavedToCameraRoll(success: true)
-        }
-        .catchAndReturn(
-            SavedToCameraRoll(success: false)
-        )
-    }
-
-    return Observable<Action>.merge(getMediaUrl, getMediaSizes, downloadMedia, saveMedia)
 }
 
 public let networkingEpic = combineEpics(epics: [
-    simple_networkingEpic, getPokemonInfoEpic, getPokemonAbilityInfoByNameEpic,
+    getVideoFilesizesEpic,
+    previewTweetEpic,
+    downloadMediaEpic,
+    mediaUrlsForTweetEpic,
+    saveMediaToCameraRollEpic,
 ])
