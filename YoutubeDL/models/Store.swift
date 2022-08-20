@@ -130,6 +130,10 @@ func appReducer(action: Action, state: TwitterMediaGrabberState?) -> TwitterMedi
     var state = state ?? TwitterMediaGrabberState()
 
     switch action {
+        case let action as PreviewTweet:
+            // Reset previous data
+            state.localMediaURL = .idle
+            state.sizeForUrl = [:]
         case let action as FetchedMediaURLsFromTweet:
             state.mediaResultURL = action.urls
         case let action as DownloadMediaProgress:

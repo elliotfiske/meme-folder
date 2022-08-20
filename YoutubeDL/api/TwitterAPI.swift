@@ -251,6 +251,12 @@ public class TwitterAPI: HasDisposeBag {
                 cancelToken.cancel()
             }
         }
+        .do { progress, localUrl in
+            guard let url = localUrl, progress >= 1.0 else { return }
+
+            try FileManager.default.setAttributes(
+                [.creationDate: NSDate.now], ofItemAtPath: url.path)
+        }
     }
 
     // MARK: Twitter API helper functions

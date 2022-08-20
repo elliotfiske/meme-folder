@@ -71,43 +71,74 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Paste a link to a Twitter Status with a video here!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M5k-c0-nbq">
-                                <rect key="frame" x="8" y="465.5" width="398" height="20.5"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="79j-Kh-fRg">
+                                <rect key="frame" x="59.5" y="704" width="295" height="34"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Paste a Twitter Link Here" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Ttm-hl-xqF">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" priority="750" constant="240" id="dls-Hv-EFj"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="URL" returnKeyType="go" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="url"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J1d-Vr-VWp">
+                                        <rect key="frame" x="248" y="0.0" width="47" height="34"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Go!"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="J1d-Vr-VWp" secondAttribute="trailing" id="F6C-F3-fhE"/>
+                                    <constraint firstItem="J1d-Vr-VWp" firstAttribute="leading" secondItem="Ttm-hl-xqF" secondAttribute="trailing" constant="8" id="GA1-qh-OUJ"/>
+                                    <constraint firstItem="Ttm-hl-xqF" firstAttribute="leading" secondItem="79j-Kh-fRg" secondAttribute="leading" id="Nvq-bG-TNF"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ttm-hl-xqF" secondAttribute="bottom" id="Qkz-YB-EMz"/>
+                                    <constraint firstItem="Ttm-hl-xqF" firstAttribute="top" secondItem="79j-Kh-fRg" secondAttribute="top" id="hOX-Ef-S0n"/>
+                                    <constraint firstAttribute="bottom" secondItem="J1d-Vr-VWp" secondAttribute="bottom" id="tJu-tC-5Iw"/>
+                                    <constraint firstItem="J1d-Vr-VWp" firstAttribute="top" secondItem="79j-Kh-fRg" secondAttribute="top" id="yY7-fS-JIY"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lYp-zn-qI2">
+                                <rect key="frame" x="152" y="762" width="110" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Paste and Go"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;Status Label&gt;" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rlq-Ow-YxN">
+                                <rect key="frame" x="149.5" y="659.5" width="115.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ttm-hl-xqF">
-                                <rect key="frame" x="97" y="411.5" width="220" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nothing to report so far captain!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vph-2p-LXD">
-                                <rect key="frame" x="8" y="494" width="398" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JnS-e5-m4h">
+                                <rect key="frame" x="133" y="544" width="148" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Populate Clipboard"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="udS-S4-Uhe"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="M5k-c0-nbq" firstAttribute="centerX" secondItem="udS-S4-Uhe" secondAttribute="centerX" id="1pX-DH-UsA"/>
-                            <constraint firstItem="M5k-c0-nbq" firstAttribute="top" secondItem="Ttm-hl-xqF" secondAttribute="bottom" constant="20" id="9nh-xu-DDj"/>
-                            <constraint firstItem="Ttm-hl-xqF" firstAttribute="centerY" secondItem="udS-S4-Uhe" secondAttribute="centerY" id="BCb-4s-fLw"/>
-                            <constraint firstItem="vph-2p-LXD" firstAttribute="leading" secondItem="udS-S4-Uhe" secondAttribute="leading" constant="8" id="GFU-GK-wuv"/>
-                            <constraint firstItem="vph-2p-LXD" firstAttribute="top" secondItem="M5k-c0-nbq" secondAttribute="bottom" constant="8" symbolic="YES" id="L7s-Cc-N22"/>
-                            <constraint firstItem="udS-S4-Uhe" firstAttribute="trailing" secondItem="vph-2p-LXD" secondAttribute="trailing" constant="8" id="MRr-P2-Hwr"/>
-                            <constraint firstItem="udS-S4-Uhe" firstAttribute="trailing" secondItem="M5k-c0-nbq" secondAttribute="trailing" constant="8" id="OlS-Lm-XCq"/>
-                            <constraint firstItem="M5k-c0-nbq" firstAttribute="leading" secondItem="udS-S4-Uhe" secondAttribute="leading" constant="8" id="XZM-3O-hhi"/>
-                            <constraint firstItem="Ttm-hl-xqF" firstAttribute="centerX" secondItem="udS-S4-Uhe" secondAttribute="centerX" id="Z1b-YP-JeA"/>
-                            <constraint firstItem="vph-2p-LXD" firstAttribute="centerX" secondItem="M5k-c0-nbq" secondAttribute="centerX" id="q60-tR-UWW"/>
-                            <constraint firstItem="Ttm-hl-xqF" firstAttribute="width" secondItem="udS-S4-Uhe" secondAttribute="width" multiplier="0.531401" id="x9P-wN-lbF"/>
+                            <constraint firstItem="lYp-zn-qI2" firstAttribute="top" secondItem="Ttm-hl-xqF" secondAttribute="bottom" constant="24" id="0Mv-2J-kVY"/>
+                            <constraint firstItem="udS-S4-Uhe" firstAttribute="bottom" secondItem="lYp-zn-qI2" secondAttribute="bottom" constant="20" id="1aD-QP-tj6"/>
+                            <constraint firstItem="udS-S4-Uhe" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="79j-Kh-fRg" secondAttribute="trailing" constant="8" id="6FT-Pa-nRj"/>
+                            <constraint firstItem="Rlq-Ow-YxN" firstAttribute="centerX" secondItem="udS-S4-Uhe" secondAttribute="centerX" id="8ef-dY-WSf"/>
+                            <constraint firstItem="79j-Kh-fRg" firstAttribute="centerX" secondItem="udS-S4-Uhe" secondAttribute="centerX" id="EOU-l5-lxs"/>
+                            <constraint firstItem="udS-S4-Uhe" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Rlq-Ow-YxN" secondAttribute="trailing" constant="8" id="R3m-um-cwy"/>
+                            <constraint firstItem="79j-Kh-fRg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="udS-S4-Uhe" secondAttribute="leading" constant="8" id="RRw-Uk-X6f"/>
+                            <constraint firstItem="JnS-e5-m4h" firstAttribute="centerX" secondItem="udS-S4-Uhe" secondAttribute="centerX" id="RWd-gh-VZY"/>
+                            <constraint firstItem="lYp-zn-qI2" firstAttribute="centerX" secondItem="udS-S4-Uhe" secondAttribute="centerX" id="XB4-kd-WQa"/>
+                            <constraint firstItem="Rlq-Ow-YxN" firstAttribute="top" secondItem="JnS-e5-m4h" secondAttribute="bottom" constant="84.5" id="aAN-dJ-2sc"/>
+                            <constraint firstItem="Rlq-Ow-YxN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="udS-S4-Uhe" secondAttribute="leading" constant="8" id="mwt-cM-hgV"/>
+                            <constraint firstItem="Ttm-hl-xqF" firstAttribute="top" secondItem="Rlq-Ow-YxN" secondAttribute="bottom" constant="24" id="ukw-6T-m76"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Paste a Link" image="link" catalog="system" id="y2A-HK-anu"/>
                     <connections>
-                        <outlet property="statusLabel" destination="vph-2p-LXD" id="ro3-Fh-qg9"/>
+                        <outlet property="copyExampleTwitterLinkButton" destination="JnS-e5-m4h" id="C1g-dd-51a"/>
+                        <outlet property="goButton" destination="J1d-Vr-VWp" id="DC1-uO-a7P"/>
+                        <outlet property="pasteAndGoButton" destination="lYp-zn-qI2" id="akI-X4-drR"/>
+                        <outlet property="statusLabel" destination="Rlq-Ow-YxN" id="scs-bF-ZBS"/>
                         <outlet property="tweetLinkInput" destination="Ttm-hl-xqF" id="M8W-g3-JY7"/>
                     </connections>
                 </viewController>

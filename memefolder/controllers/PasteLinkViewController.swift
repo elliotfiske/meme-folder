@@ -15,6 +15,11 @@ class PasteLinkViewController: UIViewController {
     @IBOutlet weak var tweetLinkInput: UITextField!
     @IBOutlet weak var statusLabel: UILabel!
 
+    @IBOutlet weak var goButton: UIButton!
+    @IBOutlet weak var pasteAndGoButton: UIButton!
+
+    @IBOutlet weak var copyExampleTwitterLinkButton: UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,50 +30,50 @@ class PasteLinkViewController: UIViewController {
         }
 
         rx.disposeBag.insert(
-            isValidTwitterLink
-                .filter { $0 }
-                .withLatestFrom(tweetLinkInput.rx.text)
-                .compactMap { $0 }
-                .debounce(.milliseconds(200), scheduler: MainScheduler.instance)
-                .distinctUntilChanged()
-                .subscribe(onNext: {
-                    url in
-                    store.dispatch(PreviewTweet(payload: url))
-                }),
-
-            store.observableFromPath(keyPath: \.mediaResultURL)
-                .apiResult()
-                .map { $0.videos }
-                .distinctUntilChanged()
-                .observe(on: MainScheduler.instance)
+            pasteAndGoButton.rx.tap
                 .subscribe(onNext: {
                     [weak self] _ in
-                    self?.statusLabel.text = "success yo!"
+
+                    guard
+                        let url = UIPasteboard.general.string
+                            ?? UIPasteboard.general.url?.absoluteString
+                    else {
+                        self?.statusLabel.text = "No Twitter link in your Clipboard"
+                        return
+                    }
+
+                    store.dispatch(PreviewTweet(payload: url))
+
                     let controlla = TwitterDLViewController.loadFromNib()
                     self?.present(controlla, animated: true)
+
+                    self?.statusLabel.text = ""
                 }),
 
-            store.observableFromPath(keyPath: \.mediaResultURL)
-                .apiError()
-                .observe(on: MainScheduler.instance)
+            goButton.rx.tap
+                .withLatestFrom(tweetLinkInput.rx.text)
+                .compactMap { $0 }
                 .subscribe(onNext: {
-                    [weak self]
-                    err in
-                    self?.statusLabel.text = err.localizedDescription
+                    [weak self] url in
+
+                    guard TwitterAPI.getTweetIDFrom(url: url) != nil else {
+                        self?.statusLabel.text = "That doesn't seem to be a valid Twitter link"
+                        return
+                    }
+
+                    store.dispatch(PreviewTweet(payload: url))
+
+                    let controlla = TwitterDLViewController.loadFromNib()
+                    self?.present(controlla, animated: true)
+
+                    self?.statusLabel.text = ""
                 }),
 
-            isValidTwitterLink.map {
-                $0 ? "Valid Twitter link, checking for media..." : "Not a Twitter link!"
-            }
-            .withLatestFrom(tweetLinkInput.rx.text) {
-                (message, text) in
-                guard let text = text, text.count > 0 else {
-                    return ""
-                }
-                return message
-            }
-            .bind(to: statusLabel.rx.text)
+            copyExampleTwitterLinkButton.rx.tap
+                .subscribe(onNext: {
+                    UIPasteboard.general.string =
+                        "https://twitter.com/animatedtext/status/1220134801430024193?s=20"
+                })
         )
-
     }
 }
