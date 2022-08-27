@@ -11,30 +11,30 @@ import Social
 import YoutubeDL
 
 class ShareViewController: UIViewController {
-    
+
     override func viewDidLoad() {
         guard let item = extensionContext?.inputItems.first as? NSExtensionItem else {
             return
         }
-        
+
         guard let itemProvider = item.attachments?.first else {
             return
         }
-        
+
         guard itemProvider.hasItemConformingToTypeIdentifier("public.url") else {
             return
         }
-        
+
         itemProvider.loadItem(forTypeIdentifier: "public.url", options: nil) { (url, error) in
             if let shareURL = url as? NSURL {
                 print(shareURL)
-                
+
                 DispatchQueue.main.async {
                     let controlla = TwitterDLViewController.loadFromNib()
                     let tweetURL = shareURL.absoluteString
-                    
-                    store.dispatch(GetMediaURLsFromTweet(payload: tweetURL!))
-                    
+
+                    store.dispatch(PreviewTweet(payload: tweetURL!))
+
                     self.addChild(controlla)
                     controlla.view.frame = self.view.frame
                     self.view.addSubview(controlla.view)
@@ -42,9 +42,9 @@ class ShareViewController: UIViewController {
                 }
             }
         }
-        
+
         // dismiss the share panel thingy
-//        self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
+        //        self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
     }
 
 }

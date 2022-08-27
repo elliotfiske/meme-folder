@@ -30,6 +30,9 @@ class PasteLinkViewController: UIViewController {
         }
 
         rx.disposeBag.insert(
+            isValidTwitterLink
+                .bind(to: goButton.rx.isEnabled),
+
             pasteAndGoButton.rx.tap
                 .subscribe(onNext: {
                     [weak self] _ in
@@ -72,7 +75,7 @@ class PasteLinkViewController: UIViewController {
             copyExampleTwitterLinkButton.rx.tap
                 .subscribe(onNext: {
                     UIPasteboard.general.string =
-                        "https://twitter.com/animatedtext/status/1220134801430024193?s=20"
+                        "https://twitter.com/matthen2/status/1543226572592783362"
                 })
         )
     }

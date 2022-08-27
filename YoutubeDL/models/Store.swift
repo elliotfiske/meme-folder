@@ -21,7 +21,8 @@ public struct TwitterMediaGrabberState {
 
     var sizeForUrl: [String: Int] = [:]
 
-    var savedToCameraRoll: Bool = false
+    // Key is button index, value is whether or not the save was successful
+    var savedToCameraRoll: [Int: APIState<Bool>] = [:]
 }
 
 public protocol APIStateLike {
@@ -118,12 +119,19 @@ public struct FetchedVideoVariantFilesize: Action {
     let size: Int
 }
 
-public struct SaveToCameraRoll: Action {
+public struct SaveToCameraRoll: PayloadAction {
+    public var payload: Int
 
+    public init(
+        payload: Int
+    ) {
+        self.payload = payload
+    }
 }
 
 public struct SavedToCameraRoll: Action {
-    let success: Bool
+    let success: APIState<Bool>
+    let index: Int
 }
 
 func appReducer(action: Action, state: TwitterMediaGrabberState?) -> TwitterMediaGrabberState {
@@ -142,7 +150,7 @@ func appReducer(action: Action, state: TwitterMediaGrabberState?) -> TwitterMedi
         case let action as FetchedVideoVariantFilesize:
             state.sizeForUrl[action.url] = action.size
         case let action as SavedToCameraRoll:
-            state.savedToCameraRoll = action.success
+            state.savedToCameraRoll[action.index] = action.success
 
         default:
             break

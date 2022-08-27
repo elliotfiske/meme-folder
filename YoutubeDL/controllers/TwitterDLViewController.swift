@@ -12,6 +12,7 @@ import NSObject_Rx
 import RxCocoa
 import RxSwift
 import UIKit
+import Rswift
 
 public class TwitterDLViewController: UIViewController, UIAdaptivePresentationControllerDelegate {
     let model = TwitterMediaModel()
@@ -35,6 +36,20 @@ public class TwitterDLViewController: UIViewController, UIAdaptivePresentationCo
 
     override public func viewDidLoad() {
         super.viewDidLoad()
+
+        filesizeButton1.onPress = {
+            store.dispatch(SaveToCameraRoll(payload: 0))
+        }
+
+        filesizeButton2.onPress = {
+            store.dispatch(SaveToCameraRoll(payload: 1))
+        }
+
+        filesizeButton3.onPress = {
+            store.dispatch(SaveToCameraRoll(payload: 2))
+        }
+
+        let filesizeButtons: [FilesizeButton] = [filesizeButton1, filesizeButton2, filesizeButton3]
 
         store.observableFromPath(keyPath: \.sizeForUrl)
             .throttle(.milliseconds(300), scheduler: MainScheduler.instance)
@@ -65,7 +80,7 @@ public class TwitterDLViewController: UIViewController, UIAdaptivePresentationCo
                     $0.isHidden = true
                 }
 
-                for (ndx, (url, size)) in filesizes.enumerated() {
+                for (ndx, (url, size)) in filesizes.prefix(buttons.count).enumerated() {
                     let button = buttons[ndx]
                     let groups = url.groups(for: "/(\\d+)x(\\d+)/")
                     button.dimensions.text =
@@ -73,17 +88,33 @@ public class TwitterDLViewController: UIViewController, UIAdaptivePresentationCo
                     button.filesize.text = ByteCountFormatter.string(
                         fromByteCount: Int64(size), countStyle: .file)
                     button.isHidden = false
-
-                    // BAD SMELL: Subscribe in subscribe. Lazy solution for now.
-                    button.pressed.subscribe(onNext: {
-                        store.dispatch(SaveToCameraRoll())
-                    })
-                    .disposed(by: self.rx.disposeBag)
                 }
             })
             .disposed(by: rx.disposeBag)
 
         rx.disposeBag.insert(
+            store.observableFromPath(keyPath: \.savedToCameraRoll)
+                .observe(on: MainScheduler.instance)
+                .subscribe(onNext: {
+                    success in
+
+                    for (index, state) in success {
+                        guard let button = filesizeButtons.get(index: index) else { continue }
+
+                        filesizeButtons.forEach { button in
+                            button.isDisabled = true
+                        }
+
+                        if case let .fulfilled(yeah) = state {
+                            button.status = 2
+                        } else if case .error = state {
+                            button.status = 3
+                        } else if case .pending = state {
+                            button.status = 1
+                        }
+                    }
+                }),
+
             store.observableFromPath(keyPath: \.mediaResultURL).apiResult()
                 .observe(on: MainScheduler.instance)
                 .compactMap {

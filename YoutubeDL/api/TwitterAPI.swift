@@ -16,14 +16,6 @@ import SwiftyJSON
 
 public class TwitterAPI: HasDisposeBag {
 
-    public enum MediaResultURLs {
-        /// 1-4 images in a tweet
-        case images(urls: [String])
-
-        /// Videos can have multiple URLs, for the different qualities.
-        case videos(thumbnail: String, urls: [String])
-    }
-
     public struct MediaResultURLs_struct {
         public struct Video: Equatable {
             var url: String

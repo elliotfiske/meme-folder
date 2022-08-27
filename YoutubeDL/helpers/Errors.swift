@@ -18,7 +18,9 @@ public enum ErrorCategory: String {
 }
 
 public class ElliotError: Error, CustomStringConvertible {
-    public var description: String { return self.developerMessage }
+    public var description: String {
+        return "dev: \(self.developerMessage)  user: \(self.userMessage)"
+    }
 
     internal init(
         localizedMessage: String,

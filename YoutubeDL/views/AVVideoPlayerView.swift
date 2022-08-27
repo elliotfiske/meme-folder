@@ -29,7 +29,7 @@ class AVVideoPlayerView: UIView, NibLoadable {
     public let itemLength = BehaviorRelay<CGFloat>(value: 0)
 
     public var itemToPlay: Binder<AVPlayerItem> {
-        return Binder(self.player) { [weak self] (player, newItem) in
+        return Binder(player) { [weak self] (player, newItem) in
             player.replaceCurrentItem(with: newItem)
             self?.readyToPlay.accept(false)
         }
@@ -47,16 +47,16 @@ class AVVideoPlayerView: UIView, NibLoadable {
     }
 
     func commonInit() {
-        let strongPlayerLayer = AVPlayerLayer(player: self.player)
-        self.playerLayer = strongPlayerLayer
+        let strongPlayerLayer = AVPlayerLayer(player: player)
+        playerLayer = strongPlayerLayer
 
         strongPlayerLayer.videoGravity = .resizeAspect
-        self.layer.addSublayer(strongPlayerLayer)
+        layer.addSublayer(strongPlayerLayer)
         player.actionAtItemEnd = .none
         player.seek(to: CMTime.zero)
 
         rx.disposeBag.insert(
-            loadingProgress.bind(to: self.videoLoadingProgress.rx.progress),
+            loadingProgress.bind(to: videoLoadingProgress.rx.progress),
 
             // When progress bar finishes, wait 0.5 seconds and fade out.
             //  If it's just starting, immediately fade in.
@@ -69,37 +69,37 @@ class AVVideoPlayerView: UIView, NibLoadable {
                     return Observable.just(1.0)
                 }
             }
-                .bind(to: self.videoLoadingProgress.rx.animated.fade(duration: 0.5).alpha),
+            .bind(to: videoLoadingProgress.rx.animated.fade(duration: 0.5).alpha),
 
-            self.player.rx.status
+            player.rx.status
                 .map { $0 == .readyToPlay }
-                .bind(to: self.readyToPlay),
+                .bind(to: readyToPlay),
 
             // Auto-play the video the first time it loads
-            self.readyToPlay
+            readyToPlay
                 .filter { $0 == true }
                 .take(1)
                 .bind(to: isPlaying),
 
             isPlaying
                 .bind(to: player.rx.isPlaying),
-            
-            self.readyToPlay
+
+            readyToPlay
                 .filter { $0 == true }
                 .map { [weak self] _ in
                     guard let playerItem = self?.player.currentItem else { return 0 }
-                    
+
                     let lengthInSeconds = CGFloat(CMTimeGetSeconds(playerItem.asset.duration))
                     return lengthInSeconds
                 }
-                .bind(to: self.itemLength),
+                .bind(to: itemLength),
 
             player.rx.periodicTimeObserver(interval: CMTime(value: 1, timescale: 10))
                 .map { CGFloat(CMTimeGetSeconds($0)) }
                 .bind(to: currPlaybackTime),
 
             NotificationCenter.default.rx
-                .notification(.AVPlayerItemDidPlayToEndTime, object: self.player.currentItem)
+                .notification(.AVPlayerItemDidPlayToEndTime, object: player.currentItem)
                 .subscribe(onNext: {
                     notification in
                     if let playerItem = notification.object as? AVPlayerItem {
@@ -107,7 +107,7 @@ class AVVideoPlayerView: UIView, NibLoadable {
                     }
                 }),
 
-            self.requestedSeekTime
+            requestedSeekTime
                 .throttle(.milliseconds(50), scheduler: MainScheduler.instance)
                 .flatMap({
                     [weak self] (progress) -> Observable<Bool> in
@@ -126,7 +126,8 @@ class AVVideoPlayerView: UIView, NibLoadable {
                     }
                 })
                 .subscribe(onNext: {
-                    print("Did it seek properly? \($0)")
+                    _ in
+                    //                    print("Did it seek properly? \($0)")
                 }))
     }
 
@@ -136,13 +137,17 @@ class AVVideoPlayerView: UIView, NibLoadable {
         self.playerLayer?.frame = self.bounds
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required init?(
+        coder aDecoder: NSCoder
+    ) {
         super.init(coder: aDecoder)
         setupFromNib()
         commonInit()
     }
 
-    override init(frame: CGRect) {
+    override init(
+        frame: CGRect
+    ) {
         super.init(frame: frame)
         setupFromNib()
         commonInit()

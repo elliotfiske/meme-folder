@@ -99,29 +99,36 @@ let saveMediaToCameraRollEpic: Epic<TwitterMediaGrabberState> = {
     action$, getState in
 
     action$.compactMap {
-        guard $0 is SaveToCameraRoll else {
+        guard let action = $0 as? SaveToCameraRoll else {
             return nil
         }
-        return ()
+        return action
     }
+    // compactMap that checks if the current downloaded file is actually the one the user wants
     .flatMap {
-        (_: Void) -> Single<Action> in
+        (action: SaveToCameraRoll) -> Observable<Action> in
 
         guard case let .fulfilled(url) = getState()!.localMediaURL else {
             throw ElliotError(localizedMessage: "couldn't save to camera roll!")
         }
 
-        return PHPhotoLibrary.shared().rx.rxPerformChanges({
+        let result: Observable<Action> = PHPhotoLibrary.shared().rx.rxPerformChanges({
             let request = PHAssetCreationRequest.forAsset()
             request.addResource(with: .video, fileURL: url, options: nil)
         })
+        .asObservable()
         .map {
-            result in
-            return SavedToCameraRoll(success: true)
+            _ in
+            return SavedToCameraRoll(success: .fulfilled(true), index: action.payload)
         }
-        .catchAndReturn(
-            SavedToCameraRoll(success: false)
-        )
+        .catch { error in
+            return Observable.just(SavedToCameraRoll(success: .error(error), index: action.payload))
+        }
+
+//        return Observable.just(
+//            SavedToCameraRoll(success: .pending, index: action.payload)
+//        ).concat(result)
+        return result
     }
 }
 

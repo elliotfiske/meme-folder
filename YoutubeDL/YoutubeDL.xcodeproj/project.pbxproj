@@ -36,12 +36,14 @@
 		C977FB9528727D160038CF82 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = C977FB9428727D160038CF82 /* Store.swift */; };
 		C977FB97287387270038CF82 /* Store+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C977FB96287387270038CF82 /* Store+Rx.swift */; };
 		C97A52E12607D7C3008B76BD /* PhotoLibraryChangeObserver+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97A52E02607D7C3008B76BD /* PhotoLibraryChangeObserver+Rx.swift */; };
+		C983424228B0622D0053886B /* Differentiator in Frameworks */ = {isa = PBXBuildFile; productRef = C983424128B0622D0053886B /* Differentiator */; };
+		C983424428B0622D0053886B /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = C983424328B0622D0053886B /* RxDataSources */; };
+		C983424628B068AD0053886B /* FilesizeButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C983424528B068AD0053886B /* FilesizeButton.xib */; };
 		C986497C287A8BE700DE65D4 /* Rswift in Frameworks */ = {isa = PBXBuildFile; productRef = C986497B287A8BE700DE65D4 /* Rswift */; };
 		C986497E287A8C3100DE65D4 /* rswift in Resources */ = {isa = PBXBuildFile; fileRef = C986497D287A8C3100DE65D4 /* rswift */; };
 		C9864980287A8DCE00DE65D4 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C986497F287A8DCE00DE65D4 /* R.generated.swift */; };
 		C9864982287BB38B00DE65D4 /* NetworkingEpic.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9864981287BB38B00DE65D4 /* NetworkingEpic.swift */; };
 		C9864984287CF58900DE65D4 /* RetryingTokenNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9864983287CF58900DE65D4 /* RetryingTokenNetworkService.swift */; };
-		C98720CB288C6E2500742104 /* FilesizeButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C98720CA288C6E2500742104 /* FilesizeButton.xib */; };
 		C98720CD288C70D400742104 /* FilesizeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98720CC288C70D400742104 /* FilesizeButton.swift */; };
 		C9A6B23023E663420005A41B /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C9A6B22F23E663420005A41B /* RxSwift */; };
 		C9A6B23223E663420005A41B /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = C9A6B23123E663420005A41B /* RxTest */; };
@@ -98,11 +100,11 @@
 		C977FB9428727D160038CF82 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		C977FB96287387270038CF82 /* Store+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Store+Rx.swift"; sourceTree = "<group>"; };
 		C97A52E02607D7C3008B76BD /* PhotoLibraryChangeObserver+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoLibraryChangeObserver+Rx.swift"; sourceTree = "<group>"; };
+		C983424528B068AD0053886B /* FilesizeButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilesizeButton.xib; sourceTree = "<group>"; };
 		C986497D287A8C3100DE65D4 /* rswift */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = rswift; sourceTree = "<group>"; };
 		C986497F287A8DCE00DE65D4 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		C9864981287BB38B00DE65D4 /* NetworkingEpic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingEpic.swift; sourceTree = "<group>"; };
 		C9864983287CF58900DE65D4 /* RetryingTokenNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetryingTokenNetworkService.swift; sourceTree = "<group>"; };
-		C98720CA288C6E2500742104 /* FilesizeButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilesizeButton.xib; sourceTree = "<group>"; };
 		C98720CC288C70D400742104 /* FilesizeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesizeButton.swift; sourceTree = "<group>"; };
 		C9B6036523CC43BE0056AEC6 /* TwitterDLViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TwitterDLViewController.xib; path = controllers/TwitterDLViewController.xib; sourceTree = SOURCE_ROOT; };
 		C9B6036923CEDA280056AEC6 /* UIViewController+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Convenience.swift"; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C986497C287A8BE700DE65D4 /* Rswift in Frameworks */,
+				C983424228B0622D0053886B /* Differentiator in Frameworks */,
 				C9A6B23623E663420005A41B /* RxCocoa in Frameworks */,
 				C9A6B23423E663420005A41B /* RxRelay in Frameworks */,
 				C955E137289366E200F136FD /* NukeUI in Frameworks */,
@@ -134,6 +137,7 @@
 				C927E75825C78F4C00F835C1 /* RxBiBinding in Frameworks */,
 				C922D72E287FA9800032C517 /* RxAlamofire in Frameworks */,
 				C9A6B23023E663420005A41B /* RxSwift in Frameworks */,
+				C983424428B0622D0053886B /* RxDataSources in Frameworks */,
 				C9EA02442888D72E0076C263 /* RxCocoaRuntime in Frameworks */,
 				C9C75DDB25B947DB00764114 /* NSObject-Rx in Frameworks */,
 			);
@@ -208,11 +212,11 @@
 		C9B6036423CC436C0056AEC6 /* storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				C983424528B068AD0053886B /* FilesizeButton.xib */,
 				C9B6036523CC43BE0056AEC6 /* TwitterDLViewController.xib */,
 				C909550523DE5BF7006FB53C /* VideoControlsView.xib */,
 				C938B53F2400DAD300AFD740 /* VideoPlayerViewController.xib */,
 				C938B54624039C9200AFD740 /* AVVideoPlayerView.xib */,
-				C98720CA288C6E2500742104 /* FilesizeButton.xib */,
 			);
 			path = storyboards;
 			sourceTree = "<group>";
@@ -333,6 +337,8 @@
 				C9EA02412888D72E0076C263 /* RxAnimated */,
 				C9EA02432888D72E0076C263 /* RxCocoaRuntime */,
 				C955E136289366E200F136FD /* NukeUI */,
+				C983424128B0622D0053886B /* Differentiator */,
+				C983424328B0622D0053886B /* RxDataSources */,
 			);
 			productName = YoutubeDL;
 			productReference = C9F5110D23C186400044C61A /* YoutubeDL.framework */;
@@ -398,6 +404,7 @@
 				C922D72C287FA9800032C517 /* XCRemoteSwiftPackageReference "RxAlamofire" */,
 				C9EA02402888D72E0076C263 /* XCRemoteSwiftPackageReference "RxAnimated" */,
 				C955E135289366E200F136FD /* XCRemoteSwiftPackageReference "NukeUI" */,
+				C983424028B0622D0053886B /* XCRemoteSwiftPackageReference "RxDataSources" */,
 			);
 			productRefGroup = C9F5110E23C186400044C61A /* Products */;
 			projectDirPath = "";
@@ -415,12 +422,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C938B5402400DAD300AFD740 /* VideoPlayerViewController.xib in Resources */,
+				C983424628B068AD0053886B /* FilesizeButton.xib in Resources */,
 				C9B6036623CC43BE0056AEC6 /* TwitterDLViewController.xib in Resources */,
 				C93767B423D8063700180F2D /* images.xcassets in Resources */,
 				C938B54724039C9200AFD740 /* AVVideoPlayerView.xib in Resources */,
 				C909550723DE5BF7006FB53C /* VideoControlsView.xib in Resources */,
 				C986497E287A8C3100DE65D4 /* rswift in Resources */,
-				C98720CB288C6E2500742104 /* FilesizeButton.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -805,6 +812,14 @@
 				minimumVersion = 6.0.0;
 			};
 		};
+		C983424028B0622D0053886B /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		C986497A287A8BE600DE65D4 /* XCRemoteSwiftPackageReference "R.swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mac-cain13/R.swift.Library";
@@ -864,6 +879,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C977FB8B286D2D580038CF82 /* XCRemoteSwiftPackageReference "ReSwift" */;
 			productName = ReSwift;
+		};
+		C983424128B0622D0053886B /* Differentiator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C983424028B0622D0053886B /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = Differentiator;
+		};
+		C983424328B0622D0053886B /* RxDataSources */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C983424028B0622D0053886B /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = RxDataSources;
 		};
 		C986497B287A8BE700DE65D4 /* Rswift */ = {
 			isa = XCSwiftPackageProductDependency;

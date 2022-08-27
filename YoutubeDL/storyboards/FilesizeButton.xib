@@ -13,7 +13,8 @@
                 <outlet property="backgroundView" destination="iN0-l3-epB" id="HfC-y5-z2M"/>
                 <outlet property="dimensions" destination="Xu0-BM-yBM" id="FjM-jt-Frt"/>
                 <outlet property="filesize" destination="Imd-Af-Y4T" id="5Yx-bp-KW8"/>
-                <outlet property="press" destination="L1s-Ie-Jaq" id="7JQ-sw-UTq"/>
+                <outlet property="press" destination="L1s-Ie-Jaq" id="Uwm-NM-BBI"/>
+                <outlet property="statusLabel" destination="wRe-YV-pBI" id="n37-9G-tVI"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -21,42 +22,67 @@
             <rect key="frame" x="0.0" y="0.0" width="150" height="148"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bnS-qr-l4s">
-                    <rect key="frame" x="40" y="43" width="70" height="62"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bnS-qr-l4s" customClass="RoundedCornerView" customModule="YoutubeDL" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="150" height="148"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="300x400" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Xu0-BM-yBM" userLabel="dimensions">
-                            <rect key="frame" x="0.0" y="0.0" width="70" height="21"/>
+                            <rect key="frame" x="0.0" y="0.0" width="150" height="107"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100 KB" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Imd-Af-Y4T" userLabel="filesize">
-                            <rect key="frame" x="0.0" y="41" width="70" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="100 KB" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Imd-Af-Y4T" userLabel="filesize">
+                            <rect key="frame" x="0.0" y="127" width="150" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="status" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wRe-YV-pBI" userLabel="status">
+                            <rect key="frame" x="51.5" y="63.5" width="47" height="21"/>
+                            <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
+                    <color key="backgroundColor" systemColor="systemGray2Color"/>
                     <constraints>
                         <constraint firstItem="Xu0-BM-yBM" firstAttribute="centerX" secondItem="bnS-qr-l4s" secondAttribute="centerX" id="05R-CP-27J"/>
                         <constraint firstItem="Imd-Af-Y4T" firstAttribute="width" secondItem="bnS-qr-l4s" secondAttribute="width" priority="750" id="1iP-Vc-61h"/>
+                        <constraint firstItem="wRe-YV-pBI" firstAttribute="centerX" secondItem="bnS-qr-l4s" secondAttribute="centerX" id="3Ik-3B-bFF"/>
                         <constraint firstItem="Xu0-BM-yBM" firstAttribute="width" secondItem="bnS-qr-l4s" secondAttribute="width" priority="750" id="5aE-cJ-7WP"/>
                         <constraint firstAttribute="bottom" secondItem="Imd-Af-Y4T" secondAttribute="bottom" id="CU8-Lp-eVu"/>
                         <constraint firstItem="Imd-Af-Y4T" firstAttribute="top" secondItem="Xu0-BM-yBM" secondAttribute="bottom" constant="20" id="GZd-F0-fxG"/>
                         <constraint firstItem="Imd-Af-Y4T" firstAttribute="centerX" secondItem="bnS-qr-l4s" secondAttribute="centerX" id="oOb-87-2Gn"/>
+                        <constraint firstItem="wRe-YV-pBI" firstAttribute="centerY" secondItem="bnS-qr-l4s" secondAttribute="centerY" id="oiQ-ex-hJE"/>
                         <constraint firstItem="Xu0-BM-yBM" firstAttribute="top" secondItem="bnS-qr-l4s" secondAttribute="top" id="yY5-9a-MGB"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                            <real key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                            <size key="value" width="2" height="4"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                            <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                            <integer key="value" value="100"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
-            <color key="backgroundColor" systemColor="systemGray3Color"/>
             <gestureRecognizers/>
             <constraints>
                 <constraint firstItem="bnS-qr-l4s" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Fe0-n6-Bxt"/>
-                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bnS-qr-l4s" secondAttribute="trailing" constant="8" id="Oyp-rU-Flu"/>
-                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="bnS-qr-l4s" secondAttribute="bottom" constant="8" id="R3y-xJ-gf5"/>
-                <constraint firstItem="bnS-qr-l4s" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="als-ve-SAE"/>
+                <constraint firstAttribute="trailing" secondItem="bnS-qr-l4s" secondAttribute="trailing" id="Oyp-rU-Flu"/>
+                <constraint firstAttribute="bottom" secondItem="bnS-qr-l4s" secondAttribute="bottom" id="R3y-xJ-gf5"/>
+                <constraint firstItem="bnS-qr-l4s" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="als-ve-SAE"/>
                 <constraint firstItem="bnS-qr-l4s" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="tVv-Vq-wms"/>
-                <constraint firstItem="bnS-qr-l4s" firstAttribute="top" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="uhT-ff-YUd"/>
+                <constraint firstItem="bnS-qr-l4s" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="uhT-ff-YUd"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
@@ -64,13 +90,17 @@
             <connections>
                 <outletCollection property="gestureRecognizers" destination="L1s-Ie-Jaq" appends="YES" id="GIl-rT-kMm"/>
             </connections>
-            <point key="canvasLocation" x="-78" y="-208"/>
+            <point key="canvasLocation" x="-78.260869565217391" y="-208.25892857142856"/>
         </view>
-        <pongPressGestureRecognizer allowableMovement="100" minimumPressDuration="0.0" id="L1s-Ie-Jaq"/>
+        <pongPressGestureRecognizer allowableMovement="100" minimumPressDuration="0.0" id="L1s-Ie-Jaq">
+            <connections>
+                <action selector="pressMe:" destination="-1" id="F6c-gc-M1V"/>
+            </connections>
+        </pongPressGestureRecognizer>
     </objects>
     <resources>
-        <systemColor name="systemGray3Color">
-            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
