@@ -34,6 +34,10 @@ public class TwitterDLViewController: UIViewController, UIAdaptivePresentationCo
         videoPlayerController.stopPlaying()
     }
 
+    deinit {
+        print("I am being deinitted")
+    }
+
     override public func viewDidLoad() {
         super.viewDidLoad()
 
@@ -101,16 +105,15 @@ public class TwitterDLViewController: UIViewController, UIAdaptivePresentationCo
                     for (index, state) in success {
                         guard let button = filesizeButtons.get(index: index) else { continue }
 
-                        filesizeButtons.forEach { button in
+                        if case .fulfilled = state {
+                            button.status = .done
                             button.isDisabled = true
-                        }
-
-                        if case let .fulfilled(yeah) = state {
-                            button.status = 2
                         } else if case .error = state {
-                            button.status = 3
+                            button.status = .error
+                            button.isDisabled = false
                         } else if case .pending = state {
-                            button.status = 1
+                            button.status = .savingToCameraRoll
+                            button.isDisabled = true
                         }
                     }
                 }),
@@ -141,6 +144,7 @@ public class TwitterDLViewController: UIViewController, UIAdaptivePresentationCo
                 .bind(to: errorLabel.rx.isHidden),
 
             store.observableFromPath(keyPath: \.localMediaURL).apiResult()
+                .distinctUntilChanged()
                 .map {
                     url in
                     return AVPlayerItem(url: url)

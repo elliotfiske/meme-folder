@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FilesizeButton" customModule="YoutubeDL" customModuleProvider="target">
             <connections>
-                <outlet property="backgroundView" destination="iN0-l3-epB" id="HfC-y5-z2M"/>
+                <outlet property="backgroundView" destination="bnS-qr-l4s" id="jI9-Kc-HEs"/>
                 <outlet property="dimensions" destination="Xu0-BM-yBM" id="FjM-jt-Frt"/>
                 <outlet property="filesize" destination="Imd-Af-Y4T" id="5Yx-bp-KW8"/>
                 <outlet property="press" destination="L1s-Ie-Jaq" id="Uwm-NM-BBI"/>
@@ -25,18 +25,33 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bnS-qr-l4s" customClass="RoundedCornerView" customModule="YoutubeDL" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="150" height="148"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="300x400" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="Xu0-BM-yBM" userLabel="dimensions">
-                            <rect key="frame" x="0.0" y="0.0" width="150" height="107"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="100 KB" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Imd-Af-Y4T" userLabel="filesize">
-                            <rect key="frame" x="0.0" y="127" width="150" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h5F-Zn-cWz" userLabel="Centerer">
+                            <rect key="frame" x="16" y="43.5" width="118" height="61"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="300x400" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xu0-BM-yBM" userLabel="dimensions">
+                                    <rect key="frame" x="24" y="0.0" width="70" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="100 KB" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Imd-Af-Y4T" userLabel="filesize">
+                                    <rect key="frame" x="32" y="40.5" width="54" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="Imd-Af-Y4T" firstAttribute="centerX" secondItem="h5F-Zn-cWz" secondAttribute="centerX" id="2rv-wW-CV6"/>
+                                <constraint firstItem="Xu0-BM-yBM" firstAttribute="top" secondItem="h5F-Zn-cWz" secondAttribute="top" id="4E3-UM-3aE"/>
+                                <constraint firstItem="Imd-Af-Y4T" firstAttribute="centerX" secondItem="Xu0-BM-yBM" secondAttribute="centerX" id="EGG-wB-w0M"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" secondItem="Xu0-BM-yBM" secondAttribute="width" id="Meg-Md-YLk"/>
+                                <constraint firstItem="Imd-Af-Y4T" firstAttribute="top" secondItem="Xu0-BM-yBM" secondAttribute="bottom" constant="20" id="c4d-En-TKS"/>
+                                <constraint firstAttribute="bottom" secondItem="Imd-Af-Y4T" secondAttribute="bottom" id="cGr-X1-W6S"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" secondItem="Imd-Af-Y4T" secondAttribute="width" id="hyw-l9-ORO"/>
+                                <constraint firstItem="Xu0-BM-yBM" firstAttribute="centerX" secondItem="h5F-Zn-cWz" secondAttribute="centerX" id="kG8-nM-5vo"/>
+                            </constraints>
+                        </view>
                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="status" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wRe-YV-pBI" userLabel="status">
                             <rect key="frame" x="51.5" y="63.5" width="47" height="21"/>
                             <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
@@ -44,21 +59,18 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemGray2Color"/>
+                    <color key="backgroundColor" systemColor="systemGray4Color"/>
                     <constraints>
-                        <constraint firstItem="Xu0-BM-yBM" firstAttribute="centerX" secondItem="bnS-qr-l4s" secondAttribute="centerX" id="05R-CP-27J"/>
-                        <constraint firstItem="Imd-Af-Y4T" firstAttribute="width" secondItem="bnS-qr-l4s" secondAttribute="width" priority="750" id="1iP-Vc-61h"/>
-                        <constraint firstItem="wRe-YV-pBI" firstAttribute="centerX" secondItem="bnS-qr-l4s" secondAttribute="centerX" id="3Ik-3B-bFF"/>
-                        <constraint firstItem="Xu0-BM-yBM" firstAttribute="width" secondItem="bnS-qr-l4s" secondAttribute="width" priority="750" id="5aE-cJ-7WP"/>
-                        <constraint firstAttribute="bottom" secondItem="Imd-Af-Y4T" secondAttribute="bottom" id="CU8-Lp-eVu"/>
-                        <constraint firstItem="Imd-Af-Y4T" firstAttribute="top" secondItem="Xu0-BM-yBM" secondAttribute="bottom" constant="20" id="GZd-F0-fxG"/>
-                        <constraint firstItem="Imd-Af-Y4T" firstAttribute="centerX" secondItem="bnS-qr-l4s" secondAttribute="centerX" id="oOb-87-2Gn"/>
-                        <constraint firstItem="wRe-YV-pBI" firstAttribute="centerY" secondItem="bnS-qr-l4s" secondAttribute="centerY" id="oiQ-ex-hJE"/>
-                        <constraint firstItem="Xu0-BM-yBM" firstAttribute="top" secondItem="bnS-qr-l4s" secondAttribute="top" id="yY5-9a-MGB"/>
+                        <constraint firstItem="h5F-Zn-cWz" firstAttribute="leading" secondItem="bnS-qr-l4s" secondAttribute="leading" constant="16" id="8kg-79-6Zl"/>
+                        <constraint firstAttribute="trailing" secondItem="h5F-Zn-cWz" secondAttribute="trailing" constant="16" id="Kil-8i-EIe"/>
+                        <constraint firstItem="wRe-YV-pBI" firstAttribute="centerY" secondItem="bnS-qr-l4s" secondAttribute="centerY" id="Xib-TL-Hvu"/>
+                        <constraint firstItem="wRe-YV-pBI" firstAttribute="centerX" secondItem="bnS-qr-l4s" secondAttribute="centerX" id="aF6-Zp-qKe"/>
+                        <constraint firstItem="h5F-Zn-cWz" firstAttribute="centerX" secondItem="bnS-qr-l4s" secondAttribute="centerX" id="nLF-zn-1Ws"/>
+                        <constraint firstItem="h5F-Zn-cWz" firstAttribute="centerY" secondItem="bnS-qr-l4s" secondAttribute="centerY" id="tji-8Z-qVx"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                            <real key="value" value="4"/>
+                            <real key="value" value="8"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
                             <real key="value" value="4"/>
@@ -70,7 +82,7 @@
                             <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                            <integer key="value" value="100"/>
+                            <real key="value" value="255"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
@@ -99,8 +111,8 @@
         </pongPressGestureRecognizer>
     </objects>
     <resources>
-        <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

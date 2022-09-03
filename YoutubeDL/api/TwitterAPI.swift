@@ -34,6 +34,7 @@ public class TwitterAPI: HasDisposeBag {
         "Authorization":
             "Bearer AAAAAAAAAAAAAAAAAAAAAPYXBAAAAAAACLXUNDekMxqa8h%2F40K4moUkGsoc%3DTYfbDKbT3jJPCEVnMYqilB28NHfOPqkca3qaAxGfsyKCs0wRbw",
         "Accept": "application/json",
+        "Cache-Control": "no-cache",
     ]
 
     // MARK: Public functions

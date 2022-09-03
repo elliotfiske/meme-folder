@@ -39,6 +39,8 @@
 		C983424228B0622D0053886B /* Differentiator in Frameworks */ = {isa = PBXBuildFile; productRef = C983424128B0622D0053886B /* Differentiator */; };
 		C983424428B0622D0053886B /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = C983424328B0622D0053886B /* RxDataSources */; };
 		C983424628B068AD0053886B /* FilesizeButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = C983424528B068AD0053886B /* FilesizeButton.xib */; };
+		C983F9EE28BEE4A400485C20 /* DummyTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C983F9ED28BEE4A400485C20 /* DummyTestViewController.swift */; };
+		C983F9F028BEE4FF00485C20 /* DummyTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C983F9EF28BEE4FF00485C20 /* DummyTestViewController.xib */; };
 		C986497C287A8BE700DE65D4 /* Rswift in Frameworks */ = {isa = PBXBuildFile; productRef = C986497B287A8BE700DE65D4 /* Rswift */; };
 		C986497E287A8C3100DE65D4 /* rswift in Resources */ = {isa = PBXBuildFile; fileRef = C986497D287A8C3100DE65D4 /* rswift */; };
 		C9864980287A8DCE00DE65D4 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C986497F287A8DCE00DE65D4 /* R.generated.swift */; };
@@ -101,6 +103,8 @@
 		C977FB96287387270038CF82 /* Store+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Store+Rx.swift"; sourceTree = "<group>"; };
 		C97A52E02607D7C3008B76BD /* PhotoLibraryChangeObserver+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhotoLibraryChangeObserver+Rx.swift"; sourceTree = "<group>"; };
 		C983424528B068AD0053886B /* FilesizeButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FilesizeButton.xib; sourceTree = "<group>"; };
+		C983F9ED28BEE4A400485C20 /* DummyTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyTestViewController.swift; sourceTree = "<group>"; };
+		C983F9EF28BEE4FF00485C20 /* DummyTestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DummyTestViewController.xib; sourceTree = "<group>"; };
 		C986497D287A8C3100DE65D4 /* rswift */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = rswift; sourceTree = "<group>"; };
 		C986497F287A8DCE00DE65D4 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		C9864981287BB38B00DE65D4 /* NetworkingEpic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingEpic.swift; sourceTree = "<group>"; };
@@ -172,6 +176,7 @@
 				C92D91EE23C9992B0067150B /* TwitterDLViewController.swift */,
 				C92D91E323C98F8C0067150B /* TwitterDLViewController+ErrorHandler.swift */,
 				C938B5412400DB0700AFD740 /* VideoPlayerViewController.swift */,
+				C983F9ED28BEE4A400485C20 /* DummyTestViewController.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -217,6 +222,7 @@
 				C909550523DE5BF7006FB53C /* VideoControlsView.xib */,
 				C938B53F2400DAD300AFD740 /* VideoPlayerViewController.xib */,
 				C938B54624039C9200AFD740 /* AVVideoPlayerView.xib */,
+				C983F9EF28BEE4FF00485C20 /* DummyTestViewController.xib */,
 			);
 			path = storyboards;
 			sourceTree = "<group>";
@@ -424,6 +430,7 @@
 				C938B5402400DAD300AFD740 /* VideoPlayerViewController.xib in Resources */,
 				C983424628B068AD0053886B /* FilesizeButton.xib in Resources */,
 				C9B6036623CC43BE0056AEC6 /* TwitterDLViewController.xib in Resources */,
+				C983F9F028BEE4FF00485C20 /* DummyTestViewController.xib in Resources */,
 				C93767B423D8063700180F2D /* images.xcassets in Resources */,
 				C938B54724039C9200AFD740 /* AVVideoPlayerView.xib in Resources */,
 				C909550723DE5BF7006FB53C /* VideoControlsView.xib in Resources */,
@@ -474,6 +481,7 @@
 				C97A52E12607D7C3008B76BD /* PhotoLibraryChangeObserver+Rx.swift in Sources */,
 				C92D91E923C995810067150B /* TwitterMediaModel.swift in Sources */,
 				C98720CD288C70D400742104 /* FilesizeButton.swift in Sources */,
+				C983F9EE28BEE4A400485C20 /* DummyTestViewController.swift in Sources */,
 				C909550623DE5BF7006FB53C /* VideoControlsView.swift in Sources */,
 				C977FB9528727D160038CF82 /* Store.swift in Sources */,
 				C938B5442400DD6500AFD740 /* AVVideoPlayerView.swift in Sources */,
@@ -554,7 +562,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -618,7 +626,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

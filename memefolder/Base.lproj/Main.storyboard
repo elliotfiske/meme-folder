@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xaV-7z-ZOk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qgV-WN-pDX">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -18,9 +18,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xFS-UF-c22">
-                                <rect key="frame" x="0.0" y="78" width="414" height="735"/>
-                            </containerView>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="oW2-T9-M9u">
                                 <rect key="frame" x="80" y="48" width="254" height="30"/>
                                 <subviews>
@@ -40,6 +37,9 @@
                                     <constraint firstItem="akf-17-HIq" firstAttribute="top" secondItem="oW2-T9-M9u" secondAttribute="top" id="fba-0M-9B3"/>
                                 </constraints>
                             </stackView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xFS-UF-c22">
+                                <rect key="frame" x="0.0" y="78" width="414" height="784"/>
+                            </containerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -110,6 +110,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qct-0C-2xc">
+                                <rect key="frame" x="133" y="432" width="148" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Populate Clipboard"/>
+                                <connections>
+                                    <action selector="populateClipboard2:" destination="qgV-WN-pDX" eventType="touchUpInside" id="MhK-ki-3qD"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JnS-e5-m4h">
                                 <rect key="frame" x="133" y="544" width="148" height="31"/>
                                 <state key="normal" title="Button"/>
@@ -157,7 +166,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="qgV-WN-pDX" kind="relationship" relationship="viewControllers" id="Buw-dn-hZJ"/>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="hLk-UY-sZJ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xe0-YN-H4r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

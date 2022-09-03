@@ -20,6 +20,11 @@ class PasteLinkViewController: UIViewController {
 
     @IBOutlet weak var copyExampleTwitterLinkButton: UIButton!
 
+    @IBAction func populateClipboard2(_ sender: Any) {
+        UIPasteboard.general.string =
+            "https://twitter.com/hourly_shitpost/status/1564266661573705729"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,8 +35,6 @@ class PasteLinkViewController: UIViewController {
         }
 
         rx.disposeBag.insert(
-            isValidTwitterLink
-                .bind(to: goButton.rx.isEnabled),
 
             pasteAndGoButton.rx.tap
                 .subscribe(onNext: {
@@ -60,10 +63,11 @@ class PasteLinkViewController: UIViewController {
                     [weak self] url in
 
                     guard TwitterAPI.getTweetIDFrom(url: url) != nil else {
-                        self?.statusLabel.text = "That doesn't seem to be a valid Twitter link"
+                        self?.statusLabel.text = "That doesn't seem to be a valid Twitter link."
                         return
                     }
 
+                    store.dispatch(ResetState())
                     store.dispatch(PreviewTweet(payload: url))
 
                     let controlla = TwitterDLViewController.loadFromNib()
@@ -75,7 +79,7 @@ class PasteLinkViewController: UIViewController {
             copyExampleTwitterLinkButton.rx.tap
                 .subscribe(onNext: {
                     UIPasteboard.general.string =
-                        "https://twitter.com/matthen2/status/1543226572592783362"
+                        "https://twitter.com/MIStoleOffDisc/status/1564010179544457217?s=20&t=dfqr6OOmo3R5Mkp71kLg1A"
                 })
         )
     }

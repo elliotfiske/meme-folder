@@ -12,6 +12,8 @@ import YoutubeDL
 
 class ShareViewController: UIViewController {
 
+    var controlla: TwitterDLViewController?
+    
     override func viewDidLoad() {
         guard let item = extensionContext?.inputItems.first as? NSExtensionItem else {
             return
@@ -30,15 +32,27 @@ class ShareViewController: UIViewController {
                 print(shareURL)
 
                 DispatchQueue.main.async {
-                    let controlla = TwitterDLViewController.loadFromNib()
+                    [weak self] in
+                    
+                    if let c = self?.controlla {
+                        c.removeFromParent()
+                    }
+                    
+                    guard let self = self else { return }
+                    
+                    self.controlla = TwitterDLViewController.loadFromNib()
                     let tweetURL = shareURL.absoluteString
 
                     store.dispatch(PreviewTweet(payload: tweetURL!))
 
-                    self.addChild(controlla)
-                    controlla.view.frame = self.view.frame
-                    self.view.addSubview(controlla.view)
-                    controlla.didMove(toParent: self)
+                    // remove the last one of these we added
+                    self.children.first?.removeFromParent()
+                    self.view.subviews.first?.removeFromSuperview()
+                    
+                    self.addChild(self.controlla!)
+                    self.controlla!.view.frame = self.view.frame
+                    self.view.addSubview(self.controlla!.view)
+                    self.controlla!.didMove(toParent: self)
                 }
             }
         }

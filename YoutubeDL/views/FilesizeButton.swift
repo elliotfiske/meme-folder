@@ -10,6 +10,10 @@ import Foundation
 import UIKit
 import RxSwift
 
+public enum FilesizeButtonState {
+    case idle, loadingInfo, savingToCameraRoll, done, error
+}
+
 public class FilesizeButton: UIView, NibLoadable {
     @IBOutlet weak var dimensions: UILabel!
     @IBOutlet weak var filesize: UILabel!
@@ -20,7 +24,7 @@ public class FilesizeButton: UIView, NibLoadable {
     public var onPress: () -> Void = {}
 
     @IBAction func pressMe(_ sender: UILongPressGestureRecognizer) {
-        if sender.state == .ended {
+        if sender.state == .ended && !isDisabled {
             onPress()
         }
     }
@@ -32,29 +36,36 @@ public class FilesizeButton: UIView, NibLoadable {
             }
         }
     }
-    
-    public var status = 0 {
+
+    public var status: FilesizeButtonState = .idle {
         didSet {
-            if status == 0 {
-                dimensions.isHidden = false
-                filesize.isHidden = false
-                
-                statusLabel.isHidden = true
-                
-            }
-            else if status == 1 {
-                dimensions.isHidden = true
-                filesize.isHidden = true
-                
-                statusLabel.isHidden = false
-                statusLabel.text = "Pending..."
-            }
-            else if status == 2 {
-                dimensions.isHidden = true
-                filesize.isHidden = true
-                
-                statusLabel.isHidden = false
-                statusLabel.text = "Done!"
+            switch status {
+                case .done:
+                    dimensions.isHidden = true
+                    filesize.isHidden = true
+
+                    statusLabel.isHidden = false
+                    statusLabel.text = "Done!"
+                case .savingToCameraRoll:
+                    dimensions.isHidden = true
+                    filesize.isHidden = true
+
+                    statusLabel.isHidden = false
+                    statusLabel.text = "Saving..."
+                case .idle:
+                    print("Idle!")
+                case .loadingInfo:
+                    dimensions.isHidden = true
+                    filesize.isHidden = true
+
+                    statusLabel.isHidden = false
+                    statusLabel.text = "Loading..."
+                case .error:
+                    dimensions.isHidden = true
+                    filesize.isHidden = true
+
+                    statusLabel.isHidden = false
+                    statusLabel.text = "Retry"
             }
         }
     }
@@ -67,21 +78,27 @@ public class FilesizeButton: UIView, NibLoadable {
     //            return nil
     //        }
     //    }()
+    deinit {
+        print("FilesizeButton deinitted")
+    }
 
     func commonInit() {
-                press.rx.event.compactMap {
-                    switch ($0.state) {
-                    case .began, .possible:
-                        return UIColor.systemGray2
-                    case .cancelled, .failed, .ended:
-                        return UIColor.systemGray3
-                    default:
-                        return nil
-                    }
-                }
-                    .bind(to: backgroundView.rx.backgroundColor)
-                    .disposed(by: rx.disposeBag)
-        self.isDisabled = false
+        press.rx.event.compactMap {
+            [weak self] in
+            let disabled = self?.isDisabled ?? false
+            if disabled { return nil }
+
+            switch ($0.state) {
+                case .began, .possible:
+                    return UIColor.systemGray2
+                case .cancelled, .failed, .ended:
+                    return UIColor.systemGray4
+                default:
+                    return nil
+            }
+        }
+        .bind(to: backgroundView.rx.backgroundColor)
+        .disposed(by: rx.disposeBag)
     }
 
     required init?(

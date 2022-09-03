@@ -134,14 +134,19 @@ public struct SavedToCameraRoll: Action {
     let index: Int
 }
 
+public struct ResetState: Action {
+    public init() {}
+}
+
 func appReducer(action: Action, state: TwitterMediaGrabberState?) -> TwitterMediaGrabberState {
     var state = state ?? TwitterMediaGrabberState()
 
     switch action {
-        case let action as PreviewTweet:
+        case _ as PreviewTweet:
             // Reset previous data
             state.localMediaURL = .idle
             state.sizeForUrl = [:]
+            state.savedToCameraRoll = [:]
         case let action as FetchedMediaURLsFromTweet:
             state.mediaResultURL = action.urls
         case let action as DownloadMediaProgress:
@@ -151,6 +156,11 @@ func appReducer(action: Action, state: TwitterMediaGrabberState?) -> TwitterMedi
             state.sizeForUrl[action.url] = action.size
         case let action as SavedToCameraRoll:
             state.savedToCameraRoll[action.index] = action.success
+        case _ as ResetState:
+            state.localMediaURL = .idle
+            state.sizeForUrl = [:]
+            state.thumbnailURL = nil
+            state.mediaResultURL = .idle
 
         default:
             break

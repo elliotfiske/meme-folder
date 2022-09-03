@@ -144,10 +144,12 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.nib` struct is generated, and contains static references to 5 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 6 nibs.
   struct nib {
     /// Nib `AVVideoPlayerView`.
     static let avVideoPlayerView = _R.nib._AVVideoPlayerView()
+    /// Nib `DummyTestViewController`.
+    static let dummyTestViewController = _R.nib._DummyTestViewController()
     /// Nib `FilesizeButton`.
     static let filesizeButton = _R.nib._FilesizeButton()
     /// Nib `TwitterDLViewController`.
@@ -162,6 +164,14 @@ struct R: Rswift.Validatable {
     @available(*, deprecated, message: "Use UINib(resource: R.nib.avVideoPlayerView) instead")
     static func avVideoPlayerView(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.avVideoPlayerView)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UINib(name: "DummyTestViewController", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.dummyTestViewController) instead")
+    static func dummyTestViewController(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.dummyTestViewController)
     }
     #endif
 
@@ -199,6 +209,10 @@ struct R: Rswift.Validatable {
 
     static func avVideoPlayerView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
       return R.nib.avVideoPlayerView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+    }
+
+    static func dummyTestViewController(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+      return R.nib.dummyTestViewController.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
     }
 
     static func filesizeButton(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
@@ -249,6 +263,17 @@ struct _R: Rswift.Validatable {
     struct _AVVideoPlayerView: Rswift.NibResourceType {
       let bundle = R.hostingBundle
       let name = "AVVideoPlayerView"
+
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+      }
+
+      fileprivate init() {}
+    }
+
+    struct _DummyTestViewController: Rswift.NibResourceType {
+      let bundle = R.hostingBundle
+      let name = "DummyTestViewController"
 
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
