@@ -135,7 +135,12 @@ public class TwitterDLViewController: UIViewController, UIAdaptivePresentationCo
             store.observableFromPath(keyPath: \.mediaResultURL)
                 .apiError()
                 .map {
-                    $0.localizedDescription
+                    err in
+                    if let err = err as? ElliotError {
+                        return err.userMessage
+                    }
+                    
+                    return err.localizedDescription
                 }
                 .bind(to: errorLabel.rx.text),
 

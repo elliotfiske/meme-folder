@@ -131,8 +131,36 @@ public class TwitterAPI: HasDisposeBag {
             response, data in
             guard response.statusCode != 404 else {
                 throw ElliotError(
-                    localizedMessage: "I couldn't find a Tweet at that URL.",
+                    localizedMessage:
+                        "I couldn't find a Tweet at that URL. Is the account private?",
                     developerMessage: "Error 404 for tweet URL: \(url)", category: .networkError)
+            }
+
+            let json = try parseJSON(data: data)
+
+            guard response.statusCode != 403 else {
+                if let errors = json["errors"].array {
+                    var allReasons: [String] = []
+                    for error in errors {
+
+                        if let message = error["message"].string {
+                            allReasons.append(message)
+                        }
+                    }
+
+                    for error in errors {
+                        if let code = error["code"].int {
+                            if code == 63 {
+                                throw ElliotError(
+                                    localizedMessage:
+                                        "That account is suspended! I can't get the video anymore :(",
+                                    developerMessage: allReasons.joined(separator: ", "))
+                            }
+                        }
+                    }
+                }
+
+                throw ElliotError(localizedMessage: "Something went wrong talking to Twitter!")
             }
 
             let twitterStatus = try JSONDecoder().decode(TwitterAPIType.self, from: data)

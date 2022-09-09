@@ -21,18 +21,34 @@ public let defaultResponse: Response = {
 ///   - tokenAcquisitionService: The object responsible for tracking the auth token. All requests should use the same object.
 ///   - request: A function that can build the request when given a token.
 /// - Returns: response of a guaranteed authorized network request.
-public func getData<T>(tokenAcquisitionService: TokenAcquisitionService<T>, request: @escaping (T) throws -> URLRequest, response: @escaping Response = defaultResponse) -> Observable<(response: HTTPURLResponse, data: Data)> {
-    return Observable
+public func getData<T>(
+    tokenAcquisitionService: TokenAcquisitionService<T>,
+    request: @escaping (T) throws -> URLRequest, response: @escaping Response = defaultResponse
+) -> Observable<(response: HTTPURLResponse, data: Data)> {
+    return
+        Observable
         .deferred {
             tokenAcquisitionService.token.take(1)
         }
         .map { try request($0) }
         .flatMap { response($0) }
         .map { response in
-            guard response.response.statusCode != 400 else { throw TokenAcquisitionError.unauthorized }
-            guard response.response.statusCode != 403 else {
-                throw TokenAcquisitionError.unauthorized
+            // Sometimes, Twitter just lets me through with no problems. Other times it requires me to refresh
+            //      the guest token. Don't really get it.
+            if response.data.count == 0 {
+                return response
             }
+
+            let json = try parseJSON(data: response.data)
+
+            if let errors = json["errors"].array {
+                for error in errors {
+                    if error["code"].int == 239 {
+                        throw TokenAcquisitionError.unauthorized
+                    }
+                }
+            }
+
             return response
         }
         .retry { $0.renewToken(with: tokenAcquisitionService) }
@@ -62,31 +78,35 @@ public final class TokenAcquisitionService<T> {
     ///   - initialToken: The token the service should start with. Provide a token from storage or an empty string (object reprenting a missing token) if one has not been acquired yet.
     ///   - getToken: A function responsible for acquiring new tokens when needed.
     ///   - extractToken: A function that can extract a token from the data returned by `getToken`.
-    public init(initialToken: T?, getToken: @escaping GetToken, extractToken: @escaping (Data) throws -> T) {
+    public init(
+        initialToken: T?, getToken: @escaping GetToken, extractToken: @escaping (Data) throws -> T
+    ) {
         relay
             .flatMapFirst { _ in
                 getToken()
             }
             .map { (urlResponse) -> T in
                 guard urlResponse.response.statusCode / 100 == 2 else {
-                    throw TokenAcquisitionError.refusedToken(response: urlResponse.response, data: urlResponse.data) }
+                    throw TokenAcquisitionError.refusedToken(
+                        response: urlResponse.response, data: urlResponse.data)
+                }
                 return try extractToken(urlResponse.data)
             }
             .startWith(initialToken)
             .compactMap { $0 }
-//            .flatMap {
-//                initialToken -> Observable<T> in
-//                if let token = initialToken {
-//                    return Observable.just(token)
-//                }
-//
-//                return getToken()
-//                    .map { (urlResponse) -> T in
-//                        guard urlResponse.response.statusCode / 100 == 2 else {
-//                            throw TokenAcquisitionError.refusedToken(response: urlResponse.response, data: urlResponse.data) }
-//                        return try extractToken(urlResponse.data)
-//                    }
-//            }
+            //            .flatMap {
+            //                initialToken -> Observable<T> in
+            //                if let token = initialToken {
+            //                    return Observable.just(token)
+            //                }
+            //
+            //                return getToken()
+            //                    .map { (urlResponse) -> T in
+            //                        guard urlResponse.response.statusCode / 100 == 2 else {
+            //                            throw TokenAcquisitionError.refusedToken(response: urlResponse.response, data: urlResponse.data) }
+            //                        return try extractToken(urlResponse.data)
+            //                    }
+            //            }
             .subscribe(_token)
             .disposed(by: disposeBag)
     }
@@ -103,15 +123,17 @@ public final class TokenAcquisitionService<T> {
     ///
     /// - Parameter source: An `Observable` (or like type) that emits errors.
     /// - Returns: A trigger that will emit when it's safe to retry the request.
-    func trackErrors<O: ObservableConvertibleType>(for source: O) -> Observable<Void> where O.Element == Error {
+    func trackErrors<O: ObservableConvertibleType>(for source: O) -> Observable<Void>
+    where O.Element == Error {
         let lock = self.lock
         let relay = self.relay
-        let error = source
+        let error =
+            source
             .asObservable()
             .map { error in
                 guard (error as? TokenAcquisitionError) == .unauthorized else { throw error }
             }
-            .flatMap { [unowned self] in  self.token }
+            .flatMap { [unowned self] in self.token }
             .do(onNext: {
                 lock.lock()
                 relay.onNext($0)

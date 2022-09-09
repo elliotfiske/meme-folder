@@ -110,19 +110,18 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qct-0C-2xc">
-                                <rect key="frame" x="133" y="432" width="148" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qct-0C-2xc">
+                                <rect key="frame" x="48.5" y="432" width="317" height="31"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Populate Clipboard"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Populate Clipboard (test suspended account)"/>
                                 <connections>
                                     <action selector="populateClipboard2:" destination="qgV-WN-pDX" eventType="touchUpInside" id="MhK-ki-3qD"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JnS-e5-m4h">
-                                <rect key="frame" x="133" y="544" width="148" height="31"/>
+                                <rect key="frame" x="74.5" y="544" width="265" height="31"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Populate Clipboard"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Populate Clipboard (test WALTER gif)"/>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="udS-S4-Uhe"/>
@@ -136,14 +135,21 @@
                             <constraint firstItem="udS-S4-Uhe" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Rlq-Ow-YxN" secondAttribute="trailing" constant="8" id="R3m-um-cwy"/>
                             <constraint firstItem="79j-Kh-fRg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="udS-S4-Uhe" secondAttribute="leading" constant="8" id="RRw-Uk-X6f"/>
                             <constraint firstItem="JnS-e5-m4h" firstAttribute="centerX" secondItem="udS-S4-Uhe" secondAttribute="centerX" id="RWd-gh-VZY"/>
+                            <constraint firstItem="Qct-0C-2xc" firstAttribute="centerX" secondItem="udS-S4-Uhe" secondAttribute="centerX" id="Rjg-H2-lnD"/>
+                            <constraint firstItem="Qct-0C-2xc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="udS-S4-Uhe" secondAttribute="leading" constant="48.5" id="VPQ-2V-weh"/>
                             <constraint firstItem="lYp-zn-qI2" firstAttribute="centerX" secondItem="udS-S4-Uhe" secondAttribute="centerX" id="XB4-kd-WQa"/>
                             <constraint firstItem="Rlq-Ow-YxN" firstAttribute="top" secondItem="JnS-e5-m4h" secondAttribute="bottom" constant="84.5" id="aAN-dJ-2sc"/>
+                            <constraint firstItem="udS-S4-Uhe" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Qct-0C-2xc" secondAttribute="trailing" constant="48.5" id="dd3-0T-btz"/>
+                            <constraint firstItem="udS-S4-Uhe" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="JnS-e5-m4h" secondAttribute="trailing" constant="20" id="ivC-3v-ruP"/>
                             <constraint firstItem="Rlq-Ow-YxN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="udS-S4-Uhe" secondAttribute="leading" constant="8" id="mwt-cM-hgV"/>
+                            <constraint firstItem="JnS-e5-m4h" firstAttribute="top" secondItem="Qct-0C-2xc" secondAttribute="bottom" constant="81" id="rWT-MP-9bg"/>
                             <constraint firstItem="Ttm-hl-xqF" firstAttribute="top" secondItem="Rlq-Ow-YxN" secondAttribute="bottom" constant="24" id="ukw-6T-m76"/>
+                            <constraint firstItem="JnS-e5-m4h" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="udS-S4-Uhe" secondAttribute="leading" constant="20" id="xBi-EA-C4S"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Paste a Link" image="link" catalog="system" id="y2A-HK-anu"/>
                     <connections>
+                        <outlet property="bottomLayoutConstraint" destination="1aD-QP-tj6" id="Opz-Sn-NSW"/>
                         <outlet property="copyExampleTwitterLinkButton" destination="JnS-e5-m4h" id="C1g-dd-51a"/>
                         <outlet property="goButton" destination="J1d-Vr-VWp" id="DC1-uO-a7P"/>
                         <outlet property="pasteAndGoButton" destination="lYp-zn-qI2" id="akI-X4-drR"/>

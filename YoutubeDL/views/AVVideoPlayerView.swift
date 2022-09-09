@@ -128,13 +128,13 @@ class AVVideoPlayerView: UIView, NibLoadable {
                 .subscribe(onNext: {
                     _ in
                     //                    print("Did it seek properly? \($0)")
+                    // Code smell: blank subscribe. Can probably just move the "player.seek" here or something.
                 }))
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
-
-        self.playerLayer?.frame = self.bounds
+        playerLayer?.frame = bounds
     }
 
     required init?(

@@ -14,6 +14,7 @@
 		C909550923DE8F4F006FB53C /* RoundedCornerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C909550823DE8F4F006FB53C /* RoundedCornerView.swift */; };
 		C909550D23DFFC7E006FB53C /* UIView+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = C909550C23DFFC7E006FB53C /* UIView+Promise.swift */; };
 		C909550F23E3DA85006FB53C /* UIView+Nibloadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C909550E23E3DA85006FB53C /* UIView+Nibloadable.swift */; };
+		C90A72C928CAD096008015EB /* Keyboard+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90A72C828CAD096008015EB /* Keyboard+Rx.swift */; };
 		C922D72E287FA9800032C517 /* RxAlamofire in Frameworks */ = {isa = PBXBuildFile; productRef = C922D72D287FA9800032C517 /* RxAlamofire */; };
 		C927E75825C78F4C00F835C1 /* RxBiBinding in Frameworks */ = {isa = PBXBuildFile; productRef = C927E75725C78F4C00F835C1 /* RxBiBinding */; };
 		C927E76F25C8A83500F835C1 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = C927E76E25C8A83500F835C1 /* SwiftyJSON */; };
@@ -42,7 +43,6 @@
 		C983F9EE28BEE4A400485C20 /* DummyTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C983F9ED28BEE4A400485C20 /* DummyTestViewController.swift */; };
 		C983F9F028BEE4FF00485C20 /* DummyTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C983F9EF28BEE4FF00485C20 /* DummyTestViewController.xib */; };
 		C986497C287A8BE700DE65D4 /* Rswift in Frameworks */ = {isa = PBXBuildFile; productRef = C986497B287A8BE700DE65D4 /* Rswift */; };
-		C986497E287A8C3100DE65D4 /* rswift in Resources */ = {isa = PBXBuildFile; fileRef = C986497D287A8C3100DE65D4 /* rswift */; };
 		C9864980287A8DCE00DE65D4 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C986497F287A8DCE00DE65D4 /* R.generated.swift */; };
 		C9864982287BB38B00DE65D4 /* NetworkingEpic.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9864981287BB38B00DE65D4 /* NetworkingEpic.swift */; };
 		C9864984287CF58900DE65D4 /* RetryingTokenNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9864983287CF58900DE65D4 /* RetryingTokenNetworkService.swift */; };
@@ -85,6 +85,7 @@
 		C909550823DE8F4F006FB53C /* RoundedCornerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornerView.swift; sourceTree = "<group>"; };
 		C909550C23DFFC7E006FB53C /* UIView+Promise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Promise.swift"; sourceTree = "<group>"; };
 		C909550E23E3DA85006FB53C /* UIView+Nibloadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Nibloadable.swift"; sourceTree = "<group>"; };
+		C90A72C828CAD096008015EB /* Keyboard+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keyboard+Rx.swift"; sourceTree = "<group>"; };
 		C92D91E323C98F8C0067150B /* TwitterDLViewController+ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TwitterDLViewController+ErrorHandler.swift"; sourceTree = "<group>"; };
 		C92D91E823C995810067150B /* TwitterMediaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterMediaModel.swift; sourceTree = "<group>"; };
 		C92D91EE23C9992B0067150B /* TwitterDLViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TwitterDLViewController.swift; sourceTree = "<group>"; };
@@ -210,6 +211,7 @@
 				C96BD9DF23F26E210008CDC8 /* AVPlayer+Rx.swift */,
 				C938B5482404DC9E00AFD740 /* AVPlayerItem+Rx.swift */,
 				C9E240F32603E2B4008BE153 /* Photos+Rx.swift */,
+				C90A72C828CAD096008015EB /* Keyboard+Rx.swift */,
 			);
 			path = "reactive extensions";
 			sourceTree = "<group>";
@@ -434,7 +436,6 @@
 				C93767B423D8063700180F2D /* images.xcassets in Resources */,
 				C938B54724039C9200AFD740 /* AVVideoPlayerView.xib in Resources */,
 				C909550723DE5BF7006FB53C /* VideoControlsView.xib in Resources */,
-				C986497E287A8C3100DE65D4 /* rswift in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,6 +494,7 @@
 				C938B5422400DB0700AFD740 /* VideoPlayerViewController.swift in Sources */,
 				C9864980287A8DCE00DE65D4 /* R.generated.swift in Sources */,
 				C9864984287CF58900DE65D4 /* RetryingTokenNetworkService.swift in Sources */,
+				C90A72C928CAD096008015EB /* Keyboard+Rx.swift in Sources */,
 				C92D91F023C9992B0067150B /* TwitterDLViewController.swift in Sources */,
 				C96BD9E623F39D940008CDC8 /* MathHelpers.swift in Sources */,
 				C92D91E723C98F9A0067150B /* TwitterDLViewController+ErrorHandler.swift in Sources */,
@@ -562,7 +564,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1.1;
+				CURRENT_PROJECT_VERSION = 2.0;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -626,7 +628,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1.1;
+				CURRENT_PROJECT_VERSION = 2.0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

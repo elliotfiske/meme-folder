@@ -20,21 +20,27 @@ class PasteLinkViewController: UIViewController {
 
     @IBOutlet weak var copyExampleTwitterLinkButton: UIButton!
 
+    @IBOutlet weak var bottomLayoutConstraint: NSLayoutConstraint!
+
     @IBAction func populateClipboard2(_ sender: Any) {
         UIPasteboard.general.string =
             "https://twitter.com/hourly_shitpost/status/1564266661573705729"
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let isValidTwitterLink = tweetLinkInput.rx.text.map {
-            url -> Bool in
-            guard let url = url else { return false }
-            return TwitterAPI.getTweetIDFrom(url: url) != nil
-        }
-
         rx.disposeBag.insert(
+            RxKeyboard.instance.visibleHeight.asObservable().subscribe(onNext: {
+                height in
+
+                UIView.animate(
+                    withDuration: 0.5,
+                    animations: { [weak self] () -> Void in
+                        self?.bottomLayoutConstraint.constant = height + 20
+                        self?.view.layoutIfNeeded()
+                    })
+            }),
 
             pasteAndGoButton.rx.tap
                 .subscribe(onNext: {

@@ -32,7 +32,6 @@ extension Reactive where Base: PHCachingImageManager {
                 image, infoDict in
                 guard let imageUnwrapped = image else {
                     let error = infoDict?[PHImageErrorKey] as? NSError
-                    let message = error?.localizedDescription ?? "Unknown error occurred"
 
                     subscriber.onError(
                         ElliotError(

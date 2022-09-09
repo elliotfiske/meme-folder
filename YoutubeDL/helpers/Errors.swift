@@ -36,9 +36,9 @@ public class ElliotError: Error, CustomStringConvertible {
 
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
-    var userMessage: String
+    public var userMessage: String
     var userCanRetry: Bool = false
-    var developerMessage: String
+    public var developerMessage: String
     var category: ErrorCategory
 }
 
