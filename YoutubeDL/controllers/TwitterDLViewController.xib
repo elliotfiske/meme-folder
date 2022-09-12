@@ -30,8 +30,8 @@
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
                 <label hidden="YES" verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Error Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F1w-QK-TSc">
-                    <rect key="frame" x="8" y="236" width="398" height="14.5"/>
-                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                    <rect key="frame" x="8" y="236" width="398" height="23"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                     <color key="textColor" systemColor="systemRedColor"/>
                     <nil key="highlightedColor"/>
                 </label>

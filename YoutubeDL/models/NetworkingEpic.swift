@@ -104,12 +104,34 @@ let saveMediaToCameraRollEpic: Epic<TwitterMediaGrabberState> = {
         }
         return action
     }
-    // compactMap that checks if the current downloaded file is actually the one the user wants
+    .flatMap {
+        (action: SaveToCameraRoll) -> Observable<SaveToCameraRoll> in
+        // Wait until the media is downloaded, or go ahead right away if it already was
+        if case .fulfilled = getState()!.localMediaURL {
+            return Observable.just(action)
+        }
+        
+        return action$.compactMap {
+            guard let finishedDownloadAction = $0 as? DownloadMediaProgress else {
+                return nil
+            }
+            
+            guard case .fulfilled = finishedDownloadAction.localMediaURL else {
+                return nil
+            }
+            
+            return action
+        }
+        .take(1)
+    }
+    // todo: compactMap that checks if the current downloaded file is actually the one the user wants
+    //      until then, you always get the most HD file :P
     .flatMap {
         (action: SaveToCameraRoll) -> Observable<Action> in
 
         guard case let .fulfilled(url) = getState()!.localMediaURL else {
-            throw ElliotError(localizedMessage: "couldn't save to camera roll!")
+            throw ElliotError(localizedMessage: "Unknown error occured!",
+                              developerMessage: "Shouldn't get here... we should have waited until download finish to save to camera roll.")
         }
 
         let result: Observable<Action> = PHPhotoLibrary.shared().rx.rxPerformChanges({
@@ -124,11 +146,8 @@ let saveMediaToCameraRollEpic: Epic<TwitterMediaGrabberState> = {
         .catch { error in
             return Observable.just(SavedToCameraRoll(success: .error(error), index: action.payload))
         }
-
-//        return Observable.just(
-//            SavedToCameraRoll(success: .pending, index: action.payload)
-//        ).concat(result)
-        return result
+        // This might mess stuff up. Be afraid.
+        return result.startWith(SavedToCameraRoll(success: .pending, index: action.payload))
     }
 }
 

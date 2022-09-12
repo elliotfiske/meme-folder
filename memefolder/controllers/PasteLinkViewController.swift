@@ -10,8 +10,15 @@ import UIKit
 import YoutubeDL
 import RxSwift
 
+import Rswift
+
 class PasteLinkViewController: UIViewController {
 
+    @IBOutlet weak var example1: ExampleButton!
+    @IBOutlet weak var example2: ExampleButton!
+    @IBOutlet weak var example3: ExampleButton!
+    @IBOutlet weak var example4: ExampleButton!
+    
     @IBOutlet weak var tweetLinkInput: UITextField!
     @IBOutlet weak var statusLabel: UILabel!
 
@@ -26,18 +33,58 @@ class PasteLinkViewController: UIViewController {
         UIPasteboard.general.string =
             "https://twitter.com/hourly_shitpost/status/1564266661573705729"
     }
+    
+    func presentTweet(url: String) {
+        store.dispatch(PreviewTweet(payload: url))
+
+        let controlla = TwitterDLViewController.loadFromNib()
+        present(controlla, animated: true)
+
+        statusLabel.text = ""
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        example1.myImage = R.image.wat()
+        example1.myText = "Cool"
+        
+        example2.myText = "Beans"
+        
+        example3.myText = "Third one"
+        
+        example4.myText = "Fourth one"
 
         rx.disposeBag.insert(
-            RxKeyboard.instance.visibleHeight.asObservable().subscribe(onNext: {
+            example1.pressed.subscribe(onNext: {
+                [weak self] _ in
+                self?.presentTweet(url: "https://twitter.com/meme_folder_app/status/1568385030367449088")
+            }),
+            
+            example2.pressed.subscribe(onNext: {
+                [weak self] _ in
+                self?.presentTweet(url: "https://twitter.com/meme_folder_app/status/1568385030367449088")
+            }),
+            
+            example3.pressed.subscribe(onNext: {
+                [weak self] _ in
+                self?.presentTweet(url: "https://twitter.com/meme_folder_app/status/1568385030367449088")
+            }),
+            
+            example4.pressed.subscribe(onNext: {
+                [weak self] _ in
+                self?.presentTweet(url: "https://twitter.com/meme_folder_app/status/1568385030367449088")
+            }),
+            
+            RxKeyboard.instance.visibleHeight.asObservable()
+                .skip(1) // don't animate on first appearance
+                .subscribe(onNext: {
                 height in
 
                 UIView.animate(
                     withDuration: 0.5,
                     animations: { [weak self] () -> Void in
-                        self?.bottomLayoutConstraint.constant = height + 20
+                        self?.bottomLayoutConstraint.constant = height
                         self?.view.layoutIfNeeded()
                     })
             }),
@@ -57,6 +104,7 @@ class PasteLinkViewController: UIViewController {
                     store.dispatch(PreviewTweet(payload: url))
 
                     let controlla = TwitterDLViewController.loadFromNib()
+                    controlla.modalPresentationStyle = .popover
                     self?.present(controlla, animated: true)
 
                     self?.statusLabel.text = ""

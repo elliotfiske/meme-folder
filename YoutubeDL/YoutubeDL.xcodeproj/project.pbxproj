@@ -467,7 +467,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$SRCROOT/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
+			shellScript = "\"$SRCROOT/rswift\" generate \"$SRCROOT/R.generated.swift\" --accessLevel public\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

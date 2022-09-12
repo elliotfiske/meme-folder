@@ -26,7 +26,7 @@ public class TwitterDLViewController: UIViewController, UIAdaptivePresentationCo
 
     public override func willMove(toParent parent: UIViewController?) {
         super.willMove(toParent: parent)
-        self.parent?.presentationController?.delegate = self
+//        self.parent?.presentationController?.delegate = self
     }
 
     public func presentationControllerDidDismiss(_ presentationController: UIPresentationController)
@@ -147,6 +147,10 @@ public class TwitterDLViewController: UIViewController, UIAdaptivePresentationCo
             store.observableFromPath(keyPath: \.mediaResultURL)
                 .map { $0.getError() == nil }
                 .bind(to: errorLabel.rx.isHidden),
+            
+            store.observableFromPath(keyPath: \.mediaResultURL)
+                .map { $0.getError() != nil }
+                .bind(to: videoPlayerController.rx.isHidden),
 
             store.observableFromPath(keyPath: \.localMediaURL).apiResult()
                 .distinctUntilChanged()

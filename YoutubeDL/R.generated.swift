@@ -8,7 +8,7 @@ import Rswift
 import UIKit
 
 /// This `R` struct is generated and contains references to static resources.
-struct R: Rswift.Validatable {
+public struct R: Rswift.Validatable {
   fileprivate static let applicationLocale = hostingBundle.preferredLocalizations.first.flatMap { Locale(identifier: $0) } ?? Locale.current
   fileprivate static let hostingBundle = Bundle(for: R.Class.self)
 
@@ -84,46 +84,55 @@ struct R: Rswift.Validatable {
     return dict?[key] as? String
   }
 
-  static func validate() throws {
+  public static func validate() throws {
     try intern.validate()
   }
 
-  /// This `R.image` struct is generated, and contains static references to 4 images.
-  struct image {
+  /// This `R.image` struct is generated, and contains static references to 5 images.
+  public struct image {
     /// Image `gear_cloud`.
-    static let gear_cloud = Rswift.ImageResource(bundle: R.hostingBundle, name: "gear_cloud")
+    public static let gear_cloud = Rswift.ImageResource(bundle: R.hostingBundle, name: "gear_cloud")
     /// Image `pause`.
-    static let pause = Rswift.ImageResource(bundle: R.hostingBundle, name: "pause")
+    public static let pause = Rswift.ImageResource(bundle: R.hostingBundle, name: "pause")
     /// Image `play`.
-    static let play = Rswift.ImageResource(bundle: R.hostingBundle, name: "play")
+    public static let play = Rswift.ImageResource(bundle: R.hostingBundle, name: "play")
     /// Image `twitter_logo`.
-    static let twitter_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "twitter_logo")
+    public static let twitter_logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "twitter_logo")
+    /// Image `wat`.
+    public static let wat = Rswift.ImageResource(bundle: R.hostingBundle, name: "wat")
 
     #if os(iOS) || os(tvOS)
     /// `UIImage(named: "gear_cloud", bundle: ..., traitCollection: ...)`
-    static func gear_cloud(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+    public static func gear_cloud(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.gear_cloud, compatibleWith: traitCollection)
     }
     #endif
 
     #if os(iOS) || os(tvOS)
     /// `UIImage(named: "pause", bundle: ..., traitCollection: ...)`
-    static func pause(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+    public static func pause(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.pause, compatibleWith: traitCollection)
     }
     #endif
 
     #if os(iOS) || os(tvOS)
     /// `UIImage(named: "play", bundle: ..., traitCollection: ...)`
-    static func play(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+    public static func play(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.play, compatibleWith: traitCollection)
     }
     #endif
 
     #if os(iOS) || os(tvOS)
     /// `UIImage(named: "twitter_logo", bundle: ..., traitCollection: ...)`
-    static func twitter_logo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+    public static func twitter_logo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.twitter_logo, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "wat", bundle: ..., traitCollection: ...)`
+    public static func wat(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.wat, compatibleWith: traitCollection)
     }
     #endif
 
@@ -131,24 +140,24 @@ struct R: Rswift.Validatable {
   }
 
   /// This `R.nib` struct is generated, and contains static references to 6 nibs.
-  struct nib {
+  public struct nib {
     /// Nib `AVVideoPlayerView`.
-    static let avVideoPlayerView = _R.nib._AVVideoPlayerView()
+    public static let avVideoPlayerView = _R.nib._AVVideoPlayerView()
     /// Nib `DummyTestViewController`.
-    static let dummyTestViewController = _R.nib._DummyTestViewController()
+    public static let dummyTestViewController = _R.nib._DummyTestViewController()
     /// Nib `FilesizeButton`.
-    static let filesizeButton = _R.nib._FilesizeButton()
+    public static let filesizeButton = _R.nib._FilesizeButton()
     /// Nib `TwitterDLViewController`.
-    static let twitterDLViewController = _R.nib._TwitterDLViewController()
+    public static let twitterDLViewController = _R.nib._TwitterDLViewController()
     /// Nib `VideoControlsView`.
-    static let videoControlsView = _R.nib._VideoControlsView()
+    public static let videoControlsView = _R.nib._VideoControlsView()
     /// Nib `VideoPlayerViewController`.
-    static let videoPlayerViewController = _R.nib._VideoPlayerViewController()
+    public static let videoPlayerViewController = _R.nib._VideoPlayerViewController()
 
     #if os(iOS) || os(tvOS)
     /// `UINib(name: "AVVideoPlayerView", in: bundle)`
     @available(*, deprecated, message: "Use UINib(resource: R.nib.avVideoPlayerView) instead")
-    static func avVideoPlayerView(_: Void = ()) -> UIKit.UINib {
+    public static func avVideoPlayerView(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.avVideoPlayerView)
     }
     #endif
@@ -156,7 +165,7 @@ struct R: Rswift.Validatable {
     #if os(iOS) || os(tvOS)
     /// `UINib(name: "DummyTestViewController", in: bundle)`
     @available(*, deprecated, message: "Use UINib(resource: R.nib.dummyTestViewController) instead")
-    static func dummyTestViewController(_: Void = ()) -> UIKit.UINib {
+    public static func dummyTestViewController(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.dummyTestViewController)
     }
     #endif
@@ -164,7 +173,7 @@ struct R: Rswift.Validatable {
     #if os(iOS) || os(tvOS)
     /// `UINib(name: "FilesizeButton", in: bundle)`
     @available(*, deprecated, message: "Use UINib(resource: R.nib.filesizeButton) instead")
-    static func filesizeButton(_: Void = ()) -> UIKit.UINib {
+    public static func filesizeButton(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.filesizeButton)
     }
     #endif
@@ -172,7 +181,7 @@ struct R: Rswift.Validatable {
     #if os(iOS) || os(tvOS)
     /// `UINib(name: "TwitterDLViewController", in: bundle)`
     @available(*, deprecated, message: "Use UINib(resource: R.nib.twitterDLViewController) instead")
-    static func twitterDLViewController(_: Void = ()) -> UIKit.UINib {
+    public static func twitterDLViewController(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.twitterDLViewController)
     }
     #endif
@@ -180,7 +189,7 @@ struct R: Rswift.Validatable {
     #if os(iOS) || os(tvOS)
     /// `UINib(name: "VideoControlsView", in: bundle)`
     @available(*, deprecated, message: "Use UINib(resource: R.nib.videoControlsView) instead")
-    static func videoControlsView(_: Void = ()) -> UIKit.UINib {
+    public static func videoControlsView(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.videoControlsView)
     }
     #endif
@@ -188,32 +197,32 @@ struct R: Rswift.Validatable {
     #if os(iOS) || os(tvOS)
     /// `UINib(name: "VideoPlayerViewController", in: bundle)`
     @available(*, deprecated, message: "Use UINib(resource: R.nib.videoPlayerViewController) instead")
-    static func videoPlayerViewController(_: Void = ()) -> UIKit.UINib {
+    public static func videoPlayerViewController(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.videoPlayerViewController)
     }
     #endif
 
-    static func avVideoPlayerView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+    public static func avVideoPlayerView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
       return R.nib.avVideoPlayerView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
     }
 
-    static func dummyTestViewController(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+    public static func dummyTestViewController(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
       return R.nib.dummyTestViewController.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
     }
 
-    static func filesizeButton(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+    public static func filesizeButton(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
       return R.nib.filesizeButton.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
     }
 
-    static func twitterDLViewController(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+    public static func twitterDLViewController(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
       return R.nib.twitterDLViewController.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
     }
 
-    static func videoControlsView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+    public static func videoControlsView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
       return R.nib.videoControlsView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
     }
 
-    static func videoPlayerViewController(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+    public static func videoPlayerViewController(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
       return R.nib.videoPlayerViewController.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
     }
 
@@ -233,84 +242,84 @@ struct R: Rswift.Validatable {
   fileprivate init() {}
 }
 
-struct _R: Rswift.Validatable {
-  static func validate() throws {
+public struct _R: Rswift.Validatable {
+  public static func validate() throws {
     #if os(iOS) || os(tvOS)
     try nib.validate()
     #endif
   }
 
   #if os(iOS) || os(tvOS)
-  struct nib: Rswift.Validatable {
-    static func validate() throws {
+  public struct nib: Rswift.Validatable {
+    public static func validate() throws {
       try _VideoControlsView.validate()
     }
 
-    struct _AVVideoPlayerView: Rswift.NibResourceType {
-      let bundle = R.hostingBundle
-      let name = "AVVideoPlayerView"
+    public struct _AVVideoPlayerView: Rswift.NibResourceType {
+      public let bundle = R.hostingBundle
+      public let name = "AVVideoPlayerView"
 
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+      public func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
       }
 
       fileprivate init() {}
     }
 
-    struct _DummyTestViewController: Rswift.NibResourceType {
-      let bundle = R.hostingBundle
-      let name = "DummyTestViewController"
+    public struct _DummyTestViewController: Rswift.NibResourceType {
+      public let bundle = R.hostingBundle
+      public let name = "DummyTestViewController"
 
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+      public func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
       }
 
       fileprivate init() {}
     }
 
-    struct _FilesizeButton: Rswift.NibResourceType {
-      let bundle = R.hostingBundle
-      let name = "FilesizeButton"
+    public struct _FilesizeButton: Rswift.NibResourceType {
+      public let bundle = R.hostingBundle
+      public let name = "FilesizeButton"
 
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+      public func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
       }
 
-      func secondView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+      public func secondView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[1] as? UIKit.UIView
       }
 
       fileprivate init() {}
     }
 
-    struct _TwitterDLViewController: Rswift.NibResourceType {
-      let bundle = R.hostingBundle
-      let name = "TwitterDLViewController"
+    public struct _TwitterDLViewController: Rswift.NibResourceType {
+      public let bundle = R.hostingBundle
+      public let name = "TwitterDLViewController"
 
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+      public func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
       }
 
       fileprivate init() {}
     }
 
-    struct _VideoControlsView: Rswift.NibResourceType, Rswift.Validatable {
-      let bundle = R.hostingBundle
-      let name = "VideoControlsView"
+    public struct _VideoControlsView: Rswift.NibResourceType, Rswift.Validatable {
+      public let bundle = R.hostingBundle
+      public let name = "VideoControlsView"
 
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+      public func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
       }
 
-      func secondView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+      public func secondView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[1] as? UIKit.UIView
       }
 
-      func thirdView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+      public func thirdView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[2] as? UIKit.UIView
       }
 
-      static func validate() throws {
+      public static func validate() throws {
         if UIKit.UIImage(named: "play", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'play' is used in nib 'VideoControlsView', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {
         }
@@ -319,11 +328,11 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
 
-    struct _VideoPlayerViewController: Rswift.NibResourceType {
-      let bundle = R.hostingBundle
-      let name = "VideoPlayerViewController"
+    public struct _VideoPlayerViewController: Rswift.NibResourceType {
+      public let bundle = R.hostingBundle
+      public let name = "VideoPlayerViewController"
 
-      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+      public func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
       }
 

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ExampleButton" customModule="Meme_Folder" customModuleProvider="target">
+            <connections>
+                <outlet property="backgroundView" destination="38m-3G-Oxa" id="6X3-Nz-7vA"/>
+                <outlet property="exampleGifName" destination="wjD-Hm-5fn" id="LAW-6o-dmm"/>
+                <outlet property="imagePreview" destination="saW-Hs-iCf" id="g47-dF-F2G"/>
+                <outlet property="label" destination="wjD-Hm-5fn" id="H36-QB-qfh"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" userLabel="ParentView">
+            <rect key="frame" x="0.0" y="0.0" width="227" height="59"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="38m-3G-Oxa" userLabel="RoundedCornerView" customClass="RoundedCornerView" customModule="YoutubeDL">
+                    <rect key="frame" x="0.0" y="0.0" width="227" height="59"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="wjD-Hm-5fn">
+                            <rect key="frame" x="15" y="8" width="30" height="43"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QBY-gv-kVG" customClass="RoundedCornerView" customModule="YoutubeDL">
+                            <rect key="frame" x="176" y="8" width="43" height="43"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1" image="gear_cloud" translatesAutoresizingMaskIntoConstraints="NO" id="saW-Hs-iCf">
+                                    <rect key="frame" x="0.0" y="0.0" width="43" height="43"/>
+                                </imageView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="saW-Hs-iCf" secondAttribute="bottom" id="bEA-On-EJ0"/>
+                                <constraint firstAttribute="width" secondItem="QBY-gv-kVG" secondAttribute="height" multiplier="1:1" id="cSr-EQ-Lyp"/>
+                                <constraint firstAttribute="trailing" secondItem="saW-Hs-iCf" secondAttribute="trailing" id="ibU-Yi-1iV"/>
+                                <constraint firstItem="saW-Hs-iCf" firstAttribute="leading" secondItem="QBY-gv-kVG" secondAttribute="leading" id="id2-nY-UqO"/>
+                                <constraint firstItem="saW-Hs-iCf" firstAttribute="top" secondItem="QBY-gv-kVG" secondAttribute="top" id="wII-Ts-3Uw"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="4"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemGray4Color"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="QBY-gv-kVG" secondAttribute="bottom" constant="8" id="2in-Lz-bqU"/>
+                        <constraint firstItem="wjD-Hm-5fn" firstAttribute="leading" secondItem="38m-3G-Oxa" secondAttribute="leading" constant="15" id="GLM-d0-RqP"/>
+                        <constraint firstItem="wjD-Hm-5fn" firstAttribute="top" secondItem="38m-3G-Oxa" secondAttribute="top" constant="8" id="LpP-VY-GGT"/>
+                        <constraint firstAttribute="bottom" secondItem="wjD-Hm-5fn" secondAttribute="bottom" constant="8" id="ZW5-6Z-HQz"/>
+                        <constraint firstAttribute="trailing" secondItem="QBY-gv-kVG" secondAttribute="trailing" constant="8" id="hHL-PR-p5W"/>
+                        <constraint firstItem="QBY-gv-kVG" firstAttribute="top" secondItem="38m-3G-Oxa" secondAttribute="top" constant="8" id="pPI-dt-Olf"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <accessibility key="accessibilityConfiguration">
+                <accessibilityTraits key="traits" button="YES"/>
+            </accessibility>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="38m-3G-Oxa" secondAttribute="bottom" id="FxL-WP-X5P"/>
+                <constraint firstItem="38m-3G-Oxa" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="SGW-nW-plT"/>
+                <constraint firstAttribute="trailing" secondItem="38m-3G-Oxa" secondAttribute="trailing" id="Ybd-E5-328"/>
+                <constraint firstItem="38m-3G-Oxa" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="asu-FA-O7a"/>
+            </constraints>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-197.82608695652175" y="9.7098214285714288"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="gear_cloud" width="80" height="80"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
