@@ -52,8 +52,8 @@
                                 <constraint firstItem="Xu0-BM-yBM" firstAttribute="centerX" secondItem="h5F-Zn-cWz" secondAttribute="centerX" id="kG8-nM-5vo"/>
                             </constraints>
                         </view>
-                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="status" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wRe-YV-pBI" userLabel="status">
-                            <rect key="frame" x="51.5" y="63.5" width="47" height="21"/>
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="status" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wRe-YV-pBI" userLabel="status">
+                            <rect key="frame" x="8" y="8" width="134" height="132"/>
                             <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -63,8 +63,11 @@
                     <constraints>
                         <constraint firstItem="h5F-Zn-cWz" firstAttribute="leading" secondItem="bnS-qr-l4s" secondAttribute="leading" constant="16" id="8kg-79-6Zl"/>
                         <constraint firstAttribute="trailing" secondItem="h5F-Zn-cWz" secondAttribute="trailing" constant="16" id="Kil-8i-EIe"/>
+                        <constraint firstItem="wRe-YV-pBI" firstAttribute="top" secondItem="bnS-qr-l4s" secondAttribute="top" constant="8" id="RSV-da-sKN"/>
+                        <constraint firstAttribute="trailing" secondItem="wRe-YV-pBI" secondAttribute="trailing" constant="8" id="RYu-tR-XJQ"/>
+                        <constraint firstAttribute="bottom" secondItem="wRe-YV-pBI" secondAttribute="bottom" constant="8" id="T9Q-MX-iZ0"/>
                         <constraint firstItem="wRe-YV-pBI" firstAttribute="centerY" secondItem="bnS-qr-l4s" secondAttribute="centerY" id="Xib-TL-Hvu"/>
-                        <constraint firstItem="wRe-YV-pBI" firstAttribute="centerX" secondItem="bnS-qr-l4s" secondAttribute="centerX" id="aF6-Zp-qKe"/>
+                        <constraint firstItem="wRe-YV-pBI" firstAttribute="leading" secondItem="bnS-qr-l4s" secondAttribute="leading" constant="8" id="ebN-bb-KZz"/>
                         <constraint firstItem="h5F-Zn-cWz" firstAttribute="centerX" secondItem="bnS-qr-l4s" secondAttribute="centerX" id="nLF-zn-1Ws"/>
                         <constraint firstItem="h5F-Zn-cWz" firstAttribute="centerY" secondItem="bnS-qr-l4s" secondAttribute="centerY" id="tji-8Z-qVx"/>
                     </constraints>

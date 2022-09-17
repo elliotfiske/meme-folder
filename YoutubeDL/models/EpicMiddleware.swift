@@ -37,6 +37,7 @@ class EpicMiddleware<State> {
                 .flatMapLatest { output in
                     return output
                 }
+                .observe(on: MainScheduler.instance)
                 .subscribe(onNext: { action in
                     _ = dispatch(action)
                 })

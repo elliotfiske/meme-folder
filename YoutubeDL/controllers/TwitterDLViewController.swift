@@ -26,7 +26,7 @@ public class TwitterDLViewController: UIViewController, UIAdaptivePresentationCo
 
     public override func willMove(toParent parent: UIViewController?) {
         super.willMove(toParent: parent)
-//        self.parent?.presentationController?.delegate = self
+        //        self.parent?.presentationController?.delegate = self
     }
 
     public func presentationControllerDidDismiss(_ presentationController: UIPresentationController)
@@ -87,8 +87,15 @@ public class TwitterDLViewController: UIViewController, UIAdaptivePresentationCo
                 for (ndx, (url, size)) in filesizes.prefix(buttons.count).enumerated() {
                     let button = buttons[ndx]
                     let groups = url.groups(for: "/(\\d+)x(\\d+)/")
-                    button.dimensions.text =
-                        "\(groups.get(index: 0)?.get(index: 1) ?? "?") x \(groups.get(index: 0)?.get(index: 2) ?? "?")"
+
+                    if let widthHeight = groups.get(index: 0),
+                        let width = widthHeight.get(index: 1),
+                        let height = widthHeight.get(index: 2)
+                    {
+                        button.dimensions.text = "\(width) x \(height)"
+                    } else {
+                        button.dimensions.text = "Save"
+                    }
                     button.filesize.text = ByteCountFormatter.string(
                         fromByteCount: Int64(size), countStyle: .file)
                     button.isHidden = false
@@ -108,8 +115,8 @@ public class TwitterDLViewController: UIViewController, UIAdaptivePresentationCo
                         if case .fulfilled = state {
                             button.status = .done
                             button.isDisabled = true
-                        } else if case .error = state {
-                            button.status = .error
+                        } else if case let .error(e) = state {
+                            button.status = .error(e)
                             button.isDisabled = false
                         } else if case .pending = state {
                             button.status = .savingToCameraRoll
@@ -139,7 +146,7 @@ public class TwitterDLViewController: UIViewController, UIAdaptivePresentationCo
                     if let err = err as? ElliotError {
                         return err.userMessage
                     }
-                    
+
                     return err.localizedDescription
                 }
                 .bind(to: errorLabel.rx.text),
@@ -147,7 +154,7 @@ public class TwitterDLViewController: UIViewController, UIAdaptivePresentationCo
             store.observableFromPath(keyPath: \.mediaResultURL)
                 .map { $0.getError() == nil }
                 .bind(to: errorLabel.rx.isHidden),
-            
+
             store.observableFromPath(keyPath: \.mediaResultURL)
                 .map { $0.getError() != nil }
                 .bind(to: videoPlayerController.rx.isHidden),

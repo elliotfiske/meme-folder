@@ -88,10 +88,16 @@ public struct R: Rswift.Validatable {
     try intern.validate()
   }
 
-  /// This `R.image` struct is generated, and contains static references to 5 images.
+  /// This `R.image` struct is generated, and contains static references to 8 images.
   public struct image {
+    /// Image `applause`.
+    public static let applause = Rswift.ImageResource(bundle: R.hostingBundle, name: "applause")
     /// Image `gear_cloud`.
     public static let gear_cloud = Rswift.ImageResource(bundle: R.hostingBundle, name: "gear_cloud")
+    /// Image `i_won`.
+    public static let i_won = Rswift.ImageResource(bundle: R.hostingBundle, name: "i_won")
+    /// Image `no`.
+    public static let no = Rswift.ImageResource(bundle: R.hostingBundle, name: "no")
     /// Image `pause`.
     public static let pause = Rswift.ImageResource(bundle: R.hostingBundle, name: "pause")
     /// Image `play`.
@@ -102,9 +108,30 @@ public struct R: Rswift.Validatable {
     public static let wat = Rswift.ImageResource(bundle: R.hostingBundle, name: "wat")
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "applause", bundle: ..., traitCollection: ...)`
+    public static func applause(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.applause, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "gear_cloud", bundle: ..., traitCollection: ...)`
     public static func gear_cloud(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.gear_cloud, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "i_won", bundle: ..., traitCollection: ...)`
+    public static func i_won(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.i_won, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "no", bundle: ..., traitCollection: ...)`
+    public static func no(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.no, compatibleWith: traitCollection)
     }
     #endif
 

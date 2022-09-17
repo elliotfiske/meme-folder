@@ -11,7 +11,7 @@ import UIKit
 import RxSwift
 
 public enum FilesizeButtonState {
-    case idle, loadingInfo, savingToCameraRoll, done, error
+    case idle, loadingInfo, savingToCameraRoll, done, error(Error)
 }
 
 public class FilesizeButton: UIView, NibLoadable {
@@ -32,7 +32,7 @@ public class FilesizeButton: UIView, NibLoadable {
     public var isDisabled = false {
         didSet {
             if isDisabled {
-                backgroundView.backgroundColor = .systemBrown
+                backgroundView.backgroundColor = .systemGray
             }
         }
     }
@@ -60,12 +60,17 @@ public class FilesizeButton: UIView, NibLoadable {
 
                     statusLabel.isHidden = false
                     statusLabel.text = "Loading..."
-                case .error:
+            case .error(let err):
                     dimensions.isHidden = true
                     filesize.isHidden = true
 
                     statusLabel.isHidden = false
                     statusLabel.text = "Retry"
+                
+                if let elliot = err as? ElliotError,
+                   elliot.category == .photoLibraryAccessDenied {
+                    statusLabel.text = "Please allow Photos access and retry!"
+                }
             }
         }
     }

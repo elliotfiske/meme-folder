@@ -12,6 +12,9 @@ public enum ErrorCategory: String {
     case unexpectedDataShape
     case tokenNeedsRefresh
     case invalidUserInput
+    
+    case photoLibraryAccessDenied
+    
     /// Stuff like "can't retrieve a photo for some reason"
     case iosError
     case generic

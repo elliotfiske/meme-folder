@@ -47,13 +47,16 @@ class PasteLinkViewController: UIViewController {
         super.viewDidLoad()
         
         example1.myImage = R.image.wat()
-        example1.myText = "Cool"
+        example1.myText = "Wat"
         
-        example2.myText = "Beans"
+        example2.myImage = R.image.i_won()
+        example2.myText = "I Won!"
         
-        example3.myText = "Third one"
+        example3.myImage = R.image.no()
+        example3.myText = "No"
         
-        example4.myText = "Fourth one"
+        example4.myImage = R.image.applause()
+        example4.myText = "Applause"
 
         rx.disposeBag.insert(
             example1.pressed.subscribe(onNext: {
@@ -63,17 +66,17 @@ class PasteLinkViewController: UIViewController {
             
             example2.pressed.subscribe(onNext: {
                 [weak self] _ in
-                self?.presentTweet(url: "https://twitter.com/meme_folder_app/status/1568385030367449088")
+                self?.presentTweet(url: "https://twitter.com/meme_folder_app/status/1568401227326853122")
             }),
             
             example3.pressed.subscribe(onNext: {
                 [weak self] _ in
-                self?.presentTweet(url: "https://twitter.com/meme_folder_app/status/1568385030367449088")
+                self?.presentTweet(url: "https://twitter.com/meme_folder_app/status/1568401300785893380")
             }),
             
             example4.pressed.subscribe(onNext: {
                 [weak self] _ in
-                self?.presentTweet(url: "https://twitter.com/meme_folder_app/status/1568385030367449088")
+                self?.presentTweet(url: "https://twitter.com/meme_folder_app/status/1570157492445007874")
             }),
             
             RxKeyboard.instance.visibleHeight.asObservable()

@@ -32,7 +32,7 @@ public class TwitterAPI: HasDisposeBag {
     static let BASE_HEADERS: HTTPHeaders = [
         // yoinked from YoutubeDL's repo :3 (remember to switch over to my own at some point)
         "Authorization":
-            "Bearer AAAAAAAAAAAAAAAAAAAAAPYXBAAAAAAACLXUNDekMxqa8h%2F40K4moUkGsoc%3DTYfbDKbT3jJPCEVnMYqilB28NHfOPqkca3qaAxGfsyKCs0wRbw",
+            "Bearer AAAAAAAAAAAAAAAAAAAAAKVWMQEAAAAA88QDR576fLqre935ODAO02Wj%2FY0%3DivscPiX2VDVPiaEW4GAc9BJG2Ei6LQ379Y92F4Nx0NGWx64CFt",
         "Accept": "application/json",
         "Cache-Control": "no-cache",
     ]
@@ -154,13 +154,17 @@ public class TwitterAPI: HasDisposeBag {
                                 throw ElliotError(
                                     localizedMessage:
                                         "That account is suspended! I can't get the video anymore :(",
-                                    developerMessage: allReasons.joined(separator: ", "))
+                                    developerMessage: json["errors"].rawString() ?? "No errors found")
                             }
                         }
                     }
                 }
 
                 throw ElliotError(localizedMessage: "Something went wrong talking to Twitter!")
+            }
+            
+            guard response.statusCode != 429 else {
+                throw ElliotError(localizedMessage: "Too much traffic! Try again in 15 minutes")
             }
 
             let twitterStatus = try JSONDecoder().decode(TwitterAPIType.self, from: data)

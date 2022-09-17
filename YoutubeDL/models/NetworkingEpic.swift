@@ -98,11 +98,28 @@ let downloadMediaEpic: Epic<TwitterMediaGrabberState> = {
 let saveMediaToCameraRollEpic: Epic<TwitterMediaGrabberState> = {
     action$, getState in
 
-    action$.compactMap {
+    var badThing = 0
+    
+    return action$.compactMap {
         guard let action = $0 as? SaveToCameraRoll else {
             return nil
         }
         return action
+    }
+    .flatMap {
+        (action: SaveToCameraRoll) in
+        return PHPhotoLibrary.rx.requestAuthorization()
+            .asObservable()
+            .map {
+                result -> SaveToCameraRoll in
+                switch result {
+                case .authorized, .limited:
+                    return action
+                default:
+                    badThing = action.payload
+                    throw ElliotError(localizedMessage: "Please allow Photo Library Access!", category: .photoLibraryAccessDenied)
+                }
+            }
     }
     .flatMap {
         (action: SaveToCameraRoll) -> Observable<SaveToCameraRoll> in
@@ -148,6 +165,10 @@ let saveMediaToCameraRollEpic: Epic<TwitterMediaGrabberState> = {
         }
         // This might mess stuff up. Be afraid.
         return result.startWith(SavedToCameraRoll(success: .pending, index: action.payload))
+    }
+    .catch {
+        err in
+        return Observable.just(SavedToCameraRoll(success: .error(err), index: badThing))
     }
 }
 
