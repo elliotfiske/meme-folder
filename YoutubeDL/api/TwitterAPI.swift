@@ -102,7 +102,7 @@ public class TwitterAPI: HasDisposeBag {
     > {
         guard let tweetID = TwitterAPI.getTweetIDFrom(url: url) else {
             // TODO-EF: Send a non-fatal to Firebase
-            throw ElliotError(
+            throw RenamedElliotError(
                 localizedMessage: "That doesn't look like a link to a Tweet.",
                 developerMessage: "Couldn't parse Tweet ID from Tweet: \(url)",
                 category: .invalidUserInput)
